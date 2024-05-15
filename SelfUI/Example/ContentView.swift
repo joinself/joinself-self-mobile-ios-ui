@@ -6,14 +6,27 @@
 //
 
 import SwiftUI
+import SelfUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        ZStack {
+            LivenessView()
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            // face frame
+            ZStack {
+                Rectangle()
+                    .fill(Color.secondary)
+                    .aspectRatio(1, contentMode: .fit)
+                
+                Image("ic_info")
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
+                    .edgesIgnoringSafeArea(.horizontal)
+            }
+            .frame(width: 300, height: 300)
         }
         .padding()
     }

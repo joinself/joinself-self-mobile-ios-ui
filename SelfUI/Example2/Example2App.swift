@@ -1,15 +1,14 @@
 //
-//  ExampleApp.swift
-//  Example
+//  Example2App.swift
+//  Example2
 //
-//  Created by Long Pham on 14/5/24.
+//  Created by Long Pham on 15/5/24.
 //
 
 import SwiftUI
-import SelfUI
 
 @main
-struct ExampleApp: App {
+struct Example2App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
