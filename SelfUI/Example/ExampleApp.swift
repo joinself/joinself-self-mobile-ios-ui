@@ -12,7 +12,7 @@ import SelfUI
 struct ExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            PageContentView()
+            LivenessView()
         }
     }
 }
