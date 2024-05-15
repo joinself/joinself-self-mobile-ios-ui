@@ -9,10 +9,29 @@ import SwiftUI
 import MLKitFaceDetection
 
 public struct LivenessView: View {
+    @State private var image: UIImage?
+    @State private var isCameraPresented = false
+    
     public init () {}
     
     public var body: some View {
-        Text("Hello, Liveness view!")
+        VStack {
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                Text("Tap to take a photo")
+                    .foregroundColor(.blue)
+                    .padding()
+            }
+        }
+        .onTapGesture {
+            isCameraPresented = true
+        }
+        .sheet(isPresented: $isCameraPresented) {
+            CameraView(image: $image)
+        }
     }
 }
 

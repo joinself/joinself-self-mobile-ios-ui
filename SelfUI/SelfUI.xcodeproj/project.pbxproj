@@ -10,6 +10,7 @@
 		43D22B88627409FDF8738092 /* Pods_SelfUI_SelfUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 622517A8FDCB31B7C0952A25 /* Pods_SelfUI_SelfUITests.framework */; };
 		6381C31E2BF4463A005573A0 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		6381C31F2BF4463A005573A0 /* SelfUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6381C3242BF463E1005573A0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3232BF463E1005573A0 /* CameraView.swift */; };
 		63C4516D2BF30EAE00AD5BC5 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		63C451722BF30EAE00AD5BC5 /* SelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451712BF30EAE00AD5BC5 /* SelfUITests.swift */; };
 		63C451732BF30EAE00AD5BC5 /* SelfUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C451672BF30EAE00AD5BC5 /* SelfUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,6 +66,7 @@
 		0B0A768C422404FACEEB6B8A /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		37051E2922A9C0C628176900 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		622517A8FDCB31B7C0952A25 /* Pods_SelfUI_SelfUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SelfUI_SelfUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6381C3232BF463E1005573A0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		63C451642BF30EAE00AD5BC5 /* SelfUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SelfUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C451672BF30EAE00AD5BC5 /* SelfUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfUI.h; sourceTree = "<group>"; };
 		63C4516C2BF30EAE00AD5BC5 /* SelfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +157,7 @@
 				63C451672BF30EAE00AD5BC5 /* SelfUI.h */,
 				63C451A62BF33F6100AD5BC5 /* PageContentView.swift */,
 				63D0D0422BF395D8002658AA /* LivenessView.swift */,
+				6381C3232BF463E1005573A0 /* CameraView.swift */,
 			);
 			path = SelfUI;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
 				63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
 			);
@@ -789,6 +793,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Turning on the camera allows us to ensure it's only you using $(PRODUCT_NAME)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -821,6 +826,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Turning on the camera allows us to ensure it's only you using $(PRODUCT_NAME)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
