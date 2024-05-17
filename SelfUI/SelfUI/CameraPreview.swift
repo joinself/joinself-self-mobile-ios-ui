@@ -7,8 +7,8 @@
 
 import SwiftUI
 import AVFoundation
-import MLKitVision
-import MLKitFaceDetection
+//import MLKitVision
+//import MLKitFaceDetection
 
 struct CameraPreview: UIViewRepresentable {
     class VideoPreviewView: UIView {
@@ -35,7 +35,7 @@ struct CameraPreview: UIViewRepresentable {
 class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
-    private let faceDetector = FaceDetector.faceDetector()
+//    private let faceDetector = FaceDetector.faceDetector()
     
     override init() {
         super.init()
@@ -65,21 +65,23 @@ class CameraManager: NSObject, ObservableObject {
     }
     
     func detectFaces(sampleBuffer: CMSampleBuffer) {
-        let visionImage = VisionImage(buffer: sampleBuffer)
-        visionImage.orientation = .up
+        print("Face detecting.... ")
         
-        faceDetector.process(visionImage) { faces, error in
-            guard error == nil, let faces = faces else {
-                print("Face detection failed with error: \(error?.localizedDescription ?? "")")
-                return
-            }
-            // Handle detected faces
-            for face in faces {
-                // Example: Get the frame of the face
-                let frame = face.frame
-                print("Detected face frame: \(frame)")
-            }
-        }
+//        let visionImage = VisionImage(buffer: sampleBuffer)
+//        visionImage.orientation = .up
+//        
+//        faceDetector.process(visionImage) { faces, error in
+//            guard error == nil, let faces = faces else {
+//                print("Face detection failed with error: \(error?.localizedDescription ?? "")")
+//                return
+//            }
+//            // Handle detected faces
+//            for face in faces {
+//                // Example: Get the frame of the face
+//                let frame = face.frame
+//                print("Detected face frame: \(frame)")
+//            }
+//        }
     }
 }
 
