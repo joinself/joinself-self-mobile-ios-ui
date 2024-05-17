@@ -31,7 +31,6 @@
 		63C451A22BF33D5500AD5BC5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C451A12BF33D5500AD5BC5 /* Preview Assets.xcassets */; };
 		63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451A62BF33F6100AD5BC5 /* PageContentView.swift */; };
 		63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0D0422BF395D8002658AA /* LivenessView.swift */; };
-		93EE02E1756B4E8ECBEC78F0 /* Pods_SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7EC9BAE5A3DA640F6A9BA9 /* Pods_SelfUI.framework */; };
 		A74FC522E3B4F49023CC04C6 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 934F18A6CB7922B0AF6A8825 /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,7 +120,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93EE02E1756B4E8ECBEC78F0 /* Pods_SelfUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
