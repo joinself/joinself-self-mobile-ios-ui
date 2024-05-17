@@ -22,6 +22,12 @@ public struct LivenessFlow: View {
                 NavigationLink(destination: BrandView()) {
                     Text("Brand View")
                 }
+                NavigationLink(destination: ButtonView()) {
+                    Text("Button View")
+                }
+                NavigationLink(destination: LivenessView()) {
+                    Text("Liveness View")
+                }
             }
         }
     }
