@@ -7,7 +7,7 @@
 
 import SwiftUI
 import AVFoundation
-import MLKit
+//import MLKit
 
 // Model
 struct FaceModel {

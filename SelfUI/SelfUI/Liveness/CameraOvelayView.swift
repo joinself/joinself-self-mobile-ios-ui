@@ -8,36 +8,19 @@
 import SwiftUI
 
 struct CameraOvelayView: View {
+    @State var isHighlighted = false
+    
     var body: some View {
-        ZStack {
-            Color.white.opacity(0.0) // Set the background color with 50% opacity
-            .edgesIgnoringSafeArea(.all)
-//            
-            ZStack {
-                // Overlay view with opacity
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .opacity(1)
-                    .background(Color.clear)
-                    .edgesIgnoringSafeArea(.all)
-                    .overlay(
-                        ZStack {
-                            // Overlay view with opacity
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .opacity(1)
-                                .background(Color.clear)
-                                .edgesIgnoringSafeArea(.all)
-                                .overlay(
-                                    Image("face_frame", bundle: mainBundle)
-                                        .resizable()
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .edgesIgnoringSafeArea(.horizontal)
-                                )
-                        }
-                        .frame(width: 300, height: 300)
-                    )
-            }
+        GeometryReader { geometry in
+            Image(isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .clipped()
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    self.isHighlighted.toggle() // test code
+                }
         }
     }
 }

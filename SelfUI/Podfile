@@ -14,7 +14,7 @@ target 'SelfUI' do
   use_frameworks!
 
   # Pods for SelfUI
-  pod 'GoogleMLKit/FaceDetection'
+#  pod 'GoogleMLKit/FaceDetection'
 
   target 'SelfUITests' do
     # Pods for testing
