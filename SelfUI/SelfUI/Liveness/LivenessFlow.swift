@@ -28,6 +28,10 @@ public struct LivenessFlow: View {
                 NavigationLink(destination: LivenessView()) {
                     Text("Liveness View")
                 }
+                NavigationLink(destination: SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: .green, backgroundColor: .gray)
+                ) {
+                    Text("Stepped Progress View")
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ import SelfUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            LivenessView()
+            LivenessFlow()
         }
         .ignoresSafeArea(.all)
     }

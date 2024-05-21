@@ -16,3 +16,10 @@ extension String {
         return NSLocalizedString(self, bundle: bundle ,comment: "")
     }
 }
+
+extension Int {
+    var digits: [Int] {
+        return String(self).compactMap { Int(String($0)) }
+    }
+}
+
