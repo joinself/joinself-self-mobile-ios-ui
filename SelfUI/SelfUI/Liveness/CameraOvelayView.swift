@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CameraOvelayView: View {
     @State var isHighlighted = false
+    init(isHighlighted: Bool = false) {
+        self.isHighlighted = isHighlighted
+    }
     
     var body: some View {
         GeometryReader { geometry in
