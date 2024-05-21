@@ -48,8 +48,7 @@ public struct LivenessView: View {
                     Text(viewModel.text)
                         .font(Font.custom("Barlow", size: 25).weight(.bold))
                         .foregroundColor(.black)
-                        .offset(x: 0, y: 0)
-                }
+                }.offset(x: 0, y: -80)
             }
         }.edgesIgnoringSafeArea(.all)
     }
