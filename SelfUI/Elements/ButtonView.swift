@@ -13,9 +13,10 @@ struct ButtonView: View {
             Button(action: {
                 // TODO: custom button action
             }, label: {
-                Text("start")
-                    .font(Font.custom("Barlow", size: 17).weight(.bold))
+                Text("Start".localized)
+                    .font(Font.system(size: 17).weight(.bold))
                     .tracking(0.85)
+                    .textCase(.uppercase)
                     .foregroundColor(.white)
             })
             

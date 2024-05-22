@@ -25,7 +25,7 @@ struct LivenessIntroductionView: View {
             
             VStack(alignment: .leading, spacing: 30) {
                 Text("Take a selfie".localized)
-                    .font(.appFont(fontName: .barlow, size: 36, weight: .bold).weight(.bold))
+                    .font(.system(size: 36).weight(.bold))
                     .foregroundColor(.black)
                 Text("Take a selfie description".localized)
                     .font(.appFont(fontName: .sfPro, size: 17).weight(.bold))
@@ -36,28 +36,8 @@ struct LivenessIntroductionView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             VStack(spacing: 0) {
                 VStack(spacing: 15) {
-                    HStack(spacing: 10) {
-                        Text("start")
-                            .font(Font.custom("Barlow", size: 17).weight(.bold))
-                            .tracking(0.85)
-                            .foregroundColor(.white)
-                    }
-                    .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
-                    .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44)
-                    .background(Color(red: 0, green: 0.64, blue: 0.43))
-                    .cornerRadius(40)
-                    HStack(spacing: 10) {
-                        Text("Powered by")
-                            .font(Font.custom("Barlow", size: 15).weight(.medium))
-                            .lineSpacing(22)
-                            .foregroundColor(.black)
-                        ZStack() {
-                            ZStack() { }
-                                .frame(width: 17.94, height: 10.94)
-                                .offset(x: 0.04, y: 0.04)
-                        }
-                        .frame(width: 30, height: 30)
-                    }
+                    ButtonView()
+                    BrandView()
                 }
                 .padding(EdgeInsets(top: 10, leading: 15, bottom: 5, trailing: 15))
                 .frame(height: 104)
@@ -73,7 +53,7 @@ struct LivenessIntroductionView: View {
                 .frame(width: 393, height: 34)
                 .background(.white)
             }
-            .frame(height: 138)
+            .frame(height: 138 + 32)
         }
         .frame(width: 393, height: 853);
     }
