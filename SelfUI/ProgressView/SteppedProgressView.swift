@@ -19,12 +19,18 @@ struct SteppedProgressView: View {
     @State private var progressBarWidth: CGFloat = 200
     @State private var progressViewWidth: CGFloat = 240
     
+    @ObservedObject private var viewModel = SteppedProgressViewModel()
+    
     // The total number of steps in the process
     let totalSteps: Int
     init(totalSteps: Int = 4, currentStep: Int, progressColor: Color, backgroundColor: Color = .gray) {
         self.currentStep = currentStep
         self.progressColor = progressColor
         self.totalSteps = totalSteps
+        
+        viewModel.progress = Double(currentStep) / Double(totalSteps)
+        
+        print("Spacing: \(spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress \(progress) - p \(viewModel.progress)")
     }
     
     var body: some View {
@@ -34,7 +40,7 @@ struct SteppedProgressView: View {
             GeometryReader( content: { geometry in
                 VStack(content: {
                     ZStack (alignment: .leading, content: {
-                        ProgressView(value: currentStep == 1 ? 0 : progress, total: 1.0)
+                        ProgressView(value: currentStep == 1 ? 0 : viewModel.progress, total: 1.0)
                             .progressViewStyle(LinearProgressViewStyle())
                             .scaleEffect(x: 1, y: 3, anchor: .center) // Scale the height by 2 times
                             .tint(progressColor)
@@ -86,6 +92,6 @@ struct SteppedProgressView: View {
 
 struct SteppedProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        SteppedProgressView(totalSteps: 8, currentStep: 2, progressColor: .green, backgroundColor: .gray)
+        SteppedProgressView(totalSteps: 8, currentStep: 3, progressColor: .green, backgroundColor: .gray)
     }
 }
