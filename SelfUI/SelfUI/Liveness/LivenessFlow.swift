@@ -17,6 +17,7 @@ public struct LivenessFlow: View {
             List {
                 NavigationLink(destination: LivenessIntroductionView()) {
                     Text("Show Full Screen Detail")
+                    
                 }
                 
                 NavigationLink(destination: BrandView()) {
@@ -32,7 +33,7 @@ public struct LivenessFlow: View {
                 ) {
                     Text("Stepped Progress View")
                 }
-            }
+            }.navigationTitle("UI Samples")
         }
     }
 }

@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct LivenessIntroductionView: View {
+    @State private var isStarted = false
+    @State private var isCameraAuthorized = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
@@ -37,6 +41,18 @@ struct LivenessIntroductionView: View {
             VStack(spacing: 0) {
                 VStack(spacing: 15) {
                     ButtonView()
+                        .fullScreenCover(isPresented: $isStarted, content: {
+                            //LivenessView()
+                            Text("Ask for camera permission here")
+                        })
+                        .onTapGesture {
+                            print("Camera permission: \(isCameraAuthorized)")
+                            if isCameraAuthorized {
+                                isStarted.toggle()
+                            } else {
+                                self.checkCameraPermission()
+                            }
+                        }
                     BrandView()
                 }
                 .padding(EdgeInsets(top: 10, leading: 15, bottom: 5, trailing: 15))
@@ -53,9 +69,18 @@ struct LivenessIntroductionView: View {
                 .frame(width: 393, height: 34)
                 .background(.white)
             }
-            .frame(height: 138 + 32)
+            .frame(height: 138 + 84)
         }
         .frame(width: 393, height: 853);
+    }
+    
+    private func checkCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { authorized in
+            DispatchQueue.main.async {
+                self.isCameraAuthorized = authorized
+                self.isStarted = authorized
+            }
+        }
     }
 }
 
