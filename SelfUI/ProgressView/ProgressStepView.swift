@@ -14,15 +14,17 @@ enum StepViewState {
 }
 
 struct ProgressStepView: View {
-    @State var state: StepViewState = .inactive
-    @State var step: String = "0"
+    @ObservedObject var viewModel: ProgressStepViewModel = ProgressStepViewModel(step: 0, currentStep: 0)
+    init(viewModel: ProgressStepViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         ZStack {
-            switch state {
+            switch viewModel.state {
             case .inactive:
                 Image("ic_step_inactive", bundle: mainBundle)
-                Text(step)
+                Text("\(viewModel.step)")
                     .font(Font.custom("SF Pro", size: 14).weight(.bold))
                     .tracking(0.12)
                     .lineSpacing(18)
@@ -37,7 +39,7 @@ struct ProgressStepView: View {
                             .inset(by: 1.50)
                             .stroke(Color(red: 0, green: 0.64, blue: 0.43), lineWidth: 1.50)
                     )
-                Text(step)
+                Text("\(viewModel.step)")
                     .font(Font.custom("SF Pro", size: 14).weight(.bold))
                     .tracking(0.12)
                     .lineSpacing(18)
@@ -47,10 +49,11 @@ struct ProgressStepView: View {
             }
             
         }
-        .frame(width: 32, height: 32);
+        .frame(maxWidth: .infinity, alignment: .leading)
+//        .frame(width: 32, height: 32);
     }
 }
 
 #Preview {
-    ProgressStepView(state: .inactive, step: "2")
+    ProgressStepView(viewModel: ProgressStepViewModel(step: 0, currentStep: 0))
 }
