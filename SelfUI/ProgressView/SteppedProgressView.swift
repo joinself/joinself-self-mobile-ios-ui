@@ -92,6 +92,6 @@ struct SteppedProgressView: View {
 
 struct SteppedProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        SteppedProgressView(totalSteps: 8, currentStep: 3, progressColor: .green, backgroundColor: .gray)
+        SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: .green, backgroundColor: .gray)
     }
 }

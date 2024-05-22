@@ -11,107 +11,25 @@ struct LivenessIntroductionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                HStack(spacing: 0) {
-                    ZStack() {
-                        
-                    }
-                    .frame(width: 15, height: 15)
-                }
-                .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
-                .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                
             }
-            .frame(height: 99)
+            .frame(height: 100)
             .background(.white)
+            
+            // stepped progress view
             ZStack() {
-                VStack(alignment: .leading, spacing: -10) {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 8, height: 10)
-                        .background(Color(red: 0, green: 0.64, blue: 0.43))
-                        .cornerRadius(20)
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(maxWidth: .infinity, minHeight: 10, maxHeight: 10)
-                        .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                        .cornerRadius(20)
-                }
-                .padding(EdgeInsets(top: 0, leading: 27, bottom: 0, trailing: 27))
-                .frame(width: 393, height: 52)
-                .offset(x: 0, y: 0)
-                HStack(spacing: -3) {
-                    HStack(spacing: 10) {
-                        Ellipse()
-                            .foregroundColor(.clear)
-                            .frame(width: 32, height: 32)
-                            .background(.white)
-                            .overlay(
-                                Ellipse()
-                                    .inset(by: 1.50)
-                                    .stroke(Color(red: 0, green: 0.64, blue: 0.43), lineWidth: 1.50)
-                            )
-                        Text("1")
-                            .font(Font.custom("SF Pro", size: 12))
-                            .tracking(0.12)
-                            .lineSpacing(18)
-                            .foregroundColor(.black)
-                    }
-                    HStack(spacing: 10) {
-                        Ellipse()
-                            .foregroundColor(.clear)
-                            .frame(width: 24, height: 24)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                        Text("2")
-                            .font(Font.custom("SF Pro", size: 12))
-                            .tracking(0.12)
-                            .lineSpacing(18)
-                            .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.24))
-                    }
-                    HStack(spacing: 10) {
-                        Ellipse()
-                            .foregroundColor(.clear)
-                            .frame(width: 24, height: 24)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                        Text("3")
-                            .font(Font.custom("SF Pro", size: 12))
-                            .tracking(0.12)
-                            .lineSpacing(18)
-                            .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.24))
-                    }
-                    HStack(spacing: 10) {
-                        Ellipse()
-                            .foregroundColor(.clear)
-                            .frame(width: 24, height: 24)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                        Text("4")
-                            .font(Font.custom("SF Pro", size: 12))
-                            .tracking(0.12)
-                            .lineSpacing(18)
-                            .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.24))
-                    }
-                    HStack(spacing: 10) {
-                        Ellipse()
-                            .foregroundColor(.clear)
-                            .frame(width: 24, height: 24)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                        Text("5")
-                            .font(Font.custom("SF Pro", size: 12))
-                            .tracking(0.12)
-                            .lineSpacing(18)
-                            .foregroundColor(Color(red: 0.24, green: 0.24, blue: 0.24))
-                    }
-                }
-                .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
-                .frame(width: 393)
-                .offset(x: 0, y: 0)
+                SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: .green, backgroundColor: .gray)
             }
-            .frame(width: 393, height: 50)
+            .frame(height: 50, alignment: .leading)
+            .offset(x: 20)
+            
             VStack(alignment: .leading, spacing: 30) {
-                Text("First take a Selfie. (nobody else will see it)")
-                    .font(Font.custom("Barlow", size: 36).weight(.bold))
+                Text("Take a selfie".localized)
+                    .font(.appFont(fontName: .barlow, size: 36, weight: .bold).weight(.bold))
                     .foregroundColor(.black)
-                Text("It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.  ")
-                    .font(Font.custom("SF Pro", size: 17))
-                    .lineSpacing(24)
+                Text("Take a selfie description".localized)
+                    .font(.appFont(fontName: .sfPro, size: 17).weight(.bold))
+                    .lineSpacing(1.18)
                     .foregroundColor(.black)
             }
             .padding(EdgeInsets(top: 100, leading: 15, bottom: 10, trailing: 15))
@@ -161,6 +79,12 @@ struct LivenessIntroductionView: View {
     }
 }
 
-#Preview {
-    LivenessIntroductionView()
+struct ContentViewView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        ForEach(["en", "de"], id: \.self) { id in
+            LivenessIntroductionView()
+                .environment(\.locale, .init(identifier: id))
+        }
+    }
 }

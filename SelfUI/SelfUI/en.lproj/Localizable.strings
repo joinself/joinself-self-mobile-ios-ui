@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  SelfUI
+
+  Created by Long Pham on 22/5/24.
+  
+*/
+
+"selfie_look_right" = "Look right and back";
+"selfie_look_left" = "Look left and back";
+"selfie_look_up" = "Look up and back";
+"selfie_look_down" = "Look down and back";
+
+"Take a selfie" = "First take a Selfie. (nobody else will see it)";
+"Take a selfie description" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
