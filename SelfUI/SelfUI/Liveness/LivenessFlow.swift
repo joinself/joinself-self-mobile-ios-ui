@@ -13,27 +13,9 @@ public struct LivenessFlow: View {
     }
     
     public var body: some View {
-        NavigationView {
-            List {
-                NavigationLink(destination: LivenessIntroductionView()) {
-                    Text("Show Full Screen Detail")
-                    
-                }
-                
-                NavigationLink(destination: BrandView()) {
-                    Text("Brand View")
-                }
-                NavigationLink(destination: ButtonView()) {
-                    Text("Button View")
-                }
-                NavigationLink(destination: LivenessView()) {
-                    Text("Liveness View")
-                }
-                NavigationLink(destination: SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: .green, backgroundColor: .gray)
-                ) {
-                    Text("Stepped Progress View")
-                }
-            }.navigationTitle("UI Samples")
+        ZStack {
+            Color.white.edgesIgnoringSafeArea(.all) // Set the background
+            LivenessIntroductionView()
         }
     }
 }

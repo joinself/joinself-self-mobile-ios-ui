@@ -20,7 +20,8 @@ enum Challenge: String {
 
 public struct LivenessView: View {
     @ObservedObject var viewModel = LivenessOverlayViewModel(text: "", tipImageName: "", isHighlighted: false)
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) var dismiss
     
     public init () {
     }
@@ -29,6 +30,7 @@ public struct LivenessView: View {
         ZStack {
 //            CameraOvelayView(isHighlighted: viewModel.isHighlighted)
             GeometryReader { geometry in
+                
                 Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -38,6 +40,18 @@ public struct LivenessView: View {
 //                    .onTapGesture {
 //                        self.isHighlighted.toggle() // test code
 //                    }
+                HStack {
+//                    Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
+//                        .aspectRatio(contentMode: .fit)
+//                        .foregroundColor(.white)
+//                        .onTapGesture {
+//                            dismiss()
+//                        }
+                    Button("Dismiss Me") {
+                                dismiss()
+                            }
+                }
+                .offset(x: 24.0, y: 64.0)
             }
             
             VStack {
@@ -50,7 +64,8 @@ public struct LivenessView: View {
                         .foregroundColor(.black)
                 }.offset(x: 0, y: -80)
             }
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
     }
     
     public func onChallengeChanged(challenge: String) {

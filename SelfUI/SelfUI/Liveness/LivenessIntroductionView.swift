@@ -11,21 +11,26 @@ import AVFoundation
 struct LivenessIntroductionView: View {
     @State private var isStarted = false
     @State private var isCameraAuthorized = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var isLinkActive = false
+    @State private var path: [Color] = []
+    
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: 0) {
-                
-            }
-            .frame(height: 100)
-            .background(.white)
+        VStack(alignment: .leading, spacing: 12) {
+            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+                .padding(EdgeInsets(top: 64, leading: 24, bottom: 0, trailing: 15))
+                .onTapGesture {
+                    dismiss()
+                }
             
             // stepped progress view
             ZStack() {
                 SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: .green, backgroundColor: .gray)
             }
-            .frame(height: 50, alignment: .leading)
-            .offset(x: 20)
             
             VStack(alignment: .leading, spacing: 30) {
                 Text("Take a selfie".localized)
@@ -38,40 +43,21 @@ struct LivenessIntroductionView: View {
             }
             .padding(EdgeInsets(top: 100, leading: 15, bottom: 10, trailing: 15))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            Spacer()
             VStack(spacing: 0) {
-                VStack(spacing: 15) {
+                Button(action: {
+                    self.checkCameraPermission()
+                }, label: {
                     ButtonView()
-                        .fullScreenCover(isPresented: $isStarted, content: {
-                            //LivenessView()
-                            Text("Ask for camera permission here")
-                        })
-                        .onTapGesture {
-                            print("Camera permission: \(isCameraAuthorized)")
-                            if isCameraAuthorized {
-                                isStarted.toggle()
-                            } else {
-                                self.checkCameraPermission()
-                            }
-                        }
-                    BrandView()
-                }
-                .padding(EdgeInsets(top: 10, leading: 15, bottom: 5, trailing: 15))
-                .frame(height: 104)
-                .background(.white)
-                VStack(spacing: 10) {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 140, height: 5)
-                        .background(Color(red: 0.58, green: 0.58, blue: 0.58))
-                        .cornerRadius(20)
-                }
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 8, trailing: 10))
-                .frame(width: 393, height: 34)
-                .background(.white)
+                }).navigationDestination(isPresented: $isCameraAuthorized, destination: {
+                    LivenessView()
+                })
+                BrandView()
             }
-            .frame(height: 138 + 84)
         }
-        .frame(width: 393, height: 853);
+        .ignoresSafeArea(.all)
+        
     }
     
     private func checkCameraPermission() {
