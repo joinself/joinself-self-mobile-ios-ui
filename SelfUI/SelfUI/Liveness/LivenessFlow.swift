@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct LivenessFlow: View {
+    @State private var isDetailViewVisible = false
+    
     public init () {
         
     }
@@ -15,7 +17,18 @@ public struct LivenessFlow: View {
     public var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            LivenessIntroductionView()
+            if isDetailViewVisible {
+                LivenessView {
+                    self.isDetailViewVisible = false
+                }
+                
+            } else {
+                LivenessIntroductionView {
+                    self.isDetailViewVisible = true
+                } onNavigationBack: {
+                    
+                }
+            }
         }
     }
 }

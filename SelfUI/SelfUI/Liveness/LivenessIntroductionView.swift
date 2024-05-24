@@ -8,63 +8,83 @@
 import SwiftUI
 import AVFoundation
 
-struct LivenessIntroductionView: View {
-    @State private var isStarted = false
+public struct LivenessIntroductionView: View {
     @State private var isCameraAuthorized = false
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @State private var isLinkActive = false
-    @State private var path: [Color] = []
     
-    @Environment(\.dismiss) var dismiss
+    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+        self.onGettingStarted = onGettingStarted
+        self.onNavigationBack = onNavigationBack
+    }
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.white)
-                .padding(EdgeInsets(top: 64, leading: 24, bottom: 0, trailing: 15))
-                .onTapGesture {
-                    dismiss()
+    var onGettingStarted: () -> Void
+    var onNavigationBack: () -> Void
+    
+    public var body: some View {
+        ZStack {
+            Color.white.edgesIgnoringSafeArea(.all) // Set the background
+            VStack(alignment: .center, spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
+                    VStack(spacing: 10) {
+                    }
+                    .padding(10)
+                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                    HStack {
+                        VStack (alignment: .leading) {
+                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
+                                .onTapGesture {
+                                    print("onNavigationBack")
+                                    onNavigationBack()
+                                }
+                        }
+                        .frame(width: 44, height: 32)
+                    }
                 }
-            
-            // stepped progress view
-            ZStack() {
-                SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: .green, backgroundColor: .gray)
+                .frame(width: 393, height: 100)
+                .background(.white)
+                
+                
+                // stepped progress view
+                ZStack(alignment: .center) {
+                    SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: .green, backgroundColor: .gray)
+                        .padding(.leading, 30)
+                }
+                
+                VStack(alignment: .leading, spacing: 30) {
+                    Text("Take a selfie".localized)
+                        .font(.system(size: 36).weight(.bold))
+                        .foregroundColor(.black)
+                    Text("Take a selfie description".localized)
+                        .font(.appFont(fontName: .sfPro, size: 17).weight(.bold))
+                        .lineSpacing(1.18)
+                        .foregroundColor(.black)
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                Spacer()
+                VStack(spacing: 12) {
+                    Button(action: {
+                        onGettingStarted()
+                    }, label: {
+                        ButtonView()
+                    })
+                    
+                    BrandView()
+                }.padding()
             }
-            
-            VStack(alignment: .leading, spacing: 30) {
-                Text("Take a selfie".localized)
-                    .font(.system(size: 36).weight(.bold))
-                    .foregroundColor(.black)
-                Text("Take a selfie description".localized)
-                    .font(.appFont(fontName: .sfPro, size: 17).weight(.bold))
-                    .lineSpacing(1.18)
-                    .foregroundColor(.black)
-            }
-            .padding(EdgeInsets(top: 100, leading: 15, bottom: 10, trailing: 15))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            Spacer()
-            VStack(spacing: 0) {
-                Button(action: {
-                    self.checkCameraPermission()
-                }, label: {
-                    ButtonView()
-                }).navigationDestination(isPresented: $isCameraAuthorized, destination: {
-                    LivenessView()
-                })
-                BrandView()
-            }
+            .padding()
+            .ignoresSafeArea(.all)
         }
-        .ignoresSafeArea(.all)
-        
     }
     
     private func checkCameraPermission() {
         AVCaptureDevice.requestAccess(for: .video) { authorized in
             DispatchQueue.main.async {
                 self.isCameraAuthorized = authorized
-                self.isStarted = authorized
             }
         }
     }
@@ -74,7 +94,10 @@ struct ContentViewView_Previews: PreviewProvider {
 
     static var previews: some View {
         ForEach(["en", "de"], id: \.self) { id in
-            LivenessIntroductionView()
+            LivenessIntroductionView {
+            } onNavigationBack: {
+                
+            }
                 .environment(\.locale, .init(identifier: id))
         }
     }

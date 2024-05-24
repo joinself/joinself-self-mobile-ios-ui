@@ -23,40 +23,25 @@ public struct LivenessView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) var dismiss
     
-    public init () {
+    public var onNavigateBack: () -> Void
+    
+    public init(onNavigateBack: @escaping () -> Void) {
+        self.onNavigateBack = onNavigateBack
     }
     
     public var body: some View {
         ZStack {
-//            CameraOvelayView(isHighlighted: viewModel.isHighlighted)
             GeometryReader { geometry in
-                
                 Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .clipped()
                     .edgesIgnoringSafeArea(.all)
-//                    .onTapGesture {
-//                        self.isHighlighted.toggle() // test code
-//                    }
-                HStack {
-//                    Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-//                        .aspectRatio(contentMode: .fit)
-//                        .foregroundColor(.white)
-//                        .onTapGesture {
-//                            dismiss()
-//                        }
-                    Button("Dismiss Me") {
-                                dismiss()
-                            }
-                }
-                .offset(x: 24.0, y: 64.0)
             }
             
             VStack {
                 Spacer()
-//                TipsSelfie(tipImageName: viewModel.tipImageName, tipDescription: viewModel.text)
                 ZStack {
                     Image(viewModel.tipImageName, bundle: mainBundle)
                     Text(viewModel.text)
@@ -64,6 +49,23 @@ public struct LivenessView: View {
                         .foregroundColor(.black)
                 }.offset(x: 0, y: -80)
             }
+            
+            VStack (alignment: .leading) {
+                VStack(content: {
+                }).frame(height: 24)
+                
+                HStack {
+                    Image("ic_back", bundle: mainBundle)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 24, height: 24)
+                        .onTapGesture {
+                            onNavigateBack()
+                        }
+                    Spacer()
+                }.padding()
+                Spacer()
+            }.padding()
         }
         .edgesIgnoringSafeArea(.all)
     }
@@ -118,5 +120,7 @@ public struct LivenessView: View {
 }
 
 #Preview {
-    LivenessView()
+    LivenessView {
+        
+    }
 }
