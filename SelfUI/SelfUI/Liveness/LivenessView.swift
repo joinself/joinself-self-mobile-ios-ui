@@ -58,7 +58,7 @@ public struct LivenessView: View {
                     Image("ic_back", bundle: mainBundle)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
+                        .frame(width: 15, height: 15)
                         .onTapGesture {
                             onNavigateBack()
                         }
@@ -70,7 +70,7 @@ public struct LivenessView: View {
         .edgesIgnoringSafeArea(.all)
     }
     
-    public func onChallengeChanged(challenge: String) {
+    public func onChallengeChanged(challenge: String, isPassed: Bool) {
         guard let state = Challenge(rawValue: challenge) else {
             print("Invalid challenge: \(challenge)")
             return
@@ -101,7 +101,7 @@ public struct LivenessView: View {
         
         if viewModel.state !=  state {
             if viewModel.state != .None {
-                viewModel.isHighlighted = true
+                viewModel.isHighlighted = isPassed
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     viewModel.isHighlighted = false
                     viewModel.tipImageName = tipImageName
