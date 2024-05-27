@@ -10,7 +10,7 @@ import SwiftUI
 struct SteppedProgressView: View {
     // The current step the user is on
     @State private var currentStep: Int = 1
-    @State private var progressColor: Color = .green
+    @State private var progressColor: Color = Color(red: 0, green: 0.64, blue: 0.43)
     @State private var backgroundColor: Color = .gray
     @State private var spacing: CGFloat = 0
     @State private var progress: CGFloat = 0
@@ -28,6 +28,7 @@ struct SteppedProgressView: View {
         self.progressColor = progressColor
         self.totalSteps = totalSteps
         
+        viewModel.backgroundColor = backgroundColor
         viewModel.progress = Double(currentStep) / Double(totalSteps)
         
         print("Spacing: \(spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress \(progress) - p \(viewModel.progress)")
@@ -41,10 +42,10 @@ struct SteppedProgressView: View {
                 VStack(content: {
                     ZStack (alignment: .leading, content: {
                         ProgressView(value: currentStep == 1 ? 0 : viewModel.progress, total: 1.0)
-                            .progressViewStyle(LinearProgressViewStyle())
-                            .scaleEffect(x: 1, y: 3, anchor: .center) // Scale the height by 2 times
+                            .scaleEffect(x: 1, y: 2, anchor: .center)
                             .tint(progressColor)
-                            .background(Color.gray)
+                            .frame(height: 10)
+                            .background(viewModel.backgroundColor)
                             .frame(width: progressBarWidth, alignment: .leading)
                         HStack (alignment: .center, spacing: 0, content: {
                             ForEach((1...totalSteps), id: \.self) { step in
@@ -92,6 +93,6 @@ struct SteppedProgressView: View {
 
 struct SteppedProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: .green, backgroundColor: .gray)
+        SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: Color(red: 0.88, green: 0.88, blue: 0.88))
     }
 }
