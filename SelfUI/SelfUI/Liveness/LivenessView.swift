@@ -101,13 +101,11 @@ public struct LivenessView: View {
         
         if viewModel.state !=  state {
             if viewModel.state != .None {
-                viewModel.isHighlighted = isPassed
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    viewModel.isHighlighted = false
+                DispatchQueue.main.async {
                     viewModel.tipImageName = tipImageName
                     viewModel.state = state
                     viewModel.text = challengeText
-                })
+                }
             } else {
                 viewModel.tipImageName = tipImageName
                 viewModel.state = state
@@ -116,6 +114,13 @@ public struct LivenessView: View {
             
         }
         
+    }
+    
+    public func onHighlight(isPassed: Bool) {
+        viewModel.isHighlighted = isPassed
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            viewModel.isHighlighted = false
+        })
     }
 }
 
