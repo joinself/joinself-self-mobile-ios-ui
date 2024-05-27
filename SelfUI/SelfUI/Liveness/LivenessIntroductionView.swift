@@ -73,7 +73,7 @@ public struct LivenessIntroductionView: View {
                         ButtonView()
                     })
                     
-                    BrandView()
+                    BrandView(isDarked: true)
                 }.padding()
             }
             .padding()

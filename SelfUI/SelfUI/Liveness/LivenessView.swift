@@ -40,14 +40,18 @@ public struct LivenessView: View {
                     .edgesIgnoringSafeArea(.all)
             }
             
-            VStack {
+            VStack (alignment: .center) {
                 Spacer()
                 ZStack {
                     Image(viewModel.tipImageName, bundle: mainBundle)
                     Text(viewModel.text)
                         .font(Font.custom("Barlow", size: 25).weight(.bold))
                         .foregroundColor(.black)
-                }.offset(x: 0, y: -80)
+                }
+                //.offset(x: 0, y: -80)
+                
+                BrandView(isDarked: false)
+                    .padding(.bottom, 24)
             }
             
             VStack (alignment: .leading) {
