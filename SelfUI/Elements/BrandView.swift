@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-let mainBundle = Bundle(identifier:"com.joinself.mobile.ui.SelfUI")
+let mainBundleId = "com.joinself.mobile.ui.SelfUI"
+let mainBundle = Bundle(identifier: mainBundleId)
 
 class BrandViewModel: ObservableObject {
     @Published var isDarked =  false

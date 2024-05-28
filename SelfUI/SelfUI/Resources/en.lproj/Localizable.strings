@@ -17,4 +17,8 @@
 "Verification failed" = "Verification failed.";
 "Liveness verification failed" = "We were not able to match your image to your previous Selfie. For security we can’t allow you to use this Self account. \n\nIf you like, you can try again; \nYou have 2 more verification attempts. \n\nOr alternatively you can uninstall and reinstall Self. ";
 
+// passports
+"Passport verification preparation" = "First, you need to verify some information. You’ll need your Passport.";
+"Passport verification preparation body" = "Self helps you to verify the data on your Passport so you can use it to prove things about yourself.";
+
 "Start" = "Start";
