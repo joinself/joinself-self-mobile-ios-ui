@@ -1,0 +1,35 @@
+//
+//  Utils.swift
+//  SelfUI
+//
+//  Created by Long Pham on 28/5/24.
+//
+
+import Foundation
+import UIKit
+
+struct Utils {
+    static func hightlightTexts(attributes: [(text: String, font: UIFont, color: UIColor)],
+                                inString string: String,
+                                font: UIFont,
+                                color: UIColor, isMentions: Bool = false) -> NSAttributedString {
+        let attributedString =
+            NSMutableAttributedString(string: string,
+                                    attributes: [
+                                        NSAttributedString.Key.font: font,
+                                        NSAttributedString.Key.foregroundColor: color])
+        
+        for attr in attributes {
+            let ranges = string.ranges(of: attr.text)
+            ranges.forEach { range in
+                let convertedRange = NSRange(range, in: string)
+                let attribute = [NSAttributedString.Key.font: attr.font, NSAttributedString.Key.foregroundColor: attr.color]
+                attributedString.addAttributes(attribute, range: convertedRange)
+                if isMentions {
+                    attributedString.setAsLink(textToFind: attr.text, linkName: attr.text)
+                }
+            }
+        }
+        return attributedString
+    }
+}
