@@ -9,6 +9,9 @@ import SwiftUI
 
 class OutlinedButtonViewModel: ObservableObject {
     @Published var title: String = ""
+    @Published var outlinedColor: Color = .defaultGreen
+    @Published var borderWidth: CGFloat = 2
+    @Published var cornerRadius: CGFloat = 40
 }
 
 struct OutlinedButton: View {
@@ -16,9 +19,9 @@ struct OutlinedButton: View {
     
     var onClicked: (() -> Void)? = nil
     
-    
-    init(title: String, onClicked: (() -> Void)? = nil) {
+    init(title: String, outlineColor: Color = .defaultGreen, onClicked: (() -> Void)? = nil) {
         self.onClicked = onClicked
+        self.viewModel.outlinedColor = outlineColor
         self.viewModel.title = title
         
         self.applyDefaultFonts()
@@ -42,15 +45,15 @@ struct OutlinedButton: View {
             .font(Font.custom("Barlow", size: 17).weight(.bold))
             .tracking(0.85)
             .textCase(.uppercase)
-            .foregroundColor(Color(red: 0, green: 0.64, blue: 0.43))
+            .foregroundColor(viewModel.outlinedColor)
         }
         .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
         .frame(width: 363, height: 44)
-        .cornerRadius(40)
+        .cornerRadius(viewModel.cornerRadius)
         .overlay(
           RoundedRectangle(cornerRadius: 40)
             .inset(by: 1)
-            .stroke(Color(red: 0, green: 0.64, blue: 0.43), lineWidth: 1)
+            .stroke(viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
         )
         .onTapGesture {
             onClicked?()
@@ -59,7 +62,7 @@ struct OutlinedButton: View {
 }
 
 #Preview {
-    OutlinedButton(title: "i don’t have a passportt", onClicked: {
+    OutlinedButton(title: "No", outlineColor: .defaultPink, onClicked: {
         
     })
 }
