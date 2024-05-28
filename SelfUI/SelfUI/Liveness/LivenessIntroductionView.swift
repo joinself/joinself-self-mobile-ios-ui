@@ -70,7 +70,7 @@ public struct LivenessIntroductionView: View {
                     Button(action: {
                         onGettingStarted()
                     }, label: {
-                        ButtonView()
+                        ButtonView(title: "Start".localized)
                     })
                     
                     BrandView(isDarked: true)

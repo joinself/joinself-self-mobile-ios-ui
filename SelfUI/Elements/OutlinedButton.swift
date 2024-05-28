@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+class OutlinedButtonViewModel: ObservableObject {
+    @Published var title: String = ""
+}
+
 struct OutlinedButton: View {
+    @ObservedObject var viewModel = OutlinedButtonViewModel()
     
-    var onClicked: () -> Void
+    var onClicked: (() -> Void)? = nil
     
     
-    init(onClicked: @escaping () -> Void) {
+    init(title: String, onClicked: (() -> Void)? = nil) {
         self.onClicked = onClicked
+        self.viewModel.title = title
         
         self.applyDefaultFonts()
     }
@@ -32,7 +38,7 @@ struct OutlinedButton: View {
     
     var body: some View {
         HStack(spacing: 10) {
-          Text("i don’t have a passport")
+            Text(viewModel.title)
             .font(Font.custom("Barlow", size: 17).weight(.bold))
             .tracking(0.85)
             .textCase(.uppercase)
@@ -46,11 +52,14 @@ struct OutlinedButton: View {
             .inset(by: 1)
             .stroke(Color(red: 0, green: 0.64, blue: 0.43), lineWidth: 1)
         )
+        .onTapGesture {
+            onClicked?()
+        }
     }
 }
 
 #Preview {
-    OutlinedButton(onClicked: {
+    OutlinedButton(title: "i don’t have a passportt", onClicked: {
         
     })
 }

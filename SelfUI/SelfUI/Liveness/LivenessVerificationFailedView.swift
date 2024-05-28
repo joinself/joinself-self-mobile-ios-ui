@@ -69,7 +69,7 @@ public struct LivenessVerificationFailedView: View {
                     Button(action: {
                         onGettingStarted()
                     }, label: {
-                        ButtonView()
+                        ButtonView(title: "Start".localized)
                     })
                     
                     BrandView(isDarked: true)

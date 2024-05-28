@@ -68,10 +68,10 @@ public struct DocumentIntroductionView: View {
                     Button(action: {
                         onGettingStarted()
                     }, label: {
-                        ButtonView()
+                        ButtonView(title: "Start".localized)
                     })
                     
-                    OutlinedButton {
+                    OutlinedButton(title: "i don’t have a passport") {
                         // TODO: I dont have a passport
                     }
                     
