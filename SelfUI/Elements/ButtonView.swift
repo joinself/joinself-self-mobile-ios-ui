@@ -9,14 +9,16 @@ import SwiftUI
 
 class ButtonViewModel: ObservableObject {
     @Published var title: String = ""
+    @Published var backgroundColor: Color = Color.defaultGreen
 }
 
 struct ButtonView: View {
     @ObservedObject var viewModel = ButtonViewModel()
     var onClicked: (() -> Void)? = nil
     
-    init(title: String, onClicked: (() -> Void)? = nil) {
+    init(title: String, backgroundColor: Color = .defaultGreen, onClicked: (() -> Void)? = nil) {
         self.viewModel.title = title
+        self.viewModel.backgroundColor = backgroundColor
         self.onClicked = onClicked
     }
     
@@ -35,7 +37,7 @@ struct ButtonView: View {
         }
         .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
         .frame(width: 363, height: 44)
-        .background(Color(red: 0, green: 0.64, blue: 0.43))
+        .background(viewModel.backgroundColor)
         .cornerRadius(40)
         .onTapGesture {
             onClicked?()
@@ -43,5 +45,5 @@ struct ButtonView: View {
     }
 }
 #Preview {
-    ButtonView(title: "Start")
+    ButtonView(title: "Start", backgroundColor: .defaultPink)
 }
