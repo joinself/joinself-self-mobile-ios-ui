@@ -1,20 +1,20 @@
 //
-//  DocumentIntroductionView.swift
+//  DocumentSorryView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 28/5/24.
+//  Created by Long Pham on 29/5/24.
 //
 
 import SwiftUI
 
-public struct DocumentIntroductionView: View {
+public struct DocumentSorryView: View {
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
-        self.onGettingStarted = onGettingStarted
+    public init(onButtonClicked: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
+        self.onButtonClicked = onButtonClicked
         self.onNavigateBack = onNavigateBack
     }
     
-    var onGettingStarted: () -> Void
+    var onButtonClicked: () -> Void
     var onNavigateBack: () -> Void
     
     public var body: some View {
@@ -50,14 +50,14 @@ public struct DocumentIntroductionView: View {
                 
                 // stepped progress view
                 ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1)
+                    SteppedProgressView(totalSteps: 5, currentStep: 2)
                 }
                 
                 VStack(alignment: .leading, spacing: 30) {
-                    Text("Passport verification preparation".localized)
+                    Text("title_cant_create_self_account".localized)
                         .font(.system(size: 36).weight(.bold))
                         .foregroundColor(.black)
-                    Text("Passport verification preparation body".localized)
+                    Text("detail_cant_create_self_account".localized)
                         .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
                       .lineSpacing(1.14)
                       .foregroundColor(.black)
@@ -69,14 +69,10 @@ public struct DocumentIntroductionView: View {
                 Spacer()
                 VStack(spacing: 12) {
                     Button(action: {
-                        onGettingStarted()
+                        onButtonClicked()
                     }, label: {
-                        ButtonView(title: "Start".localized)
+                        ButtonView(title: "Continue".localized)
                     })
-                    
-                    OutlinedButton(title: "i don’t have a passport") {
-                        // TODO: I dont have a passport
-                    }
                     
                     BrandView(isDarked: true)
                 }.padding()
@@ -88,9 +84,10 @@ public struct DocumentIntroductionView: View {
 }
 
 #Preview {
-    DocumentIntroductionView(onGettingStarted: {
+    DocumentSorryView(onButtonClicked: {
         
     }, onNavigateBack: {
         
     })
 }
+
