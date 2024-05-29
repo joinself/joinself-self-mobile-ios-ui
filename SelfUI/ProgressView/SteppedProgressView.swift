@@ -46,10 +46,8 @@ struct SteppedProgressView: View {
                     viewModel.progressBarWidth = geometry.size.width - viewModel.spacing
                     viewModel.progressViewWidth = geometry.size.width
                 }
-            })
-        })
-        .padding(.leading, 40)
-        .frame(width: .infinity, height: 32)
+            }).frame(maxHeight: 32)
+        }).padding(.leading, 34)
     }
 }
 
