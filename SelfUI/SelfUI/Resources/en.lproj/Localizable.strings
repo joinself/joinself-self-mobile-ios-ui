@@ -26,8 +26,12 @@
 "title_cant_create_self_account" = "We’re Sorry, but you can’t open an account \njust yet. We will let you know as soon as you can.";
 "detail_cant_create_self_account" = "Please leave the app installed and it will notify you when it’s time to try again.";
 
+"title_capture_passport" = "Now capture your passport.";
+"detail_capture_passport" = "Open your passport at the photo page, fill the box you see on the next screen with the passport information.";
+
 // buttons
 "Start" = "Start";
 "Continue" = "Continue";
 "Yes" = "Yes";
 "No" = "No";
+"Capture" = "Capture";
