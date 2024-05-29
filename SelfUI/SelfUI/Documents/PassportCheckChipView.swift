@@ -50,10 +50,11 @@ public struct PassportCheckChipView: View {
                         .padding(.leading, 30)
                 }
                 
-                VStack(alignment: .leading, spacing: 30) {
+                VStack(alignment: .center, spacing: 30) {
                     Text("title_ask_passport_chip".localized)
                         .font(.system(size: 36).weight(.bold))
                         .foregroundColor(.black)
+                    Image("ic_nfc_chip", bundle: mainBundle)
                     Text("detail_ask_passport_chip".localized)
                         .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
                       .lineSpacing(1.14)
