@@ -48,8 +48,7 @@ public struct LivenessIntroductionView: View {
                 
                 // stepped progress view
                 ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
-                        .padding(.leading, 30)
+                    SteppedProgressView(totalSteps: 5, currentStep: 1)
                 }
                 
                 VStack(alignment: .leading, spacing: 30) {

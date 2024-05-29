@@ -1,13 +1,13 @@
 //
-//  DocumentIntroductionView.swift
+//  PassportCheckChipView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 28/5/24.
+//  Created by Long Pham on 29/5/24.
 //
 
 import SwiftUI
 
-public struct DocumentIntroductionView: View {
+public struct PassportCheckChipView: View {
     
     public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
@@ -46,14 +46,15 @@ public struct DocumentIntroductionView: View {
                 
                 // stepped progress view
                 ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1)
+                    SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
+                        .padding(.leading, 30)
                 }
                 
                 VStack(alignment: .leading, spacing: 30) {
-                    Text("Passport verification preparation".localized)
+                    Text("title_ask_passport_chip".localized)
                         .font(.system(size: 36).weight(.bold))
                         .foregroundColor(.black)
-                    Text("Passport verification preparation body".localized)
+                    Text("detail_ask_passport_chip".localized)
                         .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
                       .lineSpacing(1.14)
                       .foregroundColor(.black)
@@ -67,10 +68,10 @@ public struct DocumentIntroductionView: View {
                     Button(action: {
                         onGettingStarted()
                     }, label: {
-                        ButtonView(title: "Start".localized)
+                        ButtonView(title: "Yes".localized, backgroundColor: .defaultPink)
                     })
                     
-                    OutlinedButton(title: "i don’t have a passport") {
+                    OutlinedButton(title: "No".localized, outlineColor: .defaultPink) {
                         // TODO: I dont have a passport
                     }
                     
@@ -84,9 +85,10 @@ public struct DocumentIntroductionView: View {
 }
 
 #Preview {
-    DocumentIntroductionView(onGettingStarted: {
+    PassportCheckChipView(onGettingStarted: {
         
     }, onNavigationBack: {
         
     })
 }
+

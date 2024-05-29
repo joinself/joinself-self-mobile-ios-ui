@@ -9,90 +9,52 @@ import SwiftUI
 
 struct SteppedProgressView: View {
     // The current step the user is on
-    @State private var currentStep: Int = 1
-    @State private var progressColor: Color = Color(red: 0, green: 0.64, blue: 0.43)
-    @State private var backgroundColor: Color = .gray
-    @State private var spacing: CGFloat = 0
-    @State private var progress: CGFloat = 0
-    
-    
-    @State private var progressBarWidth: CGFloat = 200
-    @State private var progressViewWidth: CGFloat = 240
-    
     @ObservedObject private var viewModel = SteppedProgressViewModel()
     
     // The total number of steps in the process
-    let totalSteps: Int
-    init(totalSteps: Int = 4, currentStep: Int, progressColor: Color, backgroundColor: Color = .gray) {
-        self.currentStep = currentStep
-        self.progressColor = progressColor
+    var totalSteps: Int = 5
+    init(totalSteps: Int = 4, currentStep: Int, progressColor: Color = .defaultGreen, backgroundColor: Color = .defaultGray) {
+        self.viewModel.currentStep = currentStep
+        self.viewModel.progressColor = progressColor
         self.totalSteps = totalSteps
         
         viewModel.backgroundColor = backgroundColor
-        viewModel.progress = Double(currentStep) / Double(totalSteps)
+        viewModel.progress = Double(currentStep) / Double(totalSteps) - 0.07
+        viewModel.spacing = viewModel.progressViewWidth / CGFloat(totalSteps)
         
-        print("Spacing: \(spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress \(progress) - p \(viewModel.progress)")
+        print("Spacing: \(viewModel.spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress: \(viewModel.progress)")
     }
     
     var body: some View {
         VStack(content: {
-            
-            // stepped progress view
-            GeometryReader( content: { geometry in
-                VStack(content: {
-                    ZStack (alignment: .leading, content: {
-                        ProgressView(value: currentStep == 1 ? 0 : viewModel.progress, total: 1.0)
-                            .scaleEffect(x: 1, y: 2, anchor: .center)
-                            .tint(progressColor)
-                            .frame(height: 10)
-                            .background(viewModel.backgroundColor)
-                            .frame(width: progressBarWidth, alignment: .leading)
-                        HStack (alignment: .center, spacing: 0, content: {
-                            ForEach((1...totalSteps), id: \.self) { step in
-                                let stepViewModel = ProgressStepViewModel(step: step, currentStep: currentStep)
-                                ProgressStepView(viewModel: stepViewModel)
-                            }
-                        })
-                        .frame(width: progressViewWidth, alignment: .leading)
+            GeometryReader(content: { geometry in
+                ZStack (alignment: .leading, content: {
+                    ProgressView(value: viewModel.currentStep == 1 ? 0 : viewModel.progress, total: 1.0)
+                        .scaleEffect(x: 1, y: 2, anchor: .center)
+                        .tint(viewModel.progressColor)
+                        .frame(height: 10)
+                        .background(viewModel.backgroundColor)
+                        .frame(width: viewModel.progressBarWidth, alignment: .leading)
+                    HStack (alignment: .center, spacing: 0, content: {
+                        ForEach((1...totalSteps), id: \.self) { step in
+                            let stepViewModel = ProgressStepViewModel(step: step, currentStep: viewModel.currentStep)
+                            ProgressStepView(viewModel: stepViewModel)
+                        }
                     })
-                }).onAppear(perform: {
-                    progressViewWidth = geometry.size.width
-                    let spacing = progressViewWidth/Double(totalSteps)
-                    
-                    progressBarWidth = geometry.size.width - spacing + 8
-                })
-                // end
-            }).frame(height: 32)
-            
-            
-            /*
-            
-            // Display the current step
-            Text("Step \(currentStep) of \(totalSteps)")
-            
-            // Button to move to the next step
-            Button("Next Step") {
-                // Ensure we don't go beyond the total steps
-                if currentStep <= totalSteps {
-                    currentStep += 1
-                } else {
-                    currentStep = 1
+                    .frame(width: viewModel.progressViewWidth, alignment: .leading)
+                }).onAppear {
+                    viewModel.progressBarWidth = geometry.size.width - viewModel.spacing
+                    viewModel.progressViewWidth = geometry.size.width
                 }
-                
-                progress = Double(currentStep) / Double(totalSteps)
-                print("Spacing: \(spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress \(progress)")
-            }
-            .disabled(currentStep > totalSteps + 1) // Disable the button if the last step is reached
-             */
-            
+            })
         })
-        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-        
+        .padding(.leading, 40)
+        .frame(width: .infinity, height: 32)
     }
 }
 
 struct SteppedProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        SteppedProgressView(totalSteps: 5, currentStep: 3, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: Color(red: 0.88, green: 0.88, blue: 0.88))
+        SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: .defaultGreen, backgroundColor: .defaultGray)
     }
 }

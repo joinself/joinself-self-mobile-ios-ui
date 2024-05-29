@@ -53,6 +53,7 @@
 		63A99B092C05D9910073939A /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A99B022C05D9910073939A /* Barlow-Bold.ttf */; };
 		63A99B0A2C05D9910073939A /* Barlow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63A99B032C05D9910073939A /* Barlow-Italic.ttf */; };
 		63A99B102C05EA820073939A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B0F2C05EA820073939A /* Color.swift */; };
+		63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B112C06DAD20073939A /* PassportCheckChipView.swift */; };
 		63C4516D2BF30EAE00AD5BC5 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		63C451722BF30EAE00AD5BC5 /* SelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451712BF30EAE00AD5BC5 /* SelfUITests.swift */; };
 		63C451732BF30EAE00AD5BC5 /* SelfUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C451672BF30EAE00AD5BC5 /* SelfUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,6 +150,7 @@
 		63A99B022C05D9910073939A /* Barlow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		63A99B032C05D9910073939A /* Barlow-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Barlow-Italic.ttf"; sourceTree = "<group>"; };
 		63A99B0F2C05EA820073939A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		63A99B112C06DAD20073939A /* PassportCheckChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportCheckChipView.swift; sourceTree = "<group>"; };
 		63C451642BF30EAE00AD5BC5 /* SelfUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SelfUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C451672BF30EAE00AD5BC5 /* SelfUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfUI.h; sourceTree = "<group>"; };
 		63C4516C2BF30EAE00AD5BC5 /* SelfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				63A99AF62C05D0D90073939A /* DocumentIntroductionView.swift */,
+				63A99B112C06DAD20073939A /* PassportCheckChipView.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */,
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
+				63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
