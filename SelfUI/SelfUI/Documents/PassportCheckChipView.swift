@@ -16,6 +16,7 @@ public struct PassportCheckChipView: View {
     
     var onGettingStarted: () -> Void
     var onNavigationBack: () -> Void
+    public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
         ZStack {
@@ -73,7 +74,7 @@ public struct PassportCheckChipView: View {
                     })
                     
                     OutlinedButton(title: "No".localized, outlineColor: .defaultPink) {
-                        // TODO: I dont have a passport
+                        onSelectNegative?()
                     }
                     
                     BrandView(isDarked: true)

@@ -11,8 +11,8 @@ public struct  SelectDocumentView: View {
     
     public var onSelect: ((_ documentType: DocumentType) -> Void)?
     
-    public init() {
-        
+    public init(onSelect: ((_ documentType: DocumentType) -> Void)? = nil) {
+        self.onSelect = onSelect
     }
     
     public var body: some View {

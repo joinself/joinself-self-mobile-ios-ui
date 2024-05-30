@@ -16,6 +16,7 @@ public struct PassportIntroductionView: View {
     
     var onGettingStarted: () -> Void
     var onNavigateBack: () -> Void
+    public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
         ZStack {

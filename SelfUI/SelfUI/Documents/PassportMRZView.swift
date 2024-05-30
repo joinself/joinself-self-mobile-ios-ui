@@ -14,6 +14,8 @@ class PassportMRZViewModel: ObservableObject {
 public struct PassportMRZView: View {
     @ObservedObject var viewModel = PassportMRZViewModel()
     @ObservedObject var cameraManager = CameraManager()
+    
+    public var onResult: ((String?) -> Void)? = nil
     public init() {
         
     }
