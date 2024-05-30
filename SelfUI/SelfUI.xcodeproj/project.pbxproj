@@ -60,6 +60,9 @@
 		63A99B1F2C0764DA0073939A /* passport_instructions.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63A99B1E2C0764DA0073939A /* passport_instructions.gif */; };
 		63A99B212C07650B0073939A /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B202C07650B0073939A /* GIFView.swift */; };
 		63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B222C07656D0073939A /* ReadingPassportChipInstructionView.swift */; };
+		63A99B252C0830990073939A /* PassportMRZView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B242C0830990073939A /* PassportMRZView.swift */; };
+		63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B262C0860A60073939A /* TransparentHoleView.swift */; };
+		63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B282C08692D0073939A /* MRZOverlayView.swift */; };
 		63C4516D2BF30EAE00AD5BC5 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		63C451722BF30EAE00AD5BC5 /* SelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451712BF30EAE00AD5BC5 /* SelfUITests.swift */; };
 		63C451732BF30EAE00AD5BC5 /* SelfUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C451672BF30EAE00AD5BC5 /* SelfUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +165,9 @@
 		63A99B1E2C0764DA0073939A /* passport_instructions.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = passport_instructions.gif; sourceTree = "<group>"; };
 		63A99B202C07650B0073939A /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		63A99B222C07656D0073939A /* ReadingPassportChipInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingPassportChipInstructionView.swift; sourceTree = "<group>"; };
+		63A99B242C0830990073939A /* PassportMRZView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZView.swift; sourceTree = "<group>"; };
+		63A99B262C0860A60073939A /* TransparentHoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentHoleView.swift; sourceTree = "<group>"; };
+		63A99B282C08692D0073939A /* MRZOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZOverlayView.swift; sourceTree = "<group>"; };
 		63C451642BF30EAE00AD5BC5 /* SelfUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SelfUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C451672BF30EAE00AD5BC5 /* SelfUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfUI.h; sourceTree = "<group>"; };
 		63C4516C2BF30EAE00AD5BC5 /* SelfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +233,8 @@
 				635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */,
 				63A99B152C07271B0073939A /* LoadingDotsView.swift */,
 				63A99B202C07650B0073939A /* GIFView.swift */,
+				63A99B262C0860A60073939A /* TransparentHoleView.swift */,
+				63A99B282C08692D0073939A /* MRZOverlayView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 				63A99B132C071F760073939A /* DocumentSorryView.swift */,
 				63A99B112C06DAD20073939A /* PassportCheckChipView.swift */,
 				63A99B222C07656D0073939A /* ReadingPassportChipInstructionView.swift */,
+				63A99B242C0830990073939A /* PassportMRZView.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -606,6 +615,7 @@
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
 				63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */,
+				63A99B252C0830990073939A /* PassportMRZView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
@@ -614,7 +624,9 @@
 				63A99AF92C05D8370073939A /* OutlinedButton.swift in Sources */,
 				635ACCFC2BFDF0080012108F /* SteppedProgressViewModel.swift in Sources */,
 				632A1DC52BF76B4900959663 /* CameraOvelayView.swift in Sources */,
+				63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */,
 				6320F4F52BFB307100C35808 /* LivenessCameraView.swift in Sources */,
+				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,

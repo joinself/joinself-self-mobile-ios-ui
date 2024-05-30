@@ -32,4 +32,6 @@ struct Utils {
         }
         return attributedString
     }
+    
+    static let cornerSize: CGSize = CGSize(width: 25, height: 25)
 }
