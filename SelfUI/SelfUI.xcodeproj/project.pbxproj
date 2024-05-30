@@ -63,6 +63,8 @@
 		63A99B252C0830990073939A /* PassportMRZView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B242C0830990073939A /* PassportMRZView.swift */; };
 		63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B262C0860A60073939A /* TransparentHoleView.swift */; };
 		63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B282C08692D0073939A /* MRZOverlayView.swift */; };
+		63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */; };
+		63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B2C2C08908A0073939A /* MRZInfo.swift */; };
 		63C4516D2BF30EAE00AD5BC5 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		63C451722BF30EAE00AD5BC5 /* SelfUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451712BF30EAE00AD5BC5 /* SelfUITests.swift */; };
 		63C451732BF30EAE00AD5BC5 /* SelfUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C451672BF30EAE00AD5BC5 /* SelfUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -168,6 +170,8 @@
 		63A99B242C0830990073939A /* PassportMRZView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZView.swift; sourceTree = "<group>"; };
 		63A99B262C0860A60073939A /* TransparentHoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentHoleView.swift; sourceTree = "<group>"; };
 		63A99B282C08692D0073939A /* MRZOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZOverlayView.swift; sourceTree = "<group>"; };
+		63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZReaderView.swift; sourceTree = "<group>"; };
+		63A99B2C2C08908A0073939A /* MRZInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZInfo.swift; sourceTree = "<group>"; };
 		63C451642BF30EAE00AD5BC5 /* SelfUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SelfUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C451672BF30EAE00AD5BC5 /* SelfUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelfUI.h; sourceTree = "<group>"; };
 		63C4516C2BF30EAE00AD5BC5 /* SelfUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +311,8 @@
 				63A99B112C06DAD20073939A /* PassportCheckChipView.swift */,
 				63A99B222C07656D0073939A /* ReadingPassportChipInstructionView.swift */,
 				63A99B242C0830990073939A /* PassportMRZView.swift */,
+				63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */,
+				63A99B2C2C08908A0073939A /* MRZInfo.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */,
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
+				63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */,
 				63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */,
 				63A99B252C0830990073939A /* PassportMRZView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
@@ -632,6 +639,7 @@
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,
 				635ACCFA2BFDDAE90012108F /* ProgressStepViewModel.swift in Sources */,
+				63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */,
 				63A99B162C07271B0073939A /* LoadingDotsView.swift in Sources */,
 				635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */,
 				63A99B142C071F760073939A /* DocumentSorryView.swift in Sources */,
