@@ -1,5 +1,5 @@
 //
-//  DocumentIntroductionView.swift
+//   SelectDocumentView.swift
 //  SelfUI
 //
 //  Created by Long Pham on 28/5/24.
@@ -7,15 +7,13 @@
 
 import SwiftUI
 
-public struct DocumentIntroductionView: View {
+public struct  SelectDocumentView: View {
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
-        self.onGettingStarted = onGettingStarted
-        self.onNavigateBack = onNavigateBack
+    public var onSelect: ((_ documentType: DocumentType) -> Void)?
+    
+    public init() {
+        
     }
-    
-    var onGettingStarted: () -> Void
-    var onNavigateBack: () -> Void
     
     public var body: some View {
         ZStack {
@@ -34,11 +32,11 @@ public struct DocumentIntroductionView: View {
                                 .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
                                 .onTapGesture {
                                     print("onNavigationBack")
-                                    onNavigateBack()
+                                    onSelect?(.none)
                                 }
                         }
                         .onTapGesture {
-                            onNavigateBack()
+                            onSelect?(.none)
                         }
                         .frame(width: 44, height: 32)
                         .padding(.leading, 15)
@@ -54,10 +52,10 @@ public struct DocumentIntroductionView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 30) {
-                    Text("Passport verification preparation".localized)
+                    Text("title_document_selection".localized)
                         .font(.system(size: 36).weight(.bold))
                         .foregroundColor(.black)
-                    Text("Passport verification preparation body".localized)
+                    Text("detail_document_selection".localized)
                         .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
                       .lineSpacing(1.14)
                       .foregroundColor(.black)
@@ -69,13 +67,13 @@ public struct DocumentIntroductionView: View {
                 Spacer()
                 VStack(spacing: 12) {
                     Button(action: {
-                        onGettingStarted()
+                        onSelect?(.passport)
                     }, label: {
-                        ButtonView(title: "Start".localized)
+                        ButtonView(title: "Passport".localized)
                     })
                     
-                    OutlinedButton(title: "i don’t have a passport") {
-                        // TODO: I dont have a passport
+                    ButtonView(title: "Identity document".localized, backgroundColor: .defaultBlue) {
+                        onSelect?(.identityCard)
                     }
                     
                     BrandView(isDarked: true)
@@ -88,9 +86,5 @@ public struct DocumentIntroductionView: View {
 }
 
 #Preview {
-    DocumentIntroductionView(onGettingStarted: {
-        
-    }, onNavigateBack: {
-        
-    })
+    SelectDocumentView()
 }
