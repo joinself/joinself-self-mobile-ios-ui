@@ -18,6 +18,8 @@ struct GIFView: UIViewRepresentable {
         let gifData = try! Data(contentsOf: url)
         let gif = FLAnimatedImage(animatedGIFData: gifData)
         view.animatedImage = gif
+        view.contentMode = .scaleAspectFill
+        view.frame = CGRect(x: 0, y: 0, width: 379, height: 343)
         return view
     }
     

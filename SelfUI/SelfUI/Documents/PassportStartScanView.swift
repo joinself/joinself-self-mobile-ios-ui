@@ -1,21 +1,22 @@
 //
-//  ReadingPassportChipInstructionView.swift
+//  PassportStartScanView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 29/5/24.
+//  Created by Long Pham on 31/5/24.
 //
 
 import SwiftUI
 
-public struct ReadingPassportChipInstructionView: View {
-    
+public struct PassportStartScanView: View {
+     
     public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
-        self.onNavigationBack = onNavigationBack
+        self.onNavigateBack = onNavigationBack
+        Utils.instance.applyDefaultFonts()
     }
     
     var onGettingStarted: () -> Void
-    var onNavigationBack: () -> Void
+    var onNavigateBack: () -> Void
     
     public var body: some View {
         ZStack {
@@ -33,8 +34,8 @@ public struct ReadingPassportChipInstructionView: View {
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
                                 .onTapGesture {
-                                    print("onNavigationBack")
-                                    onNavigationBack()
+                                    print("onNavigateBack")
+                                    onNavigateBack()
                                 }
                         }
                         .frame(width: 44, height: 32)
@@ -51,29 +52,25 @@ public struct ReadingPassportChipInstructionView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("title_capture_passport".localized)
-                        .font(.system(size: 36).weight(.bold))
+                    Text("title_start_scan_passport".localized)
+                        .font(.defaultH3.weight(.bold))
                         .foregroundColor(.black)
-                    Text("detail_capture_passport".localized)
-                        .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
-                      .lineSpacing(1.14)
-                      .foregroundColor(.black)
                     
                     Rectangle()
                       .foregroundColor(.clear)
                       .frame(width: 361, height: 327)
-                      .background(
-                        GIFView(gifName: "passport_instructions")
-                            .frame(width: 361, height: 327)
+                      .background {
+                          GIFView(gifName: "start_scan")
+                              .frame(width: 361, height: 327)
                             .scaleEffect(x: 0.8, y: 0.8)
-                          .clipped()
-                      )
+                            .clipped()
+                      }
                 }
                 .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 VStack(spacing: 12) {
-                    ButtonView(title: "Capture".localized) {
+                    ButtonView(title: "Start scan".localized) {
                         onGettingStarted()
                     }
                     
@@ -87,7 +84,7 @@ public struct ReadingPassportChipInstructionView: View {
 }
 
 #Preview {
-    ReadingPassportChipInstructionView(onGettingStarted: {
+    PassportStartScanView(onGettingStarted: {
         
     }, onNavigationBack: {
         

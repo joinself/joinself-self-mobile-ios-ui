@@ -34,6 +34,8 @@
 "detail_capture_passport" = "Open your passport at the photo page, fill the box you see on the next screen with the passport information.";
 "Having trouble?" = "Having trouble?";
 
+"title_start_scan_passport" = "Now hold your phone still against the passport while Self reads the chip.";
+
 // buttons
 "Start" = "Start";
 "Continue" = "Continue";
@@ -42,3 +44,4 @@
 "Capture" = "Capture";
 "Identity document" = "Identity document";
 "Enter data manually" = "Enter data manually";
+"Start scan" = "Start scan";

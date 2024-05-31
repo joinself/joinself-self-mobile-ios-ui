@@ -8,7 +8,26 @@
 import Foundation
 import UIKit
 
-struct Utils {
+class Utils {
+    private init() {}
+    static let instance = Utils()
+    private var isLoadedFonts = false
+    
+    func applyDefaultFonts() {
+        if isLoadedFonts == false {
+            UIFont.jbs_registerFont(
+                withFilenameString: "Barlow-Bold.ttf",
+                bundle: Bundle(identifier: mainBundleId)!
+            )
+            
+            UIFont.jbs_registerFont(
+                withFilenameString: "Barlow-Regular.ttf",
+                bundle: Bundle(identifier: mainBundleId)!
+            )
+            isLoadedFonts = true
+        }
+    }
+    
     static func hightlightTexts(attributes: [(text: String, font: UIFont, color: UIColor)],
                                 inString string: String,
                                 font: UIFont,
