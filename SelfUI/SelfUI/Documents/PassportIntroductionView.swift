@@ -69,14 +69,12 @@ public struct PassportIntroductionView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Start".localized) {
                         onGettingStarted()
-                    }, label: {
-                        ButtonView(title: "Start".localized)
-                    })
+                    }
                     
-                    OutlinedButton(title: "i don’t have a passport") {
-                        // TODO: I dont have a passport
+                    OutlinedButton(title: "i don’t have a passport".localized) {
+                        onSelectNegative?()
                     }
                     
                     BrandView(isDarked: true)

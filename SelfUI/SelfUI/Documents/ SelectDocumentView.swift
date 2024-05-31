@@ -66,11 +66,9 @@ public struct  SelectDocumentView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Passport".localized) {
                         onSelect?(.passport)
-                    }, label: {
-                        ButtonView(title: "Passport".localized)
-                    })
+                    }
                     
                     ButtonView(title: "Identity document".localized, backgroundColor: .defaultBlue) {
                         onSelect?(.identityCard)
