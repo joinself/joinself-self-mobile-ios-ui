@@ -12,6 +12,7 @@ class OutlinedButtonViewModel: ObservableObject {
     @Published var outlinedColor: Color = .defaultGreen
     @Published var borderWidth: CGFloat = 2
     @Published var cornerRadius: CGFloat = 40
+    @Published var icon: Image?
 }
 
 struct OutlinedButton: View {
@@ -19,10 +20,11 @@ struct OutlinedButton: View {
     
     var onClicked: (() -> Void)? = nil
     
-    init(title: String, outlineColor: Color = .defaultGreen, onClicked: (() -> Void)? = nil) {
+    init(title: String, outlineColor: Color = .defaultGreen, icon: Image? = nil, onClicked: (() -> Void)? = nil) {
         self.onClicked = onClicked
         self.viewModel.outlinedColor = outlineColor
         self.viewModel.title = title
+        self.viewModel.icon = icon
         
         self.applyDefaultFonts()
     }
@@ -41,6 +43,8 @@ struct OutlinedButton: View {
     
     var body: some View {
         HStack(spacing: 10) {
+            viewModel.icon
+                .colorMultiply(viewModel.outlinedColor)
             Text(viewModel.title)
             .font(Font.custom("Barlow", size: 17).weight(.bold))
             .tracking(0.85)
@@ -62,7 +66,5 @@ struct OutlinedButton: View {
 }
 
 #Preview {
-    OutlinedButton(title: "No", outlineColor: .defaultPink, onClicked: {
-        
-    })
+    OutlinedButton(title: "No", outlineColor: .defaultPink, icon: Image("ic_keyboard", bundle: mainBundle))
 }
