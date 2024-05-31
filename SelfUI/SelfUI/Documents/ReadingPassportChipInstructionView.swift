@@ -73,11 +73,9 @@ public struct ReadingPassportChipInstructionView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Capture".localized) {
                         onGettingStarted()
-                    }, label: {
-                        ButtonView(title: "Capture".localized)
-                    })
+                    }
                     
                     BrandView(isDarked: true)
                 }.padding()

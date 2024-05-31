@@ -67,11 +67,9 @@ public struct PassportCheckChipView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Yes".localized, backgroundColor: .defaultPink) {
                         onGettingStarted()
-                    }, label: {
-                        ButtonView(title: "Yes".localized, backgroundColor: .defaultPink)
-                    })
+                    }
                     
                     OutlinedButton(title: "No".localized, outlineColor: .defaultPink) {
                         onSelectNegative?()

@@ -43,13 +43,18 @@ struct OutlinedButton: View {
     
     var body: some View {
         HStack(spacing: 10) {
-            viewModel.icon
-                .colorMultiply(viewModel.outlinedColor)
-            Text(viewModel.title)
-            .font(Font.custom("Barlow", size: 17).weight(.bold))
-            .tracking(0.85)
-            .textCase(.uppercase)
-            .foregroundColor(viewModel.outlinedColor)
+            Button(action: {
+                onClicked?()
+            }, label: {
+                viewModel.icon
+                    .colorMultiply(viewModel.outlinedColor)
+                Text(viewModel.title)
+                .font(Font.custom("Barlow", size: 17).weight(.bold))
+                .tracking(0.85)
+                .textCase(.uppercase)
+                .foregroundColor(viewModel.outlinedColor)
+            })
+            
         }
         .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
         .frame(width: 363, height: 44)

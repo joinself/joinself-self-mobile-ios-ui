@@ -34,7 +34,7 @@ public struct PassportIntroductionView: View {
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
                                 .onTapGesture {
-                                    print("onNavigationBack")
+                                    print("onNavigateBack")
                                     onNavigateBack()
                                 }
                         }
