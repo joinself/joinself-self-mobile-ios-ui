@@ -29,7 +29,7 @@ struct MRZOverlayView: View {
                 .frame(width: 373, height: 252)
                 .padding()
             TransparentHoleView(holeSize: CGSizeMake(373, 252))
-                .background(Color.black.opacity(0.6))
+                .background(Color.black.opacity(0.0))
                 .ignoresSafeArea()
         }.ignoresSafeArea()
     }
