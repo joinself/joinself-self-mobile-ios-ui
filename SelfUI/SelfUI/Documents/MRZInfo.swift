@@ -130,7 +130,7 @@ class OcrUtils {
 
 class PassportUtils {
     
-    func getMRZKey(passportNumber: String, dateOfBirth: String, dateOfExpiry: String ) -> String {
+    static func getMRZKey(passportNumber: String, dateOfBirth: String, dateOfExpiry: String ) -> String {
         
         // Pad fields if necessary
         let pptNr = pad( passportNumber, fieldLength:9)
@@ -147,7 +147,7 @@ class PassportUtils {
         return mrzKey
     }
     
-    func pad( _ value : String, fieldLength:Int ) -> String {
+    static func pad( _ value : String, fieldLength:Int ) -> String {
         // Pad out field lengths with < if they are too short
         let paddedValue = (value + String(repeating: "<", count: fieldLength)).prefix(fieldLength)
         return String(paddedValue)

@@ -36,8 +36,9 @@ struct CameraPreview: UIViewRepresentable {
 class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
-//    private let faceDetector = FaceDetector.faceDetector()
-    @State private var recognizedText = "Scanning..."
+
+    @Published var mrzKey: String = ""
+    var onResult: ((String?) -> Void)? = nil
     
     override init() {
         super.init()
@@ -127,8 +128,12 @@ class CameraManager: NSObject, ObservableObject {
             let result = recognizedStrings.joined().formatFromMRZLine()
             print("Expected mrz: \(mrzLines)")
             
-            let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines)
-            print("Expected mrzInfo: \(mrzInfo)")
+            if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
+                print("Expected mrzInfo: \(mrzInfo)")
+                self.mrzKey = PassportUtils.getMRZKey(passportNumber: mrzInfo.documentNumber, dateOfBirth: mrzInfo.dateOfBirth, dateOfExpiry: mrzInfo.dateOfExpiry)
+                self.onResult?(self.mrzKey)
+            }
+            
         }
         
         // Set the recognition level to accurate for MRZ scanning

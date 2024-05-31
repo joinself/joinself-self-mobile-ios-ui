@@ -8,7 +8,7 @@
 import SwiftUI
 
 class PassportMRZViewModel: ObservableObject {
-    
+    @Published var isHighlighted: Bool = false
 }
 
 public struct PassportMRZView: View {
@@ -16,27 +16,17 @@ public struct PassportMRZView: View {
     @ObservedObject var cameraManager = CameraManager()
     
     public var onResult: ((String?) -> Void)? = nil
-    public init() {
-        
+    public init(onResult: ((String?) -> Void)? = nil) {
+        self.onResult = onResult
     }
     
     public var body: some View {
         ZStack {
             // Base view with overlay
-            Color.blue.ignoresSafeArea()
+            Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
             .edgesIgnoringSafeArea(.all)
-            /*Image("mrz_frame", bundle: mainBundle)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 373, height: 252)
-                                    .padding()
-            TransparentHoleView(holeSize: CGSizeMake(373, 252))
-            .background(Color.black.opacity(0.6))
-            .ignoresSafeArea()*/
-            MRZOverlayView(isHighlighted: false)
-//                .background(Color.black.opacity(0.6))
-//                .ignoresSafeArea()
+            MRZOverlayView(isHighlighted: !cameraManager.mrzKey.isEmpty)
         }.ignoresSafeArea(.all)
     }
 }
