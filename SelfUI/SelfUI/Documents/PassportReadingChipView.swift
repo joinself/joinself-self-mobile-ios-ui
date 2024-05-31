@@ -1,0 +1,89 @@
+//
+//  PassportReadingChipView.swift
+//  SelfUI
+//
+//  Created by Long Pham on 31/5/24.
+//
+
+import SwiftUI
+
+public struct PassportReadingChipView: View {
+     
+    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+        self.onGettingStarted = onGettingStarted
+        self.onNavigateBack = onNavigationBack
+        Utils.instance.applyDefaultFonts()
+    }
+    
+    var onGettingStarted: () -> Void
+    var onNavigateBack: () -> Void
+    
+    public var body: some View {
+        ZStack {
+            Color.white.edgesIgnoringSafeArea(.all) // Set the background
+            VStack(alignment: .center, spacing: 0) {
+                VStack(alignment: .leading, spacing: 0) {
+                    VStack(spacing: 10) {
+                    }
+                    .padding(10)
+                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                    HStack {
+                        VStack (alignment: .leading) {
+                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.white)
+                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
+                                .onTapGesture {
+                                    print("onNavigateBack")
+                                    onNavigateBack()
+                                }
+                        }
+                        .frame(width: 44, height: 32)
+                    }
+                }
+                .frame(width: 393, height: 100)
+                .background(.white)
+                
+                
+                // stepped progress view
+                ZStack(alignment: .center) {
+                    SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
+                        .padding(.leading, 30)
+                }
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("title_passport_scanning_passport".localized)
+                        .font(.defaultH3.weight(.bold))
+                        .foregroundColor(.black)
+                    
+                    Rectangle()
+                      .foregroundColor(.clear)
+                      .frame(width: 361, height: 327)
+                      .background {
+                          VStack {
+                              LoadingDotsView()
+                              Spacer()
+                          }
+                          .padding(.top, 20)
+                      }
+                }
+                .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                VStack(spacing: 12) {
+                    BrandView(isDarked: true)
+                }.padding()
+            }
+            .padding()
+            .ignoresSafeArea(.all)
+        }
+    }
+}
+
+#Preview {
+    PassportReadingChipView(onGettingStarted: {
+        
+    }, onNavigationBack: {
+        
+    })
+}

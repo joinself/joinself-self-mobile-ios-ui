@@ -22,7 +22,7 @@ struct LoadingDotsView: View {
     }
     
     var body: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: 10) {
             ForEach(0..<viewModel.numberOfDots, id: \.self) { index in
                 Circle()
                     .frame(width: 10, height: 10)

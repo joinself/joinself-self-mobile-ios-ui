@@ -35,6 +35,7 @@
 "Having trouble?" = "Having trouble?";
 
 "title_start_scan_passport" = "Now hold your phone still against the passport while Self reads the chip.";
+"title_passport_scanning_passport" = "Don’t move the phone. Your passport is being checked.";
 
 // buttons
 "Start" = "Start";
