@@ -18,6 +18,7 @@ public struct PassportMRZView: View {
     public var onResult: ((String?) -> Void)? = nil
     public init(onResult: ((String?) -> Void)? = nil) {
         self.onResult = onResult
+        cameraManager.onResult = onResult
     }
     
     public var body: some View {

@@ -130,8 +130,11 @@ class CameraManager: NSObject, ObservableObject {
             
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
                 print("Expected mrzInfo: \(mrzInfo)")
-                self.mrzKey = PassportUtils.getMRZKey(passportNumber: mrzInfo.documentNumber, dateOfBirth: mrzInfo.dateOfBirth, dateOfExpiry: mrzInfo.dateOfExpiry)
-                self.onResult?(self.mrzKey)
+                DispatchQueue.main.async {
+                    self.mrzKey = PassportUtils.getMRZKey(passportNumber: mrzInfo.documentNumber, dateOfBirth: mrzInfo.dateOfBirth, dateOfExpiry: mrzInfo.dateOfExpiry)
+                    self.onResult?(self.mrzKey)
+                }
+                self.session.stopRunning()
             }
             
         }
