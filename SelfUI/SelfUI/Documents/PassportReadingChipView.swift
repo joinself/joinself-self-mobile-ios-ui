@@ -9,14 +9,14 @@ import SwiftUI
 
 public struct PassportReadingChipView: View {
      
-    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
-        self.onGettingStarted = onGettingStarted
-        self.onNavigateBack = onNavigationBack
+    public init(onViewAppeared: (() -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
+        self.onViewAppeared = onViewAppeared
+        self.onNavigateBack = onNavigateBack
         Utils.instance.applyDefaultFonts()
     }
     
-    var onGettingStarted: () -> Void
     var onNavigateBack: () -> Void
+    var onViewAppeared: (() -> Void)? = nil
     
     public var body: some View {
         ZStack {
@@ -79,14 +79,16 @@ public struct PassportReadingChipView: View {
             }
             .padding()
             .ignoresSafeArea(.all)
-        }
+        }.onAppear(perform: {
+            onViewAppeared?()
+        })
     }
 }
 
 #Preview {
-    PassportReadingChipView(onGettingStarted: {
+    PassportReadingChipView(onViewAppeared: {
         
-    }, onNavigationBack: {
+    }, onNavigateBack: {
         
     })
 }
