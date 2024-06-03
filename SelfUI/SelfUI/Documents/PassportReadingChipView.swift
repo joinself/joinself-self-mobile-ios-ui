@@ -70,9 +70,12 @@ public struct PassportReadingChipView: View {
                 .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                VStack(spacing: 12) {
+                VStack(alignment: .center, spacing: 0) {
+                    Spacer()
                     BrandView(isDarked: true)
-                }.padding()
+                    Spacer()
+                }
+                .frame(height: 128, alignment: .bottom)
             }
             .padding()
             .ignoresSafeArea(.all)
