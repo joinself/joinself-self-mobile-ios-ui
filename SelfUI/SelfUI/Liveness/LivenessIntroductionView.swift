@@ -66,11 +66,9 @@ public struct LivenessIntroductionView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Start".localized) {
                         onGettingStarted()
-                    }, label: {
-                        ButtonView(title: "Start".localized)
-                    })
+                    }
                     
                     BrandView(isDarked: true)
                 }.padding()
