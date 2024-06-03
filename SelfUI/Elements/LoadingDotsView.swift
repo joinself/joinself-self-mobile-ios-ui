@@ -25,7 +25,7 @@ struct LoadingDotsView: View {
         HStack(spacing: 10) {
             ForEach(0..<viewModel.numberOfDots, id: \.self) { index in
                 Circle()
-                    .frame(width: 10, height: 10)
+                    .frame(width: self.activeIndex == index ? 18 : 10, height: self.activeIndex == index ? 18 : 10)
                     .foregroundColor(colors[index])
                     .opacity(self.activeIndex == index ? 1 : 0.3)
                     .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/, value: Double(index) * animationDelay)
