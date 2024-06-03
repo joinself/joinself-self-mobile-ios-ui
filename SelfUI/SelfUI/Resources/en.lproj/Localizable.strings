@@ -37,6 +37,13 @@
 "title_start_scan_passport" = "Now hold your phone still against the passport while Self reads the chip.";
 "title_passport_scanning_passport" = "Don’t move the phone. Your passport is being checked.";
 
+// mrz fields
+"title_enter_mrz_fields" = "Confirm passport information";
+"passport_number" = "Passport number";
+"date_of_birth" = "Date of birth";
+"expiry_date" = "Expiry date";
+"mrz_placeholder" = "YY/MM/DD";
+
 // buttons
 "Start" = "Start";
 "Continue" = "Continue";

@@ -86,7 +86,10 @@ public struct PassportMRZView: View {
                 }
                 .padding()
             }.ignoresSafeArea(.all)
-        }
+        }.onDisappear(perform: {
+            print("Camera View disappear.")
+            self.cameraManager.session.stopRunning()
+        })
     }
 }
 
