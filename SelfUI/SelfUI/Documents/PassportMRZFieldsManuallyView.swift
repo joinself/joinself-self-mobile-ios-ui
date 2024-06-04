@@ -62,41 +62,48 @@ public struct PassportMRZFieldsManuallyView: View {
                 
                 // stepped progress view
                 ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
-                        .padding(.leading, 30)
+                    SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: .defaultGreen, backgroundColor: .defaultGray)
+                    //                        .padding(.leading, 30)
                 }
                 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: 20) {
                     Text("title_enter_mrz_fields".localized)
                         .font(.system(size: 36).weight(.bold))
                         .foregroundColor(.black)
                     ScrollView {
                         VStack (alignment: .leading) {
                             Text("passport_number".localized)
-                                .font(.callout)
+                                .font(.defaultBody)
                                 .bold()
-                            HStack(alignment: .center, spacing: 1) {
-                                
-                            }
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 10)
-                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                            .cornerRadius(10)
-                            .overlay(
-                                ZStack {
+                                .foregroundColor(.black)
+                            
+                            ZStack {
+                                HStack(alignment: .center, spacing: 1) {
+                                    
+                                }
+                                .padding(.horizontal, 15)
+                                .padding(.vertical, 10)
+                                .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                                .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                                .cornerRadius(10)
+                                .overlay {
                                     RoundedRectangle(cornerRadius: 10)
                                         .inset(by: 0.5)
                                         .stroke(isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
-                                    
-                                    TextField("Passport number".localized, text: $passportNumber)
+                                    //
+                                    TextField("", text: $passportNumber)
+                                        .placeholder(when: passportNumber.isEmpty) {
+                                            Text("Passport number".localized).foregroundColor(.gray)
+                                        }
+                                        .font(.defaultBody)
+                                        .foregroundColor(.black)
                                         .keyboardType(.numbersAndPunctuation)
                                         .onChange(of: passportNumber) { newValue in
                                             isPassportNumberValid = newValue.count > 0
                                         }
                                         .padding()
                                 }
-                            )
+                            }
                             
                             if !isPassportNumberValid {
                                 Text("This field cannot be empty.")
@@ -105,8 +112,9 @@ public struct PassportMRZFieldsManuallyView: View {
                         }
                         VStack (alignment: .leading) {
                             Text("date_of_birth".localized)
-                                .font(.callout)
+                                .font(.defaultBody)
                                 .bold()
+                                .foregroundColor(.black)
                             HStack(alignment: .center, spacing: 1) {
                                 
                             }
@@ -121,7 +129,12 @@ public struct PassportMRZFieldsManuallyView: View {
                                         .inset(by: 0.5)
                                         .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                     
-                                    TextField("mrz_placeholder".localized, text: $dob)
+                                    TextField("", text: $dob)
+                                        .placeholder(when: dob.isEmpty) {
+                                            Text("mrz_placeholder".localized).foregroundColor(.gray)
+                                        }
+                                        .font(.defaultBody)
+                                        .foregroundColor(.black)
                                         .keyboardType(.numbersAndPunctuation)
                                         .onChange(of: dob) { newValue in
                                             isDobValid = validateDate(newValue)
@@ -140,8 +153,9 @@ public struct PassportMRZFieldsManuallyView: View {
                         
                         VStack (alignment: .leading) {
                             Text("expiry_date".localized)
-                                .font(.callout)
+                                .font(.defaultBody)
                                 .bold()
+                                .foregroundColor(.black)
                             HStack(alignment: .center, spacing: 1) {
                                 
                             }
@@ -156,7 +170,12 @@ public struct PassportMRZFieldsManuallyView: View {
                                         .inset(by: 0.5)
                                         .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                     
-                                    TextField("mrz_placeholder".localized, text: $doe)
+                                    TextField("", text: $doe)
+                                        .placeholder(when: doe.isEmpty) {
+                                            Text("mrz_placeholder".localized).foregroundColor(.gray)
+                                        }
+                                        .font(.defaultBody)
+                                        .foregroundColor(.black)
                                         .keyboardType(.numbersAndPunctuation)
                                         .onSubmit {
                                             // Here you can validate the dateString and convert it to a Date if needed
@@ -178,7 +197,10 @@ public struct PassportMRZFieldsManuallyView: View {
                                     .foregroundColor(.red)
                             }
                         }
-                    }
+                        
+                        Spacer(minLength: 100)
+                    } // end of scroll view
+                    
                 }
                 .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -221,4 +243,18 @@ public struct PassportMRZFieldsManuallyView: View {
     PassportMRZFieldsManuallyView(onNavigateBack: {
         
     })
+}
+
+
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+            
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
 }

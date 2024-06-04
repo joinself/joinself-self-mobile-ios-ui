@@ -20,7 +20,7 @@ public class FontLoader {
                 print("Loaded font")
             }
         } else {
-            assertionFailure("Error loading font")
+//            assertionFailure("Error loading font")
         }
     }
 }
