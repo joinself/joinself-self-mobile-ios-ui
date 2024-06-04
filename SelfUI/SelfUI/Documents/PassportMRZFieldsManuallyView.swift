@@ -198,7 +198,7 @@ public struct PassportMRZFieldsManuallyView: View {
                             }
                         }
                         
-                        Spacer(minLength: 100)
+                        Spacer(minLength: 150)
                     } // end of scroll view
                     
                 }
@@ -207,8 +207,11 @@ public struct PassportMRZFieldsManuallyView: View {
                 
                 VStack(spacing: 12) {
                     ButtonView(title: "Done".localized) {
+                        let _dob = dob.replace("/", with: "")
+                        let _doe = doe.replace("/", with: "")
                         print("Passport number: \(passportNumber) DOB \(dob) DOE \(doe)")
-                        onResult?(viewModel.passportNumber, dob, doe)
+                        
+                        onResult?(viewModel.passportNumber, _dob, _doe)
                     }
                     
                     ButtonView(title: "Cancel".localized, backgroundColor: .defaultPink) {

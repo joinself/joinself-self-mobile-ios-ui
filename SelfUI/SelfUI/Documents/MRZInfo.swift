@@ -128,9 +128,9 @@ class OcrUtils {
 }
 
 
-class PassportUtils {
+public class PassportUtils {
     
-    static func getMRZKey(passportNumber: String, dateOfBirth: String, dateOfExpiry: String ) -> String {
+    public static func getMRZKey(passportNumber: String, dateOfBirth: String, dateOfExpiry: String ) -> String {
         
         // Pad fields if necessary
         let pptNr = pad( passportNumber, fieldLength:9)
