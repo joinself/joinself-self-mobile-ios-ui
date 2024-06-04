@@ -7,16 +7,24 @@
 
 import SwiftUI
 
+class PassportReadingChipViewModel: ObservableObject {
+    @Published var showingAlert = false
+}
+
 public struct PassportReadingChipView: View {
-     
-    public init(onViewAppeared: (() -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
+    
+    @ObservedObject var viewModel = PassportReadingChipViewModel()
+    
+    public init(onViewAppeared: ((PassportReadingChipView) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onViewAppeared = onViewAppeared
         self.onNavigateBack = onNavigateBack
         Utils.instance.applyDefaultFonts()
     }
     
     var onNavigateBack: () -> Void
-    var onViewAppeared: (() -> Void)? = nil
+    var onViewAppeared: ((PassportReadingChipView) -> Void)? = nil
+    public var onCancel: (() -> Void)? = nil
+    public var onRetry: (() -> Void)? = nil
     
     public var body: some View {
         ZStack {
@@ -57,14 +65,14 @@ public struct PassportReadingChipView: View {
                         .foregroundColor(.black)
                     
                     Rectangle()
-                      .foregroundColor(.clear)
-                      .background {
-                          VStack {
-                              LoadingDotsView()
-                              Spacer()
-                          }
-                          .padding(.top, 20)
-                      }
+                        .foregroundColor(.clear)
+                        .background {
+                            VStack {
+                                LoadingDotsView()
+                                Spacer()
+                            }
+                            .padding(.top, 20)
+                        }
                 }
                 .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -79,13 +87,36 @@ public struct PassportReadingChipView: View {
             .padding()
             .ignoresSafeArea(.all)
         }.onAppear(perform: {
-            onViewAppeared?()
+            onViewAppeared?(self)
         })
+        .alert("Verification Error", isPresented: $viewModel.showingAlert) {
+            Button {
+                onRetry?()
+            } label: {
+                Text("Scan Passport Again")
+                  .font(
+                    Font.custom("SF Pro", size: 15)
+                      .weight(.semibold)
+                  )
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(Color(red: 0.17, green: 0.49, blue: 0.96))
+                  .frame(width: 191, height: 20, alignment: .center)
+            }
+            
+            Button("Cancel") {
+                // Handle second option action
+                onCancel?()
+            }
+        }
+    }
+    
+    public func displayAlert(showingAlert: Bool) {
+        viewModel.showingAlert = showingAlert
     }
 }
 
 #Preview {
-    PassportReadingChipView(onViewAppeared: {
+    PassportReadingChipView(onViewAppeared: { view in
         
     }, onNavigateBack: {
         

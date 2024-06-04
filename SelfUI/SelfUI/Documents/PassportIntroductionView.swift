@@ -69,7 +69,7 @@ public struct PassportIntroductionView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    ButtonView(title: "Start".localized) {
+                    ButtonView(title: "Get Started".localized) {
                         onGettingStarted()
                     }
                     
