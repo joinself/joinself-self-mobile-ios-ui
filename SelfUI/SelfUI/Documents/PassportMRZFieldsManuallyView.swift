@@ -20,6 +20,11 @@ public struct PassportMRZFieldsManuallyView: View {
     @State private var passportNumber: String = ""
     @State private var selectedDate = Date()
     
+    @State private var isPassportNumberValid: Bool = true
+    @State private var isDobValid: Bool = true
+    @State private var isDoeValid: Bool = true
+    
+    
     public init(onResult: ((_ passportNumber: String, _ dob: String, _ doe: String) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onResult = onResult
         self.onNavigateBack = onNavigateBack
@@ -70,42 +75,108 @@ public struct PassportMRZFieldsManuallyView: View {
                             Text("passport_number".localized)
                                 .font(.callout)
                                 .bold()
-                            TextField("Passport number".localized, text: $viewModel.passportNumber)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numbersAndPunctuation)
+                            HStack(alignment: .center, spacing: 1) {
+                                
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                            .cornerRadius(10)
+                            .overlay(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .inset(by: 0.5)
+                                        .stroke(isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                    
+                                    TextField("Passport number".localized, text: $passportNumber)
+                                        .keyboardType(.numbersAndPunctuation)
+                                        .onChange(of: passportNumber) { newValue in
+                                            isPassportNumberValid = newValue.count > 0
+                                        }
+                                        .padding()
+                                }
+                            )
+                            
+                            if !isPassportNumberValid {
+                                Text("This field cannot be empty.")
+                                    .foregroundColor(.red)
+                            }
                         }
                         VStack (alignment: .leading) {
                             Text("date_of_birth".localized)
                                 .font(.callout)
                                 .bold()
-                            TextField("mrz_placeholder".localized, text: $dob)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numbersAndPunctuation)
-                                .onSubmit {
-                                    // Here you can validate the dateString and convert it to a Date if needed
-                                    if let date = parseDate(from: dob) {
-                                        print("Date entered: \(date)")
-                                    } else {
-                                        print("Invalid date format")
-                                    }
+                            HStack(alignment: .center, spacing: 1) {
+                                
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                            .cornerRadius(10)
+                            .overlay(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .inset(by: 0.5)
+                                        .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                    
+                                    TextField("mrz_placeholder".localized, text: $dob)
+                                        .keyboardType(.numbersAndPunctuation)
+                                        .onChange(of: dob) { newValue in
+                                            isDobValid = validateDate(newValue)
+                                        }
+                                        .padding()
                                 }
+                            )
+                            
+                            
+                            if !isDobValid {
+                                Text("Please enter a valid date of birth.")
+                                    .foregroundColor(.red)
+                            }
+                            
                         }
                         
                         VStack (alignment: .leading) {
                             Text("expiry_date".localized)
                                 .font(.callout)
                                 .bold()
-                            TextField("mrz_placeholder".localized, text: $doe)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .keyboardType(.numbersAndPunctuation)
-                                .onSubmit {
-                                    // Here you can validate the dateString and convert it to a Date if needed
-                                    if let date = parseDate(from: doe) {
-                                        print("Date entered: \(date)")
-                                    } else {
-                                        print("Invalid date format")
-                                    }
+                            HStack(alignment: .center, spacing: 1) {
+                                
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                            .cornerRadius(10)
+                            .overlay(
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .inset(by: 0.5)
+                                        .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                    
+                                    TextField("mrz_placeholder".localized, text: $doe)
+                                        .keyboardType(.numbersAndPunctuation)
+                                        .onSubmit {
+                                            // Here you can validate the dateString and convert it to a Date if needed
+                                            if let date = parseDate(from: doe) {
+                                                print("Date entered: \(date)")
+                                            } else {
+                                                print("Invalid date format")
+                                            }
+                                        }
+                                        .onChange(of: doe) { newValue in
+                                            isDoeValid = validateDate(newValue)
+                                        }
+                                        .padding()
                                 }
+                            )
+                            
+                            if !isDoeValid {
+                                Text("Please enter a valid expiry date.")
+                                    .foregroundColor(.red)
+                            }
                         }
                     }
                 }
@@ -135,6 +206,14 @@ public struct PassportMRZFieldsManuallyView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YY/MM/dd"
         return dateFormatter.date(from: string)
+    }
+    
+    func validateDate(_ dateString: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy/MM/dd"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return dateFormatter.date(from: dateString) != nil
     }
 }
 

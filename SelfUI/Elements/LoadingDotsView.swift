@@ -13,9 +13,9 @@ class LoadingDotsViewModel: ObservableObject {
 
 struct LoadingDotsView: View {
     @State private var activeIndex = 0
-    let animationDelay = 0.3
+    let animationDelay = 0.5
     let colors: [Color] = [.defaultBlue, .defaultPink, .defaultYellow, .defaultGreen]
-    @ObservedObject var viewModel = LoadingDotsViewModel()
+    @ObservedObject private var viewModel = LoadingDotsViewModel()
     
     public init() {
         

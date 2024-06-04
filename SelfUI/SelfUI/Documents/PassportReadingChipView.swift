@@ -58,7 +58,6 @@ public struct PassportReadingChipView: View {
                     
                     Rectangle()
                       .foregroundColor(.clear)
-                      .frame(width: 361, height: 327)
                       .background {
                           VStack {
                               LoadingDotsView()
