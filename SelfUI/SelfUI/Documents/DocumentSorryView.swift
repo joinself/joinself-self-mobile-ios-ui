@@ -68,11 +68,9 @@ public struct DocumentSorryView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Continue".localized) {
                         onButtonClicked()
-                    }, label: {
-                        ButtonView(title: "Continue".localized)
-                    })
+                    }
                     
                     BrandView(isDarked: true)
                 }.padding()
