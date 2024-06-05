@@ -10,9 +10,11 @@ import SwiftUI
 public struct LivenessVerificationFailedView: View {
     @ObservedObject var viewModel = LivenessVerificationViewModel()
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+    public init(remainingRetryNumber: Int = 0, onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
         self.onNavigationBack = onNavigationBack
+        self.viewModel.remainingRetryNumber = remainingRetryNumber
+        self.viewModel.update()
     }
     
     var onGettingStarted: () -> Void

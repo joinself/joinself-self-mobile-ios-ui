@@ -15,7 +15,7 @@
 "Take a selfie description" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 
 "Verification failed" = "Verification failed.";
-"Liveness verification failed" = "We were not able to match your image to your previous Selfie. For security we can’t allow you to use this Self account. \n\nIf you like, you can try again; \nYou have 2 more verification attempts. \n\nOr alternatively you can uninstall and reinstall Self. ";
+"Liveness verification failed" = "We were not able to match your image to your previous Selfie. For security we can’t allow you to use this Self account. \n\nIf you like, you can try again; \nYou have %d more verification attempts. \n\nOr alternatively you can uninstall and reinstall Self. ";
 
 // documents
 "title_document_selection"  = "First, you need to verify some information. You’ll need your Passport or Identity Document.";
