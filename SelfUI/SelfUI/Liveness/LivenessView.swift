@@ -24,9 +24,11 @@ public struct LivenessView: View {
     @Environment(\.dismiss) var dismiss
     
     public var onNavigateBack: () -> Void
+    public var onAppeared: (() -> Void)? = nil
     
-    public init(onNavigateBack: @escaping () -> Void) {
+    public init(onAppeared: (() -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onNavigateBack = onNavigateBack
+        self.onAppeared = onAppeared
     }
     
     public var body: some View {
@@ -71,6 +73,9 @@ public struct LivenessView: View {
                 Spacer()
             }.padding()
         }
+        .onAppear(perform: {
+            onAppeared?()
+        })
         .edgesIgnoringSafeArea(.all)
     }
     
