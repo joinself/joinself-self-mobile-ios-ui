@@ -47,8 +47,7 @@ public struct LivenessVerificationFailedView: View {
                 
                 // stepped progress view
                 ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
-                        .padding(.leading, 30)
+                    SteppedProgressView(totalSteps: 5, currentStep: 1, progressColor: .defaultGreen, backgroundColor: .defaultGray)
                 }
                 
                 VStack(alignment: .leading, spacing: 30) {
@@ -66,11 +65,9 @@ public struct LivenessVerificationFailedView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    Button(action: {
+                    ButtonView(title: "Start".localized) {
                         onGettingStarted()
-                    }, label: {
-                        ButtonView(title: "Start".localized)
-                    })
+                    }
                     
                     BrandView(isDarked: true)
                 }.padding()
