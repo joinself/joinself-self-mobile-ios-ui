@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import FLAnimatedImage
+@_implementationOnly import FLAnimatedImage
 
 struct GIFView: UIViewRepresentable {
     var gifName: String
