@@ -19,7 +19,7 @@ enum Challenge: String {
 }
 
 public struct LivenessView: View {
-    @ObservedObject var viewModel = LivenessOverlayViewModel(text: "", tipImageName: "", isHighlighted: false)
+    @ObservedObject var viewModel = LivenessOverlayViewModel(text: "", tipImageName: "ic_transparent", isHighlighted: false)
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.dismiss) var dismiss
     
@@ -105,6 +105,7 @@ public struct LivenessView: View {
             
         default:
             print("Not support challenge: \(state)")
+            tipImageName = "selfie_tip_background_transparent"
             break
         }
         
