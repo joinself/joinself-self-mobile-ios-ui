@@ -211,7 +211,7 @@ public struct PassportMRZFieldsManuallyView: View {
                         let _doe = doe.replace("/", with: "")
                         print("Passport number: \(passportNumber) DOB \(dob) DOE \(doe)")
                         
-                        onResult?(viewModel.passportNumber, _dob, _doe)
+                        onResult?(passportNumber, _dob, _doe)
                     }
                     
                     ButtonView(title: "Cancel".localized, backgroundColor: .defaultPink) {
