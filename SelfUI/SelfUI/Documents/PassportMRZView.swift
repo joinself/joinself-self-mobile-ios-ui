@@ -15,11 +15,11 @@ public struct PassportMRZView: View {
     @ObservedObject var viewModel = PassportMRZViewModel()
     @ObservedObject var cameraManager = CameraManager()
     
-    public var onResult: ((String?) -> Void)? = nil
+    public var onResult: ((MRZInfo?) -> Void)? = nil
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((String?) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil) {
         self.onResult = onResult
         cameraManager.onResult = onResult
     }

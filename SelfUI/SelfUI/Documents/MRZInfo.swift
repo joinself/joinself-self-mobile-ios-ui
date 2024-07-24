@@ -9,10 +9,35 @@ import Foundation
 import Vision
 
 public struct MRZInfo {
-    let documentNumber: String
-    let dateOfBirth: String
-    let dateOfExpiry: String
-    let checkDigetDocumentNumber: String
+    public let documentNumber: String
+    public let dateOfBirth: String
+    public let dateOfExpiry: String
+    
+    let mrzLines: String
+    var checkDigetDocumentNumber: String?
+    
+    public func isvalidMZR() -> Bool {
+        // I believe a valid mrz that documentNumber+checkSum would be inside mrzLines
+        // check document number
+        let documentNumberAndChecksum = "\(documentNumber)\(PassportUtils.calcCheckSum(documentNumber))"
+        let isValidDocumentNumber = mrzLines.contains(documentNumberAndChecksum)
+        print("isValidDocumentNumber: \(isValidDocumentNumber)")
+        
+        // check DOB
+        let dobAndChecksum = "\(dateOfBirth)\(PassportUtils.calcCheckSum(dateOfBirth))"
+        let isValidDob = mrzLines.contains(dobAndChecksum)
+        print("isValidDob: \(isValidDob)")
+        
+        // check DOE
+        let doeAndChecksum = "\(dateOfExpiry)\(PassportUtils.calcCheckSum(dateOfExpiry))"
+        let isValidDoe = mrzLines.contains(doeAndChecksum)
+        print("isValidDoe: \(isValidDoe)")
+        
+        let isvalidMZR = isValidDocumentNumber && isValidDob && isValidDoe
+        print("isValidMRZ: \(isvalidMZR)")
+        
+        return isvalidMZR
+    }
 }
 
 
@@ -69,7 +94,7 @@ class OcrUtils {
                 print("DOB: \(dob)")
                 print("EXP: \(exp)")
                 
-                let mrzInfo = MRZInfo(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: exp, checkDigetDocumentNumber: checkDigitOfDocumentNumber)
+                let mrzInfo = MRZInfo(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: exp, mrzLines: mrzString, checkDigetDocumentNumber: checkDigitOfDocumentNumber)
                 print("MRZInfo: \(mrzInfo)")
                 //                cleanDate(matcherLineOldPassportType.group(2)).toInt()
                 //                                val dateOfBirthDay = cleanDate(matcherLineOldPassportType.group(4))
@@ -113,7 +138,7 @@ class OcrUtils {
                 let dob = line2.substring(0, to: 6)
                 let exp = line2.substring(8, to: 14)
                 
-                let mrzInfo = MRZInfo(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: exp, checkDigetDocumentNumber: "\(checkDigitDocumentNumber)")
+                let mrzInfo = MRZInfo(documentNumber: documentNumber, dateOfBirth: dob, dateOfExpiry: exp, mrzLines: mrzString, checkDigetDocumentNumber: "\(checkDigitDocumentNumber)")
                 print("MRZInfo: \(mrzInfo)")
                 //                cleanDate(matcherLineOldPassportType.group(2)).toInt()
                 //                                val dateOfBirthDay = cleanDate(matcherLineOldPassportType.group(4))
