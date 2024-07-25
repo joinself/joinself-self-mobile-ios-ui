@@ -31,7 +31,7 @@ public struct PassportMRZView: View {
                 Color.black.ignoresSafeArea()
                 CameraPreview(session: cameraManager.session)
                 .edgesIgnoringSafeArea(.all)
-                MRZOverlayView(isHighlighted: !cameraManager.mrzKey.isEmpty)
+                MRZOverlayView(isHighlighted: cameraManager.isValidMRZ)
                 
                 GeometryReader { geometry in
                     VStack(alignment: .leading, spacing: 0) {

@@ -35,7 +35,7 @@ class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
 
-    @Published var mrzKey: String = ""
+    @Published var isValidMRZ: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
     
     override init() {
@@ -128,6 +128,7 @@ class CameraManager: NSObject, ObservableObject {
             
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
                 print("Expected mrzInfo: \(mrzInfo)")
+                self.isValidMRZ = mrzInfo.isvalidMZR()
                 DispatchQueue.main.async {
                     self.onResult?(mrzInfo)
                 }
