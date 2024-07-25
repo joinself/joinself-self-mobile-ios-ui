@@ -22,7 +22,7 @@ struct SteppedProgressView: View {
         viewModel.progress = Double(currentStep) / Double(totalSteps) - 0.07
         viewModel.spacing = viewModel.progressViewWidth / CGFloat(totalSteps)
         
-        print("Spacing: \(viewModel.spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress: \(viewModel.progress)")
+//        print("Spacing: \(viewModel.spacing) currentStep: \(currentStep) totalSteps: \(totalSteps) progress: \(viewModel.progress)")
     }
     
     var body: some View {

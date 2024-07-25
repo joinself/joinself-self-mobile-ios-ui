@@ -11,23 +11,22 @@ class PassportMRZFieldManuallyViewModel: ObservableObject {
     @Published var passportNumber: String = ""
     @Published var dob: String = ""
     @Published var doe: String = ""
+    @Published var selectedDate = Date()
+    
+    @Published var isPassportNumberValid: Bool = true
+    @Published var isDobValid: Bool = true
+    @Published var isDoeValid: Bool = true
     
 }
 public struct PassportMRZFieldsManuallyView: View {
     @ObservedObject var viewModel = PassportMRZFieldManuallyViewModel()
-    @State private var dob: String = ""
-    @State private var doe: String = ""
-    @State private var passportNumber: String = ""
-    @State private var selectedDate = Date()
     
-    @State private var isPassportNumberValid: Bool = true
-    @State private var isDobValid: Bool = true
-    @State private var isDoeValid: Bool = true
-    
-    
-    public init(onResult: ((_ passportNumber: String, _ dob: String, _ doe: String) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
+    public init(documentNumber: String = "", dob: String = "", doe: String = "", onResult: ((_ passportNumber: String, _ dob: String, _ doe: String) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onResult = onResult
         self.onNavigateBack = onNavigateBack
+        self.viewModel.passportNumber = documentNumber
+        self.viewModel.dob = dob.convertDateString() ?? dob
+        self.viewModel.doe = doe.convertDateString() ?? doe
     }
     
     var onResult: ((_ passportNumber: String, _ dob: String, _ doe: String) -> Void)? = nil
@@ -89,23 +88,23 @@ public struct PassportMRZFieldsManuallyView: View {
                                 .overlay {
                                     RoundedRectangle(cornerRadius: 10)
                                         .inset(by: 0.5)
-                                        .stroke(isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                        .stroke(viewModel.isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                     //
-                                    TextField("", text: $passportNumber)
-                                        .placeholder(when: passportNumber.isEmpty) {
+                                    TextField("", text: $viewModel.passportNumber)
+                                        .placeholder(when: viewModel.passportNumber.isEmpty) {
                                             Text("Passport number".localized).foregroundColor(.gray)
                                         }
                                         .font(.defaultBody)
                                         .foregroundColor(.black)
                                         .keyboardType(.numbersAndPunctuation)
-                                        .onChange(of: passportNumber) { newValue in
-                                            isPassportNumberValid = newValue.count > 0
+                                        .onChange(of: viewModel.passportNumber) { newValue in
+                                            viewModel.isPassportNumberValid = newValue.count > 0
                                         }
                                         .padding()
                                 }
                             }
                             
-                            if !isPassportNumberValid {
+                            if !viewModel.isPassportNumberValid {
                                 Text("This field cannot be empty.")
                                     .foregroundColor(.red)
                             }
@@ -127,24 +126,24 @@ public struct PassportMRZFieldsManuallyView: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
                                         .inset(by: 0.5)
-                                        .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                        .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                     
-                                    TextField("", text: $dob)
-                                        .placeholder(when: dob.isEmpty) {
+                                    TextField("", text: $viewModel.dob)
+                                        .placeholder(when: viewModel.dob.isEmpty) {
                                             Text("mrz_placeholder".localized).foregroundColor(.gray)
                                         }
                                         .font(.defaultBody)
                                         .foregroundColor(.black)
                                         .keyboardType(.numbersAndPunctuation)
-                                        .onChange(of: dob) { newValue in
-                                            isDobValid = validateDate(newValue)
+                                        .onChange(of: viewModel.dob) { newValue in
+                                            viewModel.isDobValid = validateDate(newValue)
                                         }
                                         .padding()
                                 }
                             )
                             
                             
-                            if !isDobValid {
+                            if !viewModel.isDobValid {
                                 Text("Please enter a valid date of birth.")
                                     .foregroundColor(.red)
                             }
@@ -168,10 +167,10 @@ public struct PassportMRZFieldsManuallyView: View {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 10)
                                         .inset(by: 0.5)
-                                        .stroke(isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                        .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                     
-                                    TextField("", text: $doe)
-                                        .placeholder(when: doe.isEmpty) {
+                                    TextField("", text: $viewModel.doe)
+                                        .placeholder(when: viewModel.doe.isEmpty) {
                                             Text("mrz_placeholder".localized).foregroundColor(.gray)
                                         }
                                         .font(.defaultBody)
@@ -179,20 +178,20 @@ public struct PassportMRZFieldsManuallyView: View {
                                         .keyboardType(.numbersAndPunctuation)
                                         .onSubmit {
                                             // Here you can validate the dateString and convert it to a Date if needed
-                                            if let date = parseDate(from: doe) {
+                                            if let date = parseDate(from: viewModel.doe) {
                                                 print("Date entered: \(date)")
                                             } else {
                                                 print("Invalid date format")
                                             }
                                         }
-                                        .onChange(of: doe) { newValue in
-                                            isDoeValid = validateDate(newValue)
+                                        .onChange(of: viewModel.doe) { newValue in
+                                            viewModel.isDoeValid = validateDate(newValue)
                                         }
                                         .padding()
                                 }
                             )
                             
-                            if !isDoeValid {
+                            if !viewModel.isDoeValid {
                                 Text("Please enter a valid expiry date.")
                                     .foregroundColor(.red)
                             }
@@ -207,11 +206,11 @@ public struct PassportMRZFieldsManuallyView: View {
                 
                 VStack(spacing: 12) {
                     ButtonView(title: "Done".localized) {
-                        let _dob = dob.replace("/", with: "")
-                        let _doe = doe.replace("/", with: "")
-                        print("Passport number: \(passportNumber) DOB \(dob) DOE \(doe)")
+                        let _dob = viewModel.dob.replace("/", with: "")
+                        let _doe = viewModel.doe.replace("/", with: "")
+                        print("Passport number: \(viewModel.passportNumber) DOB \(_dob) DOE \(_doe)")
                         
-                        onResult?(passportNumber, _dob, _doe)
+                        onResult?(viewModel.passportNumber, _dob, _doe)
                     }
                     
                     ButtonView(title: "Cancel".localized, backgroundColor: .defaultPink) {
@@ -243,7 +242,7 @@ public struct PassportMRZFieldsManuallyView: View {
 }
 
 #Preview {
-    PassportMRZFieldsManuallyView(onNavigateBack: {
+    PassportMRZFieldsManuallyView(documentNumber: "123456789", dob: "881001", doe: "241001", onNavigateBack: {
         
     })
 }
@@ -258,6 +257,20 @@ extension View {
             ZStack(alignment: alignment) {
                 placeholder().opacity(shouldShow ? 1 : 0)
                 self
-            }
+            }.padding(.all, 8)
         }
+}
+
+extension String {
+    func convertDateString() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyMMdd"
+        
+        if let date = dateFormatter.date(from: self) {
+            dateFormatter.dateFormat = "yy/MM/dd"
+            return dateFormatter.string(from: date)
+        } else {
+            return nil
+        }
+    }
 }
