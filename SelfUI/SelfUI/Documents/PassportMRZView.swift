@@ -15,11 +15,11 @@ public struct PassportMRZView: View {
     @ObservedObject var viewModel = PassportMRZViewModel()
     @ObservedObject var cameraManager = CameraManager()
     
-    public var onResult: ((String?) -> Void)? = nil
+    public var onResult: ((MRZInfo?) -> Void)? = nil
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((String?) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil) {
         self.onResult = onResult
         cameraManager.onResult = onResult
     }
@@ -31,7 +31,7 @@ public struct PassportMRZView: View {
                 Color.black.ignoresSafeArea()
                 CameraPreview(session: cameraManager.session)
                 .edgesIgnoringSafeArea(.all)
-                MRZOverlayView(isHighlighted: !cameraManager.mrzKey.isEmpty)
+                MRZOverlayView(isHighlighted: cameraManager.isValidMRZ)
                 
                 GeometryReader { geometry in
                     VStack(alignment: .leading, spacing: 0) {

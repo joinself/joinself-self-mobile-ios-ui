@@ -8,8 +8,6 @@
 import SwiftUI
 import AVFoundation
 import Vision
-//import MLKitVision
-//import MLKitFaceDetection
 
 struct CameraPreview: UIViewRepresentable {
     class VideoPreviewView: UIView {
@@ -37,8 +35,8 @@ class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
 
-    @Published var mrzKey: String = ""
-    var onResult: ((String?) -> Void)? = nil
+    @Published var isValidMRZ: Bool = false
+    var onResult: ((MRZInfo?) -> Void)? = nil
     
     override init() {
         super.init()
@@ -131,8 +129,8 @@ class CameraManager: NSObject, ObservableObject {
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
                 print("Expected mrzInfo: \(mrzInfo)")
                 DispatchQueue.main.async {
-                    self.mrzKey = PassportUtils.getMRZKey(passportNumber: mrzInfo.documentNumber, dateOfBirth: mrzInfo.dateOfBirth, dateOfExpiry: mrzInfo.dateOfExpiry)
-                    self.onResult?(self.mrzKey)
+                    self.isValidMRZ = mrzInfo.isvalidMZR()
+                    self.onResult?(mrzInfo)
                 }
                 self.session.stopRunning()
             }
