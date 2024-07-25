@@ -99,6 +99,34 @@ public struct PassportMRZView: View {
     }
 }
 
+public struct PassportMRZCameraView: View {    
+    @ObservedObject var cameraManager = CameraManager()
+        
+    public init(onResult: ((MRZInfo?) -> Void)? = nil) {        
+        cameraManager.onResult = onResult
+    }
+    
+    public var body: some View {
+        VStack {
+            ZStack {
+                // Base view with overlay
+                Color.black.ignoresSafeArea()
+                CameraPreview(session: cameraManager.session)
+                .edgesIgnoringSafeArea(.all)
+            }.ignoresSafeArea(.all)
+        }
+        .onAppear(perform: {
+            DispatchQueue.global(qos: .background).async {
+                self.cameraManager.session.startRunning()
+            }
+        })
+        .onDisappear(perform: {
+            print("Camera View disappear.")
+            self.cameraManager.session.stopRunning()
+        })
+    }
+}
+
 #Preview {
     PassportMRZView()
 }
