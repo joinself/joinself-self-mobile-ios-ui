@@ -128,8 +128,8 @@ class CameraManager: NSObject, ObservableObject {
             
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
                 print("Expected mrzInfo: \(mrzInfo)")
-                self.isValidMRZ = mrzInfo.isvalidMZR()
                 DispatchQueue.main.async {
+                    self.isValidMRZ = mrzInfo.isvalidMZR()
                     self.onResult?(mrzInfo)
                 }
                 self.session.stopRunning()
