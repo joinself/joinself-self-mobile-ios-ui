@@ -25,8 +25,13 @@ public struct PassportMRZFieldsManuallyView: View {
         self.onResult = onResult
         self.onNavigateBack = onNavigateBack
         self.viewModel.passportNumber = documentNumber
-        self.viewModel.dob = dob.convertDateString() ?? dob
-        self.viewModel.doe = doe.convertDateString() ?? doe
+        if !dob.isEmpty {
+            self.viewModel.dob = dob.convertDateString() ?? dob
+        }
+        
+        if !doe.isEmpty {
+            self.viewModel.doe = doe.convertDateString() ?? doe
+        }
     }
     
     var onResult: ((_ passportNumber: String, _ dob: String, _ doe: String) -> Void)? = nil
@@ -223,6 +228,8 @@ public struct PassportMRZFieldsManuallyView: View {
             }
             .padding()
             .ignoresSafeArea(.all)
+        }.onTapGesture {
+            self.hideKeyboard()
         }
     }
     
@@ -242,7 +249,7 @@ public struct PassportMRZFieldsManuallyView: View {
 }
 
 #Preview {
-    PassportMRZFieldsManuallyView(documentNumber: "123456789", dob: "881001", doe: "241001", onNavigateBack: {
+    PassportMRZFieldsManuallyView(documentNumber: "123456789", dob: "", doe: "241001", onNavigateBack: {
         
     })
 }
@@ -257,7 +264,7 @@ extension View {
             ZStack(alignment: alignment) {
                 placeholder().opacity(shouldShow ? 1 : 0)
                 self
-            }.padding(.all, 8)
+            }
         }
 }
 
@@ -272,5 +279,12 @@ extension String {
         } else {
             return nil
         }
+    }
+}
+
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
