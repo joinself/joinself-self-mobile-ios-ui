@@ -99,10 +99,10 @@ public struct PassportMRZView: View {
     }
 }
 
-public struct PassportMRZNoUIView: View {    
+public struct PassportMRZCameraView: View {    
     @ObservedObject var cameraManager = CameraManager()
         
-    public init(onResult: ((String?) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil) {        
         cameraManager.onResult = onResult
     }
     
