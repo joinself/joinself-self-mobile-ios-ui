@@ -54,3 +54,9 @@
 "Enter data manually" = "Enter data manually";
 "Start scan" = "Start scan";
 "Get Started" = "Get Started";
+"button_signup_now" = "Sign Up Now";
+"button_next" = "Next";
+
+// Onboarding
+"welcome_title" = "Welcome to your Self.";
+"welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started.";
