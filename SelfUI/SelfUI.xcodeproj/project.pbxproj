@@ -13,6 +13,7 @@
 		6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4FD2BFC4A4000C35808 /* Extensions.swift */; };
 		632A1DC52BF76B4900959663 /* CameraOvelayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632A1DC42BF76B4900959663 /* CameraOvelayView.swift */; };
 		633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F7FF52C53B54100BC2B06 /* CustomPageIndicator.swift */; };
+		633F7FFA2C578FBE00BC2B06 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */; };
 		634878CF2BF739EB00E50DE1 /* LivenessIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878CE2BF739EB00E50DE1 /* LivenessIntroductionView.swift */; };
 		634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D02BF73AA300E50DE1 /* LivenessFlow.swift */; };
 		634878D32BF7488900E50DE1 /* BrandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D22BF7488900E50DE1 /* BrandView.swift */; };
@@ -132,6 +133,7 @@
 		6320F4FD2BFC4A4000C35808 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		632A1DC42BF76B4900959663 /* CameraOvelayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOvelayView.swift; sourceTree = "<group>"; };
 		633F7FF52C53B54100BC2B06 /* CustomPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageIndicator.swift; sourceTree = "<group>"; };
+		633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
 		634878CE2BF739EB00E50DE1 /* LivenessIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroductionView.swift; sourceTree = "<group>"; };
 		634878D02BF73AA300E50DE1 /* LivenessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessFlow.swift; sourceTree = "<group>"; };
 		634878D22BF7488900E50DE1 /* BrandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				63C03E672C528703009E385E /* WelcomeView.swift */,
 				63C03E692C535E9C009E385E /* PagingView.swift */,
 				63C451A62BF33F6100AD5BC5 /* PageContentView.swift */,
+				633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
 				63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */,
+				633F7FFA2C578FBE00BC2B06 /* ThankYouView.swift in Sources */,
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
 				635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */,
 				634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */,

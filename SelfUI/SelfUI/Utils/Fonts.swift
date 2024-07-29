@@ -53,5 +53,6 @@ extension Font {
     }
     
     static let defaultH3: Font = Font.custom("Barlow", size: 36)
+    static let defaultTitle: Font = Font.system(size: 36).bold()//Font.custom("Barlow-Bold", size: 36)
     static let defaultBody: Font = Font.custom("Barlow", size: 17)
 }

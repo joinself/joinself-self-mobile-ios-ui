@@ -10,6 +10,14 @@ import SwiftUI
 struct PagingView: View {
     let totalPage = 4
     @State private var selectedTab = 0
+    @Environment(\.presentationMode) var presentationMode
+    
+    var onFinish: ((Bool) -> Void)?
+    init(selectedTab: Int = 0, onFinish: ( (Bool) -> Void)? = nil) {
+        self.selectedTab = selectedTab
+        self.onFinish = onFinish
+    }
+    
     var body: some View {
         VStack {
             TabView(selection: $selectedTab) {
@@ -28,17 +36,37 @@ struct PagingView: View {
             Spacer()
             VStack (spacing: 16) {
                 CustomPageIndicator(currentIndex: selectedTab, total: totalPage)
-                ButtonView(title: "button_next".localized, backgroundColor: .defaultGreen) {
-                    if self.selectedTab < totalPage {
-                        self.selectedTab += 1
-                    } else {
-                        self.selectedTab = 0
+                if selectedTab < 3 {
+                    ButtonView(title: "button_next".localized, backgroundColor: .defaultGreen) {
+                        if self.selectedTab < totalPage {
+                            self.selectedTab += 1
+                        } else {
+                            self.selectedTab = 0
+                        }
+                    }
+                } else {
+                    ButtonView(title: "button_joinself".localized, backgroundColor: .defaultPink) {
+                        // TODO: JoinSelf
+                        onFinish?(true)
                     }
                 }
+                
                 BrandView(isDarked: true)
+                
             }.padding()
         }
-        
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image("ic_back_dark", bundle: mainBundle)
+                    }
+                }
+            }
+        }
     }
 }
 

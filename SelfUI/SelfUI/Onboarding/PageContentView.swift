@@ -15,23 +15,21 @@ public struct PageContentView: View {
     public init(title: String, description: String) {
         self.title = title
         self.description = description
+        FontLoader.loadFont()
     }
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             // Heading/H3
             Text(title)
-              .font(
-                Font.custom("Barlow", size: 36)
-                  .weight(.bold)
-              )
-              .foregroundColor(.black)
-              .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                .font(.defaultTitle)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, alignment: .bottomLeading)
             // Paragraph/Body Primary
             Text(description)
-              .font(Font.custom("SF Pro", size: 17))
-              .foregroundColor(.black)
-              .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .font(.defaultBody)
+                .foregroundColor(.black)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .padding(.horizontal, 15)
         .padding(.top, 100)

@@ -56,6 +56,7 @@
 "Get Started" = "Get Started";
 "button_signup_now" = "Sign Up Now";
 "button_next" = "Next";
+"button_joinself" = "Join Self";
 
 // Onboarding
 "welcome_title" = "Welcome to your Self.";
@@ -72,3 +73,6 @@
 
 "the_really_important_bit_title" = "The really important bit.";
 "the_really_important_bit_description" = "We never keep your data – it’s only ever stored on your phone. \n\nYour data is  never visible to anyone without your permission.";
+
+"onboarding_thankyou_title" = "Thank you!";
+"i_agree" = "I agree";
