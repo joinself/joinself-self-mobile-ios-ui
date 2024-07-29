@@ -369,6 +369,7 @@
 				63C03E6B2C539517009E385E /* OnboardingFlow.swift */,
 				63C03E672C528703009E385E /* WelcomeView.swift */,
 				63C03E692C535E9C009E385E /* PagingView.swift */,
+				63C451A62BF33F6100AD5BC5 /* PageContentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -407,7 +408,6 @@
 				6381C3B62BF731EB005573A0 /* Liveness */,
 				6381C3432BF5C261005573A0 /* Utils */,
 				63C451672BF30EAE00AD5BC5 /* SelfUI.h */,
-				63C451A62BF33F6100AD5BC5 /* PageContentView.swift */,
 				6381C33F2BF5BBB7005573A0 /* FaceModel.swift */,
 				6381C3232BF463E1005573A0 /* CameraView.swift */,
 				6381C3412BF5BC85005573A0 /* CameraViewModel.swift */,

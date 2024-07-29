@@ -13,29 +13,15 @@ struct PagingView: View {
     var body: some View {
         VStack {
             TabView(selection: $selectedTab) {
-                Text("First View")
-                    .tabItem {
-                        Label("First", systemImage: "1.circle")
-                    }
+                PageContentView(title: "secure_communication_title".localized, description: "secure_communication_description".localized)
                     .tag(0)
                 
-                Text("Second View")
-                    .tabItem {
-                        Label("Second", systemImage: "2.circle")
-                    }
+                PageContentView(title: "control_data_title".localized, description: "control_data_description".localized)
                     .tag(1)
-                
-                Text("Third View")
-                    .tabItem {
-                        Label("Third", systemImage: "3.circle")
-                    }
+                PageContentView(title: "start_self_today_title".localized, description: "start_self_today_description".localized)
                     .tag(2)
-                
-                Text("Third View")
-                    .tabItem {
-                        Label("Third", systemImage: "3.circle")
-                    }
-                    .tag(2)
+                PageContentView(title: "the_really_important_bit_title".localized, description: "the_really_important_bit_description".localized)
+                    .tag(3)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
