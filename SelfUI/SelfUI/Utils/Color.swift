@@ -18,4 +18,8 @@ extension Color {
     
     
     static let defaultBlue: Color = Color(red: 0.22, green: 0.58, blue: 1)
+    
+    // Toggle
+    static let toggleOff: Color = Color(red: 0.24, green: 0.24, blue: 0.24)
+    static let toggleOn: Color = .defaultGreen
 }
