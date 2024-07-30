@@ -30,6 +30,7 @@ struct ThankYouView: View {
                 Spacer()
                 VStack(spacing: 12) {
                     Text("To join Self, please agree to our")
+                        .foregroundStyle(.black)
                     HStack {
                         Text("terms & conditions")
                             .foregroundColor(.blue)
@@ -37,7 +38,7 @@ struct ThankYouView: View {
                                 // TODO: Open term and conditions
                                 print("Click term & conditions")
                             }
-                        Text("&")
+                        Text("&").globalBodyTextStyle()
                         Text("privacy policy.")
                             .foregroundColor(.blue)
                             .onTapGesture {

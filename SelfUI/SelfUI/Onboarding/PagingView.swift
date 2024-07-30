@@ -55,6 +55,7 @@ struct PagingView: View {
                 
             }.padding()
         }
+        .background(.primary)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
