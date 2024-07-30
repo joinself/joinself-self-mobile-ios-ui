@@ -105,7 +105,7 @@ public struct LivenessView: View {
             
         default:
             print("Not support challenge: \(state)")
-            tipImageName = "selfie_tip_background_transparent"
+            tipImageName = "ic_transparent"
             break
         }
         
