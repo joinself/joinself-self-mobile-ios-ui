@@ -10,7 +10,7 @@ import SwiftUI
 struct ThankYouView: View {
     @State private var isOn = false
     @Environment(\.presentationMode) var presentationMode
-
+    
     var onGetStarted: (() -> Void)?
     init(onGetStarted: (() -> Void)? = nil) {
         self.onGetStarted = onGetStarted
@@ -29,35 +29,38 @@ struct ThankYouView: View {
                 }.padding()
                 Spacer()
                 VStack(spacing: 12) {
-                    Text("To join Self, please agree to our")
-                        .foregroundStyle(.black)
-                    HStack {
-                        Text("terms & conditions")
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                // TODO: Open term and conditions
-                                print("Click term & conditions")
-                            }
-                        Text("&").globalBodyTextStyle()
-                        Text("privacy policy.")
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                // TODO: Open privacy policy
-                                print("Click privacy policy")
-                            }
-                    }
+                    VStack (spacing: 0){
+                        Text("To join Self, please agree to our".localized)
+                            .foregroundStyle(.black)
+                        HStack (spacing: -4) {
+                            Text("terms & conditions".localized)
+                                .foregroundColor(.defaultBlue)
+                                .onTapGesture {
+                                    // TODO: Open term and conditions
+                                    print("Click term & conditions")
+                                }
+                            Text("&").globalBodyTextStyle()
+                            Text("privacy policy.")
+                                .foregroundColor(.defaultBlue)
+                                .onTapGesture {
+                                    // TODO: Open privacy policy
+                                    print("Click privacy policy")
+                                }
+                        }.frame(height: 24)
+                    }.padding(0)
                     
                     HStack (alignment: .center) {
                         Toggle("", isOn: $isOn)
-                        .toggleStyle(SwitchToggleStyle(tint: .defaultGreen))
-                        .frame(maxWidth: 40)
-                        .padding()
+                            .toggleStyle(CustomToggleStyle(onColor: .toggleOn, offColor: .toggleOff, thumbColor: .white))
+                            .frame(maxWidth: 40)
+                            .padding()
                         Text("i_agree".localized)
+                            .globalBodyTextStyle()
                             .onTapGesture {
                                 isOn.toggle()
                             }
                     }
-
+                    
                     if isOn {
                         ButtonView(title: "button_joinself".localized, backgroundColor: .defaultPink) {
                             onGetStarted?()
@@ -75,17 +78,17 @@ struct ThankYouView: View {
             .ignoresSafeArea(.all)
         }
         .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Image("ic_back_dark", bundle: mainBundle)
-                        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image("ic_back_dark", bundle: mainBundle)
                     }
                 }
             }
+        }
     }
 }
 
