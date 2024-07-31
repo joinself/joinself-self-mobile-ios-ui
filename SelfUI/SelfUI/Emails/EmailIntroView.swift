@@ -38,7 +38,7 @@ struct EmailIntroView: View {
                     .foregroundColor(.black)
                 Spacer()
             }
-            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
+            .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             Spacer()

@@ -33,7 +33,7 @@ struct EnterEmailView: View {
                 .font(.defaultTitle)
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                .padding()
+                .padding(.all, 16)
             
             VStack (alignment: .leading) {
                 Text("email_address".localized)
@@ -56,12 +56,13 @@ struct EnterEmailView: View {
                             .stroke(isValidEmail ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                         TextField("", text: $emailAddress)
                             .placeholder(when: emailAddress.isEmpty) {
-                                Text("email_address_placeholder".localized).foregroundColor(.defaultGrayscale)
-                                    .keyboardType(.emailAddress)
+                                Text("email_address_placeholder".localized).foregroundColor(.defaultPlaceHolder)
                             }
                             .font(.defaultBody)
                             .foregroundColor(.black)
-                            .keyboardType(.numbersAndPunctuation)
+                            .textContentType(.emailAddress)
+                            .textInputAutocapitalization(.never)
+                            .keyboardType(.emailAddress)
                             .onChange(of: emailAddress) { newValue in
                                 isValidEmail = newValue.isValidEmail()
                             }

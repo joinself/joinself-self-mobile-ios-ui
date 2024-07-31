@@ -15,6 +15,8 @@ extension Color {
     
     static let defaultGrayscale: Color = Color(red: 0.24, green: 0.24, blue: 0.24)
     
+    static let defaultPlaceHolder: Color = Color(red: 0.24, green: 0.24, blue: 0.24).opacity(0.3)
+    
     /// color warning
     static let defaultYellow: Color = Color(red: 0.8, green: 0.52, blue: 0)
     
