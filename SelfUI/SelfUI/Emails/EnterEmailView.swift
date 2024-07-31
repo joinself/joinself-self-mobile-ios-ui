@@ -17,6 +17,7 @@ struct EnterEmailView: View {
     var onAccept: (() -> Void)?
     @State private var isValidEmail: Bool = false
     @State private var emailAddress: String = ""
+    @FocusState private var isFocused: Bool
     
     public var body: some View {
         VStack {
@@ -59,12 +60,16 @@ struct EnterEmailView: View {
                                 Text("email_address_placeholder".localized).foregroundColor(.defaultPlaceHolder)
                             }
                             .font(.defaultBody)
+                            .focused($isFocused)
                             .foregroundColor(.black)
                             .textContentType(.emailAddress)
                             .textInputAutocapitalization(.never)
                             .keyboardType(.emailAddress)
                             .onChange(of: emailAddress) { newValue in
                                 isValidEmail = newValue.isValidEmail()
+                            }
+                            .onAppear {
+                                isFocused = true
                             }
                             .padding()
                     }

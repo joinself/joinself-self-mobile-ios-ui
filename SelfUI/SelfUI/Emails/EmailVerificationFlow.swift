@@ -26,6 +26,13 @@ public struct EmailVerificationFlow: View {
                         
                     }
                     
+                case 1:
+                    EnterEmailCodeView (onCode: { code in
+                        
+                    }) {
+                        // resend code
+                    }
+                    
                 default:
                     Text("0")
                 }

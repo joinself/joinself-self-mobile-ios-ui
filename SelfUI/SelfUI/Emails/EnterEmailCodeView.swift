@@ -10,11 +10,13 @@ import SwiftUI
 struct EnterEmailCodeView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    public init(onAccept: (() -> Void)? = nil) {
-        self.onAccept = onAccept
+    public init(onCode: ((_ code: String) -> Void)? = nil, onResendCode: (() -> Void)? = nil) {
+        self.onCode = onCode
+        self.onResendCode = onResendCode
     }
     
-    var onAccept: (() -> Void)?
+    var onCode: ((_ code: String) -> Void)?
+    var onResendCode: (() -> Void)?
     @State private var isValidEmail: Bool = false
     @State private var emailAddress: String = ""
     
@@ -36,20 +38,19 @@ struct EnterEmailCodeView: View {
                 .padding(.all, 16)
             
             PinCodeView(pinLength: 6)
-            
+            HStack {
+                Image("ic_resend", bundle: mainBundle)
+                // Paragraph/Caption
+                Text("resend_code".localized)
+                  .font(
+                    Font.defaultBody
+                  )
+                  .foregroundColor(.defaultBlue)
+            }.onTapGesture {
+                onResendCode?()
+            }
             Spacer()
             VStack(spacing: 12) {
-                if isValidEmail {
-                    ButtonView(title: "button_send_code".localized) {
-                        onAccept?()
-                    }
-                } else {
-                    ButtonView(title: "button_send_code".localized, backgroundColor: .defaultGray) {
-                        
-                    }
-                }
-                
-                
                 BrandView(isDarked: true)
             }.padding()
         }

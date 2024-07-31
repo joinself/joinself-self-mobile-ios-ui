@@ -57,6 +57,11 @@ struct PinCodeView: View {
                             }
                         }
                     }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            focusedField = 0
+                        }
+                    }
             }
         }
         .padding()

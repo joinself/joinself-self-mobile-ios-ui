@@ -89,3 +89,4 @@
 "email_address" = "Email address";
 "email_address_placeholder" = "youremail@example.com";
 "email_address_invalid_message" = "Please enter a valid email address.";
+"resend_code" = "Resend code";
