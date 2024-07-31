@@ -1,5 +1,5 @@
 //
-//  EnterEmailView.swift
+//  EnterEmailCodeView.swift
 //  SelfUI
 //
 //  Created by Long Pham on 31/7/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EnterEmailView: View {
+struct EnterEmailCodeView: View {
     
     @Environment(\.presentationMode) var presentationMode
     public init(onAccept: (() -> Void)? = nil) {
@@ -35,46 +35,7 @@ struct EnterEmailView: View {
                 .frame(maxWidth: .infinity, alignment: .bottomLeading)
                 .padding(.all, 16)
             
-            VStack (alignment: .leading) {
-                Text("email_address".localized)
-                    .font(.defaultBody)
-                    .bold()
-                    .foregroundColor(.black)
-                
-                ZStack {
-                    HStack(alignment: .center, spacing: 1) {
-                        
-                    }
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                    .background(Color.defaultGray)
-                    .cornerRadius(.defaultCornerRadius)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: .defaultCornerRadius)
-                            .inset(by: 0.5)
-                            .stroke(isValidEmail ? Color.defaultGreen : Color.defaultPink, lineWidth: 1)
-                        TextField("", text: $emailAddress)
-                            .placeholder(when: emailAddress.isEmpty) {
-                                Text("email_address_placeholder".localized).foregroundColor(.defaultPlaceHolder)
-                            }
-                            .font(.defaultBody)
-                            .foregroundColor(.black)
-                            .textContentType(.emailAddress)
-                            .textInputAutocapitalization(.never)
-                            .keyboardType(.emailAddress)
-                            .onChange(of: emailAddress) { newValue in
-                                isValidEmail = newValue.isValidEmail()
-                            }
-                            .padding()
-                    }
-                }
-                
-                if !isValidEmail {
-                    Text("email_address_invalid_message".localized)
-                        .foregroundColor(.defaultPink)
-                }
-            }.padding()
+            PinCodeView(pinLength: 6)
             
             Spacer()
             VStack(spacing: 12) {
@@ -109,5 +70,5 @@ struct EnterEmailView: View {
 }
 
 #Preview {
-    EnterEmailView()
+    EnterEmailCodeView()
 }
