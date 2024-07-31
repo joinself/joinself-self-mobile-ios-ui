@@ -32,7 +32,7 @@ struct CustomProgressView: View {
                                 .overlay(
                                     Ellipse()
                                         .inset(by: 1.50)
-                                        .stroke(Color(red: 0, green: 0.64, blue: 0.43), lineWidth: 1.50)
+                                        .stroke(Color.defaultGreen, lineWidth: 3)
                                 )
                         case .done:
                             Image("ic_check", bundle: mainBundle)
@@ -41,8 +41,7 @@ struct CustomProgressView: View {
                             // Paragraph/Caption
                             Text("\(step.title)")
                               .font(
-                                Font.custom("SF Pro", size: 12)
-                                  .weight(.medium)
+                                Font.defaultCaption
                               )
                               .kerning(0.12)
                               .multilineTextAlignment(.center)

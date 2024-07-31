@@ -8,87 +8,64 @@
 import SwiftUI
 
 struct EmailIntroView: View {
-    public init(onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
-        self.onGettingStarted = onGettingStarted
-        self.onNavigateBack = onNavigateBack
+    
+    @Environment(\.presentationMode) var presentationMode
+    public init(onAccept: (() -> Void)? = nil) {
+        self.onAccept = onAccept
     }
     
-    var onGettingStarted: () -> Void
-    var onNavigateBack: () -> Void
-    public var onSelectNegative: (() -> Void)? = nil
+    var onAccept: (() -> Void)?
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(spacing: 10) {
-                    }
-                    .padding(10)
-                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                    HStack {
-                        VStack (alignment: .leading) {
-                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(.white)
-                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
-                                .onTapGesture {
-                                    print("onNavigateBack")
-                                    onNavigateBack()
-                                }
-                        }
-                        .onTapGesture {
-                            onNavigateBack()
-                        }
-                        .frame(width: 44, height: 32)
-                        .padding(.leading, 15)
-                    }
-                }
-                .frame(width: 393, height: 100)
-                .background(.white)
-                
-                
-                // stepped progress view
-                ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1)
-                }
-                
-                VStack(alignment: .leading, spacing: 30) {
-                    Text("Passport verification preparation".localized)
-                        .font(.system(size: 36).weight(.bold))
-                        .foregroundColor(.black)
-                    Text("Passport verification preparation body".localized)
-                        .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
-                      .lineSpacing(1.14)
-                      .foregroundColor(.black)
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+        VStack {
+            // stepped progress view
+            CustomProgressView(steps: [
+                Step(title: "1", state: .done),
+                Step(title: "2", state: .done),
+                Step(title: "3", state: .done),
+                Step(title: "4", state: .active),
+                Step(title: "5", state: .inactive)
+            ])
+            
+            Spacer(minLength: 50)
+            VStack(alignment: .leading, spacing: 30) {
+                Text("email_introduction_title".localized)
+                    .font(.defaultTitle)
+                    .foregroundColor(.black)
+                Text("email_introduction_description".localized)
+                    .font(.defaultBody)
+                    .lineSpacing(1.14)
+                    .foregroundColor(.black)
                 Spacer()
-                VStack(spacing: 12) {
-                    ButtonView(title: "Get Started".localized) {
-                        onGettingStarted()
-                    }
-                    
-                    OutlinedButton(title: "i don’t have a passport".localized) {
-                        onSelectNegative?()
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
             }
-            .padding()
-            .ignoresSafeArea(.all)
+            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            Spacer()
+            VStack(spacing: 12) {
+                ButtonView(title: "button_verify_email".localized) {
+                    onAccept?()
+                }
+                
+                BrandView(isDarked: true)
+            }.padding()
+        }
+        .background(.white)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image("ic_back_dark", bundle: mainBundle)
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    EmailIntroView(onGettingStarted: {
-        
-    }, onNavigateBack: {
-        
-    })
+    EmailIntroView()
 }

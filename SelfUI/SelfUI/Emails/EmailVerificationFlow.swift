@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailVerificationFlow: View {
+public struct EmailVerificationFlow: View {
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?
     
@@ -18,34 +18,18 @@ struct EmailVerificationFlow: View {
     public var body: some View {
         NavigationStack(path: $path) {
             EmailIntroView {
-                
-            } onNavigateBack: {
-            
-            }
-
-            /*
-            WelcomeView {
                 path = [0]
-            }
-            .navigationDestination(for: Int.self) { selection in
+            }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    PagingView { ok in
-                        if ok {
-                            path.append(1)
-                        }
-                    }
-                    
-                case 1:
-                    ThankYouView {
-                        print("joinself now.")
-                        onFinish?(true)
+                    EnterEmailView {
+                        
                     }
                     
                 default:
                     Text("0")
                 }
-            }*/
+            }
         }
     }
 }

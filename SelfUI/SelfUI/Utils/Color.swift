@@ -25,3 +25,8 @@ extension Color {
     static let toggleOff: Color = .defaultGrayscale
     static let toggleOn: Color = .defaultGreen
 }
+
+
+extension CGFloat {
+    static let defaultCornerRadius: CGFloat = 10
+}
