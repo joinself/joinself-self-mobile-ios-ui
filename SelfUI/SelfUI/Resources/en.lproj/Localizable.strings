@@ -59,6 +59,7 @@
 "button_joinself" = "Join Self";
 "button_verify_email" = "Verify Email";
 "button_send_code" = "Send code";
+"button_sms" = "Send SMS";
 
 // Onboarding
 "welcome_title" = "Welcome to your Self.";
@@ -90,3 +91,8 @@
 "email_address_placeholder" = "youremail@example.com";
 "email_address_invalid_message" = "Please enter a valid email address.";
 "resend_code" = "Resend code";
+
+
+// MARK: - Phone
+"verify_phone_introduction_title" = "Thank you. Next we need you to send us an SMS so we can verify your phone.";
+"verify_phone_introduction_description" = "You send us a pre-formatted SMS which verifies you have access to the number. \n\nWe don’t keep your number or use it to send you messages. Ever. ";

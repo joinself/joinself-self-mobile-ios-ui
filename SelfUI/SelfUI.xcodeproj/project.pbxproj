@@ -47,6 +47,10 @@
 		6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8152C5A227000CB44FE /* PinCodeView.swift */; };
 		6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */; };
 		6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8192C5A2CD900CB44FE /* PinEntryView.swift */; };
+		6395A81E2C5A7AD400CB44FE /* VerifyPhoneFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A81D2C5A7AD400CB44FE /* VerifyPhoneFlow.swift */; };
+		6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A81F2C5A7B9200CB44FE /* VerifyPhoneIntroView.swift */; };
+		6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8212C5A7CB600CB44FE /* MessageComposeView.swift */; };
+		6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */; };
 		63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */; };
 		63A99AF92C05D8370073939A /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF82C05D8370073939A /* OutlinedButton.swift */; };
 		63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AFA2C05D92E0073939A /* FontLoader.swift */; };
@@ -175,6 +179,10 @@
 		6395A8152C5A227000CB44FE /* PinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeView.swift; sourceTree = "<group>"; };
 		6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailCodeView.swift; sourceTree = "<group>"; };
 		6395A8192C5A2CD900CB44FE /* PinEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntryView.swift; sourceTree = "<group>"; };
+		6395A81D2C5A7AD400CB44FE /* VerifyPhoneFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneFlow.swift; sourceTree = "<group>"; };
+		6395A81F2C5A7B9200CB44FE /* VerifyPhoneIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPhoneIntroView.swift; sourceTree = "<group>"; };
+		6395A8212C5A7CB600CB44FE /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
+		6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSmsView.swift; sourceTree = "<group>"; };
 		63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SelectDocumentView.swift"; sourceTree = "<group>"; };
 		63A99AF82C05D8370073939A /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		63A99AFA2C05D92E0073939A /* FontLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
@@ -346,6 +354,24 @@
 			path = Liveness;
 			sourceTree = "<group>";
 		};
+		6395A81B2C5A7A9B00CB44FE /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				6395A81D2C5A7AD400CB44FE /* VerifyPhoneFlow.swift */,
+				6395A81F2C5A7B9200CB44FE /* VerifyPhoneIntroView.swift */,
+				6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */,
+				6395A8212C5A7CB600CB44FE /* MessageComposeView.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		6395A81C2C5A7AAA00CB44FE /* Create account */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Create account";
+			sourceTree = "<group>";
+		};
 		63A99AF52C05CA400073939A /* Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +448,8 @@
 		63C451662BF30EAE00AD5BC5 /* SelfUI */ = {
 			isa = PBXGroup;
 			children = (
+				6395A81C2C5A7AAA00CB44FE /* Create account */,
+				6395A81B2C5A7A9B00CB44FE /* Phone */,
 				63D66ADF2C5923400094E55D /* Emails */,
 				63C03E662C5286D5009E385E /* Onboarding */,
 				63A99AF52C05CA400073939A /* Documents */,
@@ -689,8 +717,10 @@
 				63A99B4D2C09C3930073939A /* PassportStartScanView.swift in Sources */,
 				6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
+				6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */,
 				63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */,
 				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
+				6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
@@ -711,6 +741,7 @@
 				6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */,
 				63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */,
 				63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */,
+				6395A81E2C5A7AD400CB44FE /* VerifyPhoneFlow.swift in Sources */,
 				63A99B252C0830990073939A /* PassportMRZView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
@@ -727,6 +758,7 @@
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
+				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,

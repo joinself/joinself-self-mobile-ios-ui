@@ -1,0 +1,43 @@
+//
+//  MessageComposeView.swift
+//  SelfUI
+//
+//  Created by Long Pham on 31/7/24.
+//
+
+import SwiftUI
+import MessageUI
+
+struct MessageComposeView: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    var recipients: [String]?
+    var body: String?
+    
+    class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
+        var parent: MessageComposeView
+        
+        init(parent: MessageComposeView) {
+            self.parent = parent
+        }
+        
+        func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+            controller.dismiss(animated: true) {
+                self.parent.presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(parent: self)
+    }
+    
+    func makeUIViewController(context: Context) -> MFMessageComposeViewController {
+        let vc = MFMessageComposeViewController()
+        vc.messageComposeDelegate = context.coordinator
+        vc.recipients = recipients
+        vc.body = body
+        return vc
+    }
+    
+    func updateUIViewController(_ uiViewController: MFMessageComposeViewController, context: Context) {}
+}
