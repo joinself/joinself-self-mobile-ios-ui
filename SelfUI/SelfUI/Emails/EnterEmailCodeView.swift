@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EnterEmailCodeView: View {
+public struct EnterEmailCodeView: View {
     
     @Environment(\.presentationMode) var presentationMode
     public init(onCode: ((_ code: String) -> Void)? = nil, onResendCode: (() -> Void)? = nil) {
@@ -37,7 +37,9 @@ struct EnterEmailCodeView: View {
                 .frame(maxWidth: .infinity, alignment: .bottomLeading)
                 .padding(.all, 16)
             
-            PinCodeView(pinLength: 6)
+            PinCodeView(pinLength: 6) { code in
+                self.onCode?(code)
+            }
             HStack {
                 Image("ic_resend", bundle: mainBundle)
                 // Paragraph/Caption
