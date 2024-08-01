@@ -10,11 +10,11 @@ import SwiftUI
 struct EnterEmailView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    public init(onAccept: (() -> Void)? = nil) {
-        self.onAccept = onAccept
+    public init(onFinish: ((_ email: String) -> Void)? = nil) {
+        self.onFinish = onFinish
     }
     
-    var onAccept: (() -> Void)?
+    var onFinish: ((_ email: String) -> Void)?
     @State private var isValidEmail: Bool = false
     @State private var emailAddress: String = ""
     @FocusState private var isFocused: Bool
@@ -59,6 +59,7 @@ struct EnterEmailView: View {
                             .placeholder(when: emailAddress.isEmpty) {
                                 Text("email_address_placeholder".localized).foregroundColor(.defaultPlaceHolder)
                             }
+                            .accentColor(.defaultBlack) // Set the focus indicator color here
                             .font(.defaultBody)
                             .focused($isFocused)
                             .foregroundColor(.black)
@@ -85,7 +86,7 @@ struct EnterEmailView: View {
             VStack(spacing: 12) {
                 if isValidEmail {
                     ButtonView(title: "button_send_code".localized) {
-                        onAccept?()
+                        onFinish?(emailAddress)
                     }
                 } else {
                     ButtonView(title: "button_send_code".localized, backgroundColor: .defaultGray) {

@@ -9,9 +9,9 @@ import SwiftUI
 
 public struct EmailVerificationFlow: View {
     @State private var path = [Int]()
-    var onFinish: ((Bool) -> Void)?
+    var onFinish: ((String) -> Void)?
     
-    public init(onFinish: ( (Bool) -> Void)? = nil) {
+    public init(onFinish: ( (_ email: String) -> Void)? = nil) {
         self.onFinish = onFinish
     }
     
@@ -22,8 +22,9 @@ public struct EmailVerificationFlow: View {
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    EnterEmailView {
-                        
+                    EnterEmailView { email in
+                        print("Email: \(email)")
+                        onFinish?(email)
                     }
                     
                 case 1:
