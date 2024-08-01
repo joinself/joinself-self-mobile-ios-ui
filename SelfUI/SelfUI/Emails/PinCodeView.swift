@@ -25,13 +25,15 @@ struct PinCodeView: View {
                     .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .center)
                     .multilineTextAlignment(.center)
                     .keyboardType(.numberPad)
-                    .background(Color.gray.opacity(0.2))
+                    .background(Color.defaultGray.opacity(0.2))
                     .cornerRadius(8)
                     .foregroundColor(.defaultGrayscale)
                     .tag("\(index)")
+                    .accentColor(.defaultBlack)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.defaultBlue, lineWidth: 1)
+                        RoundedRectangle(cornerRadius: .defaultCornerRadius)
+                            .inset(by: 0.5)
+                            .stroke((focusedField == index) ? Color.defaultBlue : Color.defaultGray, lineWidth: 1)
                     )
                     .focused($focusedField, equals: index)
                     .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification)) { _ in
