@@ -37,13 +37,13 @@ struct PinCodeView: View {
                     )
                     .focused($focusedField, equals: index)
                     .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification)) { _ in
-                        // TODO: Improve paste code here
-                        /*if let pastedText = UIPasteboard.general.string, pastedText.count == pinLength {
+                        if let pastedText = UIPasteboard.general.string, pastedText.count == pinLength {
                             for i in 0..<pinLength {
                                 pin[i] = String(pastedText[pastedText.index(pastedText.startIndex, offsetBy: i)])
                             }
                             focusedField = nil
-                        }*/
+                            print("Focus field: \(focusedField)")
+                        }
                     }
                     .onChange(of: pin[index]) { newValue in
                         if newValue.count > 1 {
@@ -66,6 +66,7 @@ struct PinCodeView: View {
                         let pinCode = pin.joined(separator: "")
                         print("Newvalue: \(pinCode)")
                         if pinCode.count == pinLength {
+                            focusedField = nil
                             onEnteredCode?(pinCode)
                         }
                     }
