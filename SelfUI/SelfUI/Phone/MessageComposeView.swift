@@ -12,6 +12,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     var recipients: [String]?
     var body: String?
+    var dismissed: (() -> Void)?
     @Binding var result: MessageComposeResult?
     
     class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
@@ -26,6 +27,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
             parent.result = result
             controller.dismiss(animated: true) {
                 self.parent.presentationMode.wrappedValue.dismiss()
+                self.parent.dismissed?()
             }
         }
     }

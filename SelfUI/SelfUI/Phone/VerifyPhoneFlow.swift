@@ -26,7 +26,9 @@ public struct VerifyPhoneFlow: View {
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    CustomSmsView(phoneNumber: phoneNumber, textMessage: textMessage)
+                    CustomSmsView(phoneNumber: phoneNumber, textMessage: textMessage) { success in
+                        onFinish?(success)
+                    }
                     
 //                case 1:
                     

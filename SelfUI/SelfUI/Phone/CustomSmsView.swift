@@ -11,15 +11,24 @@ import MessageUI
 struct CustomSmsView: View {
     @State private var isShowingMessageCompose = false
     @State private var messageResult: MessageComposeResult? = nil
+    @Environment(\.presentationMode) var presentationMode
     
     let phoneNumber: String
     let textMessage: String
+    var onFinish: ((Bool) -> Void)?
+    init(phoneNumber: String, textMessage: String, onFinish: ((Bool) -> Void)? = nil) {
+        self.phoneNumber = phoneNumber
+        self.textMessage = textMessage
+        self.onFinish = onFinish
+    }
     
     var body: some View {
         VStack {
             
         }.sheet(isPresented: $isShowingMessageCompose) {
-            MessageComposeView(recipients: [phoneNumber], body: textMessage, result: $messageResult)
+            MessageComposeView(recipients: [phoneNumber], body: textMessage, dismissed: {
+                presentationMode.wrappedValue.dismiss()
+            }, result: $messageResult)
         }.onAppear {
             isShowingMessageCompose = true
         }
@@ -31,12 +40,16 @@ struct CustomSmsView: View {
     func resultDescription(_ result: MessageComposeResult) -> String {
         switch result {
         case .cancelled:
+            onFinish?(false)
             return "Cancelled"
         case .sent:
+            onFinish?(true)
             return "Sent"
         case .failed:
+            onFinish?(false)
             return "Failed"
         @unknown default:
+            onFinish?(false)
             return "Unknown"
         }
     }
