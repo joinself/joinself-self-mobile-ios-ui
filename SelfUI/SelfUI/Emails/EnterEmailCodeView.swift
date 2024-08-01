@@ -31,7 +31,7 @@ public struct EnterEmailCodeView: View {
                 Step(title: "5", state: .inactive)
             ])
             
-            Text("enter_email_title".localized)
+            Text("email_enter_code_title".localized)
                 .font(.defaultTitle)
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .bottomLeading)

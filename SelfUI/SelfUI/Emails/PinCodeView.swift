@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct PinCodeView: View {
     @State private var pin: [String] = Array(repeating: "", count: 6)
@@ -36,13 +37,15 @@ struct PinCodeView: View {
                             .stroke((focusedField == index) ? Color.defaultBlue : Color.defaultGray, lineWidth: 1)
                     )
                     .focused($focusedField, equals: index)
-                    .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification)) { _ in
-                        if let pastedText = UIPasteboard.general.string, pastedText.count == pinLength {
-                            for i in 0..<pinLength {
-                                pin[i] = String(pastedText[pastedText.index(pastedText.startIndex, offsetBy: i)])
+                    .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification)) { notification in
+                        if let textField = notification.object as? UITextField {
+                            if let pastedText = textField.text, pastedText.count == pinLength {
+                                print("Text: \(pastedText)")
+                                for i in 0..<pinLength {
+                                    pin[i] = String(pastedText[pastedText.index(pastedText.startIndex, offsetBy: i)])
+                                }
+                                focusedField = nil
                             }
-                            focusedField = nil
-                            print("Focus field: \(focusedField)")
                         }
                     }
                     .onChange(of: pin[index]) { newValue in

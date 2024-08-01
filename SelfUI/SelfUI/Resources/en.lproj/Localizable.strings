@@ -91,6 +91,7 @@
 "email_address_placeholder" = "youremail@example.com";
 "email_address_invalid_message" = "Please enter a valid email address.";
 "resend_code" = "Resend code";
+"email_enter_code_title" = "Please enter the code we sent to  your  email.";
 
 
 // MARK: - Phone
