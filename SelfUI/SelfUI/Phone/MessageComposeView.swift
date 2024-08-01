@@ -12,6 +12,7 @@ struct MessageComposeView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     var recipients: [String]?
     var body: String?
+    @Binding var result: MessageComposeResult?
     
     class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
         var parent: MessageComposeView
@@ -21,6 +22,8 @@ struct MessageComposeView: UIViewControllerRepresentable {
         }
         
         func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+            print("Result: \(result)")
+            parent.result = result
             controller.dismiss(animated: true) {
                 self.parent.presentationMode.wrappedValue.dismiss()
             }

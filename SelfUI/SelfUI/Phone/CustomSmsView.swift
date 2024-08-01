@@ -6,22 +6,42 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct CustomSmsView: View {
     @State private var isShowingMessageCompose = false
+    @State private var messageResult: MessageComposeResult? = nil
+    
+    let phoneNumber: String
+    let textMessage: String
     
     var body: some View {
         VStack {
-            Button("Send SMS") {
-                isShowingMessageCompose = true
-            }
-            .sheet(isPresented: $isShowingMessageCompose) {
-                MessageComposeView(recipients: ["1234567890"], body: "Hello, this is a test message.")
-            }
+            
+        }.sheet(isPresented: $isShowingMessageCompose) {
+            MessageComposeView(recipients: [phoneNumber], body: textMessage, result: $messageResult)
+        }.onAppear {
+            isShowingMessageCompose = true
+        }
+        if let result = messageResult {
+            Text("Message Result: \(resultDescription(result))")
+        }
+    }
+    
+    func resultDescription(_ result: MessageComposeResult) -> String {
+        switch result {
+        case .cancelled:
+            return "Cancelled"
+        case .sent:
+            return "Sent"
+        case .failed:
+            return "Failed"
+        @unknown default:
+            return "Unknown"
         }
     }
 }
 
 #Preview {
-    CustomSmsView()
+    CustomSmsView(phoneNumber: "123456789", textMessage: "text message")
 }
