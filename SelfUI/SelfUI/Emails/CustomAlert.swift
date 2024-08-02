@@ -10,24 +10,57 @@ import SwiftUI
 struct CustomAlertView: View {
     var title: String
     var message: String
-    var buttons: [AlertButton]
+    var completion: (() -> Void)?
+    
+    init(title: String, message: String, completion: (() -> Void)? = nil) {
+        self.title = title
+        self.message = message
+        self.completion = completion
+    }
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text(title)
-                .font(.headline)
-            Text(message)
-                .font(.subheadline)
-            ForEach(buttons) { button in
-                Button(action: button.action) {
-                    Text(button.title)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-            }
+        VStack(spacing: 10) {
+//            Text(title)
+//                .font(.headline)
+            Image("ic_multiply_circle", bundle: mainBundle)
+            Text("Code Not Recognised")
+              .font(
+                Font.custom("SF Pro", size: 17)
+                  .weight(.semibold)
+              )
+              .multilineTextAlignment(.center)
+              .foregroundColor(.black)
+//              .frame(width: 191, height: 20, alignment: .center)
+//            Text(message)
+//                .font(.subheadline)
+            Text("Try Again")
+              .font(Font.custom("SF Pro", size: 13))
+              .multilineTextAlignment(.center)
+              .foregroundColor(.black)
+//              .frame(width: 191, height: 20, alignment: .center)
+            Button(action: {
+                completion?()
+            }, label: {
+                Text("Enter Code Again")
+                  .font(
+                    Font.custom("SF Pro", size: 15)
+                      .weight(.semibold)
+                  )
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(Color(red: 0.17, green: 0.49, blue: 0.96))
+//                  .frame(width: 191, height: 20, alignment: .center)
+            })
+            
+            Button(action: {
+                print("Clicked.")
+                completion?()
+            }, label: {
+                Text("Or Proceed to Signup")
+                  .font(Font.custom("SF Pro", size: 13))
+                  .multilineTextAlignment(.center)
+                  .foregroundColor(Color(red: 0.17, green: 0.49, blue: 0.96))
+//                  .frame(width: 191, height: 20, alignment: .center)
+            })
         }
         .padding()
         .background(Color.white)
@@ -43,9 +76,5 @@ struct AlertButton: Identifiable {
 }
 
 #Preview {
-    CustomAlertView(title: "title", message: "message", buttons: [
-        AlertButton(title: "Button 1", action: { print("Button 1 pressed") }),
-        AlertButton(title: "Button 2", action: { print("Button 2 pressed") }),
-        AlertButton(title: "Button 3", action: { print("Button 3 pressed") })
-    ])
+    CustomAlertView(title: "title", message: "message")
 }
