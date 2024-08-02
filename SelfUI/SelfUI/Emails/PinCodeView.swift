@@ -66,12 +66,15 @@ struct PinCodeView: View {
                             }
                         }
                         
+                        
                         print("PIN: \(pin)")
                         let pinCode = pin.joined(separator: "")
                         print("Newvalue: \(pinCode)")
                         if pinCode.count == pinLength {
                             focusedField = nil
                             onEnteredCode?(pinCode)
+                        } else if pinCode.count == 0 {
+                            focusedField = 0
                         }
                     }
                     .onAppear {
