@@ -57,6 +57,9 @@
 "button_signup_now" = "Sign Up Now";
 "button_next" = "Next";
 "button_joinself" = "Join Self";
+"button_verify_email" = "Verify Email";
+"button_send_code" = "Send code";
+"button_sms" = "Send SMS";
 
 // Onboarding
 "welcome_title" = "Welcome to your Self.";
@@ -79,3 +82,24 @@
 "To join Self, please agree to our" = "To join Self, please agree to our";
 "terms & conditions" = "terms & conditions";
 "privacy policy" = "privacy policy.";
+
+// MARK: - Email
+"email_introduction_title" = "Thanks, now  we need  to send you an email so we can confirm your email address.";
+"email_introduction_description" = "We will send you a code which you will need to enter to confirm you have access to that email. \n\nWe don’t keep your email or use it to send you messages. Ever.";
+"enter_email_title" = "Please enter your  email.";
+"email_address" = "Email address";
+"email_address_placeholder" = "youremail@example.com";
+"email_address_invalid_message" = "Please enter a valid email address.";
+"resend_code" = "Resend code";
+"email_enter_code_title" = "Please enter the code we sent to  your  email.";
+"email_code_not_recognized" = "Code Not Recognised";
+"try_again" = "Try again";
+"enter_code_again" = "Enter Code Again";
+"enter_code_again" = "Enter Code Again";
+"process_to_signup" = "Or Proceed to Signup";
+"email_verification_failed_title" = "Email Verification failed. It’s not critical right now. please try again after setup.";
+
+
+// MARK: - Phone
+"verify_phone_introduction_title" = "Thank you. Next we need you to send us an SMS so we can verify your phone.";
+"verify_phone_introduction_description" = "You send us a pre-formatted SMS which verifies you have access to the number. \n\nWe don’t keep your number or use it to send you messages. Ever. ";

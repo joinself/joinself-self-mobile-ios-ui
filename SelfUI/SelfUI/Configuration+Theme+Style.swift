@@ -12,7 +12,7 @@ struct GlobalTitleTextStyle: ViewModifier {
         content
             .font(.system(size: 18, weight: .medium, design: .default))
             .foregroundColor(.primary)
-            .padding()
+//            .padding()
     }
 }
 
@@ -22,7 +22,7 @@ struct GlobalBodyTextStyle: ViewModifier {
             .font(Font.custom("SF Pro", size: 17))
             .multilineTextAlignment(.center)
             .foregroundColor(.black)
-            .padding()
+//            .padding()
     }
 }
 
