@@ -15,7 +15,6 @@ public struct EmailVerificationFlow: View {
     var email: String = ""
     var code: String = ""
     @State private var showAlert = false
-    @State private var pinCode: [String] = Array(repeating: "", count: 6)
     @Environment(\.presentationMode) var presentationMode
     
     

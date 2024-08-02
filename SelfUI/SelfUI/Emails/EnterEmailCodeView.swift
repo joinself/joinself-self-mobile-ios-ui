@@ -56,6 +56,7 @@ public struct EnterEmailCodeView: View {
                         .foregroundColor(.defaultBlue)
                 }.onTapGesture {
                     onResendCode?()
+                    pinCode = Array(repeating: "", count: 6)
                 }
 
                 Spacer()
