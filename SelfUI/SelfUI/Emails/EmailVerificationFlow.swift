@@ -14,6 +14,8 @@ public struct EmailVerificationFlow: View {
     var onResendCode: ((EmailVerificationFlow) -> Void)?
     var email: String = ""
     var code: String = ""
+    @State private var showAlert = false
+    @State private var pinCode: [String] = Array(repeating: "", count: 6)
     
     public init(onFinish: ( (_ email: String, _ inView: EmailVerificationFlow) -> Void)? = nil, onEnteredCode: ((String, EmailVerificationFlow) -> Void)? = nil,  onResendCode: ((EmailVerificationFlow) -> Void)?
  = nil) {
@@ -35,7 +37,7 @@ public struct EmailVerificationFlow: View {
                     }
                     
                 case 1:
-                    EnterEmailCodeView (onCode: { code in
+                    EnterEmailCodeView(showAlert: $showAlert, onCode: { code in
                         onEnteredCode?(code, self)
                     }) {
                         // resend code
@@ -51,6 +53,11 @@ public struct EmailVerificationFlow: View {
     
     public func showCodeView() {
         path.append(1)
+    }
+    
+    public func showRemainingAttemp(remaingNumber: Int) {
+        showAlert = true
+        print("showRemainingAttemp: \(remaingNumber)")
     }
 }
 

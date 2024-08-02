@@ -9,14 +9,15 @@ import SwiftUI
 import UIKit
 
 struct PinCodeView: View {
-    @State private var pin: [String] = Array(repeating: "", count: 6)
+    @Binding var pin: [String]
     @FocusState private var focusedField: Int?
     
     private let pinLength: Int
     private var onEnteredCode: ((_ code: String) -> Void)?
-    init(pinLength: Int = 6, onEnteredCode: ((_ code: String) -> Void)? = nil) {
+    init(pinLength: Int = 6, pinCode: Binding<[String]> = .constant(Array(repeating: "", count: 6)), onEnteredCode: ((_ code: String) -> Void)? = nil) {
         self.pinLength = pinLength
         self.onEnteredCode = onEnteredCode
+        self._pin = pinCode
     }
     
     var body: some View {

@@ -92,6 +92,11 @@
 "email_address_invalid_message" = "Please enter a valid email address.";
 "resend_code" = "Resend code";
 "email_enter_code_title" = "Please enter the code we sent to  your  email.";
+"email_code_not_recognized" = "Code Not Recognised";
+"try_again" = "Try again";
+"enter_code_again" = "Enter Code Again";
+"enter_code_again" = "Enter Code Again";
+"process_to_signup" = "Or Proceed to Signup";
 
 
 // MARK: - Phone
