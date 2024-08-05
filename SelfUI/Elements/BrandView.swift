@@ -28,7 +28,7 @@ struct BrandView: View {
                     .font(Font.system(size: 15).weight(.medium))
                     .lineSpacing(22)
                     .foregroundColor(viewModel.isDarked ? .black : .white)
-                Image(viewModel.isDarked ? "ic_self" : "ic_self_white", bundle: mainBundle)
+                Image(viewModel.isDarked ? "ic_self_pink" : "ic_self_white", bundle: mainBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fill) // Fill the frame maintaining aspect ratio
                     .frame(width: 30, height: 30) // Set fixed width and height
