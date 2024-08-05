@@ -15,6 +15,8 @@ public struct CreateAccountFlow: BaseView {
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?
     
+    @Environment(\.presentationMode) private var presentationMode
+    
     public init(onFinish: ( (Bool) -> Void)? = nil) {
         self.onFinish = onFinish
     }
@@ -32,7 +34,17 @@ public struct CreateAccountFlow: BaseView {
                     Text("0")
                 }
             }
-        }
+        }.background(.white)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        NavBackButton()
+                    }
+                }
+            }
     }
 }
 

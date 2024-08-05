@@ -62,9 +62,7 @@ struct CreateAccountNameView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    HStack {
-                        Image("ic_back_dark", bundle: mainBundle)
-                    }
+                    NavBackButton()
                 }
             }
         }
