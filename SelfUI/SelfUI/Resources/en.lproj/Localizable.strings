@@ -61,6 +61,7 @@
 "button_send_code" = "Send code";
 "button_sms" = "Send SMS";
 "button_confirm_name" = "Confirm Name";
+"button_turn_on_notifications" = "Turn on notifications";
 
 // Onboarding
 "welcome_title" = "Welcome to your Self.";
@@ -113,3 +114,6 @@
 "enter_name_error" = "This field cannot be empty.";
 "creating_account_title" = "That’s everything!";
 "creating_account_description" = "We’re just creating your Self account...";
+
+"account_created_title" = "Welcome to \nyour Self";
+"account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";

@@ -37,6 +37,8 @@
 		637067072C60894000A23C1E /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067062C60894000A23C1E /* OutlinedTextField.swift */; };
 		6370670B2C60AA1B00A23C1E /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670A2C60AA1B00A23C1E /* BaseView.swift */; };
 		6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */; };
+		6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */; };
+		637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067102C60CA4200A23C1E /* NavBackButton.swift */; };
 		6381C31E2BF4463A005573A0 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		6381C31F2BF4463A005573A0 /* SelfUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6381C3242BF463E1005573A0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3232BF463E1005573A0 /* CameraView.swift */; };
@@ -177,6 +179,8 @@
 		637067062C60894000A23C1E /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
 		6370670A2C60AA1B00A23C1E /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAccountView.swift; sourceTree = "<group>"; };
+		6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreatedView.swift; sourceTree = "<group>"; };
+		637067102C60CA4200A23C1E /* NavBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackButton.swift; sourceTree = "<group>"; };
 		6381C3232BF463E1005573A0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		6381C3262BF47129005573A0 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		6381C32C2BF4ABA0005573A0 /* Example2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -316,6 +320,7 @@
 				635ACCFB2BFDF0080012108F /* SteppedProgressViewModel.swift */,
 				63D66AE42C59CFF30094E55D /* CustomProgressView.swift */,
 				637067062C60894000A23C1E /* OutlinedTextField.swift */,
+				637067102C60CA4200A23C1E /* NavBackButton.swift */,
 			);
 			path = ProgressView;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				637067022C6087AE00A23C1E /* CreateAccountFlow.swift */,
 				637067042C6087C000A23C1E /* CreateAccountNameView.swift */,
 				6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */,
+				6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */,
 			);
 			path = "Create account";
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				6370670B2C60AA1B00A23C1E /* BaseView.swift in Sources */,
 				6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */,
 				6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */,
+				637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
 				6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */,
 				63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */,
@@ -753,6 +760,7 @@
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
 				6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */,
 				635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */,
+				6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */,
 				634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */,
 				635ACD4A2C058A060012108F /* LivenessVerificationFailedView.swift in Sources */,
 				6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  CreateAccountNameView.swift
+//  AccountCreatedView.swift
 //  SelfUI
 //
 //  Created by Long Pham on 5/8/24.
@@ -7,17 +7,15 @@
 
 import SwiftUI
 
-struct CreateAccountNameView: View {
+struct AccountCreatedView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State private var name: String = ""
-    @State private var isValid: Bool = false
     
-    public init(onEnteredName: ((String) -> Void)? = nil) {
-        self.onEnteredName = onEnteredName
+    public init(callback: (() -> Void)? = nil) {
+        self.callback = callback
     }
     
-    var onEnteredName: ((String) -> Void)?
+    var callback: (() -> Void)?
     
     public var body: some View {
         VStack {
@@ -27,19 +25,18 @@ struct CreateAccountNameView: View {
                 Step(title: "2", state: .done),
                 Step(title: "3", state: .done),
                 Step(title: "4", state: .done),
-                Step(title: "5", state: .active)
+                Step(title: "5", state: .done)
             ])
             
             Spacer(minLength: 50)
             VStack(alignment: .leading, spacing: 30) {
-                Text("create_account_name_title".localized)
-                    .font(.defaultTitle)
+                Text("account_created_title".localized)
+                    .font(.defaultLargeTitle)
                     .foregroundColor(.black)
                 
-                OutlinedTextField(boxLabel: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized, boxErrorDescription: "enter_name_error".localized, text: $name, isValid: $isValid)
-                    .onChange(of: name) { newValue in
-                        isValid = newValue.count > 0
-                    }
+                Text("account_created_description".localized)
+                    .font(.defaultBody)
+                    .foregroundColor(.black)
                 
                 Spacer()
             }
@@ -48,9 +45,9 @@ struct CreateAccountNameView: View {
             
             Spacer()
             VStack(spacing: 12) {
-                ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
-                    onEnteredName?(name)
-                }.disabled(!isValid)
+                ButtonView(title: "button_turn_on_notifications".localized) {
+                    callback?()
+                }
                 
                 BrandView(isDarked: true)
             }.padding()
@@ -62,9 +59,7 @@ struct CreateAccountNameView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    HStack {
-                        Image("ic_back_dark", bundle: mainBundle)
-                    }
+                    NavBackButton()
                 }
             }
         }
@@ -72,5 +67,5 @@ struct CreateAccountNameView: View {
 }
 
 #Preview {
-    CreateAccountNameView()
+    AccountCreatedView()
 }
