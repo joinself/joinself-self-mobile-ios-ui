@@ -10,11 +10,16 @@ import SelfUI
 
 @main
 struct ExampleApp: App {
+    
+    init() {
+        print("App is launching.")
+        SelfUISdk.shared.initialize(customization: true)
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
-            OnboardingFlow().onAppear(perform: {
-                FontLoader.loadFont()
-            })
+            OnboardingFlow()
         }
     }
 }

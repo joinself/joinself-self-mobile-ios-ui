@@ -10,11 +10,11 @@ import UIKit
 
 extension String {
     var localized: String {
-        guard let bundle = Bundle(identifier:"com.joinself.mobile.ui.SelfUI") else {
-            return NSLocalizedString(self, comment: "")
+        if SelfUISdk.shared.customization == false, let bundle = Bundle(identifier: mainBundleId) {
+            return NSLocalizedString(self, bundle: bundle ,comment: "")
         }
         
-        return NSLocalizedString(self, bundle: bundle ,comment: "")
+        return NSLocalizedString(self, comment: "")
     }
     
     func nsRange(from range: Range<String.Index>) -> NSRange? {
@@ -32,7 +32,7 @@ extension String {
     
     func isValidEmail() -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+        
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
