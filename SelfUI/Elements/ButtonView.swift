@@ -27,8 +27,10 @@ struct ButtonView: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                didTap.toggle()
-                onClicked?()
+                withAnimation {
+                    didTap.toggle()
+                    onClicked?()
+                }
             }, label: {
                 Text(viewModel.title)
                     .font(Font.system(size: 17).weight(.bold))
@@ -43,8 +45,10 @@ struct ButtonView: View {
         .background(didTap ? viewModel.backgroundColor.opacity(opacity) : viewModel.backgroundColor)
         .cornerRadius(40)
         .onTapGesture {
-            didTap.toggle()
-            onClicked?()
+            withAnimation {
+                didTap.toggle()
+                onClicked?()
+            }
         }
     }
 }

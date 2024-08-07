@@ -46,7 +46,10 @@ struct OutlinedButton: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                onClicked?()
+                withAnimation {
+                    didTap.toggle()
+                    onClicked?()
+                }
             }, label: {
                 viewModel.icon
                     .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
@@ -56,7 +59,10 @@ struct OutlinedButton: View {
                 .textCase(.uppercase)
                 .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
                 .onTapGesture {
-                    didTap.toggle()
+                    withAnimation {
+                        didTap.toggle()
+                        onClicked?()
+                    }
                 }
             })
             
