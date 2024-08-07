@@ -46,10 +46,7 @@ struct OutlinedButton: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                withAnimation {
-                    didTap.toggle()
-                    onClicked?()
-                }
+                handleTap()
             }, label: {
                 viewModel.icon
                     .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
@@ -59,10 +56,7 @@ struct OutlinedButton: View {
                 .textCase(.uppercase)
                 .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
                 .onTapGesture {
-                    withAnimation {
-                        didTap.toggle()
-                        onClicked?()
-                    }
+                    handleTap()
                 }
             })
             
@@ -76,7 +70,15 @@ struct OutlinedButton: View {
             .stroke(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
         )
         .onTapGesture {
-            didTap.toggle()
+            handleTap()
+        }
+    }
+    
+    private func handleTap() {
+        didTap = true
+        // Reset the state after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            didTap = false
             onClicked?()
         }
     }

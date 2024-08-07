@@ -27,10 +27,7 @@ struct ButtonView: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                withAnimation {
-                    didTap.toggle()
-                    onClicked?()
-                }
+                handleTap()
             }, label: {
                 Text(viewModel.title)
                     .font(Font.system(size: 17).weight(.bold))
@@ -45,10 +42,16 @@ struct ButtonView: View {
         .background(didTap ? viewModel.backgroundColor.opacity(opacity) : viewModel.backgroundColor)
         .cornerRadius(40)
         .onTapGesture {
-            withAnimation {
-                didTap.toggle()
-                onClicked?()
-            }
+            handleTap()
+        }
+    }
+    
+    private func handleTap() {
+        didTap = true
+        // Reset the state after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            didTap = false
+            onClicked?()
         }
     }
 }
