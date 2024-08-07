@@ -32,7 +32,7 @@ struct ThankYouView: View {
                     VStack (spacing: 0){
                         Text("To join Self, please agree to our".localized)
                             .foregroundStyle(.black)
-                        HStack (spacing: -4) {
+                        HStack (spacing: 4) {
                             Text("terms & conditions".localized)
                                 .foregroundColor(.defaultBlue)
                                 .onTapGesture {
