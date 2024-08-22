@@ -15,6 +15,8 @@ class ButtonViewModel: ObservableObject {
 struct ButtonView: View {
     @ObservedObject var viewModel = ButtonViewModel()
     var onClicked: (() -> Void)? = nil
+    @State private var didTap: Bool = false
+    private let opacity: CGFloat = 0.6
     
     init(title: String, backgroundColor: Color = .defaultGreen, onClicked: (() -> Void)? = nil) {
         self.viewModel.title = title
@@ -25,7 +27,7 @@ struct ButtonView: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                onClicked?()
+                handleTap()
             }, label: {
                 Text(viewModel.title)
                     .font(Font.system(size: 17).weight(.bold))
@@ -37,9 +39,18 @@ struct ButtonView: View {
         }
         .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
         .frame(width: 363, height: 44)
-        .background(viewModel.backgroundColor)
+        .background(didTap ? viewModel.backgroundColor.opacity(opacity) : viewModel.backgroundColor)
         .cornerRadius(40)
         .onTapGesture {
+            handleTap()
+        }
+    }
+    
+    private func handleTap() {
+        didTap = true
+        // Reset the state after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            didTap = false
             onClicked?()
         }
     }

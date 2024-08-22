@@ -2,7 +2,7 @@
   Localizable.strings
   SelfUI
 
-  Created by Long Pham on 22/5/24.
+  Created by Long Pham on 5/8/24.
   
 */
 
@@ -64,7 +64,7 @@
 "button_turn_on_notifications" = "Turn on notifications";
 
 // Onboarding
-"welcome_title" = "Welcome to your Self.";
+"welcome_title" = "Welcome to your Self....";
 "welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started.";
 
 "secure_communication_title" = "Communicate safely and privately.";

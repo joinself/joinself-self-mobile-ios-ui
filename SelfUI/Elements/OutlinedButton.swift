@@ -17,6 +17,8 @@ class OutlinedButtonViewModel: ObservableObject {
 
 struct OutlinedButton: View {
     @ObservedObject var viewModel = OutlinedButtonViewModel()
+    @State private var didTap: Bool = false
+    private let opacity: CGFloat = 0.6
     
     var onClicked: (() -> Void)? = nil
     
@@ -44,15 +46,18 @@ struct OutlinedButton: View {
     var body: some View {
         HStack(spacing: 10) {
             Button(action: {
-                onClicked?()
+                handleTap()
             }, label: {
                 viewModel.icon
-                    .colorMultiply(viewModel.outlinedColor)
+                    .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
                 Text(viewModel.title)
                 .font(Font.custom("Barlow", size: 17).weight(.bold))
                 .tracking(0.85)
                 .textCase(.uppercase)
-                .foregroundColor(viewModel.outlinedColor)
+                .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
+                .onTapGesture {
+                    handleTap()
+                }
             })
             
         }
@@ -62,9 +67,18 @@ struct OutlinedButton: View {
         .overlay(
           RoundedRectangle(cornerRadius: 40)
             .inset(by: 1)
-            .stroke(viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
+            .stroke(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
         )
         .onTapGesture {
+            handleTap()
+        }
+    }
+    
+    private func handleTap() {
+        didTap = true
+        // Reset the state after a delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            didTap = false
             onClicked?()
         }
     }
