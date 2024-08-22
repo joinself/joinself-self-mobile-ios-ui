@@ -13,7 +13,7 @@ struct ExampleApp: App {
     
     init() {
         print("App is launching.")
-        SelfUISdk.shared.initialize(customization: true)
+        SelfUISdk.shared.initialize(customization: false)
         
     }
     

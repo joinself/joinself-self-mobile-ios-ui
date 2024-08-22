@@ -9,10 +9,18 @@ import SwiftUI
 
 struct WelcomeView: View {
     var onGetStarted: (() -> Void)?
-    init(onGetStarted: (() -> Void)? = nil) {
-        self.onGetStarted = onGetStarted
-    }
+    let buttonTitle: String
+    let buttonColor: Color
     
+    init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil) {
+        self.onGetStarted = onGetStarted
+        self.buttonTitle = buttonTitle
+        self.buttonColor = buttonColor
+    }
+//    init(onGetStarted: (() -> Void)? = nil) {
+//        self.onGetStarted = onGetStarted
+//    }
+//    
     public var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
@@ -33,7 +41,7 @@ struct WelcomeView: View {
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    ButtonView(title: "button_signup_now".localized, backgroundColor: .defaultPink) {
+                    ButtonView(title: buttonTitle, backgroundColor: buttonColor) {
                         onGetStarted?()
                     }
                     

@@ -63,6 +63,8 @@
 "button_confirm_name" = "Confirm Name";
 "button_turn_on_notifications" = "Turn on notifications";
 
+"I’m going to develop with Self" = "I’m going to develop with Self";
+
 // Onboarding
 "welcome_title" = "Welcome to your Self.";
 "welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started.";
