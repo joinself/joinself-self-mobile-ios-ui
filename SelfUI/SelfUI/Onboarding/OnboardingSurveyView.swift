@@ -12,11 +12,12 @@ struct OnboardingSurveyView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let buttonColor: Color
-    
-    var onGetStarted: (() -> Void)?
-    init(buttonColor: Color = .defaultOrange, onGetStarted: (() -> Void)? = nil) {
+    var onNavigateBack: (() -> ())?
+    var onNext: (() -> Void)?
+    init(buttonColor: Color = .defaultOrange, onNext: (() -> Void)? = nil, onNavigateBack: (() -> ())? = nil) {
         self.buttonColor = buttonColor
-        self.onGetStarted = onGetStarted
+        self.onNext = onNext
+        self.onNavigateBack = onNavigateBack
     }
     
     public var body: some View {
@@ -40,8 +41,8 @@ struct OnboardingSurveyView: View {
                     }.padding(0)
                     
                     
-                    ButtonView(title: "I’m using the Self Sandbox".localized, backgroundColor: self.buttonColor) {
-                        onGetStarted?()
+                    ButtonView(title: "I’m using the Self Sandbox".localized, backgroundColor: self.buttonColor, buttonTitleColor: .textPrimary) {
+                        onNext?()
                     }
                     
                     BrandView(isDarked: true)
@@ -56,7 +57,9 @@ struct OnboardingSurveyView: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    NavBackButton()
+                    NavBackButton {
+                        onNavigateBack?()
+                    }
                 }
             }
         }

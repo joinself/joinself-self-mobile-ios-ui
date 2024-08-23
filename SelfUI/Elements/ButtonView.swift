@@ -17,8 +17,10 @@ struct ButtonView: View {
     var onClicked: (() -> Void)? = nil
     @State private var didTap: Bool = false
     private let opacity: CGFloat = 0.6
+    private var buttonTitleColor: Color = .white
     
-    init(title: String, backgroundColor: Color = .defaultGreen, onClicked: (() -> Void)? = nil) {
+    init(title: String, backgroundColor: Color = .defaultGreen, buttonTitleColor: Color = .white, onClicked: (() -> Void)? = nil) {
+        self.buttonTitleColor = buttonTitleColor
         self.viewModel.title = title
         self.viewModel.backgroundColor = backgroundColor
         self.onClicked = onClicked
@@ -33,7 +35,7 @@ struct ButtonView: View {
                     .font(Font.system(size: 17).weight(.bold))
                     .tracking(0.85)
                     .textCase(.uppercase)
-                    .foregroundColor(.white)
+                    .foregroundColor(buttonTitleColor)
             })
             
         }
@@ -56,5 +58,8 @@ struct ButtonView: View {
     }
 }
 #Preview {
-    ButtonView(title: "Start", backgroundColor: .defaultPink)
+    VStack {
+        ButtonView(title: "Start", backgroundColor: .defaultPink)
+        ButtonView(title: "Start", backgroundColor: .defaultOrange, buttonTitleColor: .textPrimary)
+    }
 }

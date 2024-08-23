@@ -25,7 +25,15 @@ public struct DevOnboardingFlow: View {
                 case 0:
                     ThankYouView (buttonColor: .defaultGreen) {
                         print("joinself now.")
-                        onFinish?(true)
+                        path = [1]
+                    }
+                    
+                case 1:
+                    OnboardingSurveyView(buttonColor: .defaultOrange, onNext: {
+                        print("Next")
+                    }) {
+                        print("Back to root.")
+                        path = []
                     }
                     
                 default:
