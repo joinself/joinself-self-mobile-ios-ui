@@ -28,7 +28,7 @@ struct WelcomeView: View {
                 Spacer(minLength: 100)
                 VStack(alignment: .leading, spacing: 30) {
                     Text("welcome_title".localized)
-                        .font(.system(size: 64).weight(.bold))
+                        .font(.defaultLargeTitle)
                         .foregroundColor(.black)
                     Text("welcome_message".localized)
                         .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))

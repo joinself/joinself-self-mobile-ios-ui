@@ -87,6 +87,9 @@
 "terms & conditions" = "terms & conditions";
 "privacy policy" = "privacy policy.";
 
+"Thanks. How will you be using Self?" = "Thanks. How will you be using Self?";
+"I’m using the Self Sandbox" = "I’m using the Self Sandbox";
+
 // MARK: - Email
 "email_introduction_title" = "Thanks, now  we need  to send you an email so we can confirm your email address.";
 "email_introduction_description" = "We will send you a code which you will need to enter to confirm you have access to that email. \n\nWe don’t keep your email or use it to send you messages. Ever.";

@@ -23,14 +23,7 @@ public struct DevOnboardingFlow: View {
             .navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    PagingView { ok in
-                        if ok {
-                            path.append(1)
-                        }
-                    }
-                    
-                case 1:
-                    ThankYouView {
+                    ThankYouView (buttonColor: .defaultGreen) {
                         print("joinself now.")
                         onFinish?(true)
                     }

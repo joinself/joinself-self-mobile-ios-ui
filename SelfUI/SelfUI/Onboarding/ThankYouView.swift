@@ -11,8 +11,11 @@ struct ThankYouView: View {
     @State private var isOn = false
     @Environment(\.presentationMode) var presentationMode
     
+    let buttonColor: Color
+    
     var onGetStarted: (() -> Void)?
-    init(onGetStarted: (() -> Void)? = nil) {
+    init(buttonColor: Color = .defaultPink, onGetStarted: (() -> Void)? = nil) {
+        self.buttonColor = buttonColor
         self.onGetStarted = onGetStarted
     }
     
@@ -23,10 +26,12 @@ struct ThankYouView: View {
                 Spacer(minLength: 100)
                 VStack(alignment: .leading, spacing: 0) {
                     Text("onboarding_thankyou_title".localized)
-                        .font(.defaultTitle)
-                        .foregroundColor(.black)
+                        .font(.defaultLargeTitle)
+                        .foregroundColor(.textPrimary)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .padding()
                     Spacer()
-                }.padding(.leading, 16)
+                }.padding()
                 Spacer()
                 VStack(spacing: 12) {
                     VStack (spacing: 0){
@@ -70,7 +75,7 @@ struct ThankYouView: View {
                     }
                     
                     if isOn {
-                        ButtonView(title: "button_joinself".localized, backgroundColor: .defaultPink) {
+                        ButtonView(title: "button_joinself".localized, backgroundColor: self.buttonColor) {
                             onGetStarted?()
                         }
                     } else {
@@ -113,5 +118,5 @@ struct ThankYouView: View {
 }
 
 #Preview {
-    ThankYouView()
+    ThankYouView(buttonColor: .defaultGreen)
 }

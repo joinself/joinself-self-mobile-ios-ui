@@ -13,9 +13,12 @@ public class SelfUISdk: ObservableObject {
     @Published var customization: Bool = false
     
     public static let shared = SelfUISdk()
+    let defaultLargeTitle = Font.custom("Barlow", size: 64)
+    let defaultBody = Font.custom("SF-Pro", size: 17)
     
     private init() {
-        FontLoader.loadFont()
+        FontLoader.loadFont(fontResourceName: "Barlow-Bold")
+        FontLoader.loadFont(fontResourceName: "SF-Pro")
     }
     
     public func initialize(customization: Bool = false) {

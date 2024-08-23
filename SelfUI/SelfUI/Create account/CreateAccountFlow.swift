@@ -8,9 +8,6 @@
 import SwiftUI
 
 public struct CreateAccountFlow: BaseView {
-    func loadFonts() {
-        FontLoader.loadFont()
-    }
     
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?

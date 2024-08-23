@@ -93,6 +93,8 @@
 		63A99B4F2C09E9C80073939A /* PassportReadingChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */; };
 		63A99B592C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */; };
 		63A99B632C0D6CE40073939A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B622C0D6CE40073939A /* CustomTextField.swift */; };
+		63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */; };
+		63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */; };
 		63C03E682C528703009E385E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E672C528703009E385E /* WelcomeView.swift */; };
 		63C03E6A2C535E9C009E385E /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E692C535E9C009E385E /* PagingView.swift */; };
 		63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E6B2C539517009E385E /* OnboardingFlow.swift */; };
@@ -236,6 +238,8 @@
 		63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportReadingChipView.swift; sourceTree = "<group>"; };
 		63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZFieldsManuallyView.swift; sourceTree = "<group>"; };
 		63A99B622C0D6CE40073939A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyView.swift; sourceTree = "<group>"; };
+		63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		63C03E672C528703009E385E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		63C03E692C535E9C009E385E /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		63C03E6B2C539517009E385E /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
@@ -439,6 +443,7 @@
 				63A99AFF2C05D9910073939A /* Barlow-Medium.ttf */,
 				63A99AFD2C05D9910073939A /* Barlow-Regular.ttf */,
 				63A99B012C05D9910073939A /* Barlow-SemiBold.ttf */,
+				63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */,
 				63A99B1E2C0764DA0073939A /* passport_instructions.gif */,
 				63A99B4A2C09C2C10073939A /* start_scan.gif */,
 				635ACD022BFDFAFB0012108F /* Localizable.strings */,
@@ -455,6 +460,7 @@
 				63C03E692C535E9C009E385E /* PagingView.swift */,
 				63C451A62BF33F6100AD5BC5 /* PageContentView.swift */,
 				633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */,
+				63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -708,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63A99B092C05D9910073939A /* Barlow-Bold.ttf in Resources */,
+				63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */,
 				63A99B4B2C09C2C10073939A /* start_scan.gif in Resources */,
 				63A99B052C05D9910073939A /* Barlow-Light.ttf in Resources */,
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
@@ -780,6 +787,7 @@
 				635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */,
 				6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */,
 				634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */,
+				63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */,
 				635ACD4A2C058A060012108F /* LivenessVerificationFailedView.swift in Sources */,
 				6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */,
 				63C03E6A2C535E9C009E385E /* PagingView.swift in Sources */,
