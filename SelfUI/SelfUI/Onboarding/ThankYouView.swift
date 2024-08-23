@@ -26,27 +26,34 @@ struct ThankYouView: View {
                         .font(.defaultTitle)
                         .foregroundColor(.black)
                     Spacer()
-                }.padding()
+                }.padding(.leading, 16)
                 Spacer()
                 VStack(spacing: 12) {
                     VStack (spacing: 0){
-                        Text("To join Self, please agree to our".localized)
+                        //                        Text("To join Self, please agree to our".localized)
+                        //                            .foregroundStyle(.black)
+                        Text("\("To join Self, please agree to our".localized)\n[terms & conditions](https://docs.joinself.com/agreements/consumer_terms_and_conditions) & [privacy policy](https://docs.joinself.com/agreements/app_privacy_notice).")
+                            .font(.defaultBody)
                             .foregroundStyle(.black)
-                        HStack (spacing: 4) {
-                            Text("terms & conditions".localized)
-                                .foregroundColor(.defaultBlue)
-                                .onTapGesture {
-                                    // TODO: Open term and conditions
-                                    print("Click term & conditions")
-                                }
-                            Text("&").globalBodyTextStyle()
-                            Text("privacy policy.")
-                                .foregroundColor(.defaultBlue)
-                                .onTapGesture {
-                                    // TODO: Open privacy policy
-                                    print("Click privacy policy")
-                                }
-                        }.frame(height: 24)
+                            .tint(.defaultBlue) // link color
+                            .multilineTextAlignment(.center)
+                        /*HStack (spacing: 4) {
+                         Text("terms & conditions".localized)
+                         .foregroundColor(.defaultBlue)
+                         .onTapGesture {
+                         // TODO: Open term and conditions
+                         print("Click term & conditions")
+                         }
+                         Text("&").globalBodyTextStyle()
+                         Text("privacy policy.")
+                         .foregroundColor(.defaultBlue)
+                         .onTapGesture {
+                         // TODO: Open privacy policy
+                         print("Click privacy policy")
+                         }
+                         }.frame(height: 24)
+                         */
+                        
                     }.padding(0)
                     
                     HStack (alignment: .center) {
