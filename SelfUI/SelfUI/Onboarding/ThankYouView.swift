@@ -32,7 +32,8 @@ struct ThankYouView: View {
                     VStack (spacing: 0){
                         //                        Text("To join Self, please agree to our".localized)
                         //                            .foregroundStyle(.black)
-                        Text("\("To join Self, please agree to our".localized)\n[terms & conditions](https://docs.joinself.com/agreements/consumer_terms_and_conditions) & [privacy policy](https://docs.joinself.com/agreements/app_privacy_notice).")
+                        
+                        Text(self.cal())
                             .font(.defaultBody)
                             .foregroundStyle(.black)
                             .tint(.defaultBlue) // link color
@@ -96,6 +97,18 @@ struct ThankYouView: View {
                 }
             }
         }
+    }
+    
+    private func cal() -> AttributedString {
+        let str = "\("To join Self, please agree to our".localized)\n[terms & conditions](https://docs.joinself.com/agreements/consumer_terms_and_conditions) & [privacy policy](https://docs.joinself.com/agreements/app_privacy_notice)."
+        var markdownText = try! AttributedString(markdown: str)
+        let termAndConditionLink = markdownText.range(of: "terms & conditions")!
+        markdownText[termAndConditionLink].underlineStyle = .single
+        
+        let privacyPolicyLink = markdownText.range(of: "privacy policy")!
+        markdownText[privacyPolicyLink].underlineStyle = .single
+        
+        return markdownText
     }
 }
 
