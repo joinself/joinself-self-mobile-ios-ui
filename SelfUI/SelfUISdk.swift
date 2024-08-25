@@ -16,9 +16,11 @@ public class SelfUISdk: ObservableObject {
     let defaultLargeTitle = Font.custom("Barlow", size: 64)
     let defaultTitle = Font.custom("Barlow-Bold", size: 36)
     let defaultBody = Font.custom("SF-Pro", size: 17)
+    let defaultBodyMedium = Font.custom("Barlow-Medium", size: 15)
     
     private init() {
         FontLoader.loadFont(fontResourceName: "Barlow-Bold")
+        FontLoader.loadFont(fontResourceName: "Barlow-Medium")
         FontLoader.loadFont(fontResourceName: "SF-Pro")
     }
     
