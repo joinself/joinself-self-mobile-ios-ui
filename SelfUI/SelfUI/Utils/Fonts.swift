@@ -53,7 +53,7 @@ extension Font {
     }
     
     static let defaultH3: Font = Font.custom("Barlow", size: 36)
-    static let defaultTitle: Font = Font.system(size: 36).bold()//Font.custom("Barlow-Bold", size: 36)
+    static let defaultTitle: Font = SelfUISdk.shared.defaultTitle
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
     static let defaultNormalTitle: Font = Font.system(size: 25).bold()//Font.custom("Barlow-Bold", size: 36)
     static let defaultBody: Font = SelfUISdk.shared.defaultBody

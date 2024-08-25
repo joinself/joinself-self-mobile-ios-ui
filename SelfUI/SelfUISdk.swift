@@ -14,6 +14,7 @@ public class SelfUISdk: ObservableObject {
     
     public static let shared = SelfUISdk()
     let defaultLargeTitle = Font.custom("Barlow", size: 64)
+    let defaultTitle = Font.custom("Barlow-Bold", size: 36)
     let defaultBody = Font.custom("SF-Pro", size: 17)
     
     private init() {

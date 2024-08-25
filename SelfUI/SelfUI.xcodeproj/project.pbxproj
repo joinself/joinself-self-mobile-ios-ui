@@ -303,7 +303,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		6320F4F62BFB578D00C35808 /* Elements */ = {
+		6320F4F62BFB578D00C35808 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				634878D22BF7488900E50DE1 /* BrandView.swift */,
@@ -318,7 +318,7 @@
 				63A99B282C08692D0073939A /* MRZOverlayView.swift */,
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 			);
-			path = Elements;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		635ACCF22BFC8EAE0012108F /* ProgressView */ = {
@@ -470,7 +470,7 @@
 			children = (
 				6370672B2C610C2D00A23C1E /* SelfUISdk.swift */,
 				635ACCF22BFC8EAE0012108F /* ProgressView */,
-				6320F4F62BFB578D00C35808 /* Elements */,
+				6320F4F62BFB578D00C35808 /* Components */,
 				63C451662BF30EAE00AD5BC5 /* SelfUI */,
 				63C451702BF30EAE00AD5BC5 /* SelfUITests */,
 				63C451992BF33D5300AD5BC5 /* Example */,
