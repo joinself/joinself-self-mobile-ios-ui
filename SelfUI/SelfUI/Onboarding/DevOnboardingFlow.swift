@@ -25,16 +25,20 @@ public struct DevOnboardingFlow: View {
                 case 0:
                     ThankYouView (buttonColor: .defaultGreen) {
                         print("joinself now.")
-                        path = [1]
+                        path.append(1)
                     }
                     
                 case 1:
                     OnboardingSurveyView(buttonColor: .defaultOrange, onNext: {
                         print("Next")
+                        onFinish?(true)
                     }) {
-                        print("Back to root.")
+                        print("Back to root: \(path)")
                         path = []
                     }
+                    
+                case 2: // liveness
+                    LivenessFlow()
                     
                 default:
                     Text("0")

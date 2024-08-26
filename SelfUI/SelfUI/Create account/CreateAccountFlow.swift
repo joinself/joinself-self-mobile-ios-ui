@@ -25,7 +25,14 @@ public struct CreateAccountFlow: BaseView {
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    CreatingAccountView()
+                    CreatingAccountView{
+                        path = [1]
+                    }
+                    
+                case 1:
+                    ScanLoginQRCodeView {
+                        
+                    }
                     
                 default:
                     Text("0")
