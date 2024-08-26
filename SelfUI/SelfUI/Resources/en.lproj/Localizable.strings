@@ -125,3 +125,10 @@
 "account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";
 
 "scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";
+
+// MARK: - Tabs
+"tab_messaging" = "Messaging";
+"tab_profile" = "Profile";
+"tab_data" = "Data";
+"tab_settings" = "Settings";
+"tab_scan" = "Scan";
