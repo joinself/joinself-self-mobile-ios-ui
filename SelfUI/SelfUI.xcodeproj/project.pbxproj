@@ -65,6 +65,8 @@
 		6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8212C5A7CB600CB44FE /* MessageComposeView.swift */; };
 		6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */; };
 		6396B54E2C777159008464FE /* DevOnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396B54D2C777159008464FE /* DevOnboardingFlow.swift */; };
+		63A214312C7C9FB9008B5E4A /* QRScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214302C7C9FB8008B5E4A /* QRScannerView.swift */; };
+		63A214332C7CA055008B5E4A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214322C7CA055008B5E4A /* QRView.swift */; };
 		63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */; };
 		63A99AF92C05D8370073939A /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF82C05D8370073939A /* OutlinedButton.swift */; };
 		63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AFA2C05D92E0073939A /* FontLoader.swift */; };
@@ -213,6 +215,8 @@
 		6395A8212C5A7CB600CB44FE /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSmsView.swift; sourceTree = "<group>"; };
 		6396B54D2C777159008464FE /* DevOnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevOnboardingFlow.swift; sourceTree = "<group>"; };
+		63A214302C7C9FB8008B5E4A /* QRScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerView.swift; sourceTree = "<group>"; };
+		63A214322C7CA055008B5E4A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SelectDocumentView.swift"; sourceTree = "<group>"; };
 		63A99AF82C05D8370073939A /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		63A99AFA2C05D92E0073939A /* FontLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
@@ -420,6 +424,22 @@
 			path = "Create account";
 			sourceTree = "<group>";
 		};
+		63A2142E2C7C9ED4008B5E4A /* QRReader */ = {
+			isa = PBXGroup;
+			children = (
+				63A214302C7C9FB8008B5E4A /* QRScannerView.swift */,
+				63A214322C7CA055008B5E4A /* QRView.swift */,
+			);
+			path = QRReader;
+			sourceTree = "<group>";
+		};
+		63A2142F2C7C9EDB008B5E4A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		63A99AF52C05CA400073939A /* Documents */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +520,8 @@
 		63C451662BF30EAE00AD5BC5 /* SelfUI */ = {
 			isa = PBXGroup;
 			children = (
+				63A2142F2C7C9EDB008B5E4A /* Profile */,
+				63A2142E2C7C9ED4008B5E4A /* QRReader */,
 				6395A81C2C5A7AAA00CB44FE /* Create account */,
 				6395A81B2C5A7A9B00CB44FE /* Phone */,
 				63D66ADF2C5923400094E55D /* Emails */,
@@ -804,6 +826,7 @@
 				63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */,
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
+				63A214312C7C9FB9008B5E4A /* QRScannerView.swift in Sources */,
 				6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */,
 				63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */,
 				63A99B122C06DAD20073939A /* PassportCheckChipView.swift in Sources */,
@@ -831,6 +854,7 @@
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,
 				635ACCFA2BFDDAE90012108F /* ProgressStepViewModel.swift in Sources */,
+				63A214332C7CA055008B5E4A /* QRView.swift in Sources */,
 				63D66AE32C5924BE0094E55D /* EmailIntroView.swift in Sources */,
 				63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */,
 				63A99B162C07271B0073939A /* LoadingDotsView.swift in Sources */,
