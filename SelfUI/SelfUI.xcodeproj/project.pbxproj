@@ -21,6 +21,7 @@
 		634878D32BF7488900E50DE1 /* BrandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D22BF7488900E50DE1 /* BrandView.swift */; };
 		634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D42BF7619F00E50DE1 /* ButtonView.swift */; };
 		634CEE822C7B19E2008CD5B8 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE812C7B19E2008CD5B8 /* BannerView.swift */; };
+		634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
 		635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */; };
 		635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */; };
@@ -168,6 +169,7 @@
 		634878D22BF7488900E50DE1 /* BrandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandView.swift; sourceTree = "<group>"; };
 		634878D42BF7619F00E50DE1 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		634CEE812C7B19E2008CD5B8 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLoginQRCodeView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepView.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				637067042C6087C000A23C1E /* CreateAccountNameView.swift */,
 				6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */,
 				6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */,
+				634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */,
 			);
 			path = "Create account";
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */,
 				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
 				6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */,
+				634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,

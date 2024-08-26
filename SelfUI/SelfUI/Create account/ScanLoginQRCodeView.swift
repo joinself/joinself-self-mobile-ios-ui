@@ -1,23 +1,21 @@
 //
-//  CreateAccountNameView.swift
+//  ScanLoginQRCodeView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 5/8/24.
+//  Created by Long Pham on 26/8/24.
 //
 
 import SwiftUI
 
-struct CreateAccountNameView: View {
+struct ScanLoginQRCodeView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State private var name: String = ""
-    @State private var isValid: Bool = false
     
-    public init(onEnteredName: ((String) -> Void)? = nil) {
-        self.onEnteredName = onEnteredName
+    public init(callback: (() -> Void)? = nil) {
+        self.callback = callback
     }
     
-    var onEnteredName: ((String) -> Void)?
+    var callback: (() -> Void)?
     
     public var body: some View {
         VStack {
@@ -27,20 +25,24 @@ struct CreateAccountNameView: View {
                 Step(title: "2", state: .done),
                 Step(title: "3", state: .done),
                 Step(title: "4", state: .done),
-                Step(title: "5", state: .active)
-            ]).frame(minHeight: 100)
+                Step(title: "5", state: .done)
+            ])
             
-//            Spacer()
+            Spacer(minLength: 50)
             VStack(alignment: .leading, spacing: 30) {
-                Text("create_account_name_title".localized)
+                Text("scan_login_qr_code_body".localized)
                     .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
-                    .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                    .foregroundColor(.black)
                 
-                OutlinedTextField(boxLabel: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized, boxErrorDescription: "enter_name_error".localized, text: $name, isValid: $isValid)
-                    .onChange(of: name) { newValue in
-                        isValid = newValue.count > 0
-                    }
+                // Heading/H4
+                Text("https://portal.joinself.com")
+                  .font(
+                    Font.custom("Barlow", size: 25)
+                      .weight(.bold)
+                  )
+                  .tint(.defaultGreen)
+                  .foregroundColor(.defaultGreen)
+                  .frame(maxWidth: .infinity, alignment: .topLeading)
                 
                 Spacer()
             }
@@ -49,9 +51,9 @@ struct CreateAccountNameView: View {
             
             Spacer()
             VStack(spacing: 12) {
-                ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
-                    onEnteredName?(name)
-                }.disabled(!isValid)
+                ButtonView(title: "button_scan_qr_code".localized) {
+                    callback?()
+                }
                 
                 BrandView(isDarked: true)
             }.padding()
@@ -71,7 +73,5 @@ struct CreateAccountNameView: View {
 }
 
 #Preview {
-    NavigationStack {
-        CreateAccountNameView()
-    }
+    ScanLoginQRCodeView()
 }

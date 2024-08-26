@@ -62,6 +62,7 @@
 "button_sms" = "Send SMS";
 "button_confirm_name" = "Confirm Name";
 "button_turn_on_notifications" = "Turn on notifications";
+"button_scan_qr_code" = "Scan QR code";
 
 "I’m going to develop with Self" = "I’m going to develop with Self";
 
@@ -117,8 +118,10 @@
 "enter_name_label" = "Enter the name people normally know you by";
 "enter_name_placeholder" = "Your name";
 "enter_name_error" = "This field cannot be empty.";
-"creating_account_title" = "That’s everything!";
-"creating_account_description" = "We’re just creating your Self account...";
+"creating_account_title" = "We’re just creating your Self account...";
+"creating_account_description" = "This tool is designed to help developers building and testing with Self Sandbox. You will need to turn on notifications for the best experience.";
 
 "account_created_title" = "Welcome to \nyour Self";
 "account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";
+
+"scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";

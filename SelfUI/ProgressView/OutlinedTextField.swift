@@ -54,7 +54,10 @@ struct OutlinedTextField: View {
                         .textInputAutocapitalization(autocapitalization)
                         .keyboardType(type)
                         .onAppear {
-                            isFocused = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                isFocused = true
+                            }
+                            
                         }
                         .padding()
                 }
