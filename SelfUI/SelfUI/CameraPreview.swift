@@ -37,6 +37,7 @@ class CameraManager: NSObject, ObservableObject {
 
     @Published var isValidMRZ: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
+    var onCapture: ((CMSampleBuffer) -> Void)? = nil
     
     override init() {
         super.init()
@@ -177,6 +178,7 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 //        detectFaces(sampleBuffer: sampleBuffer)
         self.detectPassportMRZ(sampleBuffer: sampleBuffer)
+        self.onCapture?(sampleBuffer)
     }
 }
 
