@@ -15,13 +15,18 @@ public struct LivenessCameraView: View {
     
     public var onNavigateBack: () -> Void
     public var onAppeared: (() -> Void)? = nil
-    @ObservedObject var cameraManager = CameraManager()
+    @ObservedObject var cameraManager = CameraManager(cameraPosition: .front)
+    @Binding private var faceChallenge: String
+    @Binding private var isPassed: Bool
     
-    public init(onAppeared: (() -> Void)? = nil, onCapture: ((CMSampleBuffer) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
+    public init(faceChallenge: Binding<String> = .constant(""), isPassed: Binding<Bool> = .constant(false), onAppeared: (() -> Void)? = nil, onCapture: ((CMSampleBuffer) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onNavigateBack = onNavigateBack
         self.onAppeared = onAppeared
-        
+        self._faceChallenge = faceChallenge
+        self._isPassed = isPassed
         cameraManager.onCapture = onCapture
+        
+        self.onChallengeChanged(challenge: faceChallenge.wrappedValue, isPassed: isPassed.wrappedValue)
     }
     
     public var body: some View {
@@ -81,6 +86,7 @@ public struct LivenessCameraView: View {
     }
     
     public func onChallengeChanged(challenge: String, isPassed: Bool) {
+        print("onChallengeChanged")
         guard let state = Challenge(rawValue: challenge) else {
             print("Invalid challenge: \(challenge)")
             return
@@ -93,16 +99,16 @@ public struct LivenessCameraView: View {
         switch state {
         case .TurnLeft:
             tipImageName = "bg_turn_left"
-            challengeText = "Look left and back"//"selfie_look_left".localized
+            challengeText = "selfie_look_left".localized
         case .TurnRight:
             tipImageName = "bg_turn_right"
-            challengeText = "Look right and back"//"selfie_look_right".localized
+            challengeText = "selfie_look_right".localized
         case .LookUp:
             tipImageName = "bg_lookup"
-            challengeText = "Look up and back"//"selfie_look_up".localized
+            challengeText = "selfie_look_up".localized
         case .LookDown:
             tipImageName = "bg_lookdown"
-            challengeText = "Look down and back"//"selfie_look_down".localized
+            challengeText = "selfie_look_down".localized
             
         default:
             print("Not support challenge: \(state)")
