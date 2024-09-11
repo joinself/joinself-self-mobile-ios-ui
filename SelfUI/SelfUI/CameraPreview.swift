@@ -35,7 +35,6 @@ class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
     private var cameraPosition: AVCaptureDevice.Position = .back
-
     @Published var isValidMRZ: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
     var onCapture: ((CMSampleBuffer) -> Void)? = nil
@@ -67,11 +66,22 @@ class CameraManager: NSObject, ObservableObject {
             // Setup input and output
             let input = try AVCaptureDeviceInput(device: camera)
             session.addInput(input)
-            session.addOutput(output)
             
             // Configure the output
+            
+            session.sessionPreset = AVCaptureSession.Preset.high
+            
+            if cameraPosition == .front /*liveness check*/ {
+                output.videoSettings = [
+                    (kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA
+                ]
+                output.alwaysDiscardsLateVideoFrames = true
+            }
+            
+            session.addOutput(output)
+            session.commitConfiguration()
             output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-            session.startRunning()
+//            session.startRunning()
         } catch {
             print("Failed to setup camera: \(error)")
         }
