@@ -33,6 +33,7 @@ struct ButtonView: View {
             }, label: {
                 Text(viewModel.title)
                     .font(.defaultButton)
+                    .minimumScaleFactor(0.5)
                     .kerning(0.85)
                     .tracking(0.85)
                     .textCase(.uppercase)

@@ -51,8 +51,10 @@ struct OutlinedButton: View {
                 viewModel.icon
                     .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
                 Text(viewModel.title)
-                .font(Font.custom("Barlow", size: 17).weight(.bold))
-                .tracking(0.85)
+                    .font(.defaultButton)
+                    .minimumScaleFactor(0.5)
+                    .kerning(0.85)
+                    .tracking(0.85)
                 .textCase(.uppercase)
                 .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
                 .onTapGesture {
