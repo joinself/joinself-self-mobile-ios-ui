@@ -32,7 +32,8 @@ struct ButtonView: View {
                 handleTap()
             }, label: {
                 Text(viewModel.title)
-                    .font(Font.system(size: 17).weight(.bold))
+                    .font(.defaultButton)
+                    .kerning(0.85)
                     .tracking(0.85)
                     .textCase(.uppercase)
                     .foregroundColor(buttonTitleColor)

@@ -25,7 +25,7 @@ struct BrandView: View {
         ZStack {
             HStack(spacing: 10) {
                 Text("Powered by")
-                    .font(Font.system(size: 15).weight(.medium))
+                    .font(.defaultFootnote)
                     .lineSpacing(22)
                     .foregroundColor(viewModel.isDarked ? .black : .white)
                 Image(viewModel.isDarked ? "ic_self_pink" : "ic_self_white", bundle: mainBundle)

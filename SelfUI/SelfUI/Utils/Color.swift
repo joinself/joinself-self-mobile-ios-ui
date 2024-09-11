@@ -14,7 +14,13 @@ extension Color {
     static let defaultGray: Color = Color(red: 0.88, green: 0.88, blue: 0.88)
     static let defaultDark: Color = Color(red: 0.54, green: 0.54, blue: 0.54)
     static let defaultBlack: Color = Color.black
+    
+    // MARK: Text
     static let textPrimary: Color = Color(red: 0.05, green: 0.11, blue: 0.26)
+    static let textSecondary: Color = .white
+    
+    // MARK: Background
+    static let backgroundPrimary: Color = .white
     
     static let defaultGrayscale: Color = Color(red: 0.24, green: 0.24, blue: 0.24)
     

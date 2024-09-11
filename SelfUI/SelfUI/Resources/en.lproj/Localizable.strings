@@ -67,8 +67,8 @@
 "I’m going to develop with Self" = "I’m going to develop with Self";
 
 // Onboarding
-"welcome_title" = "Welcome to your Self.";
-"welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started.";
+"welcome_title" = "Welcome to Self.";
+"welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started. Which one applies to you?";
 
 "secure_communication_title" = "Communicate safely and privately.";
 "secure_communication_description" = "Self gives you secure, privacy first communications with people you know and trust.";
