@@ -40,7 +40,7 @@ struct ThankYouView: View {
                         
                         Text(self.cal())
                             .font(.defaultBody)
-                            .foregroundStyle(.black)
+                            .foregroundColor(.textPrimary)
                             .tint(.defaultBlue) // link color
                             .multilineTextAlignment(.center)
                         /*HStack (spacing: 4) {
