@@ -10,7 +10,7 @@ import UIKit
 
 extension String {
     var localized: String {
-        if SelfUISdk.shared.customization == true, let bundle = Bundle(identifier: mainBundleId) {
+        if SelfUISdk.shared.customization == false, let bundle = Bundle(identifier: mainBundleId) {
             return NSLocalizedString(self, bundle: bundle ,comment: "")
         }
         
