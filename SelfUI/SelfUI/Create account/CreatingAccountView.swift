@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct CreatingAccountView: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @State private var notificationPermissionGranted = false
+    
+    var onNext: (() -> ())?
+    init(onNext: (() -> Void)? = nil) {
+        self.onNext = onNext
+    }
     
     public var body: some View {
         VStack {
@@ -22,16 +29,17 @@ struct CreatingAccountView: View {
                 Step(title: "5", state: .active)
             ])
             
-            Spacer(minLength: 50)
+            Spacer(minLength: 100)
             VStack(alignment: .leading, spacing: 30) {
                 Text("creating_account_title".localized)
-                    .font(.defaultLargeTitle)
+                    .font(.defaultBodyLarge)
                     .foregroundColor(.black)
                 
                 Text("creating_account_description".localized)
-                    .font(.defaultNormalTitle)
+                    .font(.defaultBody)
                     .foregroundColor(.black)
                 
+                Spacer()
                 HStack {
                     Spacer()
                     LoadingDotsView()
@@ -39,6 +47,17 @@ struct CreatingAccountView: View {
                 }
                 
                 Spacer()
+                
+                Spacer()
+                VStack(spacing: 12) {
+                    ButtonView(title: "button_turn_on_notifications".localized) {
+                        requestNotificationPermission { isGranted in
+                            onNext?()
+                        }
+                    }
+                    
+                    BrandView(isDarked: true)
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -54,6 +73,25 @@ struct CreatingAccountView: View {
                 }) {
                     NavBackButton()
                 }
+            }
+        }
+    }
+    
+    func checkNotificationPermission() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                notificationPermissionGranted = settings.authorizationStatus == .authorized
+            }
+        }
+    }
+    
+    func requestNotificationPermission(completion: ((Bool) -> Void)? = nil) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("Error requesting notification permission: \(error.localizedDescription)")
+            }
+            DispatchQueue.main.async {
+                completion?(granted)
             }
         }
     }

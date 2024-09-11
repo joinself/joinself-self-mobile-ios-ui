@@ -9,40 +9,39 @@ import SwiftUI
 
 struct WelcomeView: View {
     var onGetStarted: (() -> Void)?
-    init(onGetStarted: (() -> Void)? = nil) {
+    let buttonTitle: String
+    let buttonColor: Color
+    
+    init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil) {
         self.onGetStarted = onGetStarted
+        self.buttonTitle = buttonTitle
+        self.buttonColor = buttonColor
     }
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .center, spacing: 0) {
-                Spacer(minLength: 100)
-                VStack(alignment: .leading, spacing: 30) {
-                    Text("welcome_title".localized)
-                        .font(.system(size: 64).weight(.bold))
-                        .foregroundColor(.black)
-                    Text("welcome_message".localized)
-                        .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
-                      .lineSpacing(1.14)
-                      .foregroundColor(.black)
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
+        VStack {
+            Spacer(minLength: 100)
+            VStack(alignment: .leading, spacing: 30) {
+                Text("welcome_title".localized)
+                    .font(.defaultLargeTitle)
+                    .foregroundColor(.textPrimary)
+                    .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                Text("welcome_message".localized)
+                    .font(.defaultBody)
+                    .lineSpacing(1.14)
+                    .foregroundColor(.textPrimary)
                 Spacer()
-                VStack(spacing: 12) {
-                    ButtonView(title: "button_signup_now".localized, backgroundColor: .defaultPink) {
-                        onGetStarted?()
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
-            }
-            .padding()
-            .ignoresSafeArea(.all)
+            }.padding()
+            
+            VStack(spacing: 15) {
+                ButtonView(title: buttonTitle, backgroundColor: buttonColor) {
+                    onGetStarted?()
+                }
+                
+                BrandView(isDarked: true)
+            }.padding()
         }
+        .background(Color.backgroundPrimary)
     }
 }
 

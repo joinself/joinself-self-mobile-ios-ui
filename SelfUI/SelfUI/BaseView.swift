@@ -8,5 +8,5 @@
 import SwiftUI
 
 protocol BaseView: View {
-    func loadFonts()  -> ()
+//    func loadFonts()  -> ()
 }

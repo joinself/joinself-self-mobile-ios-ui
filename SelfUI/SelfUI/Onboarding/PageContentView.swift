@@ -15,7 +15,6 @@ public struct PageContentView: View {
     public init(title: String, description: String) {
         self.title = title
         self.description = description
-        FontLoader.loadFont()
     }
     
     public var body: some View {

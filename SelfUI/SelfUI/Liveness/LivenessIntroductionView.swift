@@ -10,6 +10,7 @@ import AVFoundation
 
 public struct LivenessIntroductionView: View {
     @State private var isCameraAuthorized = false
+    @Environment(\.presentationMode) var presentationMode
     
     public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
@@ -22,43 +23,34 @@ public struct LivenessIntroductionView: View {
     public var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(spacing: 10) {
-                    }
-                    .padding(10)
-                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                    HStack {
-                        VStack (alignment: .leading) {
-                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(.white)
-                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
-                                .onTapGesture {
-                                    print("onNavigationBack")
-                                    onNavigationBack()
-                                }
-                        }
-                        .frame(width: 44, height: 32)
-                    }
-                }
-                .frame(width: 393, height: 100)
-                .background(.white)
-                
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    NavBackButton {
+                        onNavigationBack()
+                    }.padding()
+                }.padding(.leading, 20)
                 
                 // stepped progress view
-                ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 1)
-                }
+                VStack(alignment: .center) {
+                    CustomProgressView(steps: [
+                        Step(title: "1", state: .done),
+                        Step(title: "2", state: .done),
+                        Step(title: "3", state: .done),
+                        Step(title: "4", state: .active),
+                        Step(title: "5", state: .inactive)
+                    ])
+                }.frame(maxWidth: .infinity)
+                
+                Spacer(minLength: 50)
                 
                 VStack(alignment: .leading, spacing: 30) {
                     Text("Take a selfie".localized)
-                        .font(.system(size: 36).weight(.bold))
+                        .font(.defaultTitle)
                         .foregroundColor(.black)
                     Text("Take a selfie description".localized)
-                        .font(.appFont(fontName: .sfPro, size: 17).weight(.bold))
+                        .font(.defaultBody)
                         .lineSpacing(1.18)
-                        .foregroundColor(.black)
+                        .foregroundColor(.textPrimary)
                     Spacer()
                 }
                 .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
@@ -73,8 +65,20 @@ public struct LivenessIntroductionView: View {
                     BrandView(isDarked: true)
                 }.padding()
             }
-            .padding()
-            .ignoresSafeArea(.all)
+            .background(.white)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image("ic_back_dark", bundle: mainBundle)
+                        }
+                    }
+                }
+            }
         }
     }
     

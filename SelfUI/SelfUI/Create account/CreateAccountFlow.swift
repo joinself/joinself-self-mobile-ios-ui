@@ -8,9 +8,6 @@
 import SwiftUI
 
 public struct CreateAccountFlow: BaseView {
-    func loadFonts() {
-        FontLoader.loadFont()
-    }
     
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?
@@ -28,7 +25,14 @@ public struct CreateAccountFlow: BaseView {
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
-                    CreatingAccountView()
+                    CreatingAccountView{
+                        path = [1]
+                    }
+                    
+                case 1:
+                    ScanLoginQRCodeView {
+                        
+                    }
                     
                 default:
                     Text("0")

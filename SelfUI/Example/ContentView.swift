@@ -10,10 +10,7 @@ import SelfUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            LivenessFlow()
-        }
-        .ignoresSafeArea(.all)
+        DevOnboardingFlow()
     }
 }
 

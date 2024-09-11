@@ -34,22 +34,34 @@ struct CameraPreview: UIViewRepresentable {
 class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
+    private var cameraPosition: AVCaptureDevice.Position = .back
 
     @Published var isValidMRZ: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
+    var onCapture: ((CMSampleBuffer) -> Void)? = nil
     
     override init() {
         super.init()
         
+        self.initCamera()
+    }
+    
+    init(cameraPosition: AVCaptureDevice.Position = .back) {
+        super.init()
+        
+        self.cameraPosition = cameraPosition
+        self.initCamera()
+    }
+    
+    private func initCamera() {
         Task {
             await self.setupCamera()
         }
-        
     }
     
     private func setupCamera() async {
         // Ensure the device has a camera
-        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else { return }
+        guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition) else { return }
         
         do {
             // Setup input and output
@@ -175,8 +187,11 @@ class CameraManager: NSObject, ObservableObject {
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//        detectFaces(sampleBuffer: sampleBuffer)
-        self.detectPassportMRZ(sampleBuffer: sampleBuffer)
+        if let onCapture = onCapture {
+            onCapture(sampleBuffer)
+        } else {
+            self.detectPassportMRZ(sampleBuffer: sampleBuffer)
+        }
     }
 }
 

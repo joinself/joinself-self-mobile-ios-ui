@@ -62,10 +62,13 @@
 "button_sms" = "Send SMS";
 "button_confirm_name" = "Confirm Name";
 "button_turn_on_notifications" = "Turn on notifications";
+"button_scan_qr_code" = "Scan QR code";
+
+"I’m going to develop with Self" = "I’m going to develop with Self";
 
 // Onboarding
-"welcome_title" = "Welcome to your Self.";
-"welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started.";
+"welcome_title" = "Welcome to Self.";
+"welcome_message" = "We’re really happy you chose to join us. Please complete the signup process to get started. Which one applies to you?";
 
 "secure_communication_title" = "Communicate safely and privately.";
 "secure_communication_description" = "Self gives you secure, privacy first communications with people you know and trust.";
@@ -84,6 +87,9 @@
 "To join Self, please agree to our" = "To join Self, please agree to our";
 "terms & conditions" = "terms & conditions";
 "privacy policy" = "privacy policy.";
+
+"Thanks. How will you be using Self?" = "Thanks. How will you be using Self?";
+"I’m using the Self Sandbox" = "I’m using the Self Sandbox";
 
 // MARK: - Email
 "email_introduction_title" = "Thanks, now  we need  to send you an email so we can confirm your email address.";
@@ -112,8 +118,17 @@
 "enter_name_label" = "Enter the name people normally know you by";
 "enter_name_placeholder" = "Your name";
 "enter_name_error" = "This field cannot be empty.";
-"creating_account_title" = "That’s everything!";
-"creating_account_description" = "We’re just creating your Self account...";
+"creating_account_title" = "We’re just creating your Self account...";
+"creating_account_description" = "This tool is designed to help developers building and testing with Self Sandbox. You will need to turn on notifications for the best experience.";
 
 "account_created_title" = "Welcome to \nyour Self";
 "account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";
+
+"scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";
+
+// MARK: - Tabs
+"tab_messaging" = "Messaging";
+"tab_profile" = "Profile";
+"tab_data" = "Data";
+"tab_settings" = "Settings";
+"tab_scan" = "Scan";
