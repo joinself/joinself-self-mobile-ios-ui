@@ -11,8 +11,10 @@ import VisionKit
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
     @State private var isValidQRCode: Bool = false
-    public init() {
-        
+    
+    var onCode: ((String?) -> Void)?
+    public init(onCode: ((String?) -> Void)? = nil) {
+        self.onCode = onCode
     }
     
     @State private var scannedCode: String?
@@ -22,6 +24,7 @@ public struct QRReaderView: View {
             QRCodeScannerView {
                 self.scannedCode = $0
                 self.checkQRCode()
+                onCode?($0)
             }
             .edgesIgnoringSafeArea(.all)
             QRCodeOverlayView(isValid: $isValidQRCode)

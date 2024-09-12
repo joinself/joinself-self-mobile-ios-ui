@@ -19,7 +19,8 @@ public struct LivenessCameraView: View {
     @Binding private var faceChallenge: String
     @Binding private var isPassed: Bool
     
-    public init(faceChallenge: Binding<String> = .constant(""), isPassed: Binding<Bool> = .constant(false), onAppeared: (() -> Void)? = nil, onCapture: ((CMSampleBuffer) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
+    public init(faceChallenge: Binding<String> = .constant(""), isPassed: Binding<Bool> = .constant(false), onAppeared: (() -> Void)? = nil,
+                onCapture: ((CMSampleBuffer) -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
         self.onNavigateBack = onNavigateBack
         self.onAppeared = onAppeared
         self._faceChallenge = faceChallenge
@@ -27,6 +28,8 @@ public struct LivenessCameraView: View {
         cameraManager.onCapture = onCapture
         
         self.onChallengeChanged(challenge: faceChallenge.wrappedValue, isPassed: isPassed.wrappedValue)
+        
+        print("Init Liveness Camera View.")
     }
     
     public var body: some View {
@@ -34,7 +37,7 @@ public struct LivenessCameraView: View {
             CameraPreview(session: cameraManager.session)
             
             GeometryReader { geometry in
-                Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
+                Image(isPassed ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geometry.size.width, height: geometry.size.height)
