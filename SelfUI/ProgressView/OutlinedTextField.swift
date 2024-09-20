@@ -17,17 +17,19 @@ struct OutlinedTextField: View {
     var autocapitalization: TextInputAutocapitalization?
     var type: UIKeyboardType = .default
     @FocusState private var isFocused: Bool
-    init(boxLabel: String, placeHolder: String, boxErrorDescription: String, text: Binding<String>, isValid: Binding<Bool>) {
+    init(boxLabel: String, placeHolder: String, boxErrorDescription: String, text: Binding<String>, isValid: Binding<Bool>, isFocused: FocusState<Bool> = .init()) {
         self.boxLabel = boxLabel
         self.boxErrorDescription = boxErrorDescription
         self._text = text
         self.placeHolder = placeHolder
         self._isValid = isValid
+        self._isFocused = isFocused
     }
     var body: some View {
         VStack (alignment: .leading) {
             Text(boxLabel)
                 .font(.defaultCaption)
+                .foregroundColor(.textPrimary)
             
             ZStack {
                 HStack(alignment: .center, spacing: 1) {
