@@ -11,16 +11,19 @@ public struct CreateAccountFlow: BaseView {
     
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?
+    var onEnteredName: ((String) -> Void)?
     
     @Environment(\.presentationMode) private var presentationMode
     
-    public init(onFinish: ( (Bool) -> Void)? = nil) {
+    public init(onEnteredName: ((String) -> Void)? = nil, onFinish: ( (Bool) -> Void)? = nil) {
         self.onFinish = onFinish
+        self.onEnteredName = onEnteredName
     }
     
     public var body: some View {
         NavigationStack(path: $path) {
             CreateAccountNameView { name in
+                onEnteredName?(name)
                 path = [0]
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
