@@ -31,7 +31,8 @@ struct EmailIntroView: View {
             VStack(alignment: .leading, spacing: 30) {
                 Text("email_introduction_title".localized)
                     .font(.defaultTitle)
-                    .foregroundColor(.black)
+                    .foregroundColor(.textPrimary)
+                    .minimumScaleFactor(0.7)
                 Text("email_introduction_description".localized)
                     .font(.defaultBody)
                     .lineSpacing(1.14)

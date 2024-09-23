@@ -100,5 +100,5 @@ public struct EnterEmailCodeView: View {
 }
 
 #Preview {
-    EnterEmailCodeView(showAlert: .constant(true))
+    EnterEmailCodeView(showAlert: .constant(false))
 }
