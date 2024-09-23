@@ -23,6 +23,7 @@
 		634CEE822C7B19E2008CD5B8 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE812C7B19E2008CD5B8 /* BannerView.swift */; };
 		634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */; };
 		63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */; };
+		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
 		635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */; };
 		635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */; };
@@ -181,6 +182,7 @@
 		634CEE812C7B19E2008CD5B8 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLoginQRCodeView.swift; sourceTree = "<group>"; };
 		63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
+		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepView.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				6320F4F72BFB57DE00C35808 /* TipsSelfie.swift */,
 				635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */,
 				63A99B152C07271B0073939A /* LoadingDotsView.swift */,
+				63554DE72CA1789600DF55D2 /* LoadingView.swift */,
 				633F7FF52C53B54100BC2B06 /* CustomPageIndicator.swift */,
 				63A99B202C07650B0073939A /* GIFView.swift */,
 				63A99B262C0860A60073939A /* TransparentHoleView.swift */,
@@ -867,6 +870,7 @@
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
 				63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */,
+				63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */,
 				633F7FFA2C578FBE00BC2B06 /* ThankYouView.swift in Sources */,
 				637067052C6087C000A23C1E /* CreateAccountNameView.swift in Sources */,
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
