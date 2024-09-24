@@ -9,12 +9,22 @@ import SwiftUI
 
 struct NavBackButton: View {
     var onClick: (() -> ())?
-    init(onClick: (() -> Void)? = nil) {
+    private let iconName: String
+    
+    init(isWhiteBackground: Bool = false, onClick: (() -> Void)? = nil) {
         self.onClick = onClick
+        iconName = isWhiteBackground ? chevon_white : chevon_dark
     }
+    
+    private let chevon_dark = "ic_back_dark"
+    private let chevon_white = "chevron_back_white"
     var body: some View {
         HStack {
-            Image("ic_back_dark", bundle: mainBundle)
+            
+            Image(iconName, bundle: mainBundle)
+                .foregroundStyle(.black)
+                .accentColor(.white)
+                .padding()
         }.onTapGesture {
             onClick?()
         }
@@ -22,5 +32,12 @@ struct NavBackButton: View {
 }
 
 #Preview {
-    NavBackButton()
+    ZStack {
+        Color.purple.ignoresSafeArea()
+        VStack {
+            NavBackButton()
+            NavBackButton(isWhiteBackground: true)
+        }
+    }
+    
 }

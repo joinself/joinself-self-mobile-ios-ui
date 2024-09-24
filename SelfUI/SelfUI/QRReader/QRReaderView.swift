@@ -11,6 +11,7 @@ import VisionKit
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
     @State private var isValidQRCode: Bool = false
+    @Environment(\.presentationMode) var presentationMode
     
     var onCode: ((String?) -> Void)?
     public init(onCode: ((String?) -> Void)? = nil) {
@@ -28,6 +29,20 @@ public struct QRReaderView: View {
             }
             .edgesIgnoringSafeArea(.all)
             QRCodeOverlayView(isValid: $isValidQRCode)
+            
+            VStack {
+                HStack {
+                    NavBackButton (isWhiteBackground: true) {
+                        print("click.")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    Spacer()
+                }
+                .padding(24)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))
+            .ignoresSafeArea()
         }
     }
     
