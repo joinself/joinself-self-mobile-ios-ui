@@ -32,7 +32,7 @@ struct CustomTextField: View {
     }
 }
 
-//#Preview {
-//    
-//    CustomTextField(label: "Passport number", placeHolder: "ddmmyy", text: CustomTextFieldViewModel().text)
-//}
+#Preview {
+    
+    CustomTextField(label: "Passport number", placeHolder: "ddmmyy", text: .constant(""))
+}

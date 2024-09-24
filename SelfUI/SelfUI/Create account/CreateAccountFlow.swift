@@ -34,7 +34,7 @@ public struct CreateAccountFlow: BaseView {
                     
                 case 1:
                     ScanLoginQRCodeView {
-                        
+                        onFinish?(true)
                     }
                     
                 default:
