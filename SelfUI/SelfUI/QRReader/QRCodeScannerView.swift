@@ -11,7 +11,7 @@ import AVFoundation
 struct QRCodeScannerView: UIViewControllerRepresentable {
     class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         var parent: QRCodeScannerView
-        
+        var captureSession: AVCaptureSession?
         init(parent: QRCodeScannerView) {
             self.parent = parent
         }
@@ -19,14 +19,38 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
         func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
             if let metadataObject = metadataObjects.first {
                 guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-                guard let stringValue = readableObject.stringValue else { return }
+                
+                
+                guard let stringValue = readableObject.stringValue else {
+                    print("metadataObjects: \(readableObject.type) not string value")
+                    print("metadataObjects descriptor: \(readableObject.descriptor?.description)")
+                    if let descriptor = readableObject.descriptor as? CIQRCodeDescriptor {
+                        let dataError = descriptor.errorCorrectedPayload
+                        let bytes = descriptor.maskPattern
+                        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                        parent.didFindDataCode(dataError)
+                        
+                        print("Data error: \(dataError.count)")
+                        print("Mask pattern: \(bytes)")
+                        self.stopSession()
+                    }
+                    return
+                }
+                
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                 parent.didFindCode(stringValue)
+                self.stopSession()
             }
+        }
+        
+        private func stopSession() {
+            print("Stop capture session.")
+            captureSession?.stopRunning()
         }
     }
     
     var didFindCode: (String) -> Void
+    var didFindDataCode: (Data) -> Void
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
@@ -35,6 +59,8 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
         let captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .high
+        context.coordinator.captureSession = captureSession
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return viewController }
         let videoInput: AVCaptureDeviceInput
