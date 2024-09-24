@@ -24,8 +24,10 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 
                 if let qrCodeBytes = readableObject.binaryValue {
                     parent.didFindDataCode(qrCodeBytes)
+                } else if let stringValue = readableObject.stringValue {
+                    parent.didFindCode(stringValue)
                 }
-//                guard let stringValue = readableObject.stringValue else {                                        
+//                guard let stringValue = readableObject.stringValue else {
 //                    if let descriptor = readableObject.descriptor as? CIQRCodeDescriptor {
 //                        let dataError = descriptor.errorCorrectedPayload
 //                        let bytes = descriptor.maskPattern
@@ -36,7 +38,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
 //                        print("Mask pattern: \(bytes)")
 //                        self.stopSession()
 //                    }
-                    return
+//                    return
 //                }
                 
                 AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
