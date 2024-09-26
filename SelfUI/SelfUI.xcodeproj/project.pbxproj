@@ -22,6 +22,10 @@
 		634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D42BF7619F00E50DE1 /* ButtonView.swift */; };
 		634CEE822C7B19E2008CD5B8 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE812C7B19E2008CD5B8 /* BannerView.swift */; };
 		634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */; };
+		6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351DF092CA4FF7B00976552 /* BottomTab.swift */; };
+		6351DF122CA5105300976552 /* ic_data_pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6351DF112CA5105300976552 /* ic_data_pdf.pdf */; };
+		6351DF142CA5106100976552 /* ic_data.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6351DF132CA5106100976552 /* ic_data.svg */; };
+		6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351DF182CA5384A00976552 /* MessageListCell.swift */; };
 		63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */; };
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
@@ -181,6 +185,10 @@
 		634878D42BF7619F00E50DE1 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		634CEE812C7B19E2008CD5B8 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLoginQRCodeView.swift; sourceTree = "<group>"; };
+		6351DF092CA4FF7B00976552 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
+		6351DF112CA5105300976552 /* ic_data_pdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_data_pdf.pdf; sourceTree = "<group>"; };
+		6351DF132CA5106100976552 /* ic_data.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ic_data.svg; sourceTree = "<group>"; };
+		6351DF182CA5384A00976552 /* MessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCell.swift; sourceTree = "<group>"; };
 		63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
@@ -347,6 +355,7 @@
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 				634CEE812C7B19E2008CD5B8 /* BannerView.swift */,
 				63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */,
+				6351DF092CA4FF7B00976552 /* BottomTab.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -475,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */,
+				6351DF182CA5384A00976552 /* MessageListCell.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -517,6 +527,8 @@
 		63A99AFC2C05D95A0073939A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6351DF132CA5106100976552 /* ic_data.svg */,
+				6351DF112CA5105300976552 /* ic_data_pdf.pdf */,
 				63A99B002C05D9910073939A /* Barlow-Black.ttf */,
 				63A99B022C05D9910073939A /* Barlow-Bold.ttf */,
 				63A99B032C05D9910073939A /* Barlow-Italic.ttf */,
@@ -807,6 +819,8 @@
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				63A99B042C05D9910073939A /* Barlow-Regular.ttf in Resources */,
+				6351DF122CA5105300976552 /* ic_data_pdf.pdf in Resources */,
+				6351DF142CA5106100976552 /* ic_data.svg in Resources */,
 				63A99B1F2C0764DA0073939A /* passport_instructions.gif in Resources */,
 				63A99B0A2C05D9910073939A /* Barlow-Italic.ttf in Resources */,
 				635ACD002BFDFAFB0012108F /* Localizable.strings in Resources */,
@@ -860,6 +874,7 @@
 				6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */,
 				637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
+				6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */,
 				6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */,
 				63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */,
 				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
@@ -913,6 +928,7 @@
 				637067032C6087AE00A23C1E /* CreateAccountFlow.swift in Sources */,
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
+				6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
 				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
@@ -1094,6 +1110,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1161,6 +1178,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1211,7 +1229,7 @@
 				MERGEABLE_LIBRARY = NO;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.mobile.ui.SelfUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.next.ui;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
