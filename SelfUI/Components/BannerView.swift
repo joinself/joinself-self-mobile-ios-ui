@@ -16,6 +16,8 @@ public struct BannerView: View {
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
             // Subtitle/Subtitle 2
+            
+            Spacer()
             Text(message)
               .font(
                 Font.defaultBodyMedium
@@ -25,7 +27,8 @@ public struct BannerView: View {
               .foregroundColor(.white)
               .background(Color.defaultPink)
         }
-        .background(Color.white)
+        .frame(maxHeight: 40)
+        .background(Color.clear)
     }
 }
 
