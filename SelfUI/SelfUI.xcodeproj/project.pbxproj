@@ -49,6 +49,8 @@
 		637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067102C60CA4200A23C1E /* NavBackButton.swift */; };
 		6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370672B2C610C2D00A23C1E /* SelfUISdk.swift */; };
 		6370672D2C61D68500A23C1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6370672F2C61D68500A23C1E /* Localizable.strings */; };
+		637301832CA679A100BB0292 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301822CA679A100BB0292 /* AvatarView.swift */; };
+		637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */; };
 		6381C31E2BF4463A005573A0 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		6381C31F2BF4463A005573A0 /* SelfUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6381C3242BF463E1005573A0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3232BF463E1005573A0 /* CameraView.swift */; };
@@ -213,6 +215,8 @@
 		637067102C60CA4200A23C1E /* NavBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackButton.swift; sourceTree = "<group>"; };
 		6370672B2C610C2D00A23C1E /* SelfUISdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUISdk.swift; sourceTree = "<group>"; };
 		6370672E2C61D68500A23C1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		637301822CA679A100BB0292 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapperView.swift; sourceTree = "<group>"; };
 		6381C3232BF463E1005573A0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		6381C3262BF47129005573A0 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		6381C32C2BF4ABA0005573A0 /* Example2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,7 +359,7 @@
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 				634CEE812C7B19E2008CD5B8 /* BannerView.swift */,
 				63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */,
-				6351DF092CA4FF7B00976552 /* BottomTab.swift */,
+				637301862CA6C4C100BB0292 /* BottomTab */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -380,6 +384,15 @@
 				6370672F2C61D68500A23C1E /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		637301862CA6C4C100BB0292 /* BottomTab */ = {
+			isa = PBXGroup;
+			children = (
+				6351DF092CA4FF7B00976552 /* BottomTab.swift */,
+				637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */,
+			);
+			path = BottomTab;
 			sourceTree = "<group>";
 		};
 		6381C32D2BF4ABA0005573A0 /* Example2 */ = {
@@ -483,6 +496,7 @@
 		63A214392C7CB0BD008B5E4A /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
+				637301822CA679A100BB0292 /* AvatarView.swift */,
 				63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */,
 				6351DF182CA5384A00976552 /* MessageListCell.swift */,
 			);
@@ -882,6 +896,7 @@
 				634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */,
+				637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */,
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
 				63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */,
@@ -915,6 +930,7 @@
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
+				637301832CA679A100BB0292 /* AvatarView.swift in Sources */,
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
 				634878CF2BF739EB00E50DE1 /* LivenessIntroductionView.swift in Sources */,
 				63A99B342C08B9330073939A /* DocumentType.swift in Sources */,

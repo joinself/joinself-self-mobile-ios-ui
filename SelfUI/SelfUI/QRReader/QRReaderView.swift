@@ -43,6 +43,7 @@ public struct QRReaderView: View {
                         print("click.")
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .padding()
                     Spacer()
                 }
                 .padding(24)

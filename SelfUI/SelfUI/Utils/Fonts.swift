@@ -61,6 +61,7 @@ extension Font {
     static let defaultButton: Font = SelfUISdk.shared.defaultButton
     static let defaultBodyMedium: Font = SelfUISdk.shared.defaultBodyMedium
     static let defaultPin: Font = Font.custom("Barlow", size: 16).weight(.semibold)
+    static let defaultTimestamp: Font = Font.custom("Barlow", size: 12).weight(.semibold)
     static let defaultCaption: Font = Font.custom("SF Pro", size: 12).weight(.medium)
     
     /// Power by
