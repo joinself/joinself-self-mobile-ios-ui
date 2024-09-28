@@ -66,10 +66,10 @@ public struct MessageListCell: View {
 
 #Preview {
     ZStack {
-        Color.backgroundPrimary.ignoresSafeArea()
-        VStack {
+        Color.white.ignoresSafeArea()
+        List {
             MessageListCell()
             MessageListCell()
-        }
+        }.listStyle(.plain)
     }
 }

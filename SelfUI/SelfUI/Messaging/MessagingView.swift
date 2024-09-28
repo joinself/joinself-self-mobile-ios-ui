@@ -22,13 +22,9 @@ public struct MessagingView: View {
                     MessageListCell()
                 }
                 .listStyle(.plain)
-                .navigationTitle(title)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        HStack {
-                            Image("ic_back_dark", bundle: mainBundle)
-                            Spacer()
-                        }
+                        BaseNavigationBarView(title: title)
                     }
                 }
             }
