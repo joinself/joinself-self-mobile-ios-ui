@@ -113,6 +113,7 @@
 		63A99B4F2C09E9C80073939A /* PassportReadingChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */; };
 		63A99B592C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */; };
 		63A99B632C0D6CE40073939A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B622C0D6CE40073939A /* CustomTextField.swift */; };
+		63AB90792CA94E6500835D53 /* MessageComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AB90782CA94E6500835D53 /* MessageComposerView.swift */; };
 		63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */; };
 		63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */; };
 		63C03E682C528703009E385E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E672C528703009E385E /* WelcomeView.swift */; };
@@ -280,6 +281,7 @@
 		63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportReadingChipView.swift; sourceTree = "<group>"; };
 		63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZFieldsManuallyView.swift; sourceTree = "<group>"; };
 		63A99B622C0D6CE40073939A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		63AB90782CA94E6500835D53 /* MessageComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerView.swift; sourceTree = "<group>"; };
 		63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyView.swift; sourceTree = "<group>"; };
 		63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		63C03E672C528703009E385E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */,
 				6351DF182CA5384A00976552 /* MessageListCell.swift */,
 				637301912CA8005A00BB0292 /* ChatView.swift */,
+				63AB90782CA94E6500835D53 /* MessageComposerView.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
 				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
+				63AB90792CA94E6500835D53 /* MessageComposerView.swift in Sources */,
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,
 				63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */,
