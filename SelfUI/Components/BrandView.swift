@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let mainBundleId = "com.joinself.mobile.ui.SelfUI"
+let mainBundleId = "com.joinself.next.ui"
 let mainBundle = Bundle(identifier: mainBundleId)
 
 class BrandViewModel: ObservableObject {

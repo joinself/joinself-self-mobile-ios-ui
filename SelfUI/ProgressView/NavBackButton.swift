@@ -7,24 +7,23 @@
 
 import SwiftUI
 
-struct NavBackButton: View {
+public struct NavBackButton: View {
     var onClick: (() -> ())?
     private let iconName: String
     
-    init(isWhiteBackground: Bool = false, onClick: (() -> Void)? = nil) {
+    public init(isWhiteBackground: Bool = false, onClick: (() -> Void)? = nil) {
         self.onClick = onClick
         iconName = isWhiteBackground ? chevon_white : chevon_dark
     }
     
     private let chevon_dark = "ic_back_dark"
     private let chevon_white = "chevron_back_white"
-    var body: some View {
+    public var body: some View {
         HStack {
-            
             Image(iconName, bundle: mainBundle)
                 .foregroundStyle(.black)
                 .accentColor(.white)
-                .padding()
+                //.padding()
         }.onTapGesture {
             onClick?()
         }

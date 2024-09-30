@@ -10,12 +10,15 @@ import VisionKit
 
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
-    @State private var isValidQRCode: Bool = false
+    @Binding private var isValidQRCode: Bool
     @Environment(\.presentationMode) var presentationMode
     
     var onCode: ((String?) -> Void)?
-    public init(onCode: ((String?) -> Void)? = nil) {
+    var onCodeData: ((Data) -> Void)?
+    public init(isCodeValid: Binding<Bool> = .constant(false), onCode: ((String?) -> Void)? = nil, onCodeData: ((Data) -> Void)? = nil) {
         self.onCode = onCode
+        self.onCodeData = onCodeData
+        self._isValidQRCode = isCodeValid
     }
     
     @State private var scannedCode: String?
@@ -26,6 +29,10 @@ public struct QRReaderView: View {
                 self.scannedCode = $0
                 self.checkQRCode()
                 onCode?($0)
+            } didFindDataCode: { data in
+                print("QR code is data: \(data.count)")
+                isValidQRCode = true
+                onCodeData?(data)
             }
             .edgesIgnoringSafeArea(.all)
             QRCodeOverlayView(isValid: $isValidQRCode)
@@ -36,6 +43,7 @@ public struct QRReaderView: View {
                         print("click.")
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .padding()
                     Spacer()
                 }
                 .padding(24)

@@ -22,6 +22,10 @@
 		634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D42BF7619F00E50DE1 /* ButtonView.swift */; };
 		634CEE822C7B19E2008CD5B8 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE812C7B19E2008CD5B8 /* BannerView.swift */; };
 		634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */; };
+		6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351DF092CA4FF7B00976552 /* BottomTab.swift */; };
+		6351DF122CA5105300976552 /* ic_data_pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6351DF112CA5105300976552 /* ic_data_pdf.pdf */; };
+		6351DF142CA5106100976552 /* ic_data.svg in Resources */ = {isa = PBXBuildFile; fileRef = 6351DF132CA5106100976552 /* ic_data.svg */; };
+		6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351DF182CA5384A00976552 /* MessageListCell.swift */; };
 		63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */; };
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
@@ -45,6 +49,11 @@
 		637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067102C60CA4200A23C1E /* NavBackButton.swift */; };
 		6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370672B2C610C2D00A23C1E /* SelfUISdk.swift */; };
 		6370672D2C61D68500A23C1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6370672F2C61D68500A23C1E /* Localizable.strings */; };
+		637301832CA679A100BB0292 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301822CA679A100BB0292 /* AvatarView.swift */; };
+		637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */; };
+		6373018C2CA7F20A00BB0292 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373018B2CA7F20A00BB0292 /* NavigationTitleView.swift */; };
+		6373018E2CA7F3D500BB0292 /* BaseNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373018D2CA7F3D500BB0292 /* BaseNavigationBarView.swift */; };
+		637301922CA8005A00BB0292 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301912CA8005A00BB0292 /* ChatView.swift */; };
 		6381C31E2BF4463A005573A0 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		6381C31F2BF4463A005573A0 /* SelfUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6381C3242BF463E1005573A0 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3232BF463E1005573A0 /* CameraView.swift */; };
@@ -104,6 +113,7 @@
 		63A99B4F2C09E9C80073939A /* PassportReadingChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */; };
 		63A99B592C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */; };
 		63A99B632C0D6CE40073939A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B622C0D6CE40073939A /* CustomTextField.swift */; };
+		63AB90792CA94E6500835D53 /* MessageComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AB90782CA94E6500835D53 /* MessageComposerView.swift */; };
 		63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */; };
 		63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */; };
 		63C03E682C528703009E385E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E672C528703009E385E /* WelcomeView.swift */; };
@@ -181,6 +191,10 @@
 		634878D42BF7619F00E50DE1 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		634CEE812C7B19E2008CD5B8 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanLoginQRCodeView.swift; sourceTree = "<group>"; };
+		6351DF092CA4FF7B00976552 /* BottomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTab.swift; sourceTree = "<group>"; };
+		6351DF112CA5105300976552 /* ic_data_pdf.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ic_data_pdf.pdf; sourceTree = "<group>"; };
+		6351DF132CA5106100976552 /* ic_data.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ic_data.svg; sourceTree = "<group>"; };
+		6351DF182CA5384A00976552 /* MessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCell.swift; sourceTree = "<group>"; };
 		63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
@@ -205,6 +219,11 @@
 		637067102C60CA4200A23C1E /* NavBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackButton.swift; sourceTree = "<group>"; };
 		6370672B2C610C2D00A23C1E /* SelfUISdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUISdk.swift; sourceTree = "<group>"; };
 		6370672E2C61D68500A23C1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		637301822CA679A100BB0292 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapperView.swift; sourceTree = "<group>"; };
+		6373018B2CA7F20A00BB0292 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
+		6373018D2CA7F3D500BB0292 /* BaseNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationBarView.swift; sourceTree = "<group>"; };
+		637301912CA8005A00BB0292 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		6381C3232BF463E1005573A0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		6381C3262BF47129005573A0 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
 		6381C32C2BF4ABA0005573A0 /* Example2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +281,7 @@
 		63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportReadingChipView.swift; sourceTree = "<group>"; };
 		63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZFieldsManuallyView.swift; sourceTree = "<group>"; };
 		63A99B622C0D6CE40073939A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		63AB90782CA94E6500835D53 /* MessageComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerView.swift; sourceTree = "<group>"; };
 		63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyView.swift; sourceTree = "<group>"; };
 		63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		63C03E672C528703009E385E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -347,6 +367,9 @@
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 				634CEE812C7B19E2008CD5B8 /* BannerView.swift */,
 				63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */,
+				6373018B2CA7F20A00BB0292 /* NavigationTitleView.swift */,
+				6373018D2CA7F3D500BB0292 /* BaseNavigationBarView.swift */,
+				637301862CA6C4C100BB0292 /* BottomTab */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -371,6 +394,15 @@
 				6370672F2C61D68500A23C1E /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		637301862CA6C4C100BB0292 /* BottomTab */ = {
+			isa = PBXGroup;
+			children = (
+				6351DF092CA4FF7B00976552 /* BottomTab.swift */,
+				637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */,
+			);
+			path = BottomTab;
 			sourceTree = "<group>";
 		};
 		6381C32D2BF4ABA0005573A0 /* Example2 */ = {
@@ -474,7 +506,11 @@
 		63A214392C7CB0BD008B5E4A /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
+				637301822CA679A100BB0292 /* AvatarView.swift */,
 				63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */,
+				6351DF182CA5384A00976552 /* MessageListCell.swift */,
+				637301912CA8005A00BB0292 /* ChatView.swift */,
+				63AB90782CA94E6500835D53 /* MessageComposerView.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -517,6 +553,8 @@
 		63A99AFC2C05D95A0073939A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6351DF132CA5106100976552 /* ic_data.svg */,
+				6351DF112CA5105300976552 /* ic_data_pdf.pdf */,
 				63A99B002C05D9910073939A /* Barlow-Black.ttf */,
 				63A99B022C05D9910073939A /* Barlow-Bold.ttf */,
 				63A99B032C05D9910073939A /* Barlow-Italic.ttf */,
@@ -807,6 +845,8 @@
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				63A99B042C05D9910073939A /* Barlow-Regular.ttf in Resources */,
+				6351DF122CA5105300976552 /* ic_data_pdf.pdf in Resources */,
+				6351DF142CA5106100976552 /* ic_data.svg in Resources */,
 				63A99B1F2C0764DA0073939A /* passport_instructions.gif in Resources */,
 				63A99B0A2C05D9910073939A /* Barlow-Italic.ttf in Resources */,
 				635ACD002BFDFAFB0012108F /* Localizable.strings in Resources */,
@@ -856,10 +896,12 @@
 				634CEE822C7B19E2008CD5B8 /* BannerView.swift in Sources */,
 				63A99B4D2C09C3930073939A /* PassportStartScanView.swift in Sources */,
 				6370670B2C60AA1B00A23C1E /* BaseView.swift in Sources */,
+				6373018C2CA7F20A00BB0292 /* NavigationTitleView.swift in Sources */,
 				6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */,
 				6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */,
 				637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
+				6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */,
 				6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */,
 				63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */,
 				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
@@ -867,6 +909,7 @@
 				634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */,
+				637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */,
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
 				63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */,
@@ -900,6 +943,7 @@
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
+				637301832CA679A100BB0292 /* AvatarView.swift in Sources */,
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
 				634878CF2BF739EB00E50DE1 /* LivenessIntroductionView.swift in Sources */,
 				63A99B342C08B9330073939A /* DocumentType.swift in Sources */,
@@ -913,9 +957,11 @@
 				637067032C6087AE00A23C1E /* CreateAccountFlow.swift in Sources */,
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
+				6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
 				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
+				63AB90792CA94E6500835D53 /* MessageComposerView.swift in Sources */,
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,
 				63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */,
@@ -928,9 +974,11 @@
 				6329EC882C5C9DB4002D3779 /* CustomAlert.swift in Sources */,
 				63A99B142C071F760073939A /* DocumentSorryView.swift in Sources */,
 				63C03E682C528703009E385E /* WelcomeView.swift in Sources */,
+				637301922CA8005A00BB0292 /* ChatView.swift in Sources */,
 				63A2143B2C7CB0D3008B5E4A /* MessagingView.swift in Sources */,
 				63A99B4F2C09E9C80073939A /* PassportReadingChipView.swift in Sources */,
 				6329EC8A2C5CC6C7002D3779 /* EmailVerificationFailedView.swift in Sources */,
+				6373018E2CA7F3D500BB0292 /* BaseNavigationBarView.swift in Sources */,
 				63A99B592C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift in Sources */,
 				6396B54E2C777159008464FE /* DevOnboardingFlow.swift in Sources */,
 				637067072C60894000A23C1E /* OutlinedTextField.swift in Sources */,
@@ -1094,6 +1142,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1161,6 +1210,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1188,10 +1238,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = B233VZ3W3Z;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1211,8 +1261,9 @@
 				MERGEABLE_LIBRARY = NO;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.mobile.ui.SelfUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.next.ui;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1225,10 +1276,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = B233VZ3W3Z;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = B233VZ3W3Z;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1248,8 +1302,9 @@
 				MERGEABLE_LIBRARY = NO;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.mobile.ui.SelfUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joinself.next.ui;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

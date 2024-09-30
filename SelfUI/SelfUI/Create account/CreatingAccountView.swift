@@ -45,9 +45,6 @@ struct CreatingAccountView: View {
                     LoadingDotsView()
                     Spacer()
                 }
-                
-                Spacer()
-                
                 Spacer()
                 VStack(spacing: 12) {
                     ButtonView(title: "button_turn_on_notifications".localized) {
@@ -61,8 +58,6 @@ struct CreatingAccountView: View {
             }
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            Spacer()
         }
         .background(.white)
         .navigationBarBackButtonHidden(true)

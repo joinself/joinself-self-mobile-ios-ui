@@ -14,17 +14,21 @@ public struct BannerView: View {
     }
     
     public var body: some View {
-        HStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 0) {
             // Subtitle/Subtitle 2
+            
+            Spacer()
             Text(message)
               .font(
                 Font.defaultBodyMedium
               )
-              .foregroundColor(Color(red: 0.05, green: 0.11, blue: 0.26))
+              .padding()
+              .frame(maxWidth: .infinity, maxHeight: 24)
+              .foregroundColor(.white)
+              .background(Color.defaultPink)
         }
-        .padding(10)
-        .frame(width: 393, height: 24, alignment: .center)
-        .background(Color(red: 0.98, green: 0.13, blue: 0.57))
+        .frame(maxHeight: 40)
+        .background(Color.clear)
     }
 }
 

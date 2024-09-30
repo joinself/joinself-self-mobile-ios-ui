@@ -53,6 +53,7 @@ extension Font {
     }
     
     static let defaultH3: Font = Font.custom("Barlow", size: 36)
+    static let defaultNavigationTitle: Font = Font.custom("Barlow", size: 34).weight(.medium)
     static let defaultTitle: Font = SelfUISdk.shared.defaultTitle
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
     static let defaultBodyLarge: Font = SelfUISdk.shared.defaultBodyLarge
@@ -61,6 +62,7 @@ extension Font {
     static let defaultButton: Font = SelfUISdk.shared.defaultButton
     static let defaultBodyMedium: Font = SelfUISdk.shared.defaultBodyMedium
     static let defaultPin: Font = Font.custom("Barlow", size: 16).weight(.semibold)
+    static let defaultTimestamp: Font = Font.custom("Barlow", size: 12).weight(.semibold)
     static let defaultCaption: Font = Font.custom("SF Pro", size: 12).weight(.medium)
     
     /// Power by

@@ -7,15 +7,31 @@
 
 import SwiftUI
 
-struct MessagingView: View {
-    var body: some View {
+public struct MessagingView: View {
+    let title: String
+    
+    init(title: String = "") {
+        self.title = title
+    }
+    
+    public var body: some View {
         NavigationStack {
-            Text("Messaging View")
-                .navigationTitle("tab_messaging".localized)
+            VStack {
+                List {
+                    MessageListCell()
+                    MessageListCell()
+                }
+                .listStyle(.plain)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        BaseNavigationBarView(title: title)
+                    }
+                }
+            }
         }
     }
 }
 
 #Preview {
-    MessagingView()
+    MessagingView(title: "Messages")
 }
