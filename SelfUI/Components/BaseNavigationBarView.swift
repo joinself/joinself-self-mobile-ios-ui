@@ -9,8 +9,10 @@ import SwiftUI
 
 public struct BaseNavigationBarView: View {
     let title: String
-    public init(title: String) {
+    var onNavigateBack: (() -> ())?
+    public init(title: String, onNavigateBack: (() -> ())? = nil) {
         self.title = title
+        self.onNavigateBack = onNavigateBack
     }
     
     public var body: some View {
@@ -19,7 +21,7 @@ public struct BaseNavigationBarView: View {
                 VStack {
                     HStack {
                         NavBackButton {
-                            
+                            onNavigateBack?()
                         }
                         Spacer()
                     }

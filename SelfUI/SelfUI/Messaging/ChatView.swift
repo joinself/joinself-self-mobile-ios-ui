@@ -7,59 +7,76 @@
 import SwiftUI
 
 public struct ChatView: View {
-    @State private var messages: [Message] = []
+    @State private var messages: [Message] = [
+        Message(id: UUID(), text: "Hello", isUser: true),
+        Message(id: UUID(), text: "Hello", isUser: false)
+    ]
     @State private var newMessage: String = ""
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    public init () {
-        
+    @Environment(\.presentationMode) var presentationMode
+    let conversationName: String
+    public init (conversationName: String) {
+        self.conversationName = conversationName
     }
     
     public var body: some View {
-        VStack {
-            List(messages) { message in
-                HStack {
-                    if message.isUser {
-                        Spacer()
-                        Text(message.text)
+        ZStack {
+            Color.white.ignoresSafeArea()
+            VStack {
+                BaseNavigationBarView(title: conversationName, onNavigateBack: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+                    .padding()
+                List(messages) { message in
+                    HStack {
+                        if message.isUser {
+                            Spacer()
+                            Text(message.text)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                        } else {
+                            Text(message.text)
+                                .padding()
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(10)
+                            Spacer()
+                        }
+                    }
+                    .background(.white)
+                    .listRowInsets(EdgeInsets())
+                }
+                .padding()
+                .background(.white)
+                .listStyle(PlainListStyle())
+                
+                /*HStack {
+                    Button(action: {
+                        showingImagePicker = true
+                    }) {
+                        Image(systemName: "photo")
+                            .font(.system(size: 24))
+                    }
+                    .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                        ImagePicker(image: $inputImage)
+                    }
+                    
+                    TextField("Type a message", text: $newMessage)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+                    Button(action: sendMessage) {
+                        Text("Send")
                             .padding()
                             .background(Color.blue)
                             .cornerRadius(10)
                             .foregroundColor(.white)
-                    } else {
-                        Text(message.text)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                        Spacer()
                     }
                 }
+                .padding()*/
+                MessageComposerView()
             }
-            .listStyle(PlainListStyle())
-            
-            HStack {
-                Button(action: {
-                    showingImagePicker = true
-                }) {
-                    Image(systemName: "photo")
-                        .font(.system(size: 24))
-                }
-                .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                    ImagePicker(image: $inputImage)
-                }
-                
-                TextField("Type a message", text: $newMessage)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button(action: sendMessage) {
-                    Text("Send")
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .foregroundColor(.white)
-                }
-            }
-            .padding()
         }
     }
     
@@ -117,6 +134,10 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    ChatView()
+    ZStack {
+        Color.black.ignoresSafeArea()
+        ChatView(conversationName: "Conversation")
+    }
+    
 }
 
