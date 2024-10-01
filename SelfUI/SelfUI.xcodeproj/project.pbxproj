@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		631D10E92CABF91E00DA1376 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D10E82CABF91E00DA1376 /* KeyboardResponder.swift */; };
 		6320F4F52BFB307100C35808 /* LivenessCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F42BFB307100C35808 /* LivenessCameraView.swift */; };
 		6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F72BFB57DE00C35808 /* TipsSelfie.swift */; };
 		6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F92BFC42EC00C35808 /* LivenessOverlayViewModel.swift */; };
@@ -176,6 +177,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		631D10E82CABF91E00DA1376 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		6320F4F42BFB307100C35808 /* LivenessCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessCameraView.swift; sourceTree = "<group>"; };
 		6320F4F72BFB57DE00C35808 /* TipsSelfie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsSelfie.swift; sourceTree = "<group>"; };
 		6320F4F92BFC42EC00C35808 /* LivenessOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessOverlayViewModel.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */,
 				6351DF182CA5384A00976552 /* MessageListCell.swift */,
 				637301912CA8005A00BB0292 /* ChatView.swift */,
+				631D10E82CABF91E00DA1376 /* KeyboardResponder.swift */,
 				63AB90782CA94E6500835D53 /* MessageComposerView.swift */,
 			);
 			path = Messaging;
@@ -949,6 +952,7 @@
 				63A99B342C08B9330073939A /* DocumentType.swift in Sources */,
 				63A214402C7CB203008B5E4A /* ScanView.swift in Sources */,
 				63A99AF92C05D8370073939A /* OutlinedButton.swift in Sources */,
+				631D10E92CABF91E00DA1376 /* KeyboardResponder.swift in Sources */,
 				635ACCFC2BFDF0080012108F /* SteppedProgressViewModel.swift in Sources */,
 				632A1DC52BF76B4900959663 /* CameraOvelayView.swift in Sources */,
 				63D66AE72C59E4360094E55D /* EnterEmailView.swift in Sources */,

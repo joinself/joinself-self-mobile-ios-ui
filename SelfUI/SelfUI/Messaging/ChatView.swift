@@ -31,21 +31,22 @@ public struct ChatView: View {
                 })
                 List(messages) { message in
                     HStack {
-                        if message.isUser {
-                            Spacer()
-                            Text(message.text)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
-                        } else {
-                            Text(message.text)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                            Spacer()
-                        }
+//                        if message.isUser {
+//                            Spacer()
+//                            Text(message.text)
+//                                .padding()
+//                                .background(Color.blue)
+//                                .cornerRadius(10)
+//                                .foregroundColor(.white)
+//                        } else {
+//                            Text(message.text)
+//                                .padding()
+//                                .background(Color.gray.opacity(0.2))
+//                                .cornerRadius(10)
+//                            Spacer()
+//                        }
                     }
+                    .listRowBackground(Color.white)
                     .background(.white)
                     .listRowInsets(EdgeInsets())
                 }
