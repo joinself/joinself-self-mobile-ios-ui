@@ -18,7 +18,8 @@ public struct BaseNavigationBarView: View {
     public var body: some View {
         VStack {
             HStack {
-                VStack {
+                VStack (spacing: 0){
+                    Spacer()
                     HStack {
                         NavBackButton {
                             onNavigateBack?()
@@ -34,9 +35,16 @@ public struct BaseNavigationBarView: View {
                 Spacer()
             }
         }
+        .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0))
+        .background(.white)
+        .frame(maxHeight: 110, alignment: .topLeading)
     }
 }
 
 #Preview {
-    BaseNavigationBarView(title: "Messages")
+    ZStack {
+        Color.gray.ignoresSafeArea()
+        BaseNavigationBarView(title: "Messages")
+    }
+    
 }

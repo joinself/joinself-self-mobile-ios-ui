@@ -17,17 +17,19 @@ public struct MessagingView: View {
     public var body: some View {
         NavigationStack {
             VStack {
+                BaseNavigationBarView(title: title)
+                    .padding()
                 List {
                     MessageListCell()
-                    MessageListCell()
+                        .listRowInsets(.none)
                 }
                 .listStyle(.plain)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        BaseNavigationBarView(title: title)
-                    }
-                }
             }
+//            .toolbar {
+//                ToolbarItem(placement: .principal) {
+//                    BaseNavigationBarView(title: title)
+//                }
+//            }
         }
     }
 }
