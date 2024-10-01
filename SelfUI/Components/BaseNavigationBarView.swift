@@ -18,7 +18,7 @@ public struct BaseNavigationBarView: View {
     public var body: some View {
         VStack {
             HStack {
-                VStack (spacing: 0){
+                VStack (spacing: 4){
                     Spacer()
                     HStack {
                         NavBackButton {

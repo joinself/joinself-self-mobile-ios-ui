@@ -15,9 +15,11 @@ public struct ChatView: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
-    let conversationName: String
-    public init (conversationName: String) {
-        self.conversationName = conversationName
+    @Binding var conversationName: String
+    public init (conversationName: Binding<String>) {
+        self._conversationName = conversationName
+        
+        print("ChatView: \(conversationName)")
     }
     
     public var body: some View {
@@ -27,7 +29,6 @@ public struct ChatView: View {
                 BaseNavigationBarView(title: conversationName, onNavigateBack: {
                     presentationMode.wrappedValue.dismiss()
                 })
-                    .padding()
                 List(messages) { message in
                     HStack {
                         if message.isUser {
@@ -48,6 +49,7 @@ public struct ChatView: View {
                     .background(.white)
                     .listRowInsets(EdgeInsets())
                 }
+                .scrollDismissesKeyboard(.interactively)
                 .padding()
                 .background(.white)
                 .listStyle(PlainListStyle())
@@ -76,7 +78,8 @@ public struct ChatView: View {
                 }
                 .padding()*/
                 MessageComposerView()
-            }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
+            }.ignoresSafeArea()
         }
     }
     
@@ -136,7 +139,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()
-        ChatView(conversationName: "Conversation")
+        ChatView(conversationName: .constant("User"))
     }
     
 }
