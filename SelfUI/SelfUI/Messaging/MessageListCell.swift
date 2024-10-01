@@ -10,28 +10,38 @@ import SwiftUI
 public struct MessageListCell: View {
     
     private let avatarSize: CGFloat = 48
+    let title: String
+    let message: String
+    let timestamp: String
+    let badge: String
     
-    public init () {
-        
+    public init (title: String = "",
+                 message: String = "",
+                 timestamp: String = "",
+                 badge: String = "" ) {
+        self.title = title
+        self.message = message
+        self.timestamp = timestamp
+        self.badge = badge
     }
     
     public var body: some View {
         HStack (spacing: 10) {
-            AvatarView(imageName: "avatar_path", userName: "User")
+            AvatarView(imageName: "avatar_path", userName: title)
                 .frame(width: avatarSize, height: avatarSize)
             Spacer()
             HStack {
                 VStack (alignment: .leading)  {
                     // Heading/H5
-                    Text("Customer App")
+                    Text(title)
                         .font(
                             Font.custom("Barlow", size: 21)
                                 .weight(.bold)
                         )
                         .foregroundColor(Color(red: 0.05, green: 0.11, blue: 0.26))
-                        .frame(width: .infinity)
+                        //.frame(width: .infinity)
                     // Subtitle/Subtitle 1
-                    Text("Fact request")
+                    Text(message)
                         .font(Font.custom("Barlow", size: 17))
                         .foregroundColor(Color(red: 0.38, green: 0.42, blue: 0.48))
                 }
@@ -42,7 +52,7 @@ public struct MessageListCell: View {
             Spacer()
             VStack {
                 // Paragraph/Caption
-                Text("14:28")
+                Text(timestamp)
                     .font(
                         Font.custom("SF Pro", size: 12)
                             .weight(.medium)
@@ -50,13 +60,16 @@ public struct MessageListCell: View {
                     .kerning(0.12)
                     .foregroundColor(Color(red: 0.65, green: 0.67, blue: 0.71))
                 
-                Circle()
-                    .foregroundStyle(Color.defaultGray)
-                    .overlay(content: {
-                        Text("10")
-                            .font(.defaultCaption)
-                    })
-                    .frame(width: 20, height: 20)
+                if !badge.isEmpty {
+                    Circle()
+                        .foregroundStyle(Color.defaultGray)
+                        .overlay(content: {
+                            Text(badge)
+                                .font(.defaultCaption)
+                        })
+                        .frame(width: 20, height: 20)
+                }
+                
             }
         }
 //        .padding()
@@ -68,8 +81,8 @@ public struct MessageListCell: View {
     ZStack {
         Color.white.ignoresSafeArea()
         List {
-            MessageListCell()
-            MessageListCell()
+            MessageListCell(title: "Portal", message: "Last message", timestamp: "Yesterday", badge: "23")
+            MessageListCell(title: "Custom App", message: "Last message", timestamp: "Now", badge: "")
         }.listStyle(.plain)
     }
 }
