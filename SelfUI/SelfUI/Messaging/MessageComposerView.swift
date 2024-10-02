@@ -10,24 +10,32 @@ import SwiftUI
 struct MessageComposerView: View {
     @State private var showAttachmentView = false
     @State private var text: String = ""
+    private let lineLimit = 3
     
     var onClick: (() -> Void)?
-    init(onClick: (() -> Void)? = nil) {
+    var onText: ((String) -> Void)?
+    init(onClick: (() -> Void)? = nil,
+         onText: ((String) -> Void)? = nil) {
         self.onClick = onClick
+        self.onText = onText
     }
     
     var body: some View {
         VStack {
             HStack {
-                TextField("Type a message", text: $text)
-                    .padding(.leading, 30) // Add padding to make space for the icon
+                TextField("", text: $text, prompt: Text("Type a message").foregroundColor(.defaultDark), axis: .vertical)
+                    .lineLimit(1...5)
+                    .font(.defaultBody)
+                    .tint(.defaultDark)
+                    .foregroundColor(.textPrimary)
+                    .padding(.leading, 36) // Add padding to make space for the icon
                     .overlay(
                         HStack {
                             Button(action: {
                                 print("Show attachemnts.")
                                 showAttachmentView.toggle()
                             }, label: {
-                                Image(systemName: "paperclip")
+                                Image("ic_paperclip", bundle: mainBundle)
                                     .foregroundColor(.gray)
                                     .padding(.leading, 8)
                             })
@@ -35,13 +43,14 @@ struct MessageComposerView: View {
                         }
                     )
                     .padding(8)
-                    .background(Color(.systemGray6))
+                    .background(Color.defaultGrayBackground)
                     .cornerRadius(8)
                     .padding()
                 
                 if !text.isEmpty {
                     Button(action: {
-                        // TODO: Send button clicked
+                        onText?(text)
+                        text = ""
                     }) {
                         Image(systemName: "paperplane")
                     }
@@ -91,5 +100,10 @@ struct MessageComposerView: View {
 }
 
 #Preview {
-    MessageComposerView()
+    ZStack {
+        Color.white.ignoresSafeArea()
+        MessageComposerView()
+            .background(.red)
+    }
+    
 }

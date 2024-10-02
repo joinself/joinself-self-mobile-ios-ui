@@ -12,6 +12,7 @@ extension Color {
     static let defaultGreen: Color = Color(red: 0, green: 0.64, blue: 0.43)
     static let defaultPink: Color = Color(red: 0.98, green: 0.13, blue: 0.57)
     static let defaultGray: Color = Color(red: 0.88, green: 0.88, blue: 0.88)
+    static let defaultGrayBackground: Color = Color(red: 0.98, green: 0.98, blue: 0.98)
     static let defaultDark: Color = Color(red: 0.54, green: 0.54, blue: 0.54)
     static let defaultBlack: Color = Color.black
     static let defaultOverlay: Color = .defaultDark.opacity(0.3)

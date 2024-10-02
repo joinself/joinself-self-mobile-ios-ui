@@ -16,10 +16,12 @@ public struct ChatView: View {
     @State private var inputImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
     @Binding var conversationName: String
-    public init (conversationName: Binding<String>) {
+    @StateObject private var keyboardResponder = KeyboardResponder()
+    var onText: ((String) -> Void)?
+    
+    public init (conversationName: Binding<String>, onText: ((String) -> Void)? = nil) {
         self._conversationName = conversationName
-        
-        print("ChatView: \(conversationName)")
+        self.onText = onText
     }
     
     public var body: some View {
@@ -78,8 +80,8 @@ public struct ChatView: View {
                     }
                 }
                 .padding()*/
-                MessageComposerView()
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
+                MessageComposerView(onText: onText)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.ignoresSafeArea()
         }
     }
