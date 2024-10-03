@@ -5,12 +5,35 @@
 //  Created by Long Pham on 28/9/24.
 //
 import SwiftUI
+import Combine
+
+public struct Message: Identifiable {
+    public let id: UUID
+    let text: String
+    let isSender: Bool
+    
+    public init(id: UUID, text: String, isSender: Bool) {
+        self.id = id
+        self.text = text
+        self.isSender = isSender
+    }
+}
+
+public class ChatObservableObject: ObservableObject {
+    @Published var messages: [Message] = []
+    public init(messages: [Message]) {
+        self.messages = messages
+    }
+    
+    public func updateMessages(newMessages: [Message]) {
+        self.messages = newMessages
+    }
+}
+
 
 public struct ChatView: View {
-    @State private var messages: [Message] = [
-        Message(id: UUID(), text: "Hello", isUser: true),
-        Message(id: UUID(), text: "Hello", isUser: false)
-    ]
+    @ObservedObject var chatObservableObject: ChatObservableObject
+    
     @State private var newMessage: String = ""
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
@@ -19,9 +42,10 @@ public struct ChatView: View {
     @StateObject private var keyboardResponder = KeyboardResponder()
     var onText: ((String) -> Void)?
     
-    public init (conversationName: Binding<String>, onText: ((String) -> Void)? = nil) {
+    public init (conversationName: Binding<String>, chatObservableObject: ChatObservableObject, onText: ((String) -> Void)? = nil) {
         self._conversationName = conversationName
         self.onText = onText
+        self.chatObservableObject = chatObservableObject
     }
     
     public var body: some View {
@@ -31,31 +55,35 @@ public struct ChatView: View {
                 BaseNavigationBarView(title: conversationName, onNavigateBack: {
                     presentationMode.wrappedValue.dismiss()
                 })
-                List(messages) { message in
-                    HStack {
-//                        if message.isUser {
-//                            Spacer()
-//                            Text(message.text)
-//                                .padding()
-//                                .background(Color.blue)
-//                                .cornerRadius(10)
-//                                .foregroundColor(.white)
-//                        } else {
-//                            Text(message.text)
-//                                .padding()
-//                                .background(Color.gray.opacity(0.2))
-//                                .cornerRadius(10)
-//                            Spacer()
-//                        }
+                if chatObservableObject.messages.isEmpty {
+                    Spacer()// Empty messages
+                } else {
+                    List(chatObservableObject.messages) { message in
+                        HStack {
+                            if message.isSender {
+                                Spacer()
+                                Text(message.text)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(10)
+                                    .foregroundColor(.white)
+                            } else {
+                                Text(message.text)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.2))
+                                    .cornerRadius(10)
+                                Spacer()
+                            }
+                        }
+                        .listRowBackground(Color.white)
+                        .background(.white)
+                        .listRowInsets(EdgeInsets())
                     }
-                    .listRowBackground(Color.white)
+                    .scrollDismissesKeyboard(.interactively)
+                    .padding()
                     .background(.white)
-                    .listRowInsets(EdgeInsets())
+                    .listStyle(PlainListStyle())
                 }
-                .scrollDismissesKeyboard(.interactively)
-                .padding()
-                .background(.white)
-                .listStyle(PlainListStyle())
                 
                 /*HStack {
                     Button(action: {
@@ -86,25 +114,12 @@ public struct ChatView: View {
         }
     }
     
-    func sendMessage() {
-        guard !newMessage.isEmpty else { return }
-        let message = Message(id: UUID(), text: newMessage, isUser: true)
-        messages.append(message)
-        newMessage = ""
-    }
-    
     func loadImage() {
         guard let inputImage = inputImage else { return }
         // Handle the image attachment here
-        let message = Message(id: UUID(), text: "Image attached", isUser: true)
-        messages.append(message)
+        let message = Message(id: UUID(), text: "Image attached", isSender: true)
+        //messages.append(message)
     }
-}
-
-struct Message: Identifiable {
-    let id: UUID
-    let text: String
-    let isUser: Bool
 }
 
 struct ImagePicker: UIViewControllerRepresentable {
@@ -142,7 +157,10 @@ struct ImagePicker: UIViewControllerRepresentable {
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()
-        ChatView(conversationName: .constant("User"))
+        ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
+            Message(id: UUID(), text: "Hi", isSender: true),
+            Message(id: UUID(), text: "Hi", isSender: false)
+        ]))
     }
     
 }
