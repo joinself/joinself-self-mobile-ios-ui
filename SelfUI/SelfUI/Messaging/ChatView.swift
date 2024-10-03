@@ -59,22 +59,7 @@ public struct ChatView: View {
                     Spacer()// Empty messages
                 } else {
                     List(chatObservableObject.messages) { message in
-                        HStack (spacing: 8) {
-                            if message.isSender {
-                                Spacer()
-                                Text(message.text)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .cornerRadius(10)
-                                    .foregroundColor(.white)
-                            } else {
-                                Text(message.text)
-                                    .padding()
-                                    .background(Color.gray.opacity(0.2))
-                                    .cornerRadius(10)
-                                Spacer()
-                            }
-                        }
+                        MessageTextCell(message: message.text, isSender: message.isSender)
                         .listRowBackground(Color.white)
                         .background(.white)
                         .listRowSeparator(.hidden)

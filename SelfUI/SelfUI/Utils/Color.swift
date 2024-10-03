@@ -11,6 +11,8 @@ import SwiftUI
 extension Color {
     static let defaultGreen: Color = Color(red: 0, green: 0.64, blue: 0.43)
     static let defaultPink: Color = Color(red: 0.98, green: 0.13, blue: 0.57)
+    
+    /// Message Cell
     static let defaultGray: Color = Color(red: 0.88, green: 0.88, blue: 0.88)
     static let defaultGrayBackground: Color = Color(red: 0.98, green: 0.98, blue: 0.98)
     static let defaultDark: Color = Color(red: 0.54, green: 0.54, blue: 0.54)
@@ -33,6 +35,7 @@ extension Color {
     
     
     static let defaultBlue: Color = Color(red: 0.22, green: 0.58, blue: 1)
+    static let defaultLightBlue: Color = Color(red: 0.72, green: 0.85, blue: 1)
     
     /// Quaternary #CC8500
     static let defaultOrange: Color = Color(red: 1, green: 0.75, blue: 0.28)
