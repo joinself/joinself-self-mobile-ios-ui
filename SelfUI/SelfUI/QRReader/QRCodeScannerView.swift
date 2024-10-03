@@ -22,10 +22,11 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 print("metadataObjects: \(readableObject.type) not string value")
                 print("metadataObjects descriptor: \(readableObject.descriptor?.description)")
                 
-                if let qrCodeBytes = readableObject.binaryValue {
-                    parent.didFindDataCode(qrCodeBytes)
-                } else if let stringValue = readableObject.stringValue {
+                if let stringValue = readableObject.stringValue {
                     parent.didFindCode(stringValue)
+                }
+                else if let qrCodeBytes = readableObject.binaryValue {
+                    parent.didFindDataCode(qrCodeBytes)
                 }
 //                guard let stringValue = readableObject.stringValue else {
 //                    if let descriptor = readableObject.descriptor as? CIQRCodeDescriptor {
