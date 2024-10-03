@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VisionKit
 
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
@@ -34,8 +33,9 @@ public struct QRReaderView: View {
                 isValidQRCode = true
                 onCodeData?(data)
             }
-            .edgesIgnoringSafeArea(.all)
+            .ignoresSafeArea()
             QRCodeOverlayView(isValid: $isValidQRCode)
+                .ignoresSafeArea()
             
             VStack {
                 HStack {
