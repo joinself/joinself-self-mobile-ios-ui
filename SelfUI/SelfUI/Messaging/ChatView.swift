@@ -59,7 +59,7 @@ public struct ChatView: View {
                     Spacer()// Empty messages
                 } else {
                     List(chatObservableObject.messages) { message in
-                        HStack {
+                        HStack (spacing: 8) {
                             if message.isSender {
                                 Spacer()
                                 Text(message.text)
@@ -77,7 +77,8 @@ public struct ChatView: View {
                         }
                         .listRowBackground(Color.white)
                         .background(.white)
-                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(.none)
                     }
                     .scrollDismissesKeyboard(.interactively)
                     .padding()
@@ -159,7 +160,12 @@ struct ImagePicker: UIViewControllerRepresentable {
         Color.black.ignoresSafeArea()
         ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
             Message(id: UUID(), text: "Hi", isSender: true),
-            Message(id: UUID(), text: "Hi", isSender: false)
+            Message(id: UUID(), text: "Hi", isSender: true),
+            Message(id: UUID(), text: "Hello! How are you?", isSender: true),
+            
+            Message(id: UUID(), text: "Hi", isSender: false),
+            Message(id: UUID(), text: "Hi", isSender: false),
+            Message(id: UUID(), text: "Hello! How are you?", isSender: false)
         ]))
     }
     
