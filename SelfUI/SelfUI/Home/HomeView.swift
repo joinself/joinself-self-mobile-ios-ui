@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             TabView {
-                MessagingView()
+                MessagingView(title: "Messages")
                     .tabItem {
                         Label("tab_messaging".localized, systemImage: "plus.message")
                     }
@@ -41,9 +41,10 @@ struct HomeView: View {
                 BannerView(message: "No internet connection")
                 Spacer()
             }
+            .hidden()
             .transition(.move(edge: .top))
             .animation(.easeInOut, value: true)
-        }
+        }.ignoresSafeArea()
     }
 }
 

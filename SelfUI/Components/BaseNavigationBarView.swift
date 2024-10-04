@@ -27,10 +27,7 @@ public struct BaseNavigationBarView: View {
                         Spacer()
                     }
                     
-                    HStack {
-                        NavigationTitleView(title: title)
-                        Spacer()
-                    }
+                    NavigationTitleView(title: title)
                 }
                 Spacer()
             }
