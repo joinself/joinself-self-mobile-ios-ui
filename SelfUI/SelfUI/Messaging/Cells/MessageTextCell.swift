@@ -11,6 +11,7 @@ struct Constants {
     static let Corner2: CGFloat = 16
     static let Corner3: CGFloat = 12
     static let Corner4: CGFloat = 4
+    static let AvatarWidth: CGFloat = 100
 }
 
 struct MessageTextCell: View {
