@@ -7,25 +7,13 @@
 import SwiftUI
 import Combine
 
-public struct Message: Identifiable {
-    public let id: UUID
-    let text: String
-    let isSender: Bool
-    
-    public init(id: UUID, text: String, isSender: Bool) {
-        self.id = id
-        self.text = text
-        self.isSender = isSender
-    }
-}
-
 public class ChatObservableObject: ObservableObject {
-    @Published var messages: [Message] = []
-    public init(messages: [Message]) {
+    @Published var messages: [MessageDTO] = []
+    public init(messages: [MessageDTO]) {
         self.messages = messages
     }
     
-    public func updateMessages(newMessages: [Message]) {
+    public func updateMessages(newMessages: [MessageDTO]) {
         self.messages = newMessages
     }
 }
@@ -59,7 +47,7 @@ public struct ChatView: View {
                     Spacer()// Empty messages
                 } else {
                     List(chatObservableObject.messages) { message in
-                        MessageTextCell(message: message.text, isSender: message.isSender)
+                        MessageTextCell(message: message.text, timestamp: message.timestamp, isSender: message.isSender)
                         .listRowBackground(Color.white)
                         .background(.white)
                         .listRowSeparator(.hidden)
@@ -103,7 +91,7 @@ public struct ChatView: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         // Handle the image attachment here
-        let message = Message(id: UUID(), text: "Image attached", isSender: true)
+        let message = MessageDTO(id: UUID().uuidString, text: "Image attached", fromType: .sender)
         //messages.append(message)
     }
 }
@@ -144,13 +132,13 @@ struct ImagePicker: UIViewControllerRepresentable {
     ZStack {
         Color.black.ignoresSafeArea()
         ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
-            Message(id: UUID(), text: "Hi", isSender: true),
-            Message(id: UUID(), text: "Hi", isSender: true),
-            Message(id: UUID(), text: "Hello! How are you?", isSender: true),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .sender),
             
-            Message(id: UUID(), text: "Hi", isSender: false),
-            Message(id: UUID(), text: "Hi", isSender: false),
-            Message(id: UUID(), text: "Hello! How are you?", isSender: false)
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now")
         ]))
     }
     

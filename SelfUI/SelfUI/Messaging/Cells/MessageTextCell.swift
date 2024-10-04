@@ -16,9 +16,13 @@ struct Constants {
 struct MessageTextCell: View {
     let message: String
     let isSender: Bool
-    init(message: String, isSender: Bool = true) {
+    let timestamp: String
+    init(message: String,
+         timestamp: String = "",
+         isSender: Bool = true) {
         self.message = message
         self.isSender = isSender
+        self.timestamp = timestamp
     }
     var body: some View {
         HStack {
@@ -30,7 +34,7 @@ struct MessageTextCell: View {
                     .multilineTextAlignment(.leading)
                     .font(.defaultBody)
                     .foregroundStyle(Color.textPrimary)
-                MessageStatusView()
+                StatusTimeView(timestamp: timestamp, status: .pending)
             }
             .padding(.horizontal, Constants.Corner2)
             .padding(.vertical, Constants.Corner3)
@@ -57,7 +61,7 @@ struct MessageTextCell: View {
 #Preview {
     ZStack {
         VStack {
-            MessageTextCell(message: "Hello there!")
+            MessageTextCell(message: "Hello there!", timestamp: "now")
             MessageTextCell(message: "Hello there!", isSender: false)
             MessageTextCell(message: "Hi", isSender: true)
             MessageTextCell(message: "Hi", isSender: false)
