@@ -22,7 +22,7 @@ public struct OutlineTextField: View {
     public var body: some View {
         VStack (alignment: .leading) {
             Text(label)
-                .font(.custom("SF Pro", size: 14))
+                .font(.custom("Barlow", size: 12).weight(.medium))
                 .foregroundColor(.textPrimary)
             
             ZStack {

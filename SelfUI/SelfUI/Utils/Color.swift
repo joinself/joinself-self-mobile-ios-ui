@@ -20,6 +20,7 @@ extension Color {
     static let defaultOverlay: Color = .defaultDark.opacity(0.3)
     
     // MARK: Text
+    /// #0E1C42
     static let textPrimary: Color = Color(red: 0.05, green: 0.11, blue: 0.26)
     static let textSecondary: Color = .white
     
