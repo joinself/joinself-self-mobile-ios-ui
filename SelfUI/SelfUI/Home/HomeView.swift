@@ -8,18 +8,42 @@
 import SwiftUI
 
 struct HomeView: View {
+    init() {
+    let tabBarAppearance = UITabBarAppearance()
+    let itemAppearance = UITabBarItemAppearance()
+        itemAppearance.normal.badgeBackgroundColor =
+        UIColor(red: 0.98, green: 0.13, blue: 0.57, alpha: 1.0)
+    tabBarAppearance.stackedLayoutAppearance = itemAppearance
+    UITabBar.appearance().standardAppearance = tabBarAppearance
+    }
+    
     var body: some View {
         ZStack {
             TabView {
                 MessagingView(title: "Messages")
                     .tabItem {
-                        Label("tab_messaging".localized, systemImage: "plus.message")
-                    }
+//                        Label("tab_messaging".localized, systemImage: "plus.message")
+                        
+                        Label(
+                            title: {
+                                Text("Label")
+                                    .font(.title)
+                            },
+                            icon: {
+                                Image("ic_paperclip", bundle: mainBundle)
+                                    .renderingMode(.template)
+                            }
+                        )
+                        
+                        
+                        
+//                        .foregroundColor(selectedTab == tag ? .blue : .gray) // Change color based on selection
+                    }.badge("12")
                 
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person")
-                    }
+                    }.badge("")
                 
                 DataView()
                     .tabItem {
@@ -36,6 +60,7 @@ struct HomeView: View {
                         Label("tab_scan".localized, systemImage: "qrcode.viewfinder")
                     }
             }
+            .tint(Color.defaultBlue)
             
             VStack {
                 BannerView(message: "No internet connection")

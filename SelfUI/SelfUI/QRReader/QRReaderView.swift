@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
+    @State private var showScanQRFail: Bool = true
     @Binding private var isValidQRCode: Bool
     @Environment(\.presentationMode) var presentationMode
     
@@ -27,12 +28,24 @@ public struct QRReaderView: View {
             QRCodeScannerView {
                 self.scannedCode = $0
                 self.checkQRCode()
+                self.showScanQRFail = true
                 onCode?($0)
             } didFindDataCode: { data in
                 print("QR code is data: \(data.count)")
                 isValidQRCode = true
                 onCodeData?(data)
             }
+            .fullScreenCover(isPresented: $showScanQRFail, onDismiss: {
+                print("Dismissed")
+            }, content: {
+                QRScanFailView {
+                    print("Retry scan")
+                    showScanQRFail = false
+                } onExit: {
+                    print("Exit the scanner")
+                    presentationMode.wrappedValue.dismiss()
+                }
+            })
             .ignoresSafeArea()
             QRCodeOverlayView(isValid: $isValidQRCode)
                 .ignoresSafeArea()

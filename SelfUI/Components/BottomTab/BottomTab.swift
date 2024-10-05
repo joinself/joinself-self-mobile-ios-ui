@@ -35,12 +35,41 @@ public struct BottomTab: View {
     }
 }
 
+public struct CustomTabItem: View {
+    let imageName: String
+    let title: String
+    @Binding var selectedTab: Int
+    let tag: Int
+    
+    public init(imageName: String, title: String, selectedTab: Binding<Int>, tag: Int) {
+        self.imageName = imageName
+        self.title = title
+        self._selectedTab = selectedTab
+        self.tag = tag
+    }
+    
+    public var body: some View {
+        VStack {
+            Image(imageName, bundle: mainBundle)
+                .renderingMode(.template)
+                .foregroundColor(selectedTab == tag ? .defaultBlue : .defaultDark)
+            Text(title)
+                .font(.defaultCaption)
+        }
+    }
+}
+
+
 #Preview {
     ZStack {
         Color.white.ignoresSafeArea()
         VStack {
             BottomTab(isSelected: .constant(false))
             BottomTab(isSelected: .constant(true))
+            
+            CustomTabItem(imageName: "ic_paperclip", title: "Home", selectedTab: .constant(0), tag: 0)
+            
+            CustomTabItem(imageName: "ic_paperclip", title: "Home", selectedTab: .constant(1), tag: 0)
         }
     }
     

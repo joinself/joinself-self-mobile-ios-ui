@@ -44,7 +44,7 @@
 "expiry_date" = "Expiry date";
 "mrz_placeholder" = "YY/MM/DD";
 
-// buttons
+// MARK: buttons
 "Start" = "Start";
 "Continue" = "Continue";
 "Yes" = "Yes";
@@ -63,6 +63,8 @@
 "button_confirm_name" = "Confirm Name";
 "button_turn_on_notifications" = "Turn on notifications";
 "button_scan_qr_code" = "Scan QR code";
+"button_exit_scanner" = "Exit Scanner";
+"button_try_again" = "Try Again";
 
 "I’m going to develop with Self" = "I’m going to develop with Self";
 
@@ -125,6 +127,7 @@
 "account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";
 
 "scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";
+"message_scan_fail" = "We couldn’t read that QR code, please try again.";
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";
