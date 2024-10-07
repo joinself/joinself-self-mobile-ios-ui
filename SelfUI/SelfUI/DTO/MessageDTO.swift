@@ -30,7 +30,7 @@ public enum MessageStatus: String, CaseIterable {
 
 public struct MessageDTO: Identifiable {
     public let id: String
-    let text: String
+    public let text: String
     let isSender: Bool
     public let mimeType: String = MessageType.SELF_TEXT
     let fromType: MessageFrom

@@ -9,6 +9,7 @@ import Combine
 
 public class ChatObservableObject: ObservableObject {
     @Published var messages: [MessageDTO] = []
+    public var newMessage = PassthroughSubject<MessageDTO, Never>() // handle on message changes
     public init(messages: [MessageDTO]) {
         self.messages = messages
     }
@@ -82,7 +83,10 @@ public struct ChatView: View {
                     }
                 }
                 .padding()*/
-                MessageComposerView(onText: onText)
+                MessageComposerView(onText: { textMessage in
+                    let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
+                    chatObservableObject.newMessage.send(newMessage)
+                })
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.ignoresSafeArea()
         }
