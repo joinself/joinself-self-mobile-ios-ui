@@ -29,6 +29,7 @@ struct QRScanFailView: View {
                 .padding(.top, Constants.PadTop)
                 Spacer()
                 Text("message_scan_fail".localized).font(.defaultLargeTitle)
+                    .foregroundStyle(Color.textPrimary)
                 Spacer()
                 VStack(spacing: 12) {
                     ButtonView(title: "button_try_again".localized) {
@@ -41,7 +42,7 @@ struct QRScanFailView: View {
                     
                     BrandView(isDarked: true)
                 }.padding(24)
-            }
+            }.background(Color.white)
         })
         .background(Color.white)
         .ignoresSafeArea()

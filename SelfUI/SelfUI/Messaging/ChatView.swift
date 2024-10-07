@@ -47,7 +47,7 @@ public struct ChatView: View {
                     Spacer()// Empty messages
                 } else {
                     List(chatObservableObject.messages) { message in
-                        MessageTextCell(message: message.text, timestamp: message.timestamp, isSender: message.isSender)
+                        MessageTextCell(messageDTO: message)
                         .listRowBackground(Color.white)
                         .background(.white)
                         .listRowSeparator(.hidden)

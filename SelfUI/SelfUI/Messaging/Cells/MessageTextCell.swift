@@ -16,58 +16,35 @@ struct Constants {
     static let PadTop: CGFloat = 12
 }
 
-struct MessageTextCell: View {
-    let message: String
-    let isSender: Bool
-    let timestamp: String
-    init(message: String,
-         timestamp: String = "",
-         isSender: Bool = true) {
-        self.message = message
-        self.isSender = isSender
-        self.timestamp = timestamp
+protocol BaseMessage {
+    var messageDTO: MessageDTO { get }
+}
+
+struct MessageTextCell: View, BaseMessage {
+    var messageDTO: MessageDTO
+
+    init(messageDTO: MessageDTO) {
+        self.messageDTO = messageDTO
     }
+    
     var body: some View {
-        HStack {
-            if isSender {
-                Spacer()
-            }
-            VStack(alignment: isSender ? .trailing : .leading, spacing: 0) {
-                Text(message)
+        BaseCell(messageDTO: messageDTO) {
+            VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
+                Text(messageDTO.text)
                     .multilineTextAlignment(.leading)
                     .font(.defaultBody)
                     .foregroundStyle(Color.textPrimary)
-                StatusTimeView(timestamp: timestamp, status: .pending)
-            }
-            .padding(.horizontal, Constants.Corner2)
-            .padding(.vertical, Constants.Corner3)
-            .background(isSender ? Color.defaultLightBlue : Color.defaultGray)
-            .clipShape(isSender ? .rect(
-                topLeadingRadius: Constants.Corner2,
-                bottomLeadingRadius: Constants.Corner2,
-                bottomTrailingRadius: Constants.Corner4,
-                topTrailingRadius: Constants.Corner2
-            ) : .rect(
-                topLeadingRadius: Constants.Corner2,
-                bottomLeadingRadius: Constants.Corner4,
-                bottomTrailingRadius: Constants.Corner2,
-                topTrailingRadius: Constants.Corner2
-            ))
-            if !isSender {
-                Spacer()
+                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
             }
         }
-        
     }
 }
 
 #Preview {
     ZStack {
         VStack {
-            MessageTextCell(message: "Hello there!", timestamp: "now")
-            MessageTextCell(message: "Hello there!", isSender: false)
-            MessageTextCell(message: "Hi", isSender: true)
-            MessageTextCell(message: "Hi", isSender: false)
+            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now"))
+            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, timestamp: "now"))
         }
     }
     
