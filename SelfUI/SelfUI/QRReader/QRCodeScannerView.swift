@@ -7,13 +7,34 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
+
+class QRCameraManager: NSObject, ObservableObject {
+    var capturePublisher = PassthroughSubject<Data, Never>()
+    
+    @Published var notSupportedQR: Bool = false
+    fileprivate let session: AVCaptureSession = AVCaptureSession()
+    
+    func startSession() {
+        DispatchQueue.global(qos: .background).async {
+            self.session.startRunning()
+        }
+    }
+    
+    func stopSession() {
+        DispatchQueue.global(qos: .background).async {
+            self.session.stopRunning()
+        }
+    }
+}
 
 struct QRCodeScannerView: UIViewControllerRepresentable {
-    class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
+    class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate, ObservableObject {
         var parent: QRCodeScannerView
-        var captureSession: AVCaptureSession?
-        init(parent: QRCodeScannerView) {
+        var qrCameraManager: QRCameraManager
+        init(parent: QRCodeScannerView, qrCameraManager: QRCameraManager) {
             self.parent = parent
+            self.qrCameraManager = qrCameraManager
         }
         
         func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -23,49 +44,27 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 print("metadataObjects descriptor: \(readableObject.descriptor?.description)")
                 
                 if let stringValue = readableObject.stringValue {
-                    parent.didFindCode(stringValue)
+                    print("Not supported QR: \(stringValue)")
+                    parent.qrCameraManager.notSupportedQR = true
                 }
                 else if let qrCodeBytes = readableObject.binaryValue {
-                    parent.didFindDataCode(qrCodeBytes)
+                    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    self.qrCameraManager.stopSession()
+                    parent.qrCameraManager.capturePublisher.send(qrCodeBytes)
                 }
-//                guard let stringValue = readableObject.stringValue else {
-//                    if let descriptor = readableObject.descriptor as? CIQRCodeDescriptor {
-//                        let dataError = descriptor.errorCorrectedPayload
-//                        let bytes = descriptor.maskPattern
-//                        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-//                        parent.didFindDataCode(dataError)
-//                        
-//                        print("Data error: \(dataError.count)")
-//                        print("Mask pattern: \(bytes)")
-//                        self.stopSession()
-//                    }
-//                    return
-//                }
-                
-                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-//                parent.didFindCode(stringValue)
-                self.stopSession()
             }
         }
-        
-        private func stopSession() {
-            print("Stop capture session.")
-            captureSession?.stopRunning()
-        }
     }
-    
-    var didFindCode: (String) -> Void
-    var didFindDataCode: (Data) -> Void
-    
+    var qrCameraManager: QRCameraManager
     func makeCoordinator() -> Coordinator {
-        return Coordinator(parent: self)
+        return Coordinator(parent: self, qrCameraManager: qrCameraManager)
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
-        let captureSession = AVCaptureSession()
+        context.coordinator.qrCameraManager = qrCameraManager
+        let captureSession = qrCameraManager.session
         captureSession.sessionPreset = .high
-        context.coordinator.captureSession = captureSession
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return viewController }
         let videoInput: AVCaptureDeviceInput

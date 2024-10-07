@@ -25,10 +25,10 @@ struct QRScanFailView: View {
                     }
                     Spacer()
                 }
-                .padding(.leading, 24)
-                .padding(.top, Constants.PadTop)
+                .padding()
                 Spacer()
                 Text("message_scan_fail".localized).font(.defaultLargeTitle)
+                    .minimumScaleFactor(0.7)
                     .foregroundStyle(Color.textPrimary)
                 Spacer()
                 VStack(spacing: 12) {
@@ -41,8 +41,10 @@ struct QRScanFailView: View {
                     }
                     
                     BrandView(isDarked: true)
-                }.padding(24)
-            }.background(Color.white)
+                }
+            }
+            .padding()
+            .background(Color.white)
         })
         .background(Color.white)
         .ignoresSafeArea()
