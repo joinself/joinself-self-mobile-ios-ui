@@ -41,9 +41,7 @@ public struct ChatView: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                BaseNavigationBarView(title: conversationName, onNavigateBack: {
-                    presentationMode.wrappedValue.dismiss()
-                })
+                NavigationTitleView(title: conversationName)
                 if chatObservableObject.messages.isEmpty {
                     Spacer()// Empty messages
                 } else {
@@ -55,7 +53,6 @@ public struct ChatView: View {
                         .listRowInsets(.none)
                     }
                     .scrollDismissesKeyboard(.interactively)
-                    .padding()
                     .background(.white)
                     .listStyle(PlainListStyle())
                 }
@@ -87,8 +84,8 @@ public struct ChatView: View {
                     let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
                     chatObservableObject.newMessage.send(newMessage)
                 })
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
-            }.ignoresSafeArea()
+//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
+            }.padding()
         }
     }
     
