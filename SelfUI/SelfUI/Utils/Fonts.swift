@@ -60,6 +60,9 @@ extension Font {
     static let defaultBodyLarge: Font = SelfUISdk.shared.defaultBodyLarge
     static let defaultNormalTitle: Font = Font.system(size: 25).bold()
     static let defaultBody: Font = SelfUISdk.shared.defaultBody
+    
+    /// outline text field label
+    static let defaultFieldLabel: Font = Font.custom("SF Pro", size: 14)
     static let defaultButton: Font = SelfUISdk.shared.defaultButton
     static let defaultBodyMedium: Font = SelfUISdk.shared.defaultBodyMedium
     static let defaultPin: Font = Font.custom("Barlow", size: 16).weight(.semibold)
