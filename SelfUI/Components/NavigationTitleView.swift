@@ -9,8 +9,10 @@ import SwiftUI
 
 public struct NavigationTitleView: View {
     let title: String
-    public init(title: String) {
+    @Binding var font: Font
+    public init(title: String, font: Binding<Font> = .constant(.navigationTitle)) {
         self.title = title
+        self._font = font
     }
     public var body: some View {
         HStack {
@@ -18,7 +20,7 @@ public struct NavigationTitleView: View {
                 .frame(width: 30, height: 30)
             
             Text(title)
-                .font(Font.custom("Barlow", size: 25).bold())
+                .font(font)
                 .foregroundStyle(Color.textPrimary)
 //                .font(.customLargeTitle)
 //                .fontWeight(.semibold)

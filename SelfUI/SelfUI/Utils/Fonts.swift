@@ -71,4 +71,7 @@ extension Font {
     
     /// Power by
     static let defaultFootnote: Font = Font.custom("Barlow", size: 15)
+    
+    
+    public static let navigationTitle: Font = Font.custom("Barlow-Bold", size: 25)
 }
