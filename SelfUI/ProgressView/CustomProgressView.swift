@@ -15,6 +15,11 @@ struct Step: Identifiable {
 
 struct CustomProgressView: View {
     let steps: [Step]
+    @Binding private var stepWidth: CGFloat
+    init(steps: [Step], stepWidth: Binding<CGFloat> = .constant(50)) {
+        self.steps = steps
+        self._stepWidth = stepWidth
+    }
     
     var body: some View {
         HStack (alignment: .center, spacing: 0) {
@@ -52,7 +57,7 @@ struct CustomProgressView: View {
                 if step.id != steps.last?.id {
                     Rectangle()
                         .fill(step.state == .done ? Color.defaultGreen : Color.defaultGray)
-                        .frame(width: 50, height: 5)
+                        .frame(width: stepWidth, height: 5)
                 }
             }
         }

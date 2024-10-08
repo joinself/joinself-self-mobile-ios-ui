@@ -96,7 +96,7 @@
 // MARK: - Email
 "email_introduction_title" = "Thanks, now  we need  to send you an email so we can confirm your email address.";
 "email_introduction_description" = "We will send you a code which you will need to enter to confirm you have access to that email. \n\nWe don’t keep your email or use it to send you messages. Ever.";
-"enter_email_title" = "Please enter your  email.";
+"enter_email_title" = "Please enter your email.";
 "email_address" = "Email address";
 "email_address_placeholder" = "youremail@example.com";
 "email_address_invalid_message" = "Please enter a valid email address.";
