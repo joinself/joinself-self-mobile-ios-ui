@@ -120,6 +120,7 @@
 "enter_name_label" = "Enter the name people normally know you by";
 "enter_name_placeholder" = "Your name";
 "enter_name_error" = "This field cannot be empty.";
+"enter_name_valid" = "Please enter a valid name";
 "creating_account_title" = "We’re just creating your Self account...";
 "creating_account_description" = "This tool is designed to help developers building and testing with Self Sandbox. You will need to turn on notifications for the best experience.";
 
@@ -135,3 +136,6 @@
 "tab_data" = "Data";
 "tab_settings" = "Settings";
 "tab_scan" = "Scan";
+
+"message_edit_profile" = "Choose a new profile image";
+"message_edit_profile_name" = "Choose a display name";

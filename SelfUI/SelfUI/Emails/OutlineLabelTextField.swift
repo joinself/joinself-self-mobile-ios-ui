@@ -11,6 +11,7 @@ enum OutlineTextFieldState: String, CaseIterable {
     case initial
     case valid // ex: valid email address, phone number
     case error
+    case unspecific
     
     func getColor() -> Color {
         switch self {
@@ -20,6 +21,8 @@ enum OutlineTextFieldState: String, CaseIterable {
             return .defaultGreen
         case .error:
             return .defaultError
+        case .unspecific:
+            return .clear
         }
     }
 }
@@ -43,7 +46,7 @@ struct OutlineLabelTextField: View {
          textInputAutocapitalization: TextInputAutocapitalization = .never,
          state: Binding<OutlineTextFieldState>,
          text: Binding<String>,
-         isFocused: Bool = true) {
+         isFocused: FocusState<Bool> = .init()) {
         self.label = label
         self.placeHolder = placeHolder
         self.errorDescription = errorDescription
@@ -52,7 +55,7 @@ struct OutlineLabelTextField: View {
         self.textInputAutocapitalization = textInputAutocapitalization
         self._state = state
         self._text = text
-        self.isFocused = isFocused
+        self._isFocused = isFocused
     }
     
     var body: some View {
@@ -86,13 +89,14 @@ struct OutlineLabelTextField: View {
                         .textContentType(textContentType)
                         .textInputAutocapitalization(textInputAutocapitalization)
                         .keyboardType(keyboardType)
+                        .scrollDismissesKeyboard(.interactively)
                         /*.onChange(of: text) { newValue in
                             if newValue.isValidEmail() {
                                 state = .valid
                             }
                         }*/
                         .onAppear {
-                            isFocused = true
+                            isFocused = isFocused
                         }
                         .padding()
                 }
@@ -100,9 +104,10 @@ struct OutlineLabelTextField: View {
             
             if state == .error {
                 Text(errorDescription)
+                    .font(.defaultCaption)
                     .foregroundColor(.defaultPink)
             }
-        }.padding()
+        }
     }
 }
 
@@ -110,13 +115,13 @@ struct OutlineLabelTextField: View {
     VStack {
         OutlineLabelTextField(label: "Email Address", placeHolder: "Enter email address",
                               errorDescription: "email_address_invalid_message".localized,
-                              state: .constant(.initial), text: .constant(""), isFocused: false)
+                              state: .constant(.initial), text: .constant(""))
         OutlineLabelTextField(label: "Email Address", placeHolder: "Enter phone number",
                               errorDescription: "email_address_invalid_message".localized,
-                              state: .constant(.error), text: .constant(""), isFocused: false)
+                              state: .constant(.error), text: .constant(""))
         OutlineLabelTextField(label: "Email Address", placeHolder: "Enter your name",
                               errorDescription: "email_address_invalid_message".localized,
-                              state: .constant(.valid), text: .constant(""), isFocused: false)
+                              state: .constant(.valid), text: .constant(""))
     }
     
 }
