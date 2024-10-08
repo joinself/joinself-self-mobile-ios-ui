@@ -14,14 +14,14 @@ class BrandViewModel: ObservableObject {
     @Published var isDarked =  false
 }
 
-struct BrandView: View {
+public struct BrandView: View {
     @ObservedObject var viewModel = BrandViewModel()
     
-    init(isDarked: Bool) {
+    public init(isDarked: Bool) {
         self.viewModel.isDarked = isDarked
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             HStack(spacing: 10) {
                 Text("Powered by")

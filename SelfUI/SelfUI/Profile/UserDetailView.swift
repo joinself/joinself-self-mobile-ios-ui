@@ -114,7 +114,8 @@ public struct UserDetailView: View {
                 Spacer()
                 Button {
                     // show editing
-                    showingImagePicker = true
+                    // showingImagePicker = true
+                    onFinish?()
                     
                 } label: {
                     Image("ic_chevron_right", bundle: mainBundle)
@@ -142,7 +143,11 @@ public struct UserDetailView: View {
 #Preview {
     VStack {
         UserDetailView()
-        UserDetailView(name: .constant("Dan Sutherland"))
+        VStack (spacing: 0) {
+            NavigationTitleView(title: "Title")
+            UserDetailView(name: .constant("Dan Sutherland"))
+        }.padding()
+        
         BottomSheetView(viewModel: ViewModel())
     }
 }

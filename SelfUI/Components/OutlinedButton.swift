@@ -15,14 +15,14 @@ class OutlinedButtonViewModel: ObservableObject {
     @Published var icon: Image?
 }
 
-struct OutlinedButton: View {
+public struct OutlinedButton: View {
     @ObservedObject var viewModel = OutlinedButtonViewModel()
     @State private var didTap: Bool = false
     private let opacity: CGFloat = 0.6
     
     var onClicked: (() -> Void)? = nil
     
-    init(title: String, outlineColor: Color = .defaultGreen, icon: Image? = nil, onClicked: (() -> Void)? = nil) {
+    public init(title: String, outlineColor: Color = .defaultGreen, icon: Image? = nil, onClicked: (() -> Void)? = nil) {
         self.onClicked = onClicked
         self.viewModel.outlinedColor = outlineColor
         self.viewModel.title = title
@@ -43,7 +43,7 @@ struct OutlinedButton: View {
         )
     }
     
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 10) {
             Button(action: {
                 handleTap()

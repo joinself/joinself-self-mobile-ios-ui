@@ -16,11 +16,14 @@ public struct NavigationTitleView: View {
         HStack {
             Image("ic_self_logo", bundle: mainBundle)
                 .frame(width: 30, height: 30)
+            
             Text(title)
-                .font(.customLargeTitle)
-                .fontWeight(.semibold)
-                .kerning(0.5)
+                .font(Font.custom("Barlow", size: 25).bold())
                 .foregroundStyle(Color.textPrimary)
+//                .font(.customLargeTitle)
+//                .fontWeight(.semibold)
+//                .kerning(0.5)
+//                .foregroundStyle(Color.textPrimary)
             
             Spacer()
         }
