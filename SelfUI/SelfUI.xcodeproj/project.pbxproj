@@ -20,6 +20,7 @@
 		632AFA032CAFF69B0036F294 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632AFA022CAFF69B0036F294 /* ImagePicker.swift */; };
 		633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F7FF52C53B54100BC2B06 /* CustomPageIndicator.swift */; };
 		633F7FFA2C578FBE00BC2B06 /* ThankYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */; };
+		634225D32CB68FB800CF06D1 /* ImagePrevewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634225D22CB68FB800CF06D1 /* ImagePrevewView.swift */; };
 		634878CF2BF739EB00E50DE1 /* LivenessIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878CE2BF739EB00E50DE1 /* LivenessIntroductionView.swift */; };
 		634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D02BF73AA300E50DE1 /* LivenessFlow.swift */; };
 		634878D32BF7488900E50DE1 /* BrandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634878D22BF7488900E50DE1 /* BrandView.swift */; };
@@ -201,6 +202,7 @@
 		632AFA022CAFF69B0036F294 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		633F7FF52C53B54100BC2B06 /* CustomPageIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageIndicator.swift; sourceTree = "<group>"; };
 		633F7FF92C578FBE00BC2B06 /* ThankYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouView.swift; sourceTree = "<group>"; };
+		634225D22CB68FB800CF06D1 /* ImagePrevewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePrevewView.swift; sourceTree = "<group>"; };
 		634878CE2BF739EB00E50DE1 /* LivenessIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroductionView.swift; sourceTree = "<group>"; };
 		634878D02BF73AA300E50DE1 /* LivenessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessFlow.swift; sourceTree = "<group>"; };
 		634878D22BF7488900E50DE1 /* BrandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandView.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				63A214322C7CA055008B5E4A /* QRReaderView.swift */,
 				63A2143F2C7CB203008B5E4A /* ScanView.swift */,
 				63B808202CB16ECC00F6862C /* QRScanFailView.swift */,
+				634225D22CB68FB800CF06D1 /* ImagePrevewView.swift */,
 			);
 			path = QRReader;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */,
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
+				634225D32CB68FB800CF06D1 /* ImagePrevewView.swift in Sources */,
 				63A214432C7CB281008B5E4A /* SettingsView.swift in Sources */,
 				63E7F8482CB2591500039F0D /* BaseCell.swift in Sources */,
 				63E2C3A32C7DC9D300056E9B /* QRCodeOverlayView.swift in Sources */,
