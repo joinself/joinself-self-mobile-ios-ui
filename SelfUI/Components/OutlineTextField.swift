@@ -21,9 +21,13 @@ public struct OutlineTextField: View {
     
     public var body: some View {
         VStack (alignment: .leading) {
-            Text(label)
-                .font(.custom("Barlow", size: 12).weight(.medium))
-                .foregroundColor(.textPrimary)
+            if (!label.isEmpty) {
+                Text(label)
+                    .font(.custom("Barlow", size: 12).weight(.medium))
+                    .foregroundColor(.textPrimary)
+            } else {
+                Spacer(minLength: 8)
+            }
             
             ZStack {
                 HStack(alignment: .center, spacing: 1) {
@@ -41,7 +45,7 @@ public struct OutlineTextField: View {
                     TextField("", text: $emailAddress)
                         .placeholder(when: emailAddress.isEmpty) {
                             Text(text)
-                                .font(.custom("Barlow", size: 17))
+                                .font(.defaultBody)
                                 .foregroundColor(.defaultPlaceHolder)
                         }
                         .disabled(disable)
@@ -71,5 +75,21 @@ public struct OutlineTextField: View {
 }
 
 #Preview {
-    OutlineTextField(label: "Email address", text: .constant("abbie@company.com"))
+    ZStack {
+        Color.blue.ignoresSafeArea()
+        List {
+            OutlineTextField(label: "Email address", text: .constant("abbie@company.com"))
+                .listRowSeparator(.hidden)
+            OutlineTextField(label: "", text: .constant("abbie@company.com"))
+                .listRowSeparator(.hidden)
+            OutlineTextField(label: "", text: .constant("abbie@company.com"))
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+        }
+        
+        .listRowInsets(.none)
+        .listStyle(.insetGrouped)
+        .formStyle(.columns)
+    }
+    
 }
