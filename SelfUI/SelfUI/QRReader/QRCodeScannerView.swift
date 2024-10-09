@@ -22,9 +22,7 @@ class QRCameraManager: NSObject, ObservableObject {
     }
     
     func stopSession() {
-        DispatchQueue.global(qos: .background).async {
-            self.session.stopRunning()
-        }
+        self.session.stopRunning()
     }
 }
 
@@ -40,7 +38,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
         func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
             if let metadataObject = metadataObjects.first {
                 guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-                print("metadataObjects: \(readableObject.type) not string value")
+                print("metadataObjects: \(readableObject.type)")
                 print("metadataObjects descriptor: \(readableObject.descriptor?.description)")
                 
                 if let stringValue = readableObject.stringValue {
@@ -49,7 +47,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 }
                 else if let qrCodeBytes = readableObject.binaryValue {
                     AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                    self.qrCameraManager.stopSession()
+                    parent.qrCameraManager.stopSession()
                     parent.qrCameraManager.capturePublisher.send(qrCodeBytes)
                 }
             }
