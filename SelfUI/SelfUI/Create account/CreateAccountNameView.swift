@@ -12,6 +12,7 @@ struct CreateAccountNameView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var name: String = ""
     @State private var isValid: Bool = false
+    @State private var editFieldState: OutlineTextFieldState = .initial
     @FocusState private var isTextFieldFocused: Bool
     
     public init(onEnteredName: ((String) -> Void)? = nil) {
@@ -33,31 +34,26 @@ struct CreateAccountNameView: View {
                         Step(title: "5", state: .active)
                     ]).frame(minHeight: 100)
                     
-        //            Spacer()
                     VStack(alignment: .leading, spacing: 30) {
                         Text("create_account_name_title".localized)
                             .font(.defaultTitle)
                             .foregroundColor(.textPrimary)
                             .frame(maxWidth: .infinity, alignment: .bottomLeading)
                         
-                        OutlinedTextField(boxLabel: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized, boxErrorDescription: "enter_name_error".localized, text: $name, isValid: $isValid, isFocused: _isTextFieldFocused)
-                            .onChange(of: name) { newValue in
-                                isValid = newValue.count > 0
-                            }
-                        
+                        OutlineLabelTextField(label: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized,
+                                              errorDescription: "enter_name_error".localized,
+                                              keyboardType: .default,
+                                              textInputAutocapitalization: .words,
+                                              state: $editFieldState, text: $name, isFocused: _isTextFieldFocused)
+                        .onChange(of: name) { newValue in
+                            isValid = newValue.count > 0
+                            
+                            editFieldState = isValid ? .valid : .error
+                        }
                         Spacer()
                     }
-                    .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-    //                Spacer()
-    //                VStack(spacing: 12) {
-    //                    ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
-    //                        onEnteredName?(name)
-    //                    }.disabled(!isValid)
-    //
-    //                    BrandView(isDarked: true)
-    //                }.padding()
                 }
                 .onTapGesture {
                     print("Dismiss keyboard")
@@ -65,6 +61,7 @@ struct CreateAccountNameView: View {
                 }
                 
             }
+            
             Spacer()
             VStack(spacing: 12) {
                 ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
@@ -72,8 +69,9 @@ struct CreateAccountNameView: View {
                 }.disabled(!isValid)
                 
                 BrandView(isDarked: true)
-            }.padding()
+            }
         }
+        .padding()
         .background(.white)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea(.keyboard, edges: .bottom)

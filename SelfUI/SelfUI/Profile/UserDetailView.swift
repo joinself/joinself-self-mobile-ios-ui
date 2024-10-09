@@ -62,7 +62,7 @@ public struct UserDetailView: View {
             self.details = details
             self.onFinish = onFinish
             self.isEditing = isEditing
-            isValidName = ValidatorHelper.validateName(name.wrappedValue)
+            isValidName = name.wrappedValue.count > 0
             
             errorDescription = "enter_name_error".localized
         }
@@ -163,17 +163,12 @@ public struct UserDetailView: View {
             
             if isEditing {
                 OutlineLabelTextField(label: "message_edit_profile_name".localized, placeHolder: "enter_name_placeholder".localized,
-                                      errorDescription: errorDescription,
+                                      errorDescription: "enter_name_error".localized,
                                       keyboardType: .default,
                                       textInputAutocapitalization: .words,
                                       state: $editFieldState, text: $name, isFocused: _isFocused)
                 .onChange(of: name) { newValue in
-                    isValidName = ValidatorHelper.validateName(newValue)
-                    if newValue.isEmpty {
-                       errorDescription = "enter_name_error".localized
-                    } else {
-                        errorDescription = "enter_name_valid".localized
-                    }
+                    isValidName = newValue.count > 0
                     editFieldState = isValidName ? .valid : .error
                 }
             }
