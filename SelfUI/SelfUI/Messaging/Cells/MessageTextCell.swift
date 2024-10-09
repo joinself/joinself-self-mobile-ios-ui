@@ -34,7 +34,7 @@ struct MessageTextCell: View, BaseMessage {
                     .multilineTextAlignment(.leading)
                     .font(.defaultBody)
                     .foregroundStyle(Color.textPrimary)
-                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
+//                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
             }
         }
     }

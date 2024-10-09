@@ -52,22 +52,25 @@ public enum MessageStatus: String, CaseIterable {
 public struct MessageDTO: Identifiable {
     public let id: String
     public let text: String
-    let isSender: Bool
+    let isMyMessage: Bool
     public let mimeType: String = MessageType.SELF_TEXT
     let fromType: MessageFrom
     let receiptStatus: MessageStatus
     let timestamp: String
+    var status: MessageStatus = .pending
 
     public init(id: String,
                 text: String,
                 fromType: MessageFrom = .sender,
                 receiptStatus: MessageStatus = .pending,
+                status: MessageStatus = .pending,
                 timestamp: String = "") {
         self.id = id
         self.text = text
-        self.isSender = fromType == .sender
+        self.isMyMessage = fromType == .sender
         self.fromType = fromType
         self.receiptStatus = receiptStatus
         self.timestamp = timestamp
+        self.status = status
     }
 }

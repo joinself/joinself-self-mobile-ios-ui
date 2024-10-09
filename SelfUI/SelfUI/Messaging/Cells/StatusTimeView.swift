@@ -10,7 +10,7 @@ import SwiftUI
 struct StatusTimeView: View {
     let timestamp: String
     let status: MessageStatus
-    private var receiptImageName: String = "ic_message_delivered"
+    private var receiptImageName: String?
     init(timestamp: String, status: MessageStatus = .pending) {
         self.timestamp = timestamp
         self.status = status
@@ -23,7 +23,7 @@ struct StatusTimeView: View {
         case .read:
             receiptImageName = "ic_message_read"
         default:
-            receiptImageName = "ic_message_delivered"
+            receiptImageName = nil
         }
     }
     var body: some View {
@@ -33,8 +33,10 @@ struct StatusTimeView: View {
               .font(Font.defaultCaption)
               .multilineTextAlignment(.trailing)
               .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.54))
-            Image(receiptImageName, bundle: mainBundle)
-              .frame(width: 28, height: 28)
+            if let receiptImageName = receiptImageName {
+                Image(receiptImageName, bundle: mainBundle)
+                  .frame(width: 28, height: 28)
+            }
         }
     }
 }
@@ -43,6 +45,7 @@ struct StatusTimeView: View {
     VStack {
         StatusTimeView(timestamp: "yesterday", status: .pending)
         StatusTimeView(timestamp: "now", status: .read)
+        StatusTimeView(timestamp: "now", status: .none)
     }
     
 }
