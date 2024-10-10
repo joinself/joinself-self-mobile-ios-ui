@@ -20,7 +20,7 @@ struct StatusLabel: View {
         HStack(alignment: .center, spacing: 10) {
             // Paragraph/Caption
             Text(label)
-              .font(.defaultButton)
+              .font(.defaultStatusLabel)
               .kerning(0.12)
               .foregroundColor(.white)
         }

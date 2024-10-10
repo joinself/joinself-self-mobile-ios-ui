@@ -69,6 +69,8 @@ extension Font {
     static let defaultTimestamp: Font = Font.custom("Barlow", size: 12).weight(.semibold)
     static let defaultCaption: Font = Font.custom("SF Pro", size: 12).weight(.medium)
     
+    static let defaultStatusLabel: Font = Font.custom("SF Pro", size: 12).weight(.medium)
+    
     /// Power by
     static let defaultFootnote: Font = Font.custom("Barlow", size: 15)
     
