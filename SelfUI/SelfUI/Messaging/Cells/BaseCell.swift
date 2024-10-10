@@ -22,7 +22,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
             if messageDTO.isMyMessage {
                 Spacer(minLength: minSpaceLength)
             }
-            VStack (alignment: .trailing, spacing: 0){
+            VStack (alignment: .trailing, spacing: 4){
                 content
                 StatusTimeView(timestamp: messageDTO.timestamp, status: messageDTO.isMyMessage ? messageDTO.receiptStatus : .none)
             }
@@ -45,7 +45,11 @@ struct BaseCell<Content: View>: View, BaseMessage {
                 Spacer(minLength: minSpaceLength)
             }
         }
-        
+        // applied for all message cells
+        .listRowBackground(Color.white)
+        .background(.white)
+        .listRowSeparator(.hidden)
+        .listRowInsets(.none)
     }
 }
 

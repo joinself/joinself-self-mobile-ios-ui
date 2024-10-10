@@ -29,12 +29,17 @@ public struct ChatView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var conversationName: String
     @StateObject private var keyboardResponder = KeyboardResponder()
-    var onText: ((String) -> Void)?
+    private var actionAccept: ((MessageDTO) -> Void)?
+    private var actionReject: ((MessageDTO) -> Void)?
     
-    public init (conversationName: Binding<String>, chatObservableObject: ChatObservableObject, onText: ((String) -> Void)? = nil) {
+    public init (conversationName: Binding<String>,
+                 chatObservableObject: ChatObservableObject,
+                 actionAccept: ((MessageDTO) -> Void)? = nil,
+                 actionReject: ((MessageDTO) -> Void)? = nil) {
         self._conversationName = conversationName
-        self.onText = onText
         self.chatObservableObject = chatObservableObject
+        self.actionAccept = actionAccept
+        self.actionReject = actionReject
     }
     
     public var body: some View {
@@ -45,16 +50,28 @@ public struct ChatView: View {
                 if chatObservableObject.messages.isEmpty {
                     Spacer()// Empty messages
                 } else {
-                    List(chatObservableObject.messages) { message in
-                        MessageTextCell(messageDTO: message)
-                        .listRowBackground(Color.white)
+                    ScrollViewReader { scrollViewProxy in
+                        List(chatObservableObject.messages) { message in
+                            if message.mimeType == MessageType.SELF_CREDENTIAL_REQUEST {
+                                CredentialRequestCell(messageDTO: message) {
+                                    actionAccept?(message)
+                                } actionReject: {
+                                    actionReject?(message)
+                                }
+                            } else {
+                                MessageTextCell(messageDTO: message)
+                            }
+                        }
+                        
+                        .scrollDismissesKeyboard(.interactively)
                         .background(.white)
-                        .listRowSeparator(.hidden)
-                        .listRowInsets(.none)
+                        .listStyle(PlainListStyle())
+                        .onChange(of: chatObservableObject.messages) { _ in
+                            withAnimation {
+                                scrollViewProxy.scrollTo(chatObservableObject.messages.last?.id, anchor: .bottom)
+                            }
+                        }
                     }
-                    .scrollDismissesKeyboard(.interactively)
-                    .background(.white)
-                    .listStyle(PlainListStyle())
                 }
                 
                 /*HStack {
@@ -107,7 +124,8 @@ public struct ChatView: View {
             
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
-            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now")
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now"),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now")
         ]))
     }
     
