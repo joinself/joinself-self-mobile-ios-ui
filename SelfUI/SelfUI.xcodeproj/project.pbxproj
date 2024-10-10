@@ -33,6 +33,7 @@
 		6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6351DF182CA5384A00976552 /* MessageListCell.swift */; };
 		6352E2AA2CB783D900931A18 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2A92CB783D900931A18 /* CustomButton.swift */; };
 		6352E2B22CB7B6CF00931A18 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2B12CB7B6CF00931A18 /* StatusLabel.swift */; };
+		6352E2B42CB7CDF200931A18 /* DocumentSignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */; };
 		63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */; };
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
@@ -217,6 +218,7 @@
 		6351DF182CA5384A00976552 /* MessageListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCell.swift; sourceTree = "<group>"; };
 		6352E2A92CB783D900931A18 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6352E2B12CB7B6CF00931A18 /* StatusLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
+		6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSignCell.swift; sourceTree = "<group>"; };
 		63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 				63AB34D02CAECDA200B27E75 /* MessageTextCell.swift */,
 				63AB34D22CAECDD300B27E75 /* StatusTimeView.swift */,
 				63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */,
+				6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 				6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */,
 				634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */,
 				63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */,
+				6352E2B42CB7CDF200931A18 /* DocumentSignCell.swift in Sources */,
 				635ACD4A2C058A060012108F /* LivenessVerificationFailedView.swift in Sources */,
 				6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */,
 				63E2C3A52C7DD54000056E9B /* QRCodeScannerView.swift in Sources */,

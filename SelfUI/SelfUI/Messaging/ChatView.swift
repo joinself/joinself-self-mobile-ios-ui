@@ -52,13 +52,22 @@ public struct ChatView: View {
                 } else {
                     ScrollViewReader { scrollViewProxy in
                         List(chatObservableObject.messages) { message in
-                            if message.mimeType == MessageType.SELF_CREDENTIAL_REQUEST {
+                            switch message.mimeType {
+                            case MessageType.SELF_CREDENTIAL_REQUEST:
                                 CredentialRequestCell(messageDTO: message) {
                                     actionAccept?(message)
                                 } actionReject: {
                                     actionReject?(message)
                                 }
-                            } else {
+                            
+                            case MessageType.SELF_DOCUMENT_SIGN:
+                                DocumentSignCell(messageDTO: message) {
+                                    actionAccept?(message)
+                                } actionReject: {
+                                    actionReject?(message)
+                                }
+                                
+                            default:
                                 MessageTextCell(messageDTO: message)
                             }
                         }
@@ -117,7 +126,10 @@ public struct ChatView: View {
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()
+        
         ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, timestamp: "now"),
+            
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .sender),

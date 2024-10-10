@@ -68,10 +68,13 @@
 "button_accept" = "Accept";
 "button_agree" = "Agree";
 "button_reject" = "Reject";
+"button_sign" = "Sign";
+"button_signed" = "Signed";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
 "label_accepted" = "Accepted";
+"label_signed" = "Signed";
 
 "I’m going to develop with Self" = "I’m going to develop with Self";
 
