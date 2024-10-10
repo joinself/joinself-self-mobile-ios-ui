@@ -24,7 +24,7 @@ struct CustomButton: View {
             action?()
         }, label: {
             HStack(alignment: .center, spacing: 10) {
-                Text("Reject")
+                Text(buttonTitle)
                   .font(.defaultButton)
                   .foregroundColor(buttonTitleColor)
             }

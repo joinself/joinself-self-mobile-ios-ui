@@ -65,6 +65,8 @@
 "button_scan_qr_code" = "Scan QR code";
 "button_exit_scanner" = "Exit Scanner";
 "button_try_again" = "Try Again";
+"button_accept" = "Accept";
+"button_reject" = "Reject";
 
 "I’m going to develop with Self" = "I’m going to develop with Self";
 

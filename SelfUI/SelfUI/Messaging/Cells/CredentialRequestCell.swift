@@ -38,7 +38,7 @@ struct CredentialRequestCell: BaseView {
                         actionAccept?()
                     }
                     
-                    CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultGreen) {
+                    CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
                         actionReject?()
                     }
                 }
