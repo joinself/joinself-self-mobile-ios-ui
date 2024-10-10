@@ -12,6 +12,8 @@ struct DocumentSignContentCell: View {
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
+    @State private var showDocument = false
+    
     init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
@@ -25,11 +27,15 @@ struct DocumentSignContentCell: View {
             HStack {
                 Image("ic_document_sign", bundle: mainBundle)
                 VStack {
-                    Text(messageDTO.attachments.first?.name ?? messageDTO.text)
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody)
-                        .foregroundStyle(Color.textPrimary)
-                    StatusLabel(label: messageDTO.attachments.first?.size.formattedFileSize ?? "", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
+                    Button {
+                        showDocument = true
+                    } label: {
+                        Text(messageDTO.attachments.first?.name ?? messageDTO.text)
+                            .multilineTextAlignment(.leading)
+                            .font(.defaultBody)
+                            .foregroundStyle(Color.textPrimary)
+                    }
+                    StatusLabel(label: messageDTO.attachments.first?.size.formattedFileSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
                 }
                 Spacer()
                 Image("ic_chevron_right", bundle: mainBundle)
@@ -47,6 +53,16 @@ struct DocumentSignContentCell: View {
                 }
             }
         }
+        .sheet(isPresented: $showDocument, onDismiss: {
+            // dismiss document preview
+        }, content: {
+            if let path = messageDTO.attachments.first?.localPath {
+                let url = URL(fileURLWithPath: path)
+                PDFViewer(url: url)
+            } else {
+                PDFViewer(url: mainBundle?.url(forResource: "sample", withExtension: "pdf"))
+            }
+        })
     }
 }
 
