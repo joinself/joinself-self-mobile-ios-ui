@@ -21,17 +21,29 @@ struct DocumentSignContentCell: View {
     }
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             HStack {
-                Image("ic_document_signed", bundle: mainBundle)
-                    .tint(.defaultGreen)
-                VStack (alignment: .leading) {
-                    Text(messageDTO.text)
+                Image("ic_document_sign", bundle: mainBundle)
+                VStack {
+                    Text(messageDTO.attachments.first?.name ?? messageDTO.text)
                         .multilineTextAlignment(.leading)
                         .font(.defaultBody)
                         .foregroundStyle(Color.textPrimary)
-                    
-                    StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
+                    StatusLabel(label: messageDTO.attachments.first?.size.formattedFileSize ?? "", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
+                }
+                Spacer()
+                Image("ic_chevron_right", bundle: mainBundle)
+            }
+            
+            Image("ic_space", bundle: mainBundle)
+            
+            HStack (spacing: 20) {
+                CustomButton(buttonTitle: "button_sign".localized, buttonTitleColor: .defaultGreen) {
+                    actionAccept?()
+                }
+                
+                CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
+                    actionReject?()
                 }
             }
         }
@@ -68,7 +80,7 @@ struct DocumentSignAcceptedContentCell: View {
     }
 }
 
-struct DocumentSignRejectedCell: View {
+struct DocumentSignRejectedContentCell: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
@@ -82,24 +94,17 @@ struct DocumentSignRejectedCell: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack {
             HStack {
-                Image("ic_document_sign", bundle: mainBundle)
-                Text(messageDTO.text)
-                    .multilineTextAlignment(.leading)
-                    .font(.defaultBody)
-                    .foregroundStyle(Color.textPrimary)
-            }
-            
-            Image("ic_space", bundle: mainBundle)
-            
-            HStack (spacing: 20) {
-                CustomButton(buttonTitle: "button_sign".localized, buttonTitleColor: .defaultGreen) {
-                    actionAccept?()
-                }
-                
-                CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
-                    actionReject?()
+                Image("ic_document_signed", bundle: mainBundle)
+                    .tint(.defaultGreen)
+                VStack (alignment: .leading) {
+                    Text(messageDTO.text)
+                        .multilineTextAlignment(.leading)
+                        .font(.defaultBody)
+                        .foregroundStyle(Color.textPrimary)
+                    
+                    StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
                 }
             }
         }
@@ -123,11 +128,11 @@ struct DocumentSignCell: BaseView {
         BaseCell(messageDTO: messageDTO) {
             switch messageDTO.status {
             case .accepted:
-                DocumentSignContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
-            case .rejected:
                 DocumentSignAcceptedContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+            case .rejected:
+                DocumentSignRejectedContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             default:
-                DocumentSignRejectedCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             }
         }
     }

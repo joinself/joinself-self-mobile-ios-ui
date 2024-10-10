@@ -15,6 +15,8 @@ extension Color {
     
     /// Message Cell
     static let defaultGray: Color = Color(red: 0.88, green: 0.88, blue: 0.88)
+    static let PrimaryOverlay: Color = Color(red: 0, green: 0.37, blue: 0.98).opacity(0.1)
+    
     static let defaultGrayBackground: Color = Color(red: 0.98, green: 0.98, blue: 0.98)
     static let defaultDark: Color = Color(red: 0.54, green: 0.54, blue: 0.54)
     static let defaultBlack: Color = Color.black

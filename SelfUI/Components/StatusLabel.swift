@@ -10,10 +10,12 @@ import SwiftUI
 struct StatusLabel: View {
     let backgroundColor: Color
     let label: String
+    let labelColor: Color
     
-    init(label: String, backgroundColor: Color) {
+    init(label: String, labelColor: Color = .white, backgroundColor: Color) {
         self.label = label
         self.backgroundColor = backgroundColor
+        self.labelColor = labelColor
     }
     
     var body: some View {
@@ -22,7 +24,7 @@ struct StatusLabel: View {
             Text(label)
               .font(.defaultStatusLabel)
               .kerning(0.12)
-              .foregroundColor(.white)
+              .foregroundColor(labelColor)
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 2)

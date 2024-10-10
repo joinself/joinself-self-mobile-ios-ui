@@ -34,6 +34,7 @@
 		6352E2AA2CB783D900931A18 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2A92CB783D900931A18 /* CustomButton.swift */; };
 		6352E2B22CB7B6CF00931A18 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2B12CB7B6CF00931A18 /* StatusLabel.swift */; };
 		6352E2B42CB7CDF200931A18 /* DocumentSignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */; };
+		6352E2B62CB7DEAA00931A18 /* AttachmentDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352E2B52CB7DEA900931A18 /* AttachmentDTO.swift */; };
 		63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */; };
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
@@ -219,6 +220,7 @@
 		6352E2A92CB783D900931A18 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6352E2B12CB7B6CF00931A18 /* StatusLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSignCell.swift; sourceTree = "<group>"; };
+		6352E2B52CB7DEA900931A18 /* AttachmentDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentDTO.swift; sourceTree = "<group>"; };
 		63554DD72CA139CD00DF55D2 /* OutlineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTextField.swift; sourceTree = "<group>"; };
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				632AF9F92CAFCCE40036F294 /* MessageDTO.swift */,
+				6352E2B52CB7DEA900931A18 /* AttachmentDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -999,6 +1002,7 @@
 				637067052C6087C000A23C1E /* CreateAccountNameView.swift in Sources */,
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
 				6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */,
+				6352E2B62CB7DEAA00931A18 /* AttachmentDTO.swift in Sources */,
 				632AFA002CAFF5960036F294 /* UserDetailView.swift in Sources */,
 				635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */,
 				6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */,
