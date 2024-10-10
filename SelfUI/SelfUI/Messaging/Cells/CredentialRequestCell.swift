@@ -7,6 +7,104 @@
 
 import SwiftUI
 
+struct CredentialRequestContentView: View {
+    var messageDTO: MessageDTO
+    private var actionAccept: (() -> Void)?
+    private var actionReject: (() -> Void)?
+    
+    init(messageDTO: MessageDTO,
+         actionAccept: (() -> Void)? = nil,
+         actionReject: (() -> Void)? = nil) {
+        self.messageDTO = messageDTO
+        self.actionAccept = actionAccept
+        self.actionReject = actionReject
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Image("ic_accept_request", bundle: mainBundle)
+                VStack (alignment: .leading) {
+                    Text(messageDTO.text)
+                        .multilineTextAlignment(.leading)
+                        .font(.defaultBody)
+                        .foregroundStyle(Color.textPrimary)
+                    
+                    StatusLabel(label: "label_agreed".localized, backgroundColor: .defaultGreen)
+                }
+            }
+        }
+    }
+}
+
+struct CredentialRequestAcceptContentView: View {
+    var messageDTO: MessageDTO
+    private var actionAccept: (() -> Void)?
+    private var actionReject: (() -> Void)?
+    
+    init(messageDTO: MessageDTO,
+         actionAccept: (() -> Void)? = nil,
+         actionReject: (() -> Void)? = nil) {
+        self.messageDTO = messageDTO
+        self.actionAccept = actionAccept
+        self.actionReject = actionReject
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Image("ic_accept_request", bundle: mainBundle)
+                VStack (alignment: .leading) {
+                    Text(messageDTO.text)
+                        .multilineTextAlignment(.leading)
+                        .font(.defaultBody)
+                        .foregroundStyle(Color.textPrimary)
+                    
+                    StatusLabel(label: "label_rejected".localized, backgroundColor: .defaultPink)
+                }
+            }
+        }
+    }
+}
+
+struct CredentialRequestRejectContentView: View {
+    var messageDTO: MessageDTO
+    private var actionAccept: (() -> Void)?
+    private var actionReject: (() -> Void)?
+    
+    init(messageDTO: MessageDTO,
+         actionAccept: (() -> Void)? = nil,
+         actionReject: (() -> Void)? = nil) {
+        self.messageDTO = messageDTO
+        self.actionAccept = actionAccept
+        self.actionReject = actionReject
+    }
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            HStack {
+                Image("ic_custom_app", bundle: mainBundle)
+                Text(messageDTO.text)
+                    .multilineTextAlignment(.leading)
+                    .font(.defaultBody)
+                    .foregroundStyle(Color.textPrimary)
+            }
+            
+            Image("ic_space", bundle: mainBundle)
+            
+            HStack (spacing: 20) {
+                CustomButton(buttonTitle: "button_agree".localized, buttonTitleColor: .defaultGreen) {
+                    actionAccept?()
+                }
+                
+                CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
+                    actionReject?()
+                }
+            }
+        }
+    }
+}
+
 struct CredentialRequestCell: BaseView {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
@@ -22,26 +120,13 @@ struct CredentialRequestCell: BaseView {
     
     var body: some View {
         BaseCell(messageDTO: messageDTO) {
-            VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
-                HStack {
-                    Image("ic_self_logo", bundle: mainBundle)
-                    Text("Please share your verified email address.")
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody)
-                        .foregroundStyle(Color.textPrimary)
-                }
-                
-                Image("ic_space", bundle: mainBundle)
-                
-                HStack (spacing: 20) {
-                    CustomButton(buttonTitle: "button_accept".localized, buttonTitleColor: .defaultGreen) {
-                        actionAccept?()
-                    }
-                    
-                    CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
-                        actionReject?()
-                    }
-                }
+            switch messageDTO.status {
+            case .accepted:
+                CredentialRequestContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+            case .rejected:
+                CredentialRequestAcceptContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+            default:
+                CredentialRequestRejectContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             }
         }
     }
@@ -49,7 +134,9 @@ struct CredentialRequestCell: BaseView {
 
 #Preview {
     VStack {
-        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, timestamp: "now"))
+        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .pending, timestamp: "now"))
+        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now"))
+        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now"))
     }.padding()
     
 }

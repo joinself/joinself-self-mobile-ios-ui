@@ -33,14 +33,19 @@ struct BaseCell<Content: View>: View, BaseMessage {
             .clipShape(messageDTO.isMyMessage ? .rect(
                 topLeadingRadius: Constants.Corner2,
                 bottomLeadingRadius: Constants.Corner2,
-                bottomTrailingRadius: Constants.Corner4,
+                bottomTrailingRadius: calculateCustomCornerRadius(),
                 topTrailingRadius: Constants.Corner2
             ) : .rect(
                 topLeadingRadius: Constants.Corner2,
-                bottomLeadingRadius: Constants.Corner4,
+                bottomLeadingRadius: calculateCustomCornerRadius(),
                 bottomTrailingRadius: Constants.Corner2,
                 topTrailingRadius: Constants.Corner2
             ))
+            .overlay(
+            RoundedRectangle(cornerRadius: Constants.Corner3)
+            .inset(by: 1)
+            .stroke(self.calculateCustomBorderColor(), lineWidth: self.calculateCustomBorderWidth())
+            )
             if !messageDTO.isMyMessage {
                 Spacer(minLength: minSpaceLength)
             }
@@ -50,6 +55,26 @@ struct BaseCell<Content: View>: View, BaseMessage {
         .background(.white)
         .listRowSeparator(.hidden)
         .listRowInsets(.none)
+    }
+    
+    private func calculateCustomCornerRadius() -> CGFloat {
+        let statuses = [MessageStatus.accepted.rawValue, MessageStatus.rejected.rawValue]
+        let cornerRadius = (statuses.contains(messageDTO.status.rawValue)) ? Constants.Corner2 : Constants.Corner4
+        
+        return cornerRadius
+    }
+    
+    private func calculateCustomBorderWidth() -> CGFloat {
+        let statuses = [MessageStatus.accepted.rawValue, MessageStatus.rejected.rawValue]
+        let width: CGFloat = (statuses.contains(messageDTO.status.rawValue)) ? 2 : 0
+        
+        return width
+    }
+    
+    private func calculateCustomBorderColor() -> Color {
+        let color: Color = (messageDTO.status == .accepted) ? .defaultGreen : .defaultPink
+        
+        return color
     }
 }
 
@@ -67,7 +92,19 @@ struct BaseCell<Content: View>: View, BaseMessage {
             BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .sender, receiptStatus: .read, timestamp: "now")) {
                 Text("Hello base receier cell.")
             }
-        }
+            
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .sender, receiptStatus: .read, status: .accepted, timestamp: "now")) {
+                Text("Hello base receier cell.")
+            }
+            
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .accepted, timestamp: "now")) {
+                Text("Hello base receier cell.")
+            }
+            
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .rejected, timestamp: "now")) {
+                Text("Hello base receier cell.")
+            }
+        }.padding()
     }
     
 }

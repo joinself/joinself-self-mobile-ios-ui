@@ -57,7 +57,7 @@ public struct MessageDTO: Identifiable, Equatable {
     let fromType: MessageFrom
     let receiptStatus: MessageStatus
     let timestamp: String
-    var status: MessageStatus = .pending
+    var status: MessageStatus = .pending // Request status
 
     public init(id: String,
                 text: String,
