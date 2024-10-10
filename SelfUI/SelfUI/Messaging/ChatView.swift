@@ -31,15 +31,18 @@ public struct ChatView: View {
     @StateObject private var keyboardResponder = KeyboardResponder()
     private var actionAccept: ((MessageDTO) -> Void)?
     private var actionReject: ((MessageDTO) -> Void)?
+    private var actionRead: ((MessageDTO) -> Void)?
     
     public init (conversationName: Binding<String>,
                  chatObservableObject: ChatObservableObject,
                  actionAccept: ((MessageDTO) -> Void)? = nil,
-                 actionReject: ((MessageDTO) -> Void)? = nil) {
+                 actionReject: ((MessageDTO) -> Void)? = nil,
+                 actionRead: ((MessageDTO) -> Void)? = nil) {
         self._conversationName = conversationName
         self.chatObservableObject = chatObservableObject
         self.actionAccept = actionAccept
         self.actionReject = actionReject
+        self.actionRead = actionRead
     }
     
     public var body: some View {
@@ -69,6 +72,9 @@ public struct ChatView: View {
                                 
                             default:
                                 MessageTextCell(messageDTO: message)
+                                    .onAppear {
+                                        actionRead?(message)
+                                    }
                             }
                         }
                         
