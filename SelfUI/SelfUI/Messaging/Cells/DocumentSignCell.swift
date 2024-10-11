@@ -87,14 +87,17 @@ struct DocumentSignAcceptedContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("ic_document_sign", bundle: mainBundle)
+                Image("ic_document_signed", bundle: mainBundle)
                 VStack (alignment: .leading) {
                     Text(messageDTO.text)
                         .multilineTextAlignment(.leading)
                         .font(.defaultBody)
                         .foregroundStyle(Color.textPrimary)
                     
-                    StatusLabel(label: "label_rejected".localized, backgroundColor: .defaultPink)
+                    HStack {
+                        StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
+                        StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultGreen, backgroundColor: .white)
+                    }
                 }
             }
         }
@@ -117,7 +120,7 @@ struct DocumentSignRejectedContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Image("ic_document_signed", bundle: mainBundle)
+                Image("ic_document_sign", bundle: mainBundle)
                     .tint(.defaultGreen)
                 VStack (alignment: .leading) {
                     Text(messageDTO.text)
@@ -125,7 +128,10 @@ struct DocumentSignRejectedContentView: View {
                         .font(.defaultBody)
                         .foregroundStyle(Color.textPrimary)
                     
-                    StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
+                    HStack {
+                        StatusLabel(label: "label_rejected".localized, backgroundColor: .defaultError)
+                        StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultError, backgroundColor: .white)
+                    }
                 }
             }
         }
