@@ -22,36 +22,42 @@ struct EnterEmailView: View {
     
     public var body: some View {
         VStack {
-            ScrollView {
-                VStack {
-                    // stepped progress view
-                    CustomProgressView(steps: [
-                        Step(title: "1", state: .done),
-                        Step(title: "2", state: .done),
-                        Step(title: "3", state: .done),
-                        Step(title: "4", state: .active),
-                        Step(title: "5", state: .inactive)
-                    ])
-                    
-                    Spacer(minLength: 50)
-                    
-                    Text("enter_email_title".localized)
-                        .font(.defaultTitle)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    
-                    Spacer(minLength: 30)
-                    
-                    OutlineLabelTextField(label: "email_address".localized, placeHolder: "email_address_placeholder".localized,
-                                          errorDescription: "email_address_invalid_message".localized,
-                                          keyboardType: .emailAddress,
-                                          textInputAutocapitalization: .never,
-                                          state: $editFieldState, text: $emailAddress, isFocused: _isFocused)
-                    .onChange(of: emailAddress) { newValue in
-                        isValidEmail = newValue.isValidEmail()
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack {
+                        // stepped progress view
+                        CustomProgressView(steps: [
+                            Step(title: "1", state: .done),
+                            Step(title: "2", state: .done),
+                            Step(title: "3", state: .done),
+                            Step(title: "4", state: .active),
+                            Step(title: "5", state: .inactive)
+                        ])
                         
-                        editFieldState = isValidEmail ? .valid : .error
-                    }
+                        Spacer(minLength: 50)
+                        
+                        Text("enter_email_title".localized)
+                            .font(.defaultTitle)
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        
+                        Spacer(minLength: 30)
+                        
+                        OutlineLabelTextField(label: "email_address".localized, placeHolder: "email_address_placeholder".localized,
+                                              errorDescription: "email_address_invalid_message".localized,
+                                              keyboardType: .emailAddress,
+                                              textInputAutocapitalization: .never,
+                                              state: $editFieldState, text: $emailAddress, isFocused: _isFocused)
+                        .onChange(of: emailAddress) { newValue in
+                            isValidEmail = newValue.isValidEmail()
+                            
+                            editFieldState = isValidEmail ? .valid : .error
+                            withAnimation {
+                                // `1` is the id of the view that scroll to
+                                proxy.scrollTo(1, anchor: .bottom)
+                            }
+                        }
+                    }.id(1)
                 }
             }
             
