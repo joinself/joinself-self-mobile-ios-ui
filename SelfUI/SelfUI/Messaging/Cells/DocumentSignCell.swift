@@ -93,12 +93,12 @@ struct DocumentSignAcceptedContentView: View {
                         .multilineTextAlignment(.leading)
                         .font(.defaultBody)
                         .foregroundStyle(Color.textPrimary)
-                    
                     HStack {
                         StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
                         StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultGreen, backgroundColor: .white)
                     }
                 }
+                Spacer()
             }
         }
     }
@@ -139,20 +139,23 @@ struct DocumentSignRejectedContentView: View {
 }
 
 struct DocumentSignCell: BaseView {
-    var messageDTO: MessageDTO
+    let messageDTO: MessageDTO
+    let spaceLength: CGFloat
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
     init(messageDTO: MessageDTO,
+         spaceLength: CGFloat = 0,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
+        self.spaceLength = 0
         self.actionAccept = actionAccept
         self.actionReject = actionReject
     }
     
     var body: some View {
-        BaseCell(messageDTO: messageDTO) {
+        BaseCell(messageDTO: messageDTO, spaceLength: spaceLength) {
             switch messageDTO.status {
             case .accepted:
                 DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)

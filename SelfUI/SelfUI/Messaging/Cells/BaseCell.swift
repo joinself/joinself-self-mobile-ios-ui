@@ -10,11 +10,12 @@ import SwiftUI
 struct BaseCell<Content: View>: View, BaseMessage {
     var messageDTO: MessageDTO
     let content: Content
-    private let minSpaceLength: CGFloat = 70
+    private let minSpaceLength: CGFloat
 
-    init(messageDTO: MessageDTO, @ViewBuilder content: () -> Content) {
+    init(messageDTO: MessageDTO, spaceLength: CGFloat = 70, @ViewBuilder content: () -> Content) {
         self.messageDTO = messageDTO
         self.content = content()
+        self.minSpaceLength = spaceLength
     }
     
     var body: some View {
@@ -81,6 +82,10 @@ struct BaseCell<Content: View>: View, BaseMessage {
 #Preview {
     ZStack {
         VStack {
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .rejected, timestamp: "now"), spaceLength: 0, content: {
+                Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
+            })
+            
             BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now")) {
                 Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
             }
@@ -98,6 +103,10 @@ struct BaseCell<Content: View>: View, BaseMessage {
             }
             
             BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .accepted, timestamp: "now")) {
+                Text("Hello base receier cell.")
+            }
+            
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .rejected, timestamp: "now")) {
                 Text("Hello base receier cell.")
             }
             

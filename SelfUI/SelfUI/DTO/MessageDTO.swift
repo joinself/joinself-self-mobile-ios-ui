@@ -59,10 +59,12 @@ public struct MessageDTO: Identifiable, Equatable {
     let timestamp: String
     var status: MessageStatus = .pending // Request status
     let attachments: [AttachmentDTO]
+    let credential: CredentialDTO?
 
     public init(id: String,
                 text: String,
                 attachments: [AttachmentDTO] = [],
+                credential: CredentialDTO? = nil,
                 mimeType: String = MessageType.SELF_TEXT,
                 fromType: MessageFrom = .sender,
                 receiptStatus: MessageStatus = .pending,
@@ -71,6 +73,7 @@ public struct MessageDTO: Identifiable, Equatable {
         self.id = id
         self.text = text
         self.attachments = attachments
+        self.credential = credential
         self.isMyMessage = fromType == .sender
         self.fromType = fromType
         self.receiptStatus = receiptStatus
