@@ -18,74 +18,47 @@ struct EnterEmailView: View {
     @State private var isValidEmail: Bool = false
     @State private var emailAddress: String = ""
     @FocusState private var isFocused: Bool
+    @State private var editFieldState: OutlineTextFieldState = .initial
     
     public var body: some View {
         VStack {
-            ScrollView {
-                VStack {
-                    // stepped progress view
-                    CustomProgressView(steps: [
-                        Step(title: "1", state: .done),
-                        Step(title: "2", state: .done),
-                        Step(title: "3", state: .done),
-                        Step(title: "4", state: .active),
-                        Step(title: "5", state: .inactive)
-                    ])
-                    
-                    Text("enter_email_title".localized)
-                        .font(.defaultTitle)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                        .padding(.all, 16)
-                    
-                    VStack (alignment: .leading) {
-                        Text("email_address".localized)
-                            .font(.defaultBody)
-                            .bold()
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack {
+                        // stepped progress view
+                        CustomProgressView(steps: [
+                            Step(title: "1", state: .done),
+                            Step(title: "2", state: .done),
+                            Step(title: "3", state: .done),
+                            Step(title: "4", state: .active),
+                            Step(title: "5", state: .inactive)
+                        ])
+                        
+                        Spacer(minLength: 50)
+                        
+                        Text("enter_email_title".localized)
+                            .font(.defaultTitle)
                             .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         
-                        ZStack {
-                            HStack(alignment: .center, spacing: 1) {
-                                
-                            }
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 10)
-                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                            .background(Color.defaultGray)
-                            .cornerRadius(.defaultCornerRadius)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: .defaultCornerRadius)
-                                    .inset(by: 0.5)
-                                    .stroke(isValidEmail ? Color.defaultGreen : Color.defaultPink, lineWidth: 1)
-                                TextField("", text: $emailAddress)
-                                    .placeholder(when: emailAddress.isEmpty) {
-                                        Text("email_address_placeholder".localized).foregroundColor(.defaultPlaceHolder)
-                                    }
-                                    .accentColor(.defaultBlack) // Set the focus indicator color here
-                                    .font(.defaultBody)
-                                    .focused($isFocused)
-                                    .foregroundColor(.black)
-                                    .textContentType(.emailAddress)
-                                    .textInputAutocapitalization(.never)
-                                    .keyboardType(.emailAddress)
-                                    .onChange(of: emailAddress) { newValue in
-                                        isValidEmail = newValue.isValidEmail()
-                                    }
-                                    .onAppear {
-                                        isFocused = true
-                                    }
-                                    .padding()
+                        Spacer(minLength: 30)
+                        
+                        OutlineLabelTextField(label: "email_address".localized, placeHolder: "email_address_placeholder".localized,
+                                              errorDescription: "email_address_invalid_message".localized,
+                                              keyboardType: .emailAddress,
+                                              textInputAutocapitalization: .never,
+                                              state: $editFieldState, text: $emailAddress, isFocused: _isFocused)
+                        .onChange(of: emailAddress) { newValue in
+                            isValidEmail = newValue.isValidEmail()
+                            
+                            editFieldState = isValidEmail ? .valid : .error
+                            withAnimation {
+                                // `1` is the id of the view that scroll to
+                                proxy.scrollTo(1, anchor: .bottom)
                             }
                         }
-                        
-                        if !isValidEmail {
-                            Text("email_address_invalid_message".localized)
-                                .foregroundColor(.defaultPink)
-                        }
-                    }.padding()
-                    
+                    }.id(1)
                 }
-                
             }
             
             Spacer()
@@ -104,6 +77,7 @@ struct EnterEmailView: View {
                 BrandView(isDarked: true)
             }
         }
+        .padding()
         .scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
         .background(.white)
         .navigationBarBackButtonHidden(true)

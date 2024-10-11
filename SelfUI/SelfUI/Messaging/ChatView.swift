@@ -5,52 +5,89 @@
 //  Created by Long Pham on 28/9/24.
 //
 import SwiftUI
+import Combine
+
+public class ChatObservableObject: ObservableObject {
+    @Published var messages: [MessageDTO] = []
+    public var newMessage = PassthroughSubject<MessageDTO, Never>() // handle on message changes
+    public init(messages: [MessageDTO]) {
+        self.messages = messages
+    }
+    
+    public func updateMessages(newMessages: [MessageDTO]) {
+        self.messages = newMessages
+    }
+}
+
 
 public struct ChatView: View {
-    @State private var messages: [Message] = [
-        Message(id: UUID(), text: "Hello", isUser: true),
-        Message(id: UUID(), text: "Hello", isUser: false)
-    ]
+    @ObservedObject var chatObservableObject: ChatObservableObject
+    
     @State private var newMessage: String = ""
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @Environment(\.presentationMode) var presentationMode
-    let conversationName: String
-    public init (conversationName: String) {
-        self.conversationName = conversationName
+    @Binding var conversationName: String
+    @StateObject private var keyboardResponder = KeyboardResponder()
+    private var actionAccept: ((MessageDTO) -> Void)?
+    private var actionReject: ((MessageDTO) -> Void)?
+    private var actionRead: ((MessageDTO) -> Void)?
+    
+    public init (conversationName: Binding<String>,
+                 chatObservableObject: ChatObservableObject,
+                 actionAccept: ((MessageDTO) -> Void)? = nil,
+                 actionReject: ((MessageDTO) -> Void)? = nil,
+                 actionRead: ((MessageDTO) -> Void)? = nil) {
+        self._conversationName = conversationName
+        self.chatObservableObject = chatObservableObject
+        self.actionAccept = actionAccept
+        self.actionReject = actionReject
+        self.actionRead = actionRead
     }
     
     public var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                BaseNavigationBarView(title: conversationName, onNavigateBack: {
-                    presentationMode.wrappedValue.dismiss()
-                })
-                    .padding()
-                List(messages) { message in
-                    HStack {
-                        if message.isUser {
-                            Spacer()
-                            Text(message.text)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
-                        } else {
-                            Text(message.text)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                            Spacer()
+                NavigationTitleView(title: conversationName)
+                if chatObservableObject.messages.isEmpty {
+                    Spacer()// Empty messages
+                } else {
+                    ScrollViewReader { scrollViewProxy in
+                        List(chatObservableObject.messages) { message in
+                            switch message.mimeType {
+                            case MessageType.SELF_CREDENTIAL_REQUEST:
+                                CredentialRequestCell(messageDTO: message) {
+                                    actionAccept?(message)
+                                } actionReject: {
+                                    actionReject?(message)
+                                }
+                            
+                            case MessageType.SELF_DOCUMENT_SIGN:
+                                DocumentSignCell(messageDTO: message) {
+                                    actionAccept?(message)
+                                } actionReject: {
+                                    actionReject?(message)
+                                }
+                                
+                            default:
+                                MessageTextCell(messageDTO: message)
+                                    .onAppear {
+                                        actionRead?(message)
+                                    }
+                            }
+                        }
+                        
+                        .scrollDismissesKeyboard(.interactively)
+                        .background(.white)
+                        .listStyle(PlainListStyle())
+                        .onChange(of: chatObservableObject.messages) { _ in
+                            withAnimation {
+                                scrollViewProxy.scrollTo(chatObservableObject.messages.last?.id, anchor: .bottom)
+                            }
                         }
                     }
-                    .background(.white)
-                    .listRowInsets(EdgeInsets())
                 }
-                .padding()
-                .background(.white)
-                .listStyle(PlainListStyle())
                 
                 /*HStack {
                     Button(action: {
@@ -75,68 +112,39 @@ public struct ChatView: View {
                     }
                 }
                 .padding()*/
-                MessageComposerView()
-            }
+                MessageComposerView(onText: { textMessage in
+                    let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
+                    chatObservableObject.newMessage.send(newMessage)
+                })
+//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
+            }.padding()
         }
-    }
-    
-    func sendMessage() {
-        guard !newMessage.isEmpty else { return }
-        let message = Message(id: UUID(), text: newMessage, isUser: true)
-        messages.append(message)
-        newMessage = ""
     }
     
     func loadImage() {
         guard let inputImage = inputImage else { return }
         // Handle the image attachment here
-        let message = Message(id: UUID(), text: "Image attached", isUser: true)
-        messages.append(message)
+        let message = MessageDTO(id: UUID().uuidString, text: "Image attached", fromType: .sender)
+        //messages.append(message)
     }
-}
-
-struct Message: Identifiable {
-    let id: UUID
-    let text: String
-    let isUser: Bool
-}
-
-struct ImagePicker: UIViewControllerRepresentable {
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        var parent: ImagePicker
-        
-        init(parent: ImagePicker) {
-            self.parent = parent
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let uiImage = info[.originalImage] as? UIImage {
-                parent.image = uiImage
-            }
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    @Binding var image: UIImage?
-    @Environment(\.presentationMode) var presentationMode
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
 
 #Preview {
     ZStack {
         Color.black.ignoresSafeArea()
-        ChatView(conversationName: "Conversation")
+        
+        ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, timestamp: "now"),
+            
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .sender),
+            
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now"),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now")
+        ]))
     }
     
 }

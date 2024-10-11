@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-import VisionKit
+
 
 public struct QRReaderView: View {
     @State private var isScanning: Bool = false
+    @State private var showScanQRFail: Bool = false
     @Binding private var isValidQRCode: Bool
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var qrCameraManager: QRCameraManager = QRCameraManager()
     
     var onCode: ((String?) -> Void)?
     var onCodeData: ((Data) -> Void)?
@@ -25,17 +27,36 @@ public struct QRReaderView: View {
     
     public var body: some View {
         ZStack {
-            QRCodeScannerView {
-                self.scannedCode = $0
-                self.checkQRCode()
-                onCode?($0)
-            } didFindDataCode: { data in
-                print("QR code is data: \(data.count)")
-                isValidQRCode = true
-                onCodeData?(data)
-            }
-            .edgesIgnoringSafeArea(.all)
+            QRCodeScannerView(qrCameraManager: self.qrCameraManager)
+                .onAppear {
+                    qrCameraManager.startSession()
+                }
+                .onDisappear {
+                    qrCameraManager.stopSession()
+                }
+                .onReceive(qrCameraManager.capturePublisher, perform: { data in
+                    print("Data count: \(data.count)")
+                    isValidQRCode = true
+                    DispatchQueue.main.async {
+                        onCodeData?(data)
+                    }
+                })
+                .fullScreenCover(isPresented: $qrCameraManager.notSupportedQR, onDismiss: {
+                    print("Dismissed")
+                    qrCameraManager.notSupportedQR = false
+                }, content: {
+                    QRScanFailView {
+                        print("Retry scan")
+                        qrCameraManager.notSupportedQR = false
+                        qrCameraManager.startSession()
+                    } onExit: {
+                        print("Exit the scanner")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                })
+                .ignoresSafeArea()
             QRCodeOverlayView(isValid: $isValidQRCode)
+                .ignoresSafeArea()
             
             VStack {
                 HStack {

@@ -17,7 +17,7 @@ public struct LoadingView: View {
             Color.defaultOverlay
                 .ignoresSafeArea(.all)
             LoadingDotsView()
-        }
+        }.hidden()
     }
 }
 

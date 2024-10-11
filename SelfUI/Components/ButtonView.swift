@@ -12,21 +12,21 @@ class ButtonViewModel: ObservableObject {
     @Published var backgroundColor: Color = Color.defaultGreen
 }
 
-struct ButtonView: View {
+public struct ButtonView: View {
     @ObservedObject var viewModel = ButtonViewModel()
     var onClicked: (() -> Void)? = nil
     @State private var didTap: Bool = false
     private let opacity: CGFloat = 0.6
     private var buttonTitleColor: Color = .white
     
-    init(title: String, backgroundColor: Color = .defaultGreen, buttonTitleColor: Color = .white, onClicked: (() -> Void)? = nil) {
+    public init(title: String, backgroundColor: Color = .defaultGreen, buttonTitleColor: Color = .white, onClicked: (() -> Void)? = nil) {
         self.buttonTitleColor = buttonTitleColor
         self.viewModel.title = title
         self.viewModel.backgroundColor = backgroundColor
         self.onClicked = onClicked
     }
     
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 10) {
             Button(action: {
                 handleTap()

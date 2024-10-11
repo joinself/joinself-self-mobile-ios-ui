@@ -14,14 +14,23 @@ struct QRCodeOverlayView: View {
     }
     
     var body: some View {
-        VStack {
-            Image("qr_overlay_normal", bundle: mainBundle)
-                .colorMultiply(isValid ? .defaultGreen : .white)
-        }.ignoresSafeArea(.all)
+        GeometryReader { geometry in
+            VStack {
+                Image(isValid ?  "qr_overlay_highlighted" : "qr_overlay_normal", bundle: mainBundle)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
+        }.ignoresSafeArea()
+        
     }
 }
 
 #Preview {
-    QRCodeOverlayView(isValid: .constant(false))
+    ZStack {
+        Color.defaultPink.ignoresSafeArea()
+        QRCodeOverlayView(isValid: .constant(true))
+    }
+    
 }
 

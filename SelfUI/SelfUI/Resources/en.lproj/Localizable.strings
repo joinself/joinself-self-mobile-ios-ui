@@ -44,7 +44,7 @@
 "expiry_date" = "Expiry date";
 "mrz_placeholder" = "YY/MM/DD";
 
-// buttons
+// MARK: buttons
 "Start" = "Start";
 "Continue" = "Continue";
 "Yes" = "Yes";
@@ -63,6 +63,18 @@
 "button_confirm_name" = "Confirm Name";
 "button_turn_on_notifications" = "Turn on notifications";
 "button_scan_qr_code" = "Scan QR code";
+"button_exit_scanner" = "Exit Scanner";
+"button_try_again" = "Try Again";
+"button_accept" = "Accept";
+"button_agree" = "Agree";
+"button_reject" = "Reject";
+"button_sign" = "Sign";
+"button_signed" = "Signed";
+
+"label_rejected" = "Rejected";
+"label_agreed" = "Agreed";
+"label_accepted" = "Accepted";
+"label_signed" = "Signed";
 
 "I’m going to develop with Self" = "I’m going to develop with Self";
 
@@ -94,7 +106,7 @@
 // MARK: - Email
 "email_introduction_title" = "Thanks, now  we need  to send you an email so we can confirm your email address.";
 "email_introduction_description" = "We will send you a code which you will need to enter to confirm you have access to that email. \n\nWe don’t keep your email or use it to send you messages. Ever.";
-"enter_email_title" = "Please enter your  email.";
+"enter_email_title" = "Please enter your email.";
 "email_address" = "Email address";
 "email_address_placeholder" = "youremail@example.com";
 "email_address_invalid_message" = "Please enter a valid email address.";
@@ -118,6 +130,7 @@
 "enter_name_label" = "Enter the name people normally know you by";
 "enter_name_placeholder" = "Your name";
 "enter_name_error" = "This field cannot be empty.";
+"enter_name_valid" = "Please enter a valid name";
 "creating_account_title" = "We’re just creating your Self account...";
 "creating_account_description" = "This tool is designed to help developers building and testing with Self Sandbox. You will need to turn on notifications for the best experience.";
 
@@ -125,6 +138,7 @@
 "account_created_description" = "Self works in real time. Please turn on notifications for the best experience.";
 
 "scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";
+"message_scan_fail" = "We couldn’t read that QR code, please try again.";
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";
@@ -132,3 +146,6 @@
 "tab_data" = "Data";
 "tab_settings" = "Settings";
 "tab_scan" = "Scan";
+
+"message_edit_profile" = "Choose a new profile image";
+"message_edit_profile_name" = "Choose a display name";

@@ -34,10 +34,12 @@ public struct AvatarView: View {
                     .overlay(Circle().stroke(Color.white, lineWidth: 1))
             }
             
-            Text(userName)
-                .font(.headline)
-                .foregroundColor(.white)
-                .shadow(radius: 10)
+            if !userName.isEmpty {
+                Text(userName.substring(0, to: 0))
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .shadow(radius: 10)
+            }   
         }
     }
 }
@@ -46,7 +48,7 @@ public struct AvatarView: View {
     ZStack {
         Color.gray.ignoresSafeArea()
         VStack {
-            AvatarView(imageName: "", userName: "ACME")
+            AvatarView(imageName: "", userName: "")
             AvatarView(imageName: "", userName: "ACME")
         }
         
