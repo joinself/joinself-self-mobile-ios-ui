@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DocumentSignContentCell: View {
+struct DocumentSignContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
@@ -27,28 +27,29 @@ struct DocumentSignContentCell: View {
             HStack {
                 Image("ic_document_sign", bundle: mainBundle)
                 VStack {
-                    Button {
-                        showDocument = true
-                    } label: {
-                        Text(messageDTO.attachments.first?.name ?? messageDTO.text)
-                            .multilineTextAlignment(.leading)
-                            .font(.defaultBody)
-                            .foregroundStyle(Color.textPrimary)
-                    }
-                    StatusLabel(label: messageDTO.attachments.first?.size.formattedFileSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
+                    Text(messageDTO.attachments.first?.name ?? messageDTO.text)
+                        .multilineTextAlignment(.leading)
+                        .font(.defaultBody)
+                        .foregroundStyle(Color.textPrimary)
+                    StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
                 }
                 Spacer()
                 Image("ic_chevron_right", bundle: mainBundle)
+            }.onTapGesture {
+                print("View document.")
+                showDocument = true
             }
             
             Image("ic_space", bundle: mainBundle)
             
             HStack (spacing: 20) {
                 CustomButton(buttonTitle: "button_sign".localized, buttonTitleColor: .defaultGreen) {
+                    print("Sign")
                     actionAccept?()
                 }
                 
                 CustomButton(buttonTitle: "button_reject".localized, buttonTitleColor: .defaultPink) {
+                    print("Reject")
                     actionReject?()
                 }
             }
@@ -58,7 +59,11 @@ struct DocumentSignContentCell: View {
         }, content: {
             if let path = messageDTO.attachments.first?.localPath {
                 let url = URL(fileURLWithPath: path)
+                
                 PDFViewer(url: url)
+                    .onAppear {
+                        print("URL: \(url)")
+                    }
             } else {
                 PDFViewer(url: mainBundle?.url(forResource: "sample", withExtension: "pdf"))
             }
@@ -66,7 +71,7 @@ struct DocumentSignContentCell: View {
     }
 }
 
-struct DocumentSignAcceptedContentCell: View {
+struct DocumentSignAcceptedContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
@@ -96,7 +101,7 @@ struct DocumentSignAcceptedContentCell: View {
     }
 }
 
-struct DocumentSignRejectedContentCell: View {
+struct DocumentSignRejectedContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
@@ -144,11 +149,11 @@ struct DocumentSignCell: BaseView {
         BaseCell(messageDTO: messageDTO) {
             switch messageDTO.status {
             case .accepted:
-                DocumentSignAcceptedContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             case .rejected:
-                DocumentSignRejectedContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignRejectedContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             default:
-                DocumentSignContentCell(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             }
         }
     }

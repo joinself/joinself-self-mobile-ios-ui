@@ -12,17 +12,20 @@ public struct AttachmentDTO: Equatable {
     public let mime: String
     public let localPath: String
     public let size: Int64 // in bytes
+    public let formattedSize: String
     
-    public init(name: String, mime: String, localPath: String, size: Int64) {
+    public init(name: String, mime: String, localPath: String, size: Int64, formattedSize: String = "") {
         self.name = name
         self.mime = mime
         self.localPath = localPath
         self.size = size
+        self.formattedSize = formattedSize
     }
 }
 
 extension Int64 {
     var formattedFileSize: String? {
+        print("formattedFileSize: \(self)")
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useMB]
         formatter.countStyle = .file
