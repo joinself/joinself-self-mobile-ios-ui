@@ -46,17 +46,19 @@ public struct EnterEmailCodeView: View {
                 PinCodeView(pinLength: 6, pinCode: $pinCode) { code in
                     self.onCode?(code)
                 }
-                HStack {
-                    Image("ic_resend", bundle: mainBundle)
-                    // Paragraph/Caption
-                    Text("resend_code".localized)
-                        .font(
-                            Font.defaultBody
-                        )
-                        .foregroundColor(.defaultBlue)
-                }.onTapGesture {
+                Button {
                     onResendCode?()
                     pinCode = Array(repeating: "", count: 6)
+                } label: {
+                    HStack {
+                        Image("ic_resend", bundle: mainBundle)
+                        // Paragraph/Caption
+                        Text("resend_code".localized)
+                            .font(
+                                Font.defaultBody
+                            )
+                            .foregroundColor(.defaultBlue)
+                    }
                 }
 
                 Spacer()
