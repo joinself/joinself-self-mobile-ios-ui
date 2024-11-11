@@ -8,19 +8,20 @@
 import SwiftUI
 import UIKit
 
-struct PinCodeView: View {
+public struct PinCodeView: View {
     @Binding var pin: [String]
     @FocusState private var focusedField: Int?
+    @State private var code: String = ""
     
     private let pinLength: Int
     private var onEnteredCode: ((_ code: String) -> Void)?
-    init(pinLength: Int = 6, pinCode: Binding<[String]> = .constant(Array(repeating: "", count: 6)), onEnteredCode: ((_ code: String) -> Void)? = nil) {
+    public init(pinLength: Int = 6, pinCode: Binding<[String]> = .constant(Array(repeating: "", count: 6)), onEnteredCode: ((_ code: String) -> Void)? = nil) {
         self.pinLength = pinLength
         self.onEnteredCode = onEnteredCode
         self._pin = pinCode
     }
     
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 10) {
             ForEach(0..<pinLength, id: \.self) { index in
                 TextField("", text: $pin[index])
@@ -41,40 +42,49 @@ struct PinCodeView: View {
                     .onReceive(NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification)) { notification in
                         if let textField = notification.object as? UITextField {
                             if let pastedText = textField.text, pastedText.count == pinLength {
-                                print("Text: \(pastedText)")
-                                for i in 0..<pinLength {
-                                    pin[i] = String(pastedText[pastedText.index(pastedText.startIndex, offsetBy: i)])
+                                if self.code == pastedText {
+                                    print("Ignore update pin.")
+                                    return
                                 }
-                                focusedField = nil
+                                
+                                self.code = pastedText
+                                print("Text: \(pastedText)")
+                                self.updatePin(pastedText)
                             }
                         }
                     }
                     .onChange(of: pin[index]) { newValue in
-                        if newValue.count > 1 {
-                            pin[index] = String(newValue.prefix(1))
+                        print("NewValue: \(newValue)")
+                        if newValue.isEmpty {
+                            self.code = ""
                         }
-                        else if newValue.isEmpty {
-                            if index > 0 {
-                                focusedField = index - 1
+                        
+                        if self.code.isEmpty {
+                            if newValue.count > 1 {
+                                pin[index] = String(newValue.prefix(1))
                             }
-                        }
-                        if newValue.count == 1 {
-                            if index < pinLength - 1 {
-                                focusedField = index + 1
-                            } else {
+                            else if newValue.isEmpty {
+                                if index > 0 {
+                                    focusedField = index - 1
+                                }
+                            }
+                            if newValue.count == 1 {
+                                if index < pinLength - 1 {
+                                    focusedField = index + 1
+                                } else {
+                                    focusedField = nil
+                                }
+                            }
+                            
+                            print("PIN: \(pin) - newValue: \(newValue)")
+                            let pinCode = pin.joined(separator: "")
+                            print("Newvalue: \(pinCode)")
+                            if pinCode.count == pinLength {
                                 focusedField = nil
+                                onEnteredCode?(pinCode)
+                            } else if pinCode.count == 0 {
+                                focusedField = 0
                             }
-                        }
-                        
-                        
-                        print("PIN: \(pin)")
-                        let pinCode = pin.joined(separator: "")
-                        print("Newvalue: \(pinCode)")
-                        if pinCode.count == pinLength {
-                            focusedField = nil
-                            onEnteredCode?(pinCode)
-                        } else if pinCode.count == 0 {
-                            focusedField = 0
                         }
                     }
                     .onAppear {
@@ -85,6 +95,14 @@ struct PinCodeView: View {
             }
         }
         .padding()
+    }
+    
+    private func updatePin(_ pastedText: String) {
+        for i in 0..<pinLength {
+            pin[i] = String(pastedText[pastedText.index(pastedText.startIndex, offsetBy: i)])
+        }
+        focusedField = nil
+        onEnteredCode?(pastedText)
     }
 }
 
