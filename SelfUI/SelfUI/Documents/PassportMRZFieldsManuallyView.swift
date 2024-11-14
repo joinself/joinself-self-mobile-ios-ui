@@ -63,12 +63,13 @@ public struct PassportMRZFieldsManuallyView: View {
                 .frame(width: 393, height: 100)
                 .background(.white)
                 
-                
-                // stepped progress view
-                ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: .defaultGreen, backgroundColor: .defaultGray)
-                    //                        .padding(.leading, 30)
-                }
+                CustomProgressView(steps: [
+                    Step(title: "1", state: .done),
+                    Step(title: "2", state: .active),
+                    Step(title: "3", state: .inactive),
+                    Step(title: "4", state: .inactive),
+                    Step(title: "5", state: .inactive)
+                ])
                 
                 VStack(alignment: .leading, spacing: 20) {
                     Text("title_enter_mrz_fields".localized)

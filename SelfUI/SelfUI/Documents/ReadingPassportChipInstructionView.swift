@@ -43,12 +43,13 @@ public struct ReadingPassportChipInstructionView: View {
                 .frame(width: 393, height: 100)
                 .background(.white)
                 
-                
-                // stepped progress view
-                ZStack(alignment: .center) {
-                    SteppedProgressView(totalSteps: 5, currentStep: 2, progressColor: Color(red: 0, green: 0.64, blue: 0.43), backgroundColor: .gray)
-                        .padding(.leading, 30)
-                }
+                CustomProgressView(steps: [
+                    Step(title: "1", state: .done),
+                    Step(title: "2", state: .active),
+                    Step(title: "3", state: .inactive),
+                    Step(title: "4", state: .inactive),
+                    Step(title: "5", state: .inactive)
+                ])
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("title_capture_passport".localized)
