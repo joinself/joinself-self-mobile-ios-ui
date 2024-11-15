@@ -1,21 +1,21 @@
 //
-//  DocumentSorryView.swift
+//  DocumentVerifiedView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 29/5/24.
+//  Created by Long Pham on 30/5/24.
 //
 
 import SwiftUI
 
-public struct DocumentSorryView: View {
+public struct DocumentVerifiedView: View {
     
-    public init(onButtonClicked: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
-        self.onButtonClicked = onButtonClicked
-        self.onNavigateBack = onNavigateBack
+    public init(onBack: (() -> Void)? = nil, onNext: (() -> Void)? = nil) {
+        self.onBack = onBack
+        self.onNext = onNext
     }
     
-    var onButtonClicked: () -> Void
-    var onNavigateBack: () -> Void
+    var onNext: (() -> Void)?
+    var onBack: (() -> Void)?
     
     public var body: some View {
         ZStack {
@@ -33,12 +33,12 @@ public struct DocumentSorryView: View {
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
                                 .onTapGesture {
-                                    print("onNavigationBack")
-                                    onNavigateBack()
+                                    print("onNavigateBack")
+                                    onBack?()
                                 }
                         }
                         .onTapGesture {
-                            onNavigateBack()
+                            onBack?()
                         }
                         .frame(width: 44, height: 32)
                         .padding(.leading, 15)
@@ -49,25 +49,24 @@ public struct DocumentSorryView: View {
                 
                 CustomProgressView(steps: [
                     Step(title: "1", state: .done),
-                    Step(title: "2", state: .active),
-                    Step(title: "3", state: .inactive),
-                    Step(title: "4", state: .inactive),
-                    Step(title: "5", state: .inactive)
+                    Step(title: "2", state: .done),
+                    Step(title: "3", state: .done),
+                    Step(title: "4", state: .done),
+                    Step(title: "5", state: .done)
                 ])
                 
-                VStack(alignment: .leading, spacing: 30) {
-                    Text("msg_document_failed".localized)
-                        .font(.defaultTitle)
+                VStack(alignment: .leading) {
+                    Text("msg_document_verified".localized)
+                        .font(.defaultLargeTitle)
                         .foregroundColor(.textPrimary)
+                        .frame(maxWidth: .infinity, alignment: .bottomLeading)
                     Spacer()
-                }
-                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }.padding()
                 
                 Spacer()
                 VStack(spacing: 12) {
-                    ButtonView(title: "Continue".localized) {
-                        onButtonClicked()
+                    ButtonView(title: "button_continue".localized) {
+                        onNext?()
                     }
                     
                     BrandView(isDarked: true)
@@ -80,10 +79,5 @@ public struct DocumentSorryView: View {
 }
 
 #Preview {
-    DocumentSorryView(onButtonClicked: {
-        
-    }, onNavigateBack: {
-        
-    })
+    DocumentVerifiedView()
 }
-

@@ -21,7 +21,7 @@
 "title_document_selection"  = "First, you need to verify some information. You’ll need your Passport or Identity Document.";
 "detail_document_selection"  = "Self helps you to verify the data on your government issued identity documents so you can use it to prove things about yourself.";
 
-// passports
+// MARK: - Passports
 "Passport verification preparation" = "First, you need to verify some information. You’ll need your Passport.";
 "Passport verification preparation body" = "Self helps you to verify the data on your Passport so you can use it to prove things about yourself.";
 "title_ask_passport_chip" = "Does your Passport have this icon?";
@@ -30,12 +30,15 @@
 "title_cant_create_self_account" = "We’re Sorry, but you can’t open an account \njust yet. We will let you know as soon as you can.";
 "detail_cant_create_self_account" = "Please leave the app installed and it will notify you when it’s time to try again.";
 
-"title_capture_passport" = "Now capture your passport.";
+"title_capture_passport" = "Take an image of your passport.";
 "detail_capture_passport" = "Open your passport at the photo page, fill the box you see on the next screen with the passport information.";
 "Having trouble?" = "Having trouble?";
 
 "title_start_scan_passport" = "Now hold your phone still against the passport while Self reads the chip.";
 "title_passport_scanning_passport" = "Don’t move the phone. Your passport is being checked.";
+
+"msg_document_verified" = "Your document has been verified.";
+"msg_document_failed" = "We have encountered a problem verifying your document. We will contact you shortly via your verified email.";
 
 // mrz fields
 "title_enter_mrz_fields" = "Confirm passport information";
@@ -70,6 +73,7 @@
 "button_reject" = "Reject";
 "button_sign" = "Sign";
 "button_signed" = "Signed";
+"button_continue" = "Continue";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
@@ -149,3 +153,4 @@
 
 "message_edit_profile" = "Choose a new profile image";
 "message_edit_profile_name" = "Choose a display name";
+
