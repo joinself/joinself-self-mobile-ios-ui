@@ -152,6 +152,7 @@ class CameraManager: NSObject, ObservableObject {
                 print("Expected mrzInfo: \(mrzInfo)")
                 DispatchQueue.main.async {
                     self.isValidMRZ = mrzInfo.isvalidMZR()
+                    Utils.vibrate()
                     self.onResult?(mrzInfo)
                 }
                 self.session.stopRunning()

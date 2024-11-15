@@ -46,7 +46,7 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                     parent.qrCameraManager.notSupportedQR = true
                 }
                 else if let qrCodeBytes = readableObject.binaryValue {
-                    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    Utils.vibrate()
                     parent.qrCameraManager.stopSession()
                     parent.qrCameraManager.capturePublisher.send(qrCodeBytes)
                 }

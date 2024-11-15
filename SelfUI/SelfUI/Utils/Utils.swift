@@ -7,11 +7,16 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class Utils {
     private init() {}
     static let instance = Utils()
     private var isLoadedFonts = false
+    
+    static func vibrate() {
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
     
     func applyDefaultFonts() {
         if isLoadedFonts == false {

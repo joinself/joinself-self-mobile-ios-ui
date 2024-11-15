@@ -8,7 +8,6 @@
 import SwiftUI
 
 public struct DocumentVerifiedView: View {
-    @Environment(\.presentationMode) private var presentationMode
     
     public init(onBack: (() -> Void)? = nil, onNext: (() -> Void)? = nil) {
         self.onBack = onBack
@@ -36,13 +35,10 @@ public struct DocumentVerifiedView: View {
                                 .onTapGesture {
                                     print("onNavigateBack")
                                     onBack?()
-                                    self.presentationMode.wrappedValue.dismiss()
-                                    
                                 }
                         }
                         .onTapGesture {
                             onBack?()
-                            self.presentationMode.wrappedValue.dismiss()
                         }
                         .frame(width: 44, height: 32)
                         .padding(.leading, 15)
@@ -71,8 +67,6 @@ public struct DocumentVerifiedView: View {
                 VStack(spacing: 12) {
                     ButtonView(title: "button_continue".localized) {
                         onNext?()
-                        // dismisal
-                        self.presentationMode.wrappedValue.dismiss()
                     }
                     
                     BrandView(isDarked: true)

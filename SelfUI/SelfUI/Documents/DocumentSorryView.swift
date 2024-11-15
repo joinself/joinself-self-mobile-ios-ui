@@ -56,13 +56,9 @@ public struct DocumentSorryView: View {
                 ])
                 
                 VStack(alignment: .leading, spacing: 30) {
-                    Text("title_cant_create_self_account".localized)
-                        .font(.system(size: 36).weight(.bold))
-                        .foregroundColor(.black)
-                    Text("detail_cant_create_self_account".localized)
-                        .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
-                      .lineSpacing(1.14)
-                      .foregroundColor(.black)
+                    Text("msg_document_failed".localized)
+                        .font(.defaultTitle)
+                        .foregroundColor(.textPrimary)
                     Spacer()
                 }
                 .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))

@@ -38,6 +38,7 @@
 "title_passport_scanning_passport" = "Don’t move the phone. Your passport is being checked.";
 
 "msg_document_verified" = "Your document has been verified.";
+"msg_document_failed" = "We have encountered a problem verifying your document. We will contact you shortly via your verified email.";
 
 // mrz fields
 "title_enter_mrz_fields" = "Confirm passport information";
