@@ -54,6 +54,8 @@
 		635ACD4A2C058A060012108F /* LivenessVerificationFailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACD492C058A060012108F /* LivenessVerificationFailedView.swift */; };
 		635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACD4B2C0590080012108F /* LivenessVerificationViewModel.swift */; };
 		635ACD522C05C0E80012108F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACD512C05C0E80012108F /* Utils.swift */; };
+		6363B4952CE73CAF000BEC7F /* ExpandCollapseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363B4942CE73CAF000BEC7F /* ExpandCollapseView.swift */; };
+		6363B4972CE7409F000BEC7F /* CountryFlags.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6363B4962CE7409F000BEC7F /* CountryFlags.xcassets */; };
 		637067032C6087AE00A23C1E /* CreateAccountFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067022C6087AE00A23C1E /* CreateAccountFlow.swift */; };
 		637067052C6087C000A23C1E /* CreateAccountNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067042C6087C000A23C1E /* CreateAccountNameView.swift */; };
 		637067072C60894000A23C1E /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067062C60894000A23C1E /* OutlinedTextField.swift */; };
@@ -249,6 +251,8 @@
 		635ACD492C058A060012108F /* LivenessVerificationFailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessVerificationFailedView.swift; sourceTree = "<group>"; };
 		635ACD4B2C0590080012108F /* LivenessVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessVerificationViewModel.swift; sourceTree = "<group>"; };
 		635ACD512C05C0E80012108F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		6363B4942CE73CAF000BEC7F /* ExpandCollapseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandCollapseView.swift; sourceTree = "<group>"; };
+		6363B4962CE7409F000BEC7F /* CountryFlags.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CountryFlags.xcassets; sourceTree = "<group>"; };
 		637067022C6087AE00A23C1E /* CreateAccountFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountFlow.swift; sourceTree = "<group>"; };
 		637067042C6087C000A23C1E /* CreateAccountNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountNameView.swift; sourceTree = "<group>"; };
 		637067062C60894000A23C1E /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
@@ -568,6 +572,7 @@
 			children = (
 				63A214372C7CB081008B5E4A /* ProfileView.swift */,
 				632AF9FF2CAFF5950036F294 /* UserDetailView.swift */,
+				6363B4942CE73CAF000BEC7F /* ExpandCollapseView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -635,6 +640,7 @@
 		63A99AFC2C05D95A0073939A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6363B4962CE7409F000BEC7F /* CountryFlags.xcassets */,
 				6351DF132CA5106100976552 /* ic_data.svg */,
 				6351DF112CA5105300976552 /* ic_data_pdf.pdf */,
 				63A99B002C05D9910073939A /* Barlow-Black.ttf */,
@@ -949,6 +955,7 @@
 				63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */,
 				63A99B4B2C09C2C10073939A /* start_scan.gif in Resources */,
 				63A99B052C05D9910073939A /* Barlow-Light.ttf in Resources */,
+				6363B4972CE7409F000BEC7F /* CountryFlags.xcassets in Resources */,
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				6352E2BE2CB8088200931A18 /* qrcode.svg in Resources */,
@@ -1082,6 +1089,7 @@
 				63F5ECCA2CB9129100108555 /* DataCredentialCell.swift in Sources */,
 				63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */,
 				6320F4F52BFB307100C35808 /* LivenessCameraView.swift in Sources */,
+				6363B4952CE73CAF000BEC7F /* ExpandCollapseView.swift in Sources */,
 				637067032C6087AE00A23C1E /* CreateAccountFlow.swift in Sources */,
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
