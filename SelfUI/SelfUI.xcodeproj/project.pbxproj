@@ -44,6 +44,8 @@
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		63582B632CEC370700C5969D /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B622CEC370700C5969D /* ItemView.swift */; };
 		63582B652CEC69C600C5969D /* DisclosureGroupItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B642CEC69C600C5969D /* DisclosureGroupItemView.swift */; };
+		63582B672CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */; };
+		63582B692CEC93AA00C5969D /* id_document_tips.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63582B682CEC93AA00C5969D /* id_document_tips.gif */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
 		635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */; };
 		635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */; };
@@ -88,6 +90,8 @@
 		6381C3422BF5BC85005573A0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3412BF5BC85005573A0 /* CameraViewModel.swift */; };
 		6381C3B32BF711EC005573A0 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B22BF711EC005573A0 /* NavigationContentView.swift */; };
 		6381C3B82BF733C7005573A0 /* LivenessIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */; };
+		63942CBD2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */; };
+		63942CBF2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */; };
 		6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8152C5A227000CB44FE /* PinCodeView.swift */; };
 		6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */; };
 		6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8192C5A2CD900CB44FE /* PinEntryView.swift */; };
@@ -244,6 +248,8 @@
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		63582B622CEC370700C5969D /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		63582B642CEC69C600C5969D /* DisclosureGroupItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupItemView.swift; sourceTree = "<group>"; };
+		63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentFrontIntructionView.swift; sourceTree = "<group>"; };
+		63582B682CEC93AA00C5969D /* id_document_tips.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = id_document_tips.gif; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepView.swift; sourceTree = "<group>"; };
@@ -288,6 +294,8 @@
 		6381C3412BF5BC85005573A0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		6381C3B22BF711EC005573A0 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
 		6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroView.swift; sourceTree = "<group>"; };
+		63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentIntroductionView.swift; sourceTree = "<group>"; };
+		63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyDocumentFlow.swift; sourceTree = "<group>"; };
 		6395A8152C5A227000CB44FE /* PinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeView.swift; sourceTree = "<group>"; };
 		6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailCodeView.swift; sourceTree = "<group>"; };
 		6395A8192C5A2CD900CB44FE /* PinEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntryView.swift; sourceTree = "<group>"; };
@@ -645,6 +653,9 @@
 				63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */,
 				63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */,
 				6315DB2A2CE60C8000AFE4EC /* DocumentVerifiedView.swift */,
+				63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */,
+				63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */,
+				63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -663,6 +674,7 @@
 				63A99AFD2C05D9910073939A /* Barlow-Regular.ttf */,
 				63A99B012C05D9910073939A /* Barlow-SemiBold.ttf */,
 				63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */,
+				63582B682CEC93AA00C5969D /* id_document_tips.gif */,
 				63A99B1E2C0764DA0073939A /* passport_instructions.gif */,
 				63A99B4A2C09C2C10073939A /* start_scan.gif */,
 				6352E2B92CB802A700931A18 /* sample.pdf */,
@@ -969,6 +981,7 @@
 				63A99B052C05D9910073939A /* Barlow-Light.ttf in Resources */,
 				6363B4972CE7409F000BEC7F /* CountryFlags.xcassets in Resources */,
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
+				63582B692CEC93AA00C5969D /* id_document_tips.gif in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				6352E2BE2CB8088200931A18 /* qrcode.svg in Resources */,
 				63A99B042C05D9910073939A /* Barlow-Regular.ttf in Resources */,
@@ -1087,6 +1100,7 @@
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
 				6315DB2B2CE60C8000AFE4EC /* DocumentVerifiedView.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
+				63942CBD2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift in Sources */,
 				6363B49B2CE758E2000BEC7F /* DocumentItem.swift in Sources */,
 				637301832CA679A100BB0292 /* AvatarView.swift in Sources */,
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
@@ -1109,6 +1123,7 @@
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
 				6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */,
+				63942CBF2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
 				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
@@ -1119,6 +1134,7 @@
 				63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */,
 				635ACCFA2BFDDAE90012108F /* ProgressStepViewModel.swift in Sources */,
 				63A214332C7CA055008B5E4A /* QRReaderView.swift in Sources */,
+				63582B672CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift in Sources */,
 				63D66AE32C5924BE0094E55D /* EmailIntroView.swift in Sources */,
 				63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */,
 				63A99B162C07271B0073939A /* LoadingDotsView.swift in Sources */,
