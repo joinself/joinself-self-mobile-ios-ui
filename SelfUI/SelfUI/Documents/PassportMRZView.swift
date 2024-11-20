@@ -82,7 +82,7 @@ public struct PassportMRZView: View {
                             .frame(width: 340, alignment: .center)
                       }
                     
-                    BrandView(isDarked: false)
+                    BrandView(isDarked: false, textColor: .white)
                 }
                 .padding()
             }.ignoresSafeArea(.all)

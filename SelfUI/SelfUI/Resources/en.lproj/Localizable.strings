@@ -25,6 +25,8 @@
 "Passport verification preparation" = "First, you need to verify some information. You’ll need your Passport.";
 "Passport verification preparation body" = "Self helps you to verify the data on your Passport so you can use it to prove things about yourself.";
 "title_ask_passport_chip" = "Does your Passport have this icon?";
+"title_ask_document_chip" = "Does your %@ have this icon?";
+"detail_ask_document_chip" = "It means you have a chip in your %@ or document which you can read with Self. If the data on the chip is readable we can verify you immediately. ";
 "detail_ask_passport_chip" = "It means you have a chip in your Passport which you can read with Self. If the data on the chip is readable we can verify you immediately.";
 
 "title_cant_create_self_account" = "We’re Sorry, but you can’t open an account \njust yet. We will let you know as soon as you can.";
@@ -39,6 +41,12 @@
 
 "msg_document_verified" = "Your document has been verified.";
 "msg_document_failed" = "We have encountered a problem verifying your document. We will contact you shortly via your verified email.";
+
+"capture_document_introduction" = "You’re going to capture your ID document and use Self to verify it.";
+"msg_capture_document_introduction" = "Self lets you compare the data you have on your document with your image to create a verifiable credential. We process some data transiently using cloud services. Data is never retained by Self or any of our providers. It is only stored on your phone or in your backup.";
+"capture_document_front" = "Now capture the front of your ID.";
+"msg_capture_document_front" = "Fill the box you see on the next screen with your document to capture in the information.";
+"scan_front_document" = "Scan front of document";
 
 // mrz fields
 "title_enter_mrz_fields" = "Confirm passport information";

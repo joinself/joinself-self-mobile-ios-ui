@@ -10,7 +10,21 @@ import SelfUI
 
 struct ContentView: View {
     var body: some View {
-        DevOnboardingFlow()
+        NavigationView {
+            VStack {
+                NavigationLink {
+                    CaptureDocumentView()
+                } label: {
+                    Text("Document Capture")
+                }
+                
+                NavigationLink {
+                    VerifyDocumentFlow()
+                } label: {
+                    Text("Verify Document")
+                }
+            }
+        }
     }
 }
 

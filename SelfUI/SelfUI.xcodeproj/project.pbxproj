@@ -44,6 +44,8 @@
 		63554DE82CA1789600DF55D2 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63554DE72CA1789600DF55D2 /* LoadingView.swift */; };
 		63582B632CEC370700C5969D /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B622CEC370700C5969D /* ItemView.swift */; };
 		63582B652CEC69C600C5969D /* DisclosureGroupItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B642CEC69C600C5969D /* DisclosureGroupItemView.swift */; };
+		63582B672CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */; };
+		63582B692CEC93AA00C5969D /* id_document_tips.gif in Resources */ = {isa = PBXBuildFile; fileRef = 63582B682CEC93AA00C5969D /* id_document_tips.gif */; };
 		635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */; };
 		635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */; };
 		635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */; };
@@ -88,6 +90,13 @@
 		6381C3422BF5BC85005573A0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3412BF5BC85005573A0 /* CameraViewModel.swift */; };
 		6381C3B32BF711EC005573A0 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B22BF711EC005573A0 /* NavigationContentView.swift */; };
 		6381C3B82BF733C7005573A0 /* LivenessIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */; };
+		638E850C2CED9E01007F1D26 /* DocumentNFCCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850B2CED9E01007F1D26 /* DocumentNFCCheckView.swift */; };
+		638E850E2CEDC1F2007F1D26 /* CaptureDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */; };
+		638E85102CEDC440007F1D26 /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */; };
+		638E85122CEDCBE8007F1D26 /* CardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */; };
+		638E85142CEDF8A3007F1D26 /* ButtonBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E85132CEDF8A3007F1D26 /* ButtonBack.swift */; };
+		63942CBD2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */; };
+		63942CBF2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */; };
 		6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8152C5A227000CB44FE /* PinCodeView.swift */; };
 		6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */; };
 		6395A81A2C5A2CD900CB44FE /* PinEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8192C5A2CD900CB44FE /* PinEntryView.swift */; };
@@ -124,7 +133,6 @@
 		63A99B252C0830990073939A /* PassportMRZView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B242C0830990073939A /* PassportMRZView.swift */; };
 		63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B262C0860A60073939A /* TransparentHoleView.swift */; };
 		63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B282C08692D0073939A /* MRZOverlayView.swift */; };
-		63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */; };
 		63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B2C2C08908A0073939A /* MRZInfo.swift */; };
 		63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B312C08B7970073939A /* PassportIntroductionView.swift */; };
 		63A99B342C08B9330073939A /* DocumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99B332C08B9330073939A /* DocumentType.swift */; };
@@ -169,13 +177,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6381C3202BF4463A005573A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 63C4515B2BF30EAD00AD5BC5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 63C451632BF30EAE00AD5BC5;
-			remoteInfo = SelfUI;
-		};
 		63C4516E2BF30EAE00AD5BC5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63C4515B2BF30EAD00AD5BC5 /* Project object */;
@@ -244,6 +245,8 @@
 		63554DE72CA1789600DF55D2 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		63582B622CEC370700C5969D /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		63582B642CEC69C600C5969D /* DisclosureGroupItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupItemView.swift; sourceTree = "<group>"; };
+		63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentFrontIntructionView.swift; sourceTree = "<group>"; };
+		63582B682CEC93AA00C5969D /* id_document_tips.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = id_document_tips.gif; sourceTree = "<group>"; };
 		635ACCEC2BFC813B0012108F /* SteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF02BFC8C120012108F /* CustomSteppedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSteppedProgressView.swift; sourceTree = "<group>"; };
 		635ACCF32BFC8ECE0012108F /* ProgressStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepView.swift; sourceTree = "<group>"; };
@@ -288,6 +291,13 @@
 		6381C3412BF5BC85005573A0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		6381C3B22BF711EC005573A0 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
 		6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroView.swift; sourceTree = "<group>"; };
+		638E850B2CED9E01007F1D26 /* DocumentNFCCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentNFCCheckView.swift; sourceTree = "<group>"; };
+		638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentView.swift; sourceTree = "<group>"; };
+		638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
+		638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlayView.swift; sourceTree = "<group>"; };
+		638E85132CEDF8A3007F1D26 /* ButtonBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBack.swift; sourceTree = "<group>"; };
+		63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentIntroductionView.swift; sourceTree = "<group>"; };
+		63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyDocumentFlow.swift; sourceTree = "<group>"; };
 		6395A8152C5A227000CB44FE /* PinCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeView.swift; sourceTree = "<group>"; };
 		6395A8172C5A266300CB44FE /* EnterEmailCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailCodeView.swift; sourceTree = "<group>"; };
 		6395A8192C5A2CD900CB44FE /* PinEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinEntryView.swift; sourceTree = "<group>"; };
@@ -323,7 +333,6 @@
 		63A99B242C0830990073939A /* PassportMRZView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZView.swift; sourceTree = "<group>"; };
 		63A99B262C0860A60073939A /* TransparentHoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentHoleView.swift; sourceTree = "<group>"; };
 		63A99B282C08692D0073939A /* MRZOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZOverlayView.swift; sourceTree = "<group>"; };
-		63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportMRZReaderView.swift; sourceTree = "<group>"; };
 		63A99B2C2C08908A0073939A /* MRZInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRZInfo.swift; sourceTree = "<group>"; };
 		63A99B312C08B7970073939A /* PassportIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportIntroductionView.swift; sourceTree = "<group>"; };
 		63A99B332C08B9330073939A /* DocumentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentType.swift; sourceTree = "<group>"; };
@@ -427,6 +436,7 @@
 				63A99B202C07650B0073939A /* GIFView.swift */,
 				63A99B262C0860A60073939A /* TransparentHoleView.swift */,
 				63A99B282C08692D0073939A /* MRZOverlayView.swift */,
+				638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */,
 				63E2C3A22C7DC9D300056E9B /* QRCodeOverlayView.swift */,
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 				634CEE812C7B19E2008CD5B8 /* BannerView.swift */,
@@ -467,6 +477,7 @@
 				63D66AE42C59CFF30094E55D /* CustomProgressView.swift */,
 				637067062C60894000A23C1E /* OutlinedTextField.swift */,
 				637067102C60CA4200A23C1E /* NavBackButton.swift */,
+				638E85132CEDF8A3007F1D26 /* ButtonBack.swift */,
 			);
 			path = ProgressView;
 			sourceTree = "<group>";
@@ -639,12 +650,17 @@
 				63A99B112C06DAD20073939A /* PassportCheckChipView.swift */,
 				63A99B222C07656D0073939A /* ReadingPassportChipInstructionView.swift */,
 				63A99B242C0830990073939A /* PassportMRZView.swift */,
-				63A99B2A2C0881140073939A /* PassportMRZReaderView.swift */,
 				63A99B2C2C08908A0073939A /* MRZInfo.swift */,
 				63A99B4C2C09C3930073939A /* PassportStartScanView.swift */,
 				63A99B4E2C09E9C80073939A /* PassportReadingChipView.swift */,
 				63A99B582C0D66DD0073939A /* PassportMRZFieldsManuallyView.swift */,
 				6315DB2A2CE60C8000AFE4EC /* DocumentVerifiedView.swift */,
+				63942CBE2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift */,
+				638E850B2CED9E01007F1D26 /* DocumentNFCCheckView.swift */,
+				63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */,
+				63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */,
+				638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */,
+				638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -663,6 +679,7 @@
 				63A99AFD2C05D9910073939A /* Barlow-Regular.ttf */,
 				63A99B012C05D9910073939A /* Barlow-SemiBold.ttf */,
 				63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */,
+				63582B682CEC93AA00C5969D /* id_document_tips.gif */,
 				63A99B1E2C0764DA0073939A /* passport_instructions.gif */,
 				63A99B4A2C09C2C10073939A /* start_scan.gif */,
 				6352E2B92CB802A700931A18 /* sample.pdf */,
@@ -893,7 +910,6 @@
 			);
 			dependencies = (
 				63C451A92BF33FD200AD5BC5 /* PBXTargetDependency */,
-				6381C3212BF4463A005573A0 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -969,6 +985,7 @@
 				63A99B052C05D9910073939A /* Barlow-Light.ttf in Resources */,
 				6363B4972CE7409F000BEC7F /* CountryFlags.xcassets in Resources */,
 				63A99B062C05D9910073939A /* Barlow-Medium.ttf in Resources */,
+				63582B692CEC93AA00C5969D /* id_document_tips.gif in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				6352E2BE2CB8088200931A18 /* qrcode.svg in Resources */,
 				63A99B042C05D9910073939A /* Barlow-Regular.ttf in Resources */,
@@ -1028,6 +1045,7 @@
 				6370670B2C60AA1B00A23C1E /* BaseView.swift in Sources */,
 				6373018C2CA7F20A00BB0292 /* NavigationTitleView.swift in Sources */,
 				6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */,
+				638E850C2CED9E01007F1D26 /* DocumentNFCCheckView.swift in Sources */,
 				6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */,
 				637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
@@ -1038,6 +1056,7 @@
 				6381C3242BF463E1005573A0 /* CameraView.swift in Sources */,
 				6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */,
 				634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */,
+				638E850E2CEDC1F2007F1D26 /* CaptureDocumentView.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63F5ECCC2CB912B800108555 /* DataAttachmentCell.swift in Sources */,
 				63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */,
@@ -1051,6 +1070,7 @@
 				637067052C6087C000A23C1E /* CreateAccountNameView.swift in Sources */,
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
 				6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */,
+				638E85102CEDC440007F1D26 /* DocumentCameraView.swift in Sources */,
 				63582B652CEC69C600C5969D /* DisclosureGroupItemView.swift in Sources */,
 				6352E2B62CB7DEAA00931A18 /* AttachmentDTO.swift in Sources */,
 				632AFA002CAFF5960036F294 /* UserDetailView.swift in Sources */,
@@ -1073,6 +1093,7 @@
 				634225D32CB68FB800CF06D1 /* ImagePrevewView.swift in Sources */,
 				63A214432C7CB281008B5E4A /* SettingsView.swift in Sources */,
 				63E7F8482CB2591500039F0D /* BaseCell.swift in Sources */,
+				638E85122CEDCBE8007F1D26 /* CardOverlayView.swift in Sources */,
 				63E2C3A32C7DC9D300056E9B /* QRCodeOverlayView.swift in Sources */,
 				63A2143E2C7CB1AB008B5E4A /* DataView.swift in Sources */,
 				6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */,
@@ -1087,6 +1108,7 @@
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
 				6315DB2B2CE60C8000AFE4EC /* DocumentVerifiedView.swift in Sources */,
 				634878D32BF7488900E50DE1 /* BrandView.swift in Sources */,
+				63942CBD2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift in Sources */,
 				6363B49B2CE758E2000BEC7F /* DocumentItem.swift in Sources */,
 				637301832CA679A100BB0292 /* AvatarView.swift in Sources */,
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
@@ -1098,6 +1120,7 @@
 				631D10E92CABF91E00DA1376 /* KeyboardResponder.swift in Sources */,
 				635ACCFC2BFDF0080012108F /* SteppedProgressViewModel.swift in Sources */,
 				632A1DC52BF76B4900959663 /* CameraOvelayView.swift in Sources */,
+				638E85142CEDF8A3007F1D26 /* ButtonBack.swift in Sources */,
 				63D66AE72C59E4360094E55D /* EnterEmailView.swift in Sources */,
 				63E7F8462CB2547700039F0D /* CredentialRequestCell.swift in Sources */,
 				632AFA032CAFF69B0036F294 /* ImagePicker.swift in Sources */,
@@ -1109,6 +1132,7 @@
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
 				6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */,
+				63942CBF2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
 				6395A8202C5A7B9200CB44FE /* VerifyPhoneIntroView.swift in Sources */,
 				634878D12BF73AA300E50DE1 /* LivenessFlow.swift in Sources */,
@@ -1119,8 +1143,8 @@
 				63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */,
 				635ACCFA2BFDDAE90012108F /* ProgressStepViewModel.swift in Sources */,
 				63A214332C7CA055008B5E4A /* QRReaderView.swift in Sources */,
+				63582B672CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift in Sources */,
 				63D66AE32C5924BE0094E55D /* EmailIntroView.swift in Sources */,
-				63A99B2B2C0881140073939A /* PassportMRZReaderView.swift in Sources */,
 				63A99B162C07271B0073939A /* LoadingDotsView.swift in Sources */,
 				635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */,
 				6329EC882C5C9DB4002D3779 /* CustomAlert.swift in Sources */,
@@ -1166,11 +1190,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6381C3212BF4463A005573A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 63C451632BF30EAE00AD5BC5 /* SelfUI */;
-			targetProxy = 6381C3202BF4463A005573A0 /* PBXContainerItemProxy */;
-		};
 		63C4516F2BF30EAE00AD5BC5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63C451632BF30EAE00AD5BC5 /* SelfUI */;
