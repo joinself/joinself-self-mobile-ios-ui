@@ -58,7 +58,7 @@ extension Font {
     static let customLargeTitle: Font = Font.custom("Barlow-Bold", size: 36, relativeTo: .largeTitle)
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
     static let defaultBodyLarge: Font = SelfUISdk.shared.defaultBodyLarge
-    static let defaultNormalTitle: Font = Font.system(size: 25).bold()
+    static let defaultNormalTitle: Font = Font.custom("Barlow-Bold", size: 25)
     static let defaultBody: Font = SelfUISdk.shared.defaultBody
     
     /// outline text field label

@@ -46,6 +46,7 @@
 "msg_capture_document_introduction" = "Self lets you compare the data you have on your document with your image to create a verifiable credential. We process some data transiently using cloud services. Data is never retained by Self or any of our providers. It is only stored on your phone or in your backup.";
 "capture_document_front" = "Now capture the front of your ID.";
 "msg_capture_document_front" = "Fill the box you see on the next screen with your document to capture in the information.";
+"scan_front_document" = "Scan front of document";
 
 // mrz fields
 "title_enter_mrz_fields" = "Confirm passport information";

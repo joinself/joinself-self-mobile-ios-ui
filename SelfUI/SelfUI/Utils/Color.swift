@@ -24,7 +24,7 @@ extension Color {
     
     // MARK: Text
     /// #0E1C42
-    static let textPrimary: Color = Color(red: 0.05, green: 0.11, blue: 0.26)
+    public static let textPrimary: Color = Color(red: 0.05, green: 0.11, blue: 0.26)
     static let textSecondary: Color = .white
     
     // MARK: Background

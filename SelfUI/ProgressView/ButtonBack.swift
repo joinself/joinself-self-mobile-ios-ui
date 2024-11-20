@@ -1,5 +1,5 @@
 //
-//  NavBackButton.swift
+//  ButtonBack.swift
 //  SelfUI
 //
 //  Created by Long Pham on 5/8/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct NavBackButton: View {
+public struct ButtonBack: View {
     var onClick: (() -> ())?
     private let iconName: String
     
@@ -25,6 +25,7 @@ public struct NavBackButton: View {
             Image(iconName, bundle: mainBundle)
                 .foregroundStyle(.black)
                 .accentColor(.white)
+                .frame(width: 44, height: 44)
         }
 
     }
@@ -34,8 +35,8 @@ public struct NavBackButton: View {
     ZStack {
         Color.purple.ignoresSafeArea()
         VStack {
-            NavBackButton()
-            NavBackButton(isWhiteBackground: true)
+            ButtonBack()
+            ButtonBack(isWhiteBackground: true)
         }
     }
     

@@ -55,7 +55,7 @@ public struct LivenessCameraView: View {
                 }
                 //.offset(x: 0, y: -80)
                 
-                BrandView(isDarked: false)
+                BrandView(isDarked: false, textColor: .white)
                     .padding(.bottom, 24)
             }
             

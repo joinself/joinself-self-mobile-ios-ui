@@ -13,8 +13,10 @@ enum NavigationDestinations: String, CaseIterable, Hashable {
     case Settings
 }
 
-struct VerifyDocumentFlow: View {
+public struct VerifyDocumentFlow: View {
     @State private var path = [Int]()
+    public init() {
+    }
     public var body: some View {
         NavigationStack(path: $path) {
             DocumentNFCCheckView(title: String(format: "title_ask_document_chip".localized, arguments: ["document"]), details: String(format: "detail_ask_document_chip".localized, arguments: ["document"]), onOK: {
@@ -33,11 +35,13 @@ struct VerifyDocumentFlow: View {
                     
                 case 1:
                     CaptureDocumentFrontIntructionView {
-                        
+                        path = [2]
                     } onNavigationBack: {
                         
                     }
 
+                case 2:
+                    CaptureDocumentView()
                     
                 default:
                     Text("0")

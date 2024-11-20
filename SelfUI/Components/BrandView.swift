@@ -16,8 +16,10 @@ class BrandViewModel: ObservableObject {
 
 public struct BrandView: View {
     @ObservedObject var viewModel = BrandViewModel()
+    let textColor: Color
     
-    public init(isDarked: Bool) {
+    public init(isDarked: Bool = true, textColor: Color = Color.textPrimary) {
+        self.textColor = textColor
         self.viewModel.isDarked = isDarked
     }
     
@@ -27,7 +29,7 @@ public struct BrandView: View {
                 Text("Powered by")
                     .font(.defaultFootnote)
                     .lineSpacing(22)
-                    .foregroundColor(viewModel.isDarked ? .black : .white)
+                    .foregroundColor(textColor)
                 Image(viewModel.isDarked ? "ic_self_pink" : "ic_self_white", bundle: mainBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fill) // Fill the frame maintaining aspect ratio
