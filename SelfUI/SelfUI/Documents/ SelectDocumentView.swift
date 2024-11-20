@@ -15,6 +15,8 @@ public struct  SelectDocumentView: View {
         self.onSelect = onSelect
     }
     
+    @State private var showVerifyDocument = false
+    
     public var body: some View {
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
@@ -71,8 +73,15 @@ public struct  SelectDocumentView: View {
                     }
                     
                     ButtonView(title: "Identity document".localized, backgroundColor: .defaultBlue) {
-                        onSelect?(.identityCard)
+                        //onSelect?(.identityCard)
+                        showVerifyDocument = true
                     }
+                    .fullScreenCover(isPresented: $showVerifyDocument) {
+                        showVerifyDocument = false
+                    } content: {
+                        VerifyDocumentFlow()
+                    }
+
                     
                     BrandView(isDarked: true)
                 }.padding()
