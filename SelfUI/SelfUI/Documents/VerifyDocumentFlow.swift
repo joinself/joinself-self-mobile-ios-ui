@@ -17,13 +17,21 @@ struct VerifyDocumentFlow: View {
     @State private var path = [Int]()
     public var body: some View {
         NavigationStack(path: $path) {
-            CaptureDocumentIntroductionView(onGettingStarted: {
+            DocumentNFCCheckView(title: String(format: "title_ask_document_chip".localized, arguments: ["document"]), details: String(format: "detail_ask_document_chip".localized, arguments: ["document"]), onOK: {
                 path = [0]
-            }, onNavigateBack: {
-                
-            }).navigationDestination(for: Int.self) { selection in
+            }, onCancel: {
+                // TODO: does not have chip
+            })
+            .navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
+                    CaptureDocumentIntroductionView(onGettingStarted: {
+                        path = [1]
+                    }, onNavigateBack: {
+                        
+                    })
+                    
+                case 1:
                     CaptureDocumentFrontIntructionView {
                         
                     } onNavigationBack: {
