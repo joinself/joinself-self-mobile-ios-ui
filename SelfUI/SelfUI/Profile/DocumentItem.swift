@@ -9,15 +9,17 @@ import SwiftUI
 
 public struct DocumentItem: Hashable, Identifiable {
     var title: String
+    var label: String
     var iconName: String?
     let isParent: Bool
     var children: [DocumentItem]? = nil
     public let id = UUID()
-    public init(title: String, isParent: Bool, iconName: String? = nil, children: [DocumentItem]? = nil) {
+    public init(title: String, isParent: Bool, iconName: String? = nil, label: String = "", children: [DocumentItem]? = nil) {
         self.title = title
         self.isParent = isParent
         self.children = children
         self.iconName = iconName
+        self.label = label
     }
 }
 

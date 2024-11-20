@@ -23,7 +23,8 @@ struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
             if configuration.isExpanded {
                 configuration.content
             }
-        }.background(.white)
+        }
+        .background(.white)
     }
 }
 
@@ -34,46 +35,52 @@ public struct DisclosureGroupItemView: View {
     }
     
     public var body: some View {
-        ScrollView {
+        List {
             ForEach(items) { item in
-                DisclosureGroup {
-                    if let children = item.children {
-                        VStack {
-                            ForEach(children) { child in
-                                ItemView(title: child.title, iconName: child.iconName)
-                                    .listRowInsets(EdgeInsets(top: 0, leading: Constants.PadLeading, bottom: 0, trailing: 0))
+                Section {
+                    DisclosureGroup {
+                        if let children = item.children {
+                            VStack {
+                                ForEach(children) { child in
+                                    OutlineTextField(label: child.label, text: .constant(child.title))
+                                }
                             }
                         }
+                    } label: {
+                        ItemView(title: item.title, iconName: item.iconName)
+                            .background(Color.white)
                     }
-                } label: {
-                    ItemView(title: item.title, iconName: item.iconName)
-                        .background(Color.white)
+                    .disclosureGroupStyle(CustomDisclosureGroupStyle())
+                    .accentColor(Color.defaultDark)
+                    .foregroundColor(Color.defaultDark)
+                    .background(Color.white)
                 }
-                .disclosureGroupStyle(CustomDisclosureGroupStyle())
-                .accentColor(Color.defaultDark)
-                .foregroundColor(Color.defaultDark)
-                .background(Color.white)
+                .listRowBackground(Color.white)
             }
         }
-        .listStyle(.inset)
+        .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .background(Color.white)
         .listRowInsets(.none)
     }
+    
 }
 
 #Preview {
-    DisclosureGroupItemView(items: [DocumentItem(title: "Passport",isParent: true, iconName: "VN", children: [DocumentItem(title: "Given Names",
-                                                                                                                           isParent: false),
-                                                                                                              DocumentItem(title: "Nationality",
-                                                                                                                           isParent: false)]),
-                                    DocumentItem(title: "National Identity",
-                                                 isParent: true,
-                                                 children: [
-                                                    DocumentItem(title: "Given Names",
-                                                                 isParent: false,
-                                                                 children:[DocumentItem(title: "Next Task", isParent: false)]),
-                                                    DocumentItem(title: "Nationality",
-                                                                 isParent: true,
-                                                                 children: [DocumentItem(title: "Expiry data", isParent: false)])])])
+    VStack {
+        DisclosureGroupItemView(items: [DocumentItem(title: "Passport",isParent: true, iconName: "VN", children: [DocumentItem(title: "Given Names",
+                                                                                                                               isParent: false),
+                                                                                                                  DocumentItem(title: "Nationality",
+                                                                                                                               isParent: false)]),
+                                        DocumentItem(title: "National Identity",
+                                                     isParent: true,
+                                                     children: [
+                                                        DocumentItem(title: "Given Names",
+                                                                     isParent: false,
+                                                                     children:[DocumentItem(title: "Next Task", isParent: false)]),
+                                                        DocumentItem(title: "Nationality",
+                                                                     isParent: true,
+                                                                     children: [DocumentItem(title: "Expiry data", isParent: false)])])])
+    }
+    .padding()
 }
