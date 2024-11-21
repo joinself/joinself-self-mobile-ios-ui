@@ -37,7 +37,7 @@ public struct CaptureDocumentView: View {
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
                 .ignoresSafeArea(.all)
-            CardOverlayView(isHighlighted: cameraManager.isValidMRZ)
+            CardOverlayView(isHighlighted: cameraManager.isHighlighted)
             
             VStack (spacing: 20) {
                 Spacer()

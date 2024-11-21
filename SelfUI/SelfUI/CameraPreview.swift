@@ -35,7 +35,7 @@ class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
     private var cameraPosition: AVCaptureDevice.Position = .back
-    @Published var isValidMRZ: Bool = false
+    @Published var isHighlighted: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
     var onCapture: ((CMSampleBuffer) -> Void)? = nil
     
@@ -151,7 +151,7 @@ class CameraManager: NSObject, ObservableObject {
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
                 print("Expected mrzInfo: \(mrzInfo)")
                 DispatchQueue.main.async {
-                    self.isValidMRZ = mrzInfo.isvalidMZR()
+                    self.isHighlighted = mrzInfo.isvalidMZR()
                     Utils.vibrate()
                     self.onResult?(mrzInfo)
                 }
