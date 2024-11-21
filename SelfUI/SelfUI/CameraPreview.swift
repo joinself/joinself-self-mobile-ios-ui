@@ -31,6 +31,13 @@ struct CameraPreview: UIViewRepresentable {
     func updateUIView(_ uiView: VideoPreviewView, context: Context) {}
 }
 
+enum CaptureMode : Int, CaseIterable {
+    
+    case detectMRZ = 0
+    case detectQRCode = 1
+    case captureCardImage = 2
+}
+
 class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
@@ -39,15 +46,21 @@ class CameraManager: NSObject, ObservableObject {
     var onResult: ((MRZInfo?) -> Void)? = nil
     var onCapture: ((CMSampleBuffer) -> Void)? = nil
     
+    private var captureMode: CaptureMode = .detectMRZ
+    @Published var detectedRectangles: [VNRectangleObservation] = []
+    @Published var image: UIImage?
+    @Published var croppedImage: UIImage?
+    
     override init() {
         super.init()
         
         self.initCamera()
     }
     
-    init(cameraPosition: AVCaptureDevice.Position = .back) {
+    init(cameraPosition: AVCaptureDevice.Position = .back, captureMode: CaptureMode = .detectMRZ) {
         super.init()
         
+        self.captureMode = captureMode
         self.cameraPosition = cameraPosition
         self.initCamera()
     }
@@ -81,30 +94,10 @@ class CameraManager: NSObject, ObservableObject {
             session.addOutput(output)
             session.commitConfiguration()
             output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-//            session.startRunning()
+            //            session.startRunning()
         } catch {
             print("Failed to setup camera: \(error)")
         }
-    }
-    
-    func detectFaces(sampleBuffer: CMSampleBuffer) {
-        print("Face detecting.... ")
-        
-//        let visionImage = VisionImage(buffer: sampleBuffer)
-//        visionImage.orientation = .up
-//        
-//        faceDetector.process(visionImage) { faces, error in
-//            guard error == nil, let faces = faces else {
-//                print("Face detection failed with error: \(error?.localizedDescription ?? "")")
-//                return
-//            }
-//            // Handle detected faces
-//            for face in faces {
-//                // Example: Get the frame of the face
-//                let frame = face.frame
-//                print("Detected face frame: \(frame)")
-//            }
-//        }
     }
     
     func detectPassportMRZ(sampleBuffer: CMSampleBuffer) {
@@ -119,7 +112,7 @@ class CameraManager: NSObject, ObservableObject {
     
     func processPassportImage(passportImage: UIImage) {
         // Replace with the actual image of the passport page
-//        guard let passportImage = UIImage(named: "passportPage") else { return }
+        //        guard let passportImage = UIImage(named: "passportPage") else { return }
         let cgImage = passportImage.cgImage!
         
         // Create a Vision request to recognize text
@@ -168,6 +161,45 @@ class CameraManager: NSObject, ObservableObject {
         try? requestHandler.perform([textRecognitionRequest])
     }
     
+    private func handleCardBuffer(sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        guard let image = self.imageFromSampleBuffer(sampleBuffer: sampleBuffer) else {
+            print("Can't convert sample buffer to image.")
+            return
+        }
+        
+        let request = VNDetectRectanglesRequest { (request, error) in
+            if let firstResult = request.results?.first as? VNRectangleObservation {
+                print("Detected card at: \(firstResult.boundingBox)")
+                DispatchQueue.main.async {
+                    self.isHighlighted = true
+                    self.image = image
+                    self.croppedImage = self.cropImage(image: image, observation: firstResult)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.isHighlighted = false
+                    self.croppedImage = nil
+                    self.image = nil
+                }
+            }
+        }
+        
+        //Set the value for the detected rectangle
+        request.minimumAspectRatio = 0.5 // Adjust based on ID card dimensions
+        request.maximumAspectRatio = 1.0 // Adjust based on ID card dimensions
+        request.quadratureTolerance = 10.0 // Allow some deviation from 90 degrees
+        request.minimumSize = 0.5 // Minimum size of the rectangle as a proportion of the smallest dimension
+        request.minimumConfidence = 0.8 // Minimum confidence level for detection
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        try? handler.perform([request])
+        
+    }
+    
     private func imageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage? {
         // Get the image buffer from the sample buffer
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
@@ -191,13 +223,32 @@ class CameraManager: NSObject, ObservableObject {
         
         // Create a UIImage from the CGImage
         let uiImage = UIImage(cgImage: cgImage)
-
+        
         return uiImage
+    }
+    
+    private func cropImage(image: UIImage, observation: VNRectangleObservation) -> UIImage? {
+        guard let cgImage = image.cgImage else { return nil }
+        let width = CGFloat(cgImage.width)
+        let height = CGFloat(cgImage.height)
+        
+        let boundingBox = observation.boundingBox
+        let x = boundingBox.origin.x * width
+        let y = (1 - boundingBox.origin.y - boundingBox.height) * height
+        let rect = CGRect(x: x, y: y, width: boundingBox.width * width, height: boundingBox.height * height)
+        
+        guard let croppedCGImage = cgImage.cropping(to: rect) else { return nil }
+        return UIImage(cgImage: croppedCGImage)
     }
 }
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if captureMode == .captureCardImage {
+            self.handleCardBuffer(sampleBuffer: sampleBuffer)
+            return
+        }
+        
         if let onCapture = onCapture {
             onCapture(sampleBuffer)
         } else {

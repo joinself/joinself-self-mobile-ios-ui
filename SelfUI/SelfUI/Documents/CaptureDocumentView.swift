@@ -13,7 +13,7 @@ class CaptureDocumentViewModel: ObservableObject {
 
 public struct CaptureDocumentView: View {
     @ObservedObject var viewModel = CaptureDocumentViewModel()
-    @ObservedObject var cameraManager = CameraManager()
+    @ObservedObject var cameraManager = CameraManager(cameraPosition: .back, captureMode: .captureCardImage)
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var currentIndex = 0
@@ -23,11 +23,13 @@ public struct CaptureDocumentView: View {
         "Adjust angle to reduce glare"]
     
     public var onResult: ((MRZInfo?) -> Void)? = nil
+    public var onCaptureImage: ((UIImage) -> Void)? = nil
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((MRZInfo?) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil, onCaptureImage: ((UIImage) -> Void)? = nil) {
         self.onResult = onResult
+        self.onCaptureImage = onCaptureImage
         cameraManager.onResult = onResult
     }
     
@@ -36,26 +38,65 @@ public struct CaptureDocumentView: View {
             // Base view with overlay
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
+                .overlay(
+                    //                    RectangleOverlay(rectangles: cameraManager.detectedRectangles)
+                    //                        .stroke(Color.green, lineWidth: 1)
+                    CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+                )
+                .onChange(of: cameraManager.isHighlighted) { newValue in
+                    if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
+                        self.cameraManager.session.stopRunning()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            onCaptureImage?(croppedImage)
+                        })
+                    }
+                }
                 .ignoresSafeArea(.all)
-            CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+            //            CardOverlayView(isHighlighted: cameraManager.isHighlighted)
             
             VStack (spacing: 20) {
                 Spacer()
                 
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 363, height: 80)
-                    .background(.white)
-                    .cornerRadius(8)
-                    .overlay {
-                        // Heading/H4
-                        Text(suggestions[currentIndex])
-                            .transition(.opacity)
-                            .font(.defaultNormalTitle)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.textPrimary)
-                            .frame(width: 340, alignment: .center)
-                    }
+                if cameraManager.isHighlighted{
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 363, height: 80)
+                        .background(Color.defaultGreen)
+                        .cornerRadius(8)
+                        .overlay {
+                            HStack {
+                                Image("ic_checkmark", bundle: mainBundle)
+                                Text("Document captured".localized)
+                                    .transition(.opacity)
+                                    .font(.defaultNormalTitle)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.textPrimary)
+                            }
+                        }
+                } else {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 363, height: 80)
+                        .background(.white)
+                        .cornerRadius(8)
+                        .overlay {
+                            // Heading/H4
+                            Text(suggestions[currentIndex])
+                                .transition(.opacity)
+                                .font(.defaultNormalTitle)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.textPrimary)
+                                .frame(width: 340, alignment: .center)
+                        }
+                }
+                
+                // Testing
+                /*if let image = cameraManager.croppedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 200, maxHeight: 150)
+                }*/
                 
                 BrandView(isDarked: true, textColor: .white)
             }

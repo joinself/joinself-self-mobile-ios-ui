@@ -9,6 +9,7 @@ import SwiftUI
 import SelfUI
 
 struct ContentView: View {
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -19,7 +20,9 @@ struct ContentView: View {
                 }
                 
                 NavigationLink {
-                    VerifyDocumentFlow()
+                    VerifyDocumentFlow { image1, image2 in
+                        print("Verify image: \(image1), \(image2)")
+                    }
                 } label: {
                     Text("Verify Document")
                 }

@@ -92,7 +92,6 @@
 		6381C3B82BF733C7005573A0 /* LivenessIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */; };
 		638E850C2CED9E01007F1D26 /* DocumentNFCCheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850B2CED9E01007F1D26 /* DocumentNFCCheckView.swift */; };
 		638E850E2CEDC1F2007F1D26 /* CaptureDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */; };
-		638E85102CEDC440007F1D26 /* DocumentCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */; };
 		638E85122CEDCBE8007F1D26 /* CardOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */; };
 		638E85142CEDF8A3007F1D26 /* ButtonBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638E85132CEDF8A3007F1D26 /* ButtonBack.swift */; };
 		63942CBD2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */; };
@@ -293,7 +292,6 @@
 		6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroView.swift; sourceTree = "<group>"; };
 		638E850B2CED9E01007F1D26 /* DocumentNFCCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentNFCCheckView.swift; sourceTree = "<group>"; };
 		638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentView.swift; sourceTree = "<group>"; };
-		638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraView.swift; sourceTree = "<group>"; };
 		638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlayView.swift; sourceTree = "<group>"; };
 		638E85132CEDF8A3007F1D26 /* ButtonBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBack.swift; sourceTree = "<group>"; };
 		63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureDocumentIntroductionView.swift; sourceTree = "<group>"; };
@@ -660,7 +658,6 @@
 				63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */,
 				63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */,
 				638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */,
-				638E850F2CEDC43E007F1D26 /* DocumentCameraView.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1070,7 +1067,6 @@
 				637067052C6087C000A23C1E /* CreateAccountNameView.swift in Sources */,
 				633F7FF62C53B54100BC2B06 /* CustomPageIndicator.swift in Sources */,
 				6395A8162C5A227000CB44FE /* PinCodeView.swift in Sources */,
-				638E85102CEDC440007F1D26 /* DocumentCameraView.swift in Sources */,
 				63582B652CEC69C600C5969D /* DisclosureGroupItemView.swift in Sources */,
 				6352E2B62CB7DEAA00931A18 /* AttachmentDTO.swift in Sources */,
 				632AFA002CAFF5960036F294 /* UserDetailView.swift in Sources */,
