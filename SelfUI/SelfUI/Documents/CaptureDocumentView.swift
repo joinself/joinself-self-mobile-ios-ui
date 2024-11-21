@@ -45,8 +45,8 @@ public struct CaptureDocumentView: View {
                 )
                 .onChange(of: cameraManager.isHighlighted) { newValue in
                     if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
-                        self.cameraManager.session.stopRunning()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        Utils.playCaptureSound()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                             onCaptureImage?(croppedImage)
                         })
                     }

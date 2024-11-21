@@ -178,6 +178,7 @@ class CameraManager: NSObject, ObservableObject {
                     self.isHighlighted = true
                     self.image = image
                     self.croppedImage = self.cropImage(image: image, observation: firstResult)
+                    self.session.stopRunning()
                 }
             } else {
                 DispatchQueue.main.async {

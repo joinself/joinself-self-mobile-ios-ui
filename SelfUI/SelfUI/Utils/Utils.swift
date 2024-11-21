@@ -18,6 +18,10 @@ class Utils {
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
+    static func playCaptureSound() {
+        AudioServicesPlaySystemSound(SystemSoundID(1108))
+    }
+    
     func applyDefaultFonts() {
         if isLoadedFonts == false {
             UIFont.jbs_registerFont(
