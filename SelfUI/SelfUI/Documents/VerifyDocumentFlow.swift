@@ -65,7 +65,7 @@ public struct VerifyDocumentFlow: View {
                         print("Back image: \(self.backPageImage)")
                         
                         path = [5]
-                    }, captureMode: .captureCardImage)
+                    }, captureMode: .detectIDCardMRZ)
                     
                 case 5:
                     DocumentVerifyingView(onBack:  {

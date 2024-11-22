@@ -139,7 +139,6 @@ class CameraManager: NSObject, ObservableObject {
                 s.contains("<")
             }.joined().formatFromMRZLine()
             
-            let result = recognizedStrings.joined().formatFromMRZLine()
             print("Expected mrz: \(mrzLines)")
             
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
@@ -162,6 +161,75 @@ class CameraManager: NSObject, ObservableObject {
         try? requestHandler.perform([textRecognitionRequest])
     }
     
+    private func detectIDCardMRZ(sampleBuffer: CMSampleBuffer) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        guard let image = self.imageFromSampleBuffer(sampleBuffer: sampleBuffer) else {
+            print("Can't convert sample buffer to image.")
+            return
+        }
+        
+        // Create a Vision request to recognize text
+        let textRecognitionRequest = VNRecognizeTextRequest { request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            
+            // Process the recognized text
+            let recognizedStrings = observations.compactMap { observation in
+                // Return the top candidate's string
+                observation.topCandidates(1).first?.string
+            }
+            
+            
+            print("Recognized text: \(recognizedStrings)")
+            
+            // Filter out non-MRZ text and join the MRZ lines
+            let recognizedText = recognizedStrings
+                .filter { $0.count >= 30 && $0.contains("<") } // MRZ lines are typically at least 30 characters
+                .joined(separator: "\n")
+            
+            print("MRZ: \(recognizedText)")
+            
+            let mrzLines = recognizedStrings.filter { s in
+                s.contains("<")
+            }.map { s in
+                s.formatIDCardMRZLine()
+            }
+            
+            print("Expected mrz: \(mrzLines)")
+            
+            if self.isValidMRZ(mrzLines: mrzLines) {
+                DispatchQueue.main.async {
+                    self.isHighlighted = true
+                    self.image = image
+                    self.croppedImage = image
+                    self.session.stopRunning()
+                }
+                Utils.vibrate()
+            }
+        }
+        
+        // Set the recognition level to accurate for MRZ scanning
+        textRecognitionRequest.recognitionLevel = .accurate
+        
+        // Perform the text recognition request
+        let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        try? requestHandler.perform([textRecognitionRequest])
+    }
+    
+    func isValidMRZ(mrzLines: [String]) -> Bool {
+        if mrzLines.count != 3 {
+            return false
+        }
+        let line1 = mrzLines[0]
+        let line2 = mrzLines[1]
+        let _ = mrzLines[2]
+        let valid = line1.count == 30 && line2.count == 30
+        print("isValidMRZ: \(valid)")
+        return valid
+    }
+    
     private func handleCardBuffer(sampleBuffer: CMSampleBuffer) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
@@ -179,6 +247,7 @@ class CameraManager: NSObject, ObservableObject {
                     self.isHighlighted = true
                     self.image = image
                     self.croppedImage = self.cropImage(image: image, observation: firstResult)
+                    Utils.playCaptureSound()
                     self.session.stopRunning()
                 }
             } else {
@@ -248,6 +317,9 @@ extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if captureMode == .captureCardImage {
             self.handleCardBuffer(sampleBuffer: sampleBuffer)
+            return
+        } else if captureMode == .detectIDCardMRZ {
+            self.detectIDCardMRZ(sampleBuffer: sampleBuffer)
             return
         }
         

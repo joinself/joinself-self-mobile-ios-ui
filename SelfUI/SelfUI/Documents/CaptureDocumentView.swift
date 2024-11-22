@@ -18,8 +18,14 @@ public struct CaptureDocumentView: View {
     
     @State private var currentIndex = 0
     @State private var isScanCardMRZ: Bool = true
+    @State private var captureMode: CaptureMode = .detectPassportMRZ
     let suggestions = [
         "Scan front of document",
+        "Avoid white background",
+        "Adjust angle to reduce glare"]
+    
+    let backPageSuggestions = [
+        "Scan back of document",
         "Avoid white background",
         "Adjust angle to reduce glare"]
     
@@ -31,6 +37,7 @@ public struct CaptureDocumentView: View {
     public init(onResult: ((MRZInfo?) -> Void)? = nil, onCaptureImage: ((UIImage) -> Void)? = nil, captureMode: CaptureMode = CaptureMode.detectPassportMRZ) {
         self.onResult = onResult
         self.onCaptureImage = onCaptureImage
+        self.captureMode = captureMode
         cameraManager.onResult = onResult
         cameraManager.captureMode = captureMode
     }
@@ -40,21 +47,25 @@ public struct CaptureDocumentView: View {
             // Base view with overlay
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
-                .overlay(
+                /*.overlay(
                     //                    RectangleOverlay(rectangles: cameraManager.detectedRectangles)
                     //                        .stroke(Color.green, lineWidth: 1)
                     CardOverlayView(isHighlighted: cameraManager.isHighlighted)
-                )
+                )*/
                 .onChange(of: cameraManager.isHighlighted) { newValue in
                     if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
-                        Utils.playCaptureSound()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                             onCaptureImage?(croppedImage)
                         })
                     }
                 }
                 .ignoresSafeArea(.all)
-            //            CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+            if cameraManager.captureMode == .detectIDCardMRZ {
+                IDMRZCardOverlay(isHighlighted: cameraManager.isHighlighted)
+            } else {
+                CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+            }
+                        
             
             VStack (spacing: 20) {
                 Spacer()
@@ -83,7 +94,7 @@ public struct CaptureDocumentView: View {
                         .cornerRadius(8)
                         .overlay {
                             // Heading/H4
-                            Text(suggestions[currentIndex])
+                            Text((captureMode == .captureCardImage) ? suggestions[currentIndex] : backPageSuggestions[currentIndex])
                                 .transition(.opacity)
                                 .font(.defaultNormalTitle)
                                 .multilineTextAlignment(.center)
@@ -136,5 +147,8 @@ public struct CaptureDocumentView: View {
 }
 
 #Preview {
-    CaptureDocumentView()
+    VStack {
+//        CaptureDocumentView(captureMode: .captureCardImage)
+        CaptureDocumentView(captureMode: .detectIDCardMRZ)
+    }
 }

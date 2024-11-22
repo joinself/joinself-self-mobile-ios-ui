@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 NavigationLink {
-                    CaptureDocumentView()
+                    CaptureDocumentView(captureMode: .detectIDCardMRZ)
                 } label: {
                     Text("Document Capture")
                 }

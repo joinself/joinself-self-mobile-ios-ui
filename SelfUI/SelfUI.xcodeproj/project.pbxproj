@@ -71,6 +71,7 @@
 		637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067102C60CA4200A23C1E /* NavBackButton.swift */; };
 		6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370672B2C610C2D00A23C1E /* SelfUISdk.swift */; };
 		6370672D2C61D68500A23C1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6370672F2C61D68500A23C1E /* Localizable.strings */; };
+		63729CAB2CF05FBD00757D61 /* IDMRZCardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63729CAA2CF05FBD00757D61 /* IDMRZCardOverlay.swift */; };
 		637301832CA679A100BB0292 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301822CA679A100BB0292 /* AvatarView.swift */; };
 		637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */; };
 		6373018C2CA7F20A00BB0292 /* NavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373018B2CA7F20A00BB0292 /* NavigationTitleView.swift */; };
@@ -273,6 +274,7 @@
 		637067102C60CA4200A23C1E /* NavBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackButton.swift; sourceTree = "<group>"; };
 		6370672B2C610C2D00A23C1E /* SelfUISdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUISdk.swift; sourceTree = "<group>"; };
 		6370672E2C61D68500A23C1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		63729CAA2CF05FBD00757D61 /* IDMRZCardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDMRZCardOverlay.swift; sourceTree = "<group>"; };
 		637301822CA679A100BB0292 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		637301872CA6C4E800BB0292 /* UIImageWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageWrapperView.swift; sourceTree = "<group>"; };
 		6373018B2CA7F20A00BB0292 /* NavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTitleView.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				63A99B262C0860A60073939A /* TransparentHoleView.swift */,
 				63A99B282C08692D0073939A /* MRZOverlayView.swift */,
 				638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */,
+				63729CAA2CF05FBD00757D61 /* IDMRZCardOverlay.swift */,
 				63E2C3A22C7DC9D300056E9B /* QRCodeOverlayView.swift */,
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
 				634CEE812C7B19E2008CD5B8 /* BannerView.swift */,
@@ -1123,6 +1126,7 @@
 				638E85142CEDF8A3007F1D26 /* ButtonBack.swift in Sources */,
 				63D66AE72C59E4360094E55D /* EnterEmailView.swift in Sources */,
 				63E7F8462CB2547700039F0D /* CredentialRequestCell.swift in Sources */,
+				63729CAB2CF05FBD00757D61 /* IDMRZCardOverlay.swift in Sources */,
 				632AFA032CAFF69B0036F294 /* ImagePicker.swift in Sources */,
 				63F5ECCA2CB9129100108555 /* DataCredentialCell.swift in Sources */,
 				63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */,

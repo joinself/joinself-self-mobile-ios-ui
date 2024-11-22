@@ -249,4 +249,18 @@ extension String {
         
         return result
     }
+    
+    func formatIDCardMRZLine() -> String {
+        var result = self.replacingOccurrences(of: " ", with: "")
+//        result = result.replacingOccurrences(of: "\n", with: "")
+        result = result.replacingOccurrences(of: "\t", with: "")
+//        result = result.replacingOccurrences(of: "\r", with: "")
+        result = result.replacingOccurrences(of: "‹", with: "<")
+        result = result.replacingOccurrences(of: ".", with: "<")
+        result = result.replacingOccurrences(of: "≤", with: "<")
+        result = result.replacingOccurrences(of: "'", with: "<")
+        result = result.replacingOccurrences(of: "«", with: "<")
+        
+        return result
+    }
 }
