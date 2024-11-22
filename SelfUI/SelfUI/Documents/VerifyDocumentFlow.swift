@@ -49,7 +49,7 @@ public struct VerifyDocumentFlow: View {
                     CaptureDocumentView(onCaptureImage:  { image in
                         self.frontPageImage = image
                         path = [3]
-                    })
+                    }, captureMode: .captureCardImage)
                     
                 case 3:
                     CaptureDocumentFrontIntructionView(title: String(format: "capture_document_title".localized, arguments: ["back"]), details: "msg_capture_document_back".localized) {
@@ -72,7 +72,7 @@ public struct VerifyDocumentFlow: View {
                         }
                         
                         onResult?(frontPageImage, backPageImage)
-                    })
+                    }, captureMode: .captureCardImage)
                     
                 default:
                     Text("0")

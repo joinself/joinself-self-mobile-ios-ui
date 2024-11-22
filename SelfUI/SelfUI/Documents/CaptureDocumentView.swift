@@ -17,6 +17,7 @@ public struct CaptureDocumentView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var currentIndex = 0
+    @State private var isScanCardMRZ: Bool = true
     let suggestions = [
         "Scan front of document",
         "Avoid white background",
@@ -27,10 +28,11 @@ public struct CaptureDocumentView: View {
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((MRZInfo?) -> Void)? = nil, onCaptureImage: ((UIImage) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil, onCaptureImage: ((UIImage) -> Void)? = nil, captureMode: CaptureMode = CaptureMode.detectPassportMRZ) {
         self.onResult = onResult
         self.onCaptureImage = onCaptureImage
         cameraManager.onResult = onResult
+        cameraManager.captureMode = captureMode
     }
     
     public var body: some View {

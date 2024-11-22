@@ -31,11 +31,12 @@ struct CameraPreview: UIViewRepresentable {
     func updateUIView(_ uiView: VideoPreviewView, context: Context) {}
 }
 
-enum CaptureMode : Int, CaseIterable {
-    
-    case detectMRZ = 0
-    case detectQRCode = 1
-    case captureCardImage = 2
+public enum CaptureMode : Int, CaseIterable {
+    case undefined = 0
+    case detectPassportMRZ = 1
+    case detectIDCardMRZ = 2
+    case detectQRCode = 3
+    case captureCardImage = 4
 }
 
 class CameraManager: NSObject, ObservableObject {
@@ -46,7 +47,7 @@ class CameraManager: NSObject, ObservableObject {
     var onResult: ((MRZInfo?) -> Void)? = nil
     var onCapture: ((CMSampleBuffer) -> Void)? = nil
     
-    private var captureMode: CaptureMode = .detectMRZ
+    var captureMode: CaptureMode = .detectPassportMRZ
     @Published var detectedRectangles: [VNRectangleObservation] = []
     @Published var image: UIImage?
     @Published var croppedImage: UIImage?
@@ -57,7 +58,7 @@ class CameraManager: NSObject, ObservableObject {
         self.initCamera()
     }
     
-    init(cameraPosition: AVCaptureDevice.Position = .back, captureMode: CaptureMode = .detectMRZ) {
+    init(cameraPosition: AVCaptureDevice.Position = .back, captureMode: CaptureMode = .detectPassportMRZ) {
         super.init()
         
         self.captureMode = captureMode
