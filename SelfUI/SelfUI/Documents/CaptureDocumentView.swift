@@ -13,22 +13,33 @@ class CaptureDocumentViewModel: ObservableObject {
 
 public struct CaptureDocumentView: View {
     @ObservedObject var viewModel = CaptureDocumentViewModel()
-    @ObservedObject var cameraManager = CameraManager()
+    @ObservedObject var cameraManager = CameraManager(cameraPosition: .back, captureMode: .captureCardImage)
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var currentIndex = 0
+    @State private var isScanCardMRZ: Bool = true
+    @State private var captureMode: CaptureMode = .detectPassportMRZ
     let suggestions = [
         "Scan front of document",
         "Avoid white background",
         "Adjust angle to reduce glare"]
     
+    let backPageSuggestions = [
+        "Scan back of document",
+        "Avoid white background",
+        "Adjust angle to reduce glare"]
+    
     public var onResult: ((MRZInfo?) -> Void)? = nil
+    public var onCaptureImage: ((UIImage) -> Void)? = nil
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((MRZInfo?) -> Void)? = nil) {
+    public init(onResult: ((MRZInfo?) -> Void)? = nil, onCaptureImage: ((UIImage) -> Void)? = nil, captureMode: CaptureMode = CaptureMode.detectPassportMRZ) {
         self.onResult = onResult
+        self.onCaptureImage = onCaptureImage
+        self.captureMode = captureMode
         cameraManager.onResult = onResult
+        cameraManager.captureMode = captureMode
     }
     
     public var body: some View {
@@ -36,26 +47,75 @@ public struct CaptureDocumentView: View {
             // Base view with overlay
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
+                /*.overlay(
+                    //                    RectangleOverlay(rectangles: cameraManager.detectedRectangles)
+                    //                        .stroke(Color.green, lineWidth: 1)
+                    CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+                )*/
+                .onChange(of: cameraManager.isHighlighted) { newValue in
+                    if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
+                        if cameraManager.captureMode == .detectIDCardMRZ {
+                            Utils.vibrate()
+                        } else if cameraManager.captureMode == .captureCardImage {
+                            Utils.playCaptureSound()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                            onCaptureImage?(croppedImage)
+                        })
+                    }
+                }
                 .ignoresSafeArea(.all)
-            CardOverlayView(isHighlighted: cameraManager.isValidMRZ)
+            if cameraManager.captureMode == .detectIDCardMRZ {
+                IDMRZCardOverlay(isHighlighted: cameraManager.isHighlighted)
+            } else {
+                CardOverlayView(isHighlighted: cameraManager.isHighlighted)
+            }
+                        
             
             VStack (spacing: 20) {
                 Spacer()
                 
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(width: 363, height: 80)
-                    .background(.white)
-                    .cornerRadius(8)
-                    .overlay {
-                        // Heading/H4
-                        Text(suggestions[currentIndex])
-                            .transition(.opacity)
-                            .font(.defaultNormalTitle)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.textPrimary)
-                            .frame(width: 340, alignment: .center)
-                    }
+                if cameraManager.isHighlighted{
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 363, height: 80)
+                        .background(Color.defaultGreen)
+                        .cornerRadius(8)
+                        .overlay {
+                            HStack {
+                                Image("ic_checkmark", bundle: mainBundle)
+                                Text("Document captured".localized)
+                                    .transition(.opacity)
+                                    .font(.defaultNormalTitle)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.textPrimary)
+                            }
+                        }
+                } else {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 363, height: 80)
+                        .background(.white)
+                        .cornerRadius(8)
+                        .overlay {
+                            // Heading/H4
+                            Text((captureMode == .captureCardImage) ? suggestions[currentIndex] : backPageSuggestions[currentIndex])
+                                .transition(.opacity)
+                                .font(.defaultNormalTitle)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.textPrimary)
+                                .frame(width: 340, alignment: .center)
+                        }
+                }
+                
+                // Testing
+                /*if let image = cameraManager.croppedImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 200, maxHeight: 150)
+                }*/
                 
                 BrandView(isDarked: true, textColor: .white)
             }
@@ -93,5 +153,8 @@ public struct CaptureDocumentView: View {
 }
 
 #Preview {
-    CaptureDocumentView()
+    VStack {
+//        CaptureDocumentView(captureMode: .captureCardImage)
+        CaptureDocumentView(captureMode: .detectIDCardMRZ)
+    }
 }

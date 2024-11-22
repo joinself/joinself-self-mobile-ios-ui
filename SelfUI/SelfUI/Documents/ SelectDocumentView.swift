@@ -10,9 +10,11 @@ import SwiftUI
 public struct  SelectDocumentView: View {
     
     public var onSelect: ((_ documentType: DocumentType) -> Void)?
+    var onResult: ((UIImage, UIImage) -> Void)?
     
-    public init(onSelect: ((_ documentType: DocumentType) -> Void)? = nil) {
+    public init(onSelect: ((_ documentType: DocumentType) -> Void)? = nil, onResult: ((UIImage, UIImage) -> Void)? = nil) {
         self.onSelect = onSelect
+        self.onResult = onResult
     }
     
     @State private var showVerifyDocument = false
@@ -79,7 +81,7 @@ public struct  SelectDocumentView: View {
                     .fullScreenCover(isPresented: $showVerifyDocument) {
                         showVerifyDocument = false
                     } content: {
-                        VerifyDocumentFlow()
+                        VerifyDocumentFlow(onResult: onResult)
                     }
 
                     

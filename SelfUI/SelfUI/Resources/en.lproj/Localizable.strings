@@ -40,12 +40,14 @@
 "title_passport_scanning_passport" = "Don’t move the phone. Your passport is being checked.";
 
 "msg_document_verified" = "Your document has been verified.";
+"msg_document_verifying" = "Please wait while we verify your document.";
 "msg_document_failed" = "We have encountered a problem verifying your document. We will contact you shortly via your verified email.";
 
 "capture_document_introduction" = "You’re going to capture your ID document and use Self to verify it.";
 "msg_capture_document_introduction" = "Self lets you compare the data you have on your document with your image to create a verifiable credential. We process some data transiently using cloud services. Data is never retained by Self or any of our providers. It is only stored on your phone or in your backup.";
-"capture_document_front" = "Now capture the front of your ID.";
+"capture_document_title" = "Now capture the %@ of your ID.";
 "msg_capture_document_front" = "Fill the box you see on the next screen with your document to capture in the information.";
+"msg_capture_document_back" = "Turn your document over and fill the box you see on the next screen with your document to capture in the information.";
 "scan_front_document" = "Scan front of document";
 
 // mrz fields

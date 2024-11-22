@@ -1,5 +1,5 @@
 //
-//  CaptureDocumentFrontIntructionView.swift
+//  CaptureDocumentIntructionView.swift
 //  SelfUI
 //
 //  Created by Long Pham on 29/5/24.
@@ -7,10 +7,15 @@
 
 import SwiftUI
 
-public struct CaptureDocumentFrontIntructionView: View {
+public struct CaptureDocumentIntructionView: View {
     @Environment(\.presentationMode) private var presentationMode
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+    let title: String
+    let details: String
+    
+    public init(title: String, details: String, onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+        self.title = title
+        self.details = details
         self.onGettingStarted = onGettingStarted
         self.onNavigationBack = onNavigationBack
     }
@@ -28,11 +33,11 @@ public struct CaptureDocumentFrontIntructionView: View {
                 Step(title: "5", state: .inactive)
             ])
             
-            VStack {
-                Text("capture_document_front".localized)
+            VStack (spacing: 12){
+                Text(title)
                     .font(.defaultTitle)
                     .foregroundColor(.textPrimary)
-                Text("msg_capture_document_front".localized)
+                Text(details)
                     .font(.defaultBody)
                     .lineSpacing(1.14)
                     .foregroundColor(.textPrimary)
@@ -72,9 +77,10 @@ public struct CaptureDocumentFrontIntructionView: View {
 }
 
 #Preview {
-    CaptureDocumentFrontIntructionView(onGettingStarted: {
+    CaptureDocumentIntructionView(title: String(format: "capture_document_title".localized, arguments: ["front"]), details: "msg_capture_document_front".localized) {
         
-    }, onNavigationBack: {
+    } onNavigationBack: {
         
-    })
+    }
+
 }
