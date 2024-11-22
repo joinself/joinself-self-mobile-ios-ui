@@ -63,6 +63,14 @@ public struct VerifyDocumentFlow: View {
                         self.backPageImage = image
                         print("Front image: \(self.frontPageImage)")
                         print("Back image: \(self.backPageImage)")
+                        
+                        path = [5]
+                    }, captureMode: .captureCardImage)
+                    
+                case 5:
+                    DocumentVerifyingView(onBack:  {
+                        
+                    }) {
                         guard let frontPageImage = frontPageImage else {
                             return
                         }
@@ -72,7 +80,7 @@ public struct VerifyDocumentFlow: View {
                         }
                         
                         onResult?(frontPageImage, backPageImage)
-                    }, captureMode: .captureCardImage)
+                    }
                     
                 default:
                     Text("0")
