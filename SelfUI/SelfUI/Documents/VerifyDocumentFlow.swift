@@ -39,7 +39,7 @@ public struct VerifyDocumentFlow: View {
                     })
                     
                 case 1:
-                    CaptureDocumentFrontIntructionView(title: String(format: "capture_document_title".localized, arguments: ["front"]), details: "msg_capture_document_front".localized) {
+                    CaptureDocumentIntructionView(title: String(format: "capture_document_title".localized, arguments: ["front"]), details: "msg_capture_document_front".localized) {
                         path = [2]
                     } onNavigationBack: {
                         
@@ -52,7 +52,7 @@ public struct VerifyDocumentFlow: View {
                     }, captureMode: .captureCardImage)
                     
                 case 3:
-                    CaptureDocumentFrontIntructionView(title: String(format: "capture_document_title".localized, arguments: ["back"]), details: "msg_capture_document_back".localized) {
+                    CaptureDocumentIntructionView(title: String(format: "capture_document_title".localized, arguments: ["back"]), details: "msg_capture_document_back".localized) {
                         path = [4]
                     } onNavigationBack: {
                         
