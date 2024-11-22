@@ -181,7 +181,6 @@ class CameraManager: NSObject, ObservableObject {
                 observation.topCandidates(1).first?.string
             }
             
-            
             print("Recognized text: \(recognizedStrings)")
             
             // Filter out non-MRZ text and join the MRZ lines
@@ -206,8 +205,34 @@ class CameraManager: NSObject, ObservableObject {
                     self.croppedImage = image
                     self.session.stopRunning()
                 }
-                Utils.vibrate()
             }
+        }
+        
+        // Set the recognition level to accurate for MRZ scanning
+        textRecognitionRequest.recognitionLevel = .accurate
+        
+        // Perform the text recognition request
+        let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
+        try? requestHandler.perform([textRecognitionRequest])
+    }
+    
+    private func detectTexts(sampleBuffer: CMSampleBuffer, completion: (([String]) -> Void)? = nil) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        // Create a Vision request to recognize text
+        let textRecognitionRequest = VNRecognizeTextRequest { request, error in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+            
+            // Process the recognized text
+            let recognizedStrings = observations.compactMap { observation in
+                // Return the top candidate's string
+                observation.topCandidates(1).first?.string
+            }
+            
+            print("Recognized text: \(recognizedStrings)")
+            completion?(recognizedStrings)
         }
         
         // Set the recognition level to accurate for MRZ scanning
@@ -241,20 +266,17 @@ class CameraManager: NSObject, ObservableObject {
         }
         
         let request = VNDetectRectanglesRequest { (request, error) in
-            if let firstResult = request.results?.first as? VNRectangleObservation {
-                print("Detected card at: \(firstResult.boundingBox)")
-                DispatchQueue.main.async {
-                    self.isHighlighted = true
-                    self.image = image
-                    self.croppedImage = self.cropImage(image: image, observation: firstResult)
-                    Utils.playCaptureSound()
-                    self.session.stopRunning()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.isHighlighted = false
-                    self.croppedImage = nil
-                    self.image = nil
+            if let firstResult = request.results?.first as? VNRectangleObservation {   
+                self.detectTexts(sampleBuffer: sampleBuffer) { recognizedTexts in
+                    if recognizedTexts.count > 0 {
+                        print("Detected card at: \(firstResult.boundingBox)")
+                        DispatchQueue.main.async {
+                            self.isHighlighted = true
+                            self.image = image
+                            self.croppedImage = self.cropImage(image: image, observation: firstResult)
+                            self.session.stopRunning()
+                        }
+                    }
                 }
             }
         }

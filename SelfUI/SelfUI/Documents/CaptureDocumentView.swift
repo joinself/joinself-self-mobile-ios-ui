@@ -54,6 +54,12 @@ public struct CaptureDocumentView: View {
                 )*/
                 .onChange(of: cameraManager.isHighlighted) { newValue in
                     if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
+                        if cameraManager.captureMode == .detectIDCardMRZ {
+                            Utils.vibrate()
+                        } else if cameraManager.captureMode == .captureCardImage {
+                            Utils.playCaptureSound()
+                        }
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                             onCaptureImage?(croppedImage)
                         })
