@@ -26,6 +26,30 @@ struct ContentView: View {
                 } label: {
                     Text("Verify Document")
                 }
+                
+                NavigationLink {
+                    ZStack {
+                        Color.black.ignoresSafeArea()
+                        
+                        ParentChildView1(items: [DocumentItem(title: "Passport",isParent: true, iconName: "VN", children: [DocumentItem(title: "Given Names",
+                                                                                                                                       isParent: false),
+                                                                                                                          DocumentItem(title: "Nationality",
+                                                                                                                                       isParent: false)]),
+                                                DocumentItem(title: "National Identity",
+                                                             isParent: true,
+                                                             children: [
+                                                                DocumentItem(title: "Given Names",
+                                                                             isParent: false,
+                                                                             children:[DocumentItem(title: "Next Task", isParent: false)]),
+                                                                DocumentItem(title: "Nationality",
+                                                                             isParent: true,
+                                                                             children: [DocumentItem(title: "Expiry data", isParent: false)])])])
+                        .background(.white)
+                        .scrollContentBackground(.hidden)
+                    }
+                } label: {
+                    Text("Display Document")
+                }
             }
         }
     }

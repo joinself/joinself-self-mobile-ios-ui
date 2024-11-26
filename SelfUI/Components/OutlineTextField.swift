@@ -11,11 +11,13 @@ public struct OutlineTextField: View {
     @State private var isValidEmail: Bool = true
     @State private var emailAddress: String = ""
     @State private var disable: Bool = true
+    @State private var imageName: String?
     @FocusState private var isFocused: Bool
     private let label: String
     @Binding private var text: String
-    public init(label: String = "Label", text: Binding<String>) {
+    public init(label: String = "Label", imageName: String? = nil, text: Binding<String>) {
         self.label = label
+        self.imageName = imageName
         self._text = text
     }
     
@@ -23,7 +25,7 @@ public struct OutlineTextField: View {
         VStack (alignment: .leading) {
             if (!label.isEmpty) {
                 Text(label)
-                    .font(.custom("Barlow", size: 12).weight(.medium))
+                    .font(.defaultCaption)
                     .foregroundColor(.textPrimary)
             } else {
                 Spacer(minLength: 8)
@@ -31,22 +33,18 @@ public struct OutlineTextField: View {
             
             ZStack {
                 HStack(alignment: .center, spacing: 1) {
-                    
-                }
-                .padding(.horizontal, 15)
-                .padding(.vertical, 10)
-                .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                .background(Color.defaultGray)
-                .cornerRadius(.defaultCornerRadius)
-                .overlay {
-                    RoundedRectangle(cornerRadius: .defaultCornerRadius)
-                        .inset(by: 0.5)
-                        .stroke(disable ? Color.clear : Color.defaultPink, lineWidth: 1)
+                    if let imageName = imageName {
+                        Image(imageName, bundle: mainBundle)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .frame(width: Constants.IconSize, height: Constants.IconSize)
+                    }
                     TextField("", text: $emailAddress)
                         .placeholder(when: emailAddress.isEmpty) {
                             Text(text)
                                 .font(.defaultBody)
-                                .foregroundColor(.defaultPlaceHolder)
+                                .foregroundColor(text.isEmpty ? .defaultPlaceHolder : .textPrimary)
                         }
                         .disabled(disable)
                         .accentColor(.defaultBlack) // Set the focus indicator color here
@@ -63,6 +61,16 @@ public struct OutlineTextField: View {
                             isFocused = true
                         }
                         .padding()
+                }
+                .padding(.horizontal, 15)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                .background(Color.defaultGray)
+                .cornerRadius(.defaultCornerRadius)
+                .overlay {
+                    RoundedRectangle(cornerRadius: .defaultCornerRadius)
+                        .inset(by: 0.5)
+                        .stroke(disable ? Color.clear : Color.defaultPink, lineWidth: 1)
                 }
             }
             
@@ -83,6 +91,10 @@ public struct OutlineTextField: View {
             OutlineTextField(label: "", text: .constant("abbie@company.com"))
                 .listRowSeparator(.hidden)
             OutlineTextField(label: "", text: .constant("abbie@company.com"))
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+            
+            OutlineTextField(label: "", imageName: "VN", text: .constant("abbie@company.com"))
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
         }
