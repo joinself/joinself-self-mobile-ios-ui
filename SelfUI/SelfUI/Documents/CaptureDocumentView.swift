@@ -53,15 +53,15 @@ public struct CaptureDocumentView: View {
                     CardOverlayView(isHighlighted: cameraManager.isHighlighted)
                 )*/
                 .onChange(of: cameraManager.isHighlighted) { newValue in
-                    if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
+                    if let originalImage = cameraManager.image, cameraManager.isHighlighted {
                         if cameraManager.captureMode == .detectIDCardMRZ {
                             Utils.vibrate()
                         } else if (cameraManager.captureMode == .captureFrontPage) || cameraManager.captureMode == .captureBackPage {
                             Utils.playCaptureSound()
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                            onCaptureImage?(croppedImage)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            onCaptureImage?(originalImage)
                         })
                     }
                 }
