@@ -31,7 +31,7 @@ struct ContentView: View {
                     ZStack {
                         Color.black.ignoresSafeArea()
                         
-                        ParentChildView1(items: [DocumentItem(title: "Passport",isParent: true, iconName: "VN", children: [DocumentItem(title: "Given Names",
+                        ParentChildView(items: [DocumentItem(title: "Passport",isParent: true, iconName: "VN", children: [DocumentItem(title: "Given Names",
                                                                                                                                        isParent: false),
                                                                                                                           DocumentItem(title: "Nationality",
                                                                                                                                        isParent: false)]),
