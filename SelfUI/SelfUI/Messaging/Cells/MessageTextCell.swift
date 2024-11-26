@@ -12,6 +12,7 @@ struct Constants {
     static let Corner3: CGFloat = 12
     static let Corner4: CGFloat = 4
     static let AvatarWidth: CGFloat = 100
+    static let IconSize: CGFloat = 32
     static let PadLeading: CGFloat = 12
     static let PadTop: CGFloat = 12
 }

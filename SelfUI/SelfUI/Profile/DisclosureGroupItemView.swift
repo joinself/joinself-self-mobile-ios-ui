@@ -9,22 +9,37 @@ import SwiftUI
 
 struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
-        VStack {
-            Button(action: {
-                withAnimation {
-                    configuration.isExpanded.toggle()
+        ZStack {
+//            if !configuration.isExpanded {
+//                Color.pink.ignoresSafeArea()
+//            }
+            
+            VStack {
+                Button(action: {
+                    withAnimation {
+                        configuration.isExpanded.toggle()
+                    }
+                }) {
+                    ZStack {
+                        Color.clear.ignoresSafeArea()
+                        HStack {
+                            configuration.label
+                            Image(configuration.isExpanded ? "ic_chevron_down" : "ic_chevron_right", bundle: mainBundle)
+                            Spacer()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                    .background(Color.defaultGray)
+                    .cornerRadius(.defaultCornerRadius)
+                    
                 }
-            }) {
-                HStack {
-                    configuration.label
-                    Image(configuration.isExpanded ? "ic_chevron_down" : "ic_chevron_right", bundle: mainBundle)
+                if configuration.isExpanded {
+                    configuration.content
                 }
             }
-            if configuration.isExpanded {
-                configuration.content
-            }
+            .padding(0)
+            .background(.clear)
         }
-        .background(.white)
     }
 }
 
@@ -40,28 +55,30 @@ public struct DisclosureGroupItemView: View {
                 Section {
                     DisclosureGroup {
                         if let children = item.children {
-                            VStack {
+                            Group {
                                 ForEach(children) { child in
                                     OutlineTextField(label: child.label, text: .constant(child.title))
+                                        .padding(.leading, 16)
                                 }
                             }
                         }
                     } label: {
                         ItemView(title: item.title, iconName: item.iconName)
-                            .background(Color.white)
                     }
                     .disclosureGroupStyle(CustomDisclosureGroupStyle())
                     .accentColor(Color.defaultDark)
                     .foregroundColor(Color.defaultDark)
                     .background(Color.white)
+                    .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                 }
+                .listSectionSeparator(.hidden)
                 .listRowBackground(Color.white)
             }
         }
         .listStyle(.plain)
+        .listRowSeparator(.hidden)
         .scrollContentBackground(.hidden)
         .background(Color.white)
-        .listRowInsets(.none)
     }
     
 }
@@ -82,5 +99,5 @@ public struct DisclosureGroupItemView: View {
                                                                      isParent: true,
                                                                      children: [DocumentItem(title: "Expiry data", isParent: false)])])])
     }
-    .padding()
+//    .padding()
 }

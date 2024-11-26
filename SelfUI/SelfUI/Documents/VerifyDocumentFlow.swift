@@ -27,7 +27,7 @@ public struct VerifyDocumentFlow: View {
             DocumentNFCCheckView(title: String(format: "title_ask_document_chip".localized, arguments: ["document"]), details: String(format: "detail_ask_document_chip".localized, arguments: ["document"]), onOK: {
                 path = [0]
             }, onCancel: {
-                // TODO: does not have chip
+                path = [0]
             })
             .navigationDestination(for: Int.self) { selection in
                 switch selection {
@@ -49,7 +49,7 @@ public struct VerifyDocumentFlow: View {
                     CaptureDocumentView(onCaptureImage:  { image in
                         self.frontPageImage = image
                         path = [3]
-                    }, captureMode: .captureCardImage)
+                    }, captureMode: .captureFrontPage)
                     
                 case 3:
                     CaptureDocumentIntructionView(title: String(format: "capture_document_title".localized, arguments: ["back"]), details: "msg_capture_document_back".localized) {
@@ -65,7 +65,7 @@ public struct VerifyDocumentFlow: View {
                         print("Back image: \(self.backPageImage)")
                         
                         path = [5]
-                    }, captureMode: .detectIDCardMRZ)
+                    }, captureMode: .captureBackPage)
                     
                 case 5:
                     DocumentVerifyingView(onBack:  {

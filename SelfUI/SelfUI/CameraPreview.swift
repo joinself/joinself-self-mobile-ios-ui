@@ -36,7 +36,8 @@ public enum CaptureMode : Int, CaseIterable {
     case detectPassportMRZ = 1
     case detectIDCardMRZ = 2
     case detectQRCode = 3
-    case captureCardImage = 4
+    case captureFrontPage = 4
+    case captureBackPage = 5
 }
 
 class CameraManager: NSObject, ObservableObject {
@@ -337,7 +338,7 @@ class CameraManager: NSObject, ObservableObject {
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if captureMode == .captureCardImage {
+        if captureMode == .captureFrontPage || captureMode == .captureBackPage {
             self.handleCardBuffer(sampleBuffer: sampleBuffer)
             return
         } else if captureMode == .detectIDCardMRZ {

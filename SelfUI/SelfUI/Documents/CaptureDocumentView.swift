@@ -13,7 +13,7 @@ class CaptureDocumentViewModel: ObservableObject {
 
 public struct CaptureDocumentView: View {
     @ObservedObject var viewModel = CaptureDocumentViewModel()
-    @ObservedObject var cameraManager = CameraManager(cameraPosition: .back, captureMode: .captureCardImage)
+    @ObservedObject var cameraManager = CameraManager(cameraPosition: .back, captureMode: .captureFrontPage)
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var currentIndex = 0
@@ -53,15 +53,15 @@ public struct CaptureDocumentView: View {
                     CardOverlayView(isHighlighted: cameraManager.isHighlighted)
                 )*/
                 .onChange(of: cameraManager.isHighlighted) { newValue in
-                    if let croppedImage = cameraManager.croppedImage, cameraManager.isHighlighted {
+                    if let originalImage = cameraManager.image, cameraManager.isHighlighted {
                         if cameraManager.captureMode == .detectIDCardMRZ {
                             Utils.vibrate()
-                        } else if cameraManager.captureMode == .captureCardImage {
+                        } else if (cameraManager.captureMode == .captureFrontPage) || cameraManager.captureMode == .captureBackPage {
                             Utils.playCaptureSound()
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                            onCaptureImage?(croppedImage)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            onCaptureImage?(originalImage)
                         })
                     }
                 }
@@ -100,7 +100,7 @@ public struct CaptureDocumentView: View {
                         .cornerRadius(8)
                         .overlay {
                             // Heading/H4
-                            Text((captureMode == .captureCardImage) ? suggestions[currentIndex] : backPageSuggestions[currentIndex])
+                            Text((captureMode == .captureFrontPage) ? suggestions[currentIndex] : backPageSuggestions[currentIndex])
                                 .transition(.opacity)
                                 .font(.defaultNormalTitle)
                                 .multilineTextAlignment(.center)
