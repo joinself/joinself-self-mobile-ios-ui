@@ -9,15 +9,21 @@ import SwiftUI
 
 struct MessageComposerView: View {
     @State private var showAttachmentView = false
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
     @State private var text: String = ""
     private let lineLimit = 3
     
     var onClick: (() -> Void)?
     var onText: ((String) -> Void)?
+    var onImage: ((UIImage) -> Void)?
     init(onClick: (() -> Void)? = nil,
-         onText: ((String) -> Void)? = nil) {
+         onText: ((String) -> Void)? = nil,
+         onImage: ((UIImage) -> Void)? = nil) {
         self.onClick = onClick
         self.onText = onText
+        self.onImage = onImage
     }
     
     var body: some View {
@@ -84,18 +90,32 @@ struct MessageComposerView: View {
                     
                     Spacer()
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        print("Show gallery.")
+                        self.openGallery()
                     }, label: {
-                        Image("ic_gallary", bundle: mainBundle)
+                        Image(ResourceContants.ICON_GALLERY, bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .sheet(isPresented: $showingImagePicker, onDismiss: {
+                        print("Dismissed gallery: \(self.inputImage)")
+                        self.showAttachmentView = false
+                        if let inputImage = inputImage {
+                            onImage?(inputImage)
+                        }
+                    }) {
+                        ImagePicker(image: $inputImage)
+                    }
                 }
                 .transition(.opacity)
                 .padding()
             }
         }
+    }
+    
+    private func openGallery() {
+//        showAttachmentView.toggle()
+        showingImagePicker = true
     }
 }
 

@@ -7,8 +7,26 @@
 
 import SwiftUI
 import SelfUI
+import Combine
+
+class MyViewModel: ObservableObject {
+    @Published var chatObservableObject: ChatObservableObject = ChatObservableObject(messages: [
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, timestamp: "now"),
+        
+        MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+        MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .sender),
+        
+        MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+        MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now"),
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now")
+    ])
+}
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel = MyViewModel()
     
     var body: some View {
         NavigationView {
@@ -49,6 +67,16 @@ struct ContentView: View {
                     }
                 } label: {
                     Text("Display Document")
+                }
+                
+                NavigationLink {
+                    ChatView(conversationName: .constant("User"), chatObservableObject: viewModel.chatObservableObject)
+                        .onReceive(viewModel.chatObservableObject.newMessage, perform: { newMessage in
+                            print("New message DTO.....: \(newMessage)")
+                            viewModel.chatObservableObject.updateMessages(newMessages: [newMessage])
+                        })
+                } label: {
+                    Text("Chat View")
                 }
             }
         }
