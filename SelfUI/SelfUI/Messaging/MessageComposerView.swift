@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageComposerView: View {
     @State private var showAttachmentView = false
     @State private var showingImagePicker = false
+    @State private var showingPhotoPicker = false
     @State private var inputImage: UIImage?
     
     @State private var text: String = ""
@@ -71,13 +72,27 @@ struct MessageComposerView: View {
                 // Bottom Attachment View
                 HStack {
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        self.openPhotoPicker()
                     }, label: {
                         Image("ic_camera", bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .sheet(isPresented: $showingPhotoPicker, onDismiss: {
+                        print("Dismissed photo picker: \(self.inputImage)")
+                        self.showAttachmentView = false
+                        if let inputImage = inputImage {
+                            onImage?(inputImage)
+                        }
+                    }) {
+                        CaptureImageView { uiImage, description in
+                            self.inputImage = uiImage
+                        }
+                    }
+                    .onChange(of: self.inputImage) { newValue in
+                        print("Selected image: \(self.inputImage)")
+                    }
+                    
                     Spacer()
                     Button(action: {
                         print("Show attachemnts.")
@@ -116,6 +131,12 @@ struct MessageComposerView: View {
     private func openGallery() {
 //        showAttachmentView.toggle()
         showingImagePicker = true
+    }
+    
+    private func openPhotoPicker() {
+        print("Show photo picker.")
+//        showAttachmentView.toggle()
+        showingPhotoPicker = true
     }
 }
 
