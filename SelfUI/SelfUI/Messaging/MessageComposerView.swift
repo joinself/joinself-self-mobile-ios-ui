@@ -11,7 +11,10 @@ struct MessageComposerView: View {
     @State private var showAttachmentView = false
     @State private var showingImagePicker = false
     @State private var showingPhotoPicker = false
+    @State private var showingDocumentPicker = false
     @State private var inputImage: UIImage?
+    @State private var selectedFileName: String?
+    @State private var selectedFileURLs: [URL] = []
     
     @State private var text: String = ""
     private let lineLimit = 3
@@ -95,13 +98,21 @@ struct MessageComposerView: View {
                     
                     Spacer()
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        self.openDocumentPicker()
                     }, label: {
                         Image("ic_document", bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .onChange(of: self.selectedFileURLs, perform: { newValue in
+                        print("Files change: \(newValue)")
+                        self.selectedFileURLs = newValue
+                    })
+                    .sheet(isPresented: $showingDocumentPicker, onDismiss: {
+                        print("Dismissed document picker: \(self.selectedFileURLs)")
+                    }) {
+                        DocumentPicker(selectedFileName: $selectedFileName, selectedFileURLs: $selectedFileURLs)
+                    }
                     
                     Spacer()
                     Button(action: {
@@ -137,6 +148,12 @@ struct MessageComposerView: View {
         print("Show photo picker.")
 //        showAttachmentView.toggle()
         showingPhotoPicker = true
+    }
+    
+    private func openDocumentPicker() {
+        print("Show document picker.")
+//        showAttachmentView.toggle()
+        showingDocumentPicker = true
     }
 }
 
