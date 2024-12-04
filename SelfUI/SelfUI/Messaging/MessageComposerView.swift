@@ -22,12 +22,15 @@ struct MessageComposerView: View {
     var onClick: (() -> Void)?
     var onText: ((String) -> Void)?
     var onImage: ((UIImage) -> Void)?
+    var onSelectFile: ((URL) -> Void)?
     init(onClick: (() -> Void)? = nil,
          onText: ((String) -> Void)? = nil,
-         onImage: ((UIImage) -> Void)? = nil) {
+         onImage: ((UIImage) -> Void)? = nil,
+         onSelectFile: ((URL) -> Void)? = nil) {
         self.onClick = onClick
         self.onText = onText
         self.onImage = onImage
+        self.onSelectFile = onSelectFile
     }
     
     var body: some View {
@@ -107,9 +110,15 @@ struct MessageComposerView: View {
                     .onChange(of: self.selectedFileURLs, perform: { newValue in
                         print("Files change: \(newValue)")
                         self.selectedFileURLs = newValue
+                        if let url = self.selectedFileURLs.first {
+                            onSelectFile?(url)
+                        }
                     })
                     .sheet(isPresented: $showingDocumentPicker, onDismiss: {
                         print("Dismissed document picker: \(self.selectedFileURLs)")
+                        if let url = self.selectedFileURLs.first {
+                            onSelectFile?(url)
+                        }
                     }) {
                         DocumentPicker(selectedFileName: $selectedFileName, selectedFileURLs: $selectedFileURLs)
                     }
