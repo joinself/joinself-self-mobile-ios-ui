@@ -70,6 +70,9 @@ public struct ChatView: View {
                                     actionReject?(message)
                                 }
                                 
+                            case MessageType.SELF_IMAGE:
+                                MessageImageCell(messageDTO: message)
+                                
                             default:
                                 MessageTextCell(messageDTO: message)
                                     .onAppear {
@@ -115,7 +118,13 @@ public struct ChatView: View {
                 MessageComposerView(onText: { textMessage in
                     let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
                     chatObservableObject.newMessage.send(newMessage)
-                })
+                }) { inputImage in
+                    let newMessage = MessageDTO(id: UUID().uuidString, text: "", image: inputImage, mimeType: MessageType.SELF_IMAGE)
+                    chatObservableObject.newMessage.send(newMessage)
+                } onSelectFile: { url in
+                    let newMessage = MessageDTO(id: UUID().uuidString, text: "", fileURLs: [url], mimeType: MessageType.SELF_FILE)
+                    chatObservableObject.newMessage.send(newMessage)
+                }
 //                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.padding()
         }

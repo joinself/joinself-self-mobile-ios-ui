@@ -9,15 +9,28 @@ import SwiftUI
 
 struct MessageComposerView: View {
     @State private var showAttachmentView = false
+    @State private var showingImagePicker = false
+    @State private var showingPhotoPicker = false
+    @State private var showingDocumentPicker = false
+    @State private var inputImage: UIImage?
+    @State private var selectedFileName: String?
+    @State private var selectedFileURLs: [URL] = []
+    
     @State private var text: String = ""
     private let lineLimit = 3
     
     var onClick: (() -> Void)?
     var onText: ((String) -> Void)?
+    var onImage: ((UIImage) -> Void)?
+    var onSelectFile: ((URL) -> Void)?
     init(onClick: (() -> Void)? = nil,
-         onText: ((String) -> Void)? = nil) {
+         onText: ((String) -> Void)? = nil,
+         onImage: ((UIImage) -> Void)? = nil,
+         onSelectFile: ((URL) -> Void)? = nil) {
         self.onClick = onClick
         self.onText = onText
+        self.onImage = onImage
+        self.onSelectFile = onSelectFile
     }
     
     var body: some View {
@@ -65,37 +78,91 @@ struct MessageComposerView: View {
                 // Bottom Attachment View
                 HStack {
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        self.openPhotoPicker()
                     }, label: {
                         Image("ic_camera", bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .sheet(isPresented: $showingPhotoPicker, onDismiss: {
+                        print("Dismissed photo picker: \(self.inputImage)")
+                        self.showAttachmentView = false
+                        if let inputImage = inputImage {
+                            onImage?(inputImage)
+                        }
+                    }) {
+                        CaptureImageView { uiImage, description in
+                            self.inputImage = uiImage
+                        }
+                    }
+                    .onChange(of: self.inputImage) { newValue in
+                        print("Selected image: \(self.inputImage)")
+                    }
+                    
                     Spacer()
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        self.openDocumentPicker()
                     }, label: {
                         Image("ic_document", bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .onChange(of: self.selectedFileURLs, perform: { newValue in
+                        print("Files change: \(newValue)")
+                        self.selectedFileURLs = newValue
+                        if let url = self.selectedFileURLs.first {
+                            onSelectFile?(url)
+                        }
+                    })
+                    .sheet(isPresented: $showingDocumentPicker, onDismiss: {
+                        print("Dismissed document picker: \(self.selectedFileURLs)")
+                        if let url = self.selectedFileURLs.first {
+                            onSelectFile?(url)
+                        }
+                    }) {
+                        DocumentPicker(selectedFileName: $selectedFileName, selectedFileURLs: $selectedFileURLs)
+                    }
                     
                     Spacer()
                     Button(action: {
-                        print("Show attachemnts.")
-                        showAttachmentView.toggle()
+                        print("Show gallery.")
+                        self.openGallery()
                     }, label: {
-                        Image("ic_gallary", bundle: mainBundle)
+                        Image(ResourceContants.ICON_GALLERY, bundle: mainBundle)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     })
+                    .sheet(isPresented: $showingImagePicker, onDismiss: {
+                        print("Dismissed gallery: \(self.inputImage)")
+                        self.showAttachmentView = false
+                        if let inputImage = inputImage {
+                            onImage?(inputImage)
+                        }
+                    }) {
+                        ImagePicker(image: $inputImage)
+                    }
                 }
                 .transition(.opacity)
                 .padding()
             }
         }
+    }
+    
+    private func openGallery() {
+//        showAttachmentView.toggle()
+        showingImagePicker = true
+    }
+    
+    private func openPhotoPicker() {
+        print("Show photo picker.")
+//        showAttachmentView.toggle()
+        showingPhotoPicker = true
+    }
+    
+    private func openDocumentPicker() {
+        print("Show document picker.")
+//        showAttachmentView.toggle()
+        showingDocumentPicker = true
     }
 }
 

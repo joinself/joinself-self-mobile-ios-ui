@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public struct MessageType {
     public static let SELF_TEXT = "self/text"
@@ -52,17 +53,21 @@ public enum MessageStatus: String, CaseIterable {
 public struct MessageDTO: Identifiable, Equatable {
     public let id: String
     public let text: String
+    public var image: UIImage? //FIXME: should use fileURL
+    public var fileURLs: [URL] = []
     let isMyMessage: Bool
     public let mimeType: String
     let fromType: MessageFrom
     let receiptStatus: MessageStatus
     let timestamp: String
     var status: MessageStatus = .pending // Request status
-    let attachments: [AttachmentDTO]
+    public let attachments: [AttachmentDTO]
     let credential: CredentialDTO?
 
     public init(id: String,
                 text: String,
+                image: UIImage? = nil,
+                fileURLs: [URL] = [],
                 attachments: [AttachmentDTO] = [],
                 credential: CredentialDTO? = nil,
                 mimeType: String = MessageType.SELF_TEXT,
@@ -72,6 +77,8 @@ public struct MessageDTO: Identifiable, Equatable {
                 timestamp: String = "") {
         self.id = id
         self.text = text
+        self.image = image
+        self.fileURLs = fileURLs
         self.attachments = attachments
         self.credential = credential
         self.isMyMessage = fromType == .sender
