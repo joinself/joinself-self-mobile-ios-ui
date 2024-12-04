@@ -22,6 +22,15 @@ struct MessageImageCell: View, BaseMessage {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
+                } else if let fileURL = messageDTO.attachments.first?.localPath{
+                    let url = URL(fileURLWithPath: fileURL)
+                    let image = UIImage(contentsOfFile: url.path()) ?? UIImage()
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text("Image is missing: \(messageDTO.attachments.first?.localPath)")
                 }
                 
                 Text(messageDTO.text)

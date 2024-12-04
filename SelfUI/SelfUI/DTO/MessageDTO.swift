@@ -60,7 +60,7 @@ public struct MessageDTO: Identifiable, Equatable {
     let receiptStatus: MessageStatus
     let timestamp: String
     var status: MessageStatus = .pending // Request status
-    let attachments: [AttachmentDTO]
+    public let attachments: [AttachmentDTO]
     let credential: CredentialDTO?
 
     public init(id: String,
