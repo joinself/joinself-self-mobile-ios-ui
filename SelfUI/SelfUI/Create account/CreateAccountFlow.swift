@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct CreateAccountFlow: BaseView {
+public struct CreateAccountFlow: View {
     
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?

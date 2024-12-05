@@ -138,7 +138,7 @@ struct DocumentSignRejectedContentView: View {
     }
 }
 
-struct DocumentSignCell: BaseView {
+struct DocumentSignCell: View {
     let messageDTO: MessageDTO
     let spaceLength: CGFloat
     private var actionAccept: (() -> Void)?
