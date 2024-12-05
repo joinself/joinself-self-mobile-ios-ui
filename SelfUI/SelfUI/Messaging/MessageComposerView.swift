@@ -112,12 +112,14 @@ struct MessageComposerView: View {
                         self.selectedFileURLs = newValue
                         if let url = self.selectedFileURLs.first {
                             onSelectFile?(url)
+                            selectedFileURLs = []
                         }
                     })
                     .sheet(isPresented: $showingDocumentPicker, onDismiss: {
                         print("Dismissed document picker: \(self.selectedFileURLs)")
                         if let url = self.selectedFileURLs.first {
                             onSelectFile?(url)
+                            selectedFileURLs = []
                         }
                     }) {
                         DocumentPicker(selectedFileName: $selectedFileName, selectedFileURLs: $selectedFileURLs)
