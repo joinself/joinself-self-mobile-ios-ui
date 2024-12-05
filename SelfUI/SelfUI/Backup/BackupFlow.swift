@@ -29,7 +29,12 @@ public struct BackupFlow: View {
                     Text("Backup")
                     
                 case .BackingUp:
-                    Text("Backing Up")
+                    BackingupView {
+                        
+                    } onNavigateBack: {
+                        
+                    }
+
                     
                 case .Done:
                     Text("Done")
