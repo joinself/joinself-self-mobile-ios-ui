@@ -73,6 +73,9 @@ public struct ChatView: View {
                             case MessageType.SELF_IMAGE:
                                 MessageImageCell(messageDTO: message)
                                 
+                            case MessageType.SELF_FILE:
+                                FileCell(messageDTO: message)
+                                
                             default:
                                 MessageTextCell(messageDTO: message)
                                     .onAppear {
@@ -91,30 +94,6 @@ public struct ChatView: View {
                         }
                     }
                 }
-                
-                /*HStack {
-                    Button(action: {
-                        showingImagePicker = true
-                    }) {
-                        Image(systemName: "photo")
-                            .font(.system(size: 24))
-                    }
-                    .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                        ImagePicker(image: $inputImage)
-                    }
-                    
-                    TextField("Type a message", text: $newMessage)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    Button(action: sendMessage) {
-                        Text("Send")
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                            .foregroundColor(.white)
-                    }
-                }
-                .padding()*/
                 MessageComposerView(onText: { textMessage in
                     let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
                     chatObservableObject.newMessage.send(newMessage)
@@ -128,13 +107,6 @@ public struct ChatView: View {
 //                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.padding()
         }
-    }
-    
-    func loadImage() {
-        guard let inputImage = inputImage else { return }
-        // Handle the image attachment here
-        let message = MessageDTO(id: UUID().uuidString, text: "Image attached", fromType: .sender)
-        //messages.append(message)
     }
 }
 
@@ -152,7 +124,8 @@ public struct ChatView: View {
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now"),
-            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now")
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now"),
+            MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_FILE, fromType: .receiver, timestamp: "now")
         ]))
     }
     
