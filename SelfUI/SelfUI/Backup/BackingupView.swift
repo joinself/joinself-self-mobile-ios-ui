@@ -21,8 +21,9 @@ public struct BackingupView: View {
     
     public var body: some View {
         BaseView {
-            Spacer()
             LoadingDotsView()
+            Spacer()
+            Spacer()
             Spacer()
         }
     }

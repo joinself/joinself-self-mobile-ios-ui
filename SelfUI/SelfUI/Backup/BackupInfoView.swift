@@ -14,13 +14,13 @@ public struct BackupInfoView: View {
         self.onNavigateBack = onNavigateBack
     }
     
-    var onGettingStarted: () -> Void
-    var onNavigateBack: () -> Void
-    public var onSelectNegative: (() -> Void)? = nil
+    private var onGettingStarted: () -> Void
+    private var onNavigateBack: () -> Void
+    private var onSelectNegative: (() -> Void)? = nil
     @Environment(\.presentationMode) var presentationMode
     
     public var body: some View {
-        VStack(alignment: .center, spacing: 0) {
+        BaseView {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_backup".localized)
                     .font(.defaultLargeTitle)
@@ -34,22 +34,8 @@ public struct BackupInfoView: View {
             .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            Spacer()
-            VStack(spacing: 12) {
-                ButtonView(title: "button_backup_now".localized) {
-                    onGettingStarted()
-                }
-                
-                BrandView(isDarked: true)
-            }.padding()
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
-                }
+            ButtonView(title: "button_backup_now".localized) {
+                onGettingStarted()
             }
         }
     }

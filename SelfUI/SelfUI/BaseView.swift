@@ -17,13 +17,16 @@ struct BaseView<Content: View>: View {
     }
     
     public var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            content
-            Spacer()
-            VStack(spacing: 12) {
+        VStack(alignment: .center, spacing: 12) {
+            VStack {
+                Spacer()
+                content
+            }
+            HStack (alignment: .bottom) {
                 BrandView(isDarked: true)
-            }.padding()
+            }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.white)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -37,16 +40,7 @@ struct BaseView<Content: View>: View {
 }
 
 #Preview {
-    VStack {
-        NavigationStack {
-            NavigationLink {
-                BaseView {
-                    Text("Hello Base View")
-                }
-            } label: {
-                Text("Base View")
-            }
-        }
-        
+    BaseView {
+        Text("Hello Base View")
     }
 }
