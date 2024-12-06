@@ -17,15 +17,17 @@ public struct BackupFlow: View {
     @State private var path: [BackupDestinations] = [BackupDestinations]()
     @Binding var backupFinish: Bool
     @Environment(\.presentationMode) private var presentationMode
-    
-    public init(backupFinish: Binding<Bool> = .constant(false)) {
+    private var onBackingup: (() -> Void)?
+    public init(backupFinish: Binding<Bool> = .constant(false), onBackingup: (() -> Void)? = nil) {
         self._backupFinish = backupFinish
+        self.onBackingup = onBackingup
     }
     
     public var body: some View {
         NavigationStack(path: $path) {
             BackupInfoView(onGettingStarted: {
                 path = [.BackingUp]
+                onBackingup?()
             }, onNavigateBack: {
                 path = []
             })
