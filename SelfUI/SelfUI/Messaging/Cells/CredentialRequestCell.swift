@@ -105,7 +105,7 @@ struct CredentialRequestRejectContentView: View {
     }
 }
 
-struct CredentialRequestCell: BaseView {
+struct CredentialRequestCell: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?

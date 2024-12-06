@@ -84,6 +84,8 @@
 "button_sign" = "Sign";
 "button_signed" = "Signed";
 "button_continue" = "Continue";
+"button_backup_now" = "Backup Now";
+"button_done" = "Done";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
@@ -153,6 +155,11 @@
 
 "scan_login_qr_code_body" = "Now go to the Self portal in your desktop browser and click below to scan the QR code.";
 "message_scan_fail" = "We couldn’t read that QR code, please try again.";
+
+// MARK: - Backup Restore
+"title_backup" = "Backup now.";
+"msg_backup" = "Backup immediately to test functionality or to prepare for deleting and reinstalling the app.";
+"title_backup_done" = "Backup successful.";
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";
