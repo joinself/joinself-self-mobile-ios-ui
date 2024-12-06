@@ -9,7 +9,9 @@ import SwiftUI
 
 public struct BackupInfoView: View {
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
+    @Binding var isNetworkConnected: Bool
+    public init(isNetworkConnected: Binding<Bool> = .constant(true), onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
+        self._isNetworkConnected = isNetworkConnected
         self.onGettingStarted = onGettingStarted
         self.onNavigateBack = onNavigateBack
     }
@@ -34,7 +36,7 @@ public struct BackupInfoView: View {
             .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            ButtonView(title: "button_backup_now".localized) {
+            ButtonView(title: "button_backup_now".localized, isActive: $isNetworkConnected) {
                 onGettingStarted()
             }
         }

@@ -16,16 +16,18 @@ enum BackupDestinations: String, CaseIterable, Hashable {
 public struct BackupFlow: View {
     @State private var path: [BackupDestinations] = [BackupDestinations]()
     @Binding var backupFinish: Bool
+    @Binding var isNetworkConnected: Bool
     @Environment(\.presentationMode) private var presentationMode
     private var onBackingup: (() -> Void)?
-    public init(backupFinish: Binding<Bool> = .constant(false), onBackingup: (() -> Void)? = nil) {
+    public init(backupFinish: Binding<Bool> = .constant(false), isNetworkConnected: Binding<Bool> = .constant(true), onBackingup: (() -> Void)? = nil) {
         self._backupFinish = backupFinish
+        self._isNetworkConnected = isNetworkConnected
         self.onBackingup = onBackingup
     }
     
     public var body: some View {
         NavigationStack(path: $path) {
-            BackupInfoView(onGettingStarted: {
+            BackupInfoView(isNetworkConnected: $isNetworkConnected, onGettingStarted: {
                 path = [.BackingUp]
                 onBackingup?()
             }, onNavigateBack: {
