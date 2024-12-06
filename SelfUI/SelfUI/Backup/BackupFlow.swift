@@ -26,53 +26,69 @@ public struct BackupFlow: View {
     }
     
     public var body: some View {
-        NavigationStack(path: $path) {
-            BackupInfoView(isNetworkConnected: $isNetworkConnected, onGettingStarted: {
-                path = [.BackingUp]
-                onBackingup?()
-            }, onNavigateBack: {
-                path = []
-            })
-            .onChange(of: self.backupFinish, perform: { newValue in
-                if backupFinish {
-                    path = [.Done]
-                }
-            })
-            .navigationDestination(for: BackupDestinations.self) { destination in
-                
-                switch destination {
-                case .Info:
-                    Text("Backup")
-                    
-                case .BackingUp:
-                    BackingupView {
-                        
-                    } onNavigateBack: {
-                        
+        ZStack {
+            NavigationStack(path: $path) {
+                BackupInfoView(isNetworkConnected: $isNetworkConnected, onGettingStarted: {
+                    path = [.BackingUp]
+                    onBackingup?()
+                }, onNavigateBack: {
+                    path = []
+                })
+                .onChange(of: self.backupFinish, perform: { newValue in
+                    if backupFinish {
+                        path = [.Done]
                     }
-                    /*.onAppear()
-                    {
-                        print("Backing up...")
-                        // Test
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            backupFinish = true
-                            path = [.Done]
+                })
+                .navigationDestination(for: BackupDestinations.self) { destination in
+                    
+                    switch destination {
+                    case .Info:
+                        Text("Backup")
+                        
+                    case .BackingUp:
+                        BackingupView {
+                            
+                        } onNavigateBack: {
+                            
                         }
-                    }*/
-                    
-                case .Done:
-                    BackupDoneView {
-                        presentationMode.wrappedValue.dismiss()
-                    } onNavigateBack: {
+                        /*.onAppear()
+                        {
+                            print("Backing up...")
+                            // Test
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                backupFinish = true
+                                path = [.Done]
+                            }
+                        }*/
                         
-                    }
+                    case .Done:
+                        BackupDoneView {
+                            presentationMode.wrappedValue.dismiss()
+                        } onNavigateBack: {
+                            
+                        }
 
+                    }
                 }
+            }
+            
+            if !isNetworkConnected {
+                VStack {
+                    BannerView(message: "No internet connection")
+//                        .padding(.top, -12)
+                    Spacer()
+                }
+                .transition(.move(edge: .top))
+                .animation(.easeInOut, value: true)
             }
         }
     }
 }
 
 #Preview {
-    BackupFlow()
+    VStack {
+//        BackupFlow(isNetworkConnected: .constant(true))
+        BackupFlow(isNetworkConnected: .constant(false))
+    }
+    
 }

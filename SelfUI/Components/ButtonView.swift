@@ -48,8 +48,8 @@ public struct ButtonView: View {
             .frame(maxWidth: .infinity)
             .background(isActive ? viewModel.backgroundColor : Color.defaultDark)
             .cornerRadius(Constants.ButtonCornerRadius)
-            .padding(.leading, Constants.PadLeading)
-            .padding(.trailing, Constants.PadLeading)
+//            .padding(.leading, Constants.PadLeading)
+//            .padding(.trailing, Constants.PadLeading)
         })
         .disabled(!isActive)
     }

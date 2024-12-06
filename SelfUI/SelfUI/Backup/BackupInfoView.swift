@@ -32,19 +32,20 @@ public struct BackupInfoView: View {
                   .lineSpacing(1.14)
                   .foregroundColor(.black)
                 Spacer()
+                
+                ButtonView(title: "button_backup_now".localized, isActive: $isNetworkConnected) {
+                    onGettingStarted()
+                }
             }
             .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            ButtonView(title: "button_backup_now".localized, isActive: $isNetworkConnected) {
-                onGettingStarted()
-            }
         }
     }
 }
 
 #Preview {
-    BackupInfoView(onGettingStarted: {
+    BackupInfoView(isNetworkConnected: .constant(false), onGettingStarted: {
         
     }, onNavigateBack: {
         
