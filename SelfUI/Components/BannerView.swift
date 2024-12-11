@@ -15,8 +15,6 @@ public struct BannerView: View {
     
     public var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            // Subtitle/Subtitle 2
-            
             Spacer()
             Text(message)
               .font(
@@ -27,7 +25,9 @@ public struct BannerView: View {
               .foregroundColor(.white)
               .background(Color.defaultPink)
         }
-        .frame(maxHeight: 40)
+        .frame(maxHeight: Constants.MaxBannerHeight)
+        .transition(.move(edge: .top))
+        .animation(.easeInOut, value: true)
         .background(Color.clear)
     }
 }

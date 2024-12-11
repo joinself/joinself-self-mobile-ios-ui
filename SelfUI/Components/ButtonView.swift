@@ -44,7 +44,7 @@ public struct ButtonView: View {
                     .textCase(.uppercase)
                     .foregroundColor(isActive ? buttonTitleColor : Color.white)
             }
-            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
+//            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
             .frame(maxWidth: .infinity, minHeight: Constants.MinButtonHeight)
             .background(isActive ? viewModel.backgroundColor : Color.defaultDark)
             .cornerRadius(Constants.ButtonCornerRadius)

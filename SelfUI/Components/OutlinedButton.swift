@@ -45,41 +45,28 @@ public struct OutlinedButton: View {
     
     public var body: some View {
         Button(action: {
-            handleTap()
-        }, label: {
-            viewModel.icon
-                .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
-            Text(viewModel.title)
-                .font(.defaultButton)
-                .minimumScaleFactor(0.5)
-                .kerning(0.85)
-                .tracking(0.85)
-            .textCase(.uppercase)
-            .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
-//            .onTapGesture {
-//                handleTap()
-//            }
-        })
-        .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
-        .frame(width: 363, height: 44)
-        .cornerRadius(viewModel.cornerRadius)
-        .overlay(
-          RoundedRectangle(cornerRadius: 40)
-            .inset(by: 1)
-            .stroke(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
-        )
-//        .onTapGesture {
-//            handleTap()
-//        }
-    }
-    
-    private func handleTap() {
-        didTap = true
-        // Reset the state after a delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            didTap = false
             onClicked?()
-        }
+        }, label: {
+            HStack {
+                viewModel.icon
+                    .colorMultiply(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
+                Text(viewModel.title)
+                    .font(.defaultButton)
+                    .minimumScaleFactor(0.5)
+                    .kerning(0.85)
+                    .tracking(0.85)
+                .textCase(.uppercase)
+                .foregroundColor(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor)
+            }
+//            .padding()
+            .frame(maxWidth: .infinity, minHeight: Constants.MinButtonHeight)
+            .cornerRadius(Constants.ButtonCornerRadius)
+            .overlay(
+              RoundedRectangle(cornerRadius: 40)
+                .inset(by: 1)
+                .stroke(didTap ? viewModel.outlinedColor.opacity(opacity) : viewModel.outlinedColor, lineWidth: viewModel.borderWidth)
+            )
+        })
     }
 }
 

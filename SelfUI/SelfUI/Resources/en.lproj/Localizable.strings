@@ -160,6 +160,10 @@
 "title_backup" = "Backup now.";
 "msg_backup" = "Backup immediately to test functionality or to prepare for deleting and reinstalling the app.";
 "title_backup_done" = "Backup successful.";
+"title_restore_intro" = "Please follow the instructions carefully to restore your account.";
+"msg_restore_intro" = "You can only have Self installed on one phone. 
+If you recover your account to this phone, Self will stop working on your other phone.";
+"no_internet_connection" = "No internet connection";
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";
