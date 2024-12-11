@@ -27,6 +27,7 @@ struct BaseProgressView<Content: View>: View {
                 content
             }
         }
+        .background(.white)
     }
 }
 

@@ -13,16 +13,15 @@ enum RestoreDestinations: String, CaseIterable, Hashable {
     case Done
 }
 
-public struct RestoreFlow: View {
-    @State private var path: [RestoreDestinations] = [RestoreDestinations]()
-    @Binding var backupFinish: Bool
+public struct RestoreFlow: View, BaseActions {
+    var onNext: (() -> Void)?
     @Binding var isNetworkConnected: Bool
+    @State private var path: [RestoreDestinations] = [RestoreDestinations]()
     @Environment(\.presentationMode) private var presentationMode
-    private var onBackingup: (() -> Void)?
-    public init(backupFinish: Binding<Bool> = .constant(false), isNetworkConnected: Binding<Bool> = .constant(true), onBackingup: (() -> Void)? = nil) {
-        self._backupFinish = backupFinish
+    public init(isNetworkConnected: Binding<Bool> = .constant(true),
+                onNext: (() -> Void)? = nil) {
+        self.onNext = onNext
         self._isNetworkConnected = isNetworkConnected
-        self.onBackingup = onBackingup
     }
     
     public var body: some View {
@@ -33,13 +32,9 @@ public struct RestoreFlow: View {
             
             NavigationStack(path: $path) {
                 RestoreIntroView {
-                    path = [.LivenessCheck]
+                    onNext?()
+                    //path = [.LivenessCheck]
                 }
-                .onChange(of: self.backupFinish, perform: { newValue in
-                    if backupFinish {
-                        path = [.Done]
-                    }
-                })
                 .navigationDestination(for: RestoreDestinations.self) { destination in
                     
                     switch destination {
@@ -75,6 +70,7 @@ public struct RestoreFlow: View {
             
             Spacer()
         }
+        .ignoresSafeArea(.all)
     }
 }
 

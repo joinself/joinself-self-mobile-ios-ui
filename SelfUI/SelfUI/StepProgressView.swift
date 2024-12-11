@@ -28,6 +28,7 @@ struct StepProgressView: View {
     }
     var body: some View {
         CustomProgressView(steps: steps)
+            .background(.white)
     }
 }
 
