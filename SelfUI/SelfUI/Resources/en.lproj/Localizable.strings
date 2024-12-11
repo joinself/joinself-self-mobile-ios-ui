@@ -165,6 +165,8 @@
 
 "title_restoring_backup_intro" = "That’s everything!";
 "msg_restoring_backup_intro" = "We’re just recovering your Self account...";
+"title_restore_backup_finish_intro" = "Welcome back to Self";
+"msg_restore_backup_finish_intro" = "Please turn on notifications for the best experience.";
 "no_internet_connection" = "No internet connection";
 
 // MARK: - Tabs
