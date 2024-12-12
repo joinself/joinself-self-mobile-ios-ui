@@ -19,12 +19,20 @@ public struct BackingupView: View {
     public var onSelectNegative: (() -> Void)? = nil
     @Environment(\.presentationMode) var presentationMode
     
+    @State private var isProcessing: Bool = false
+    
     public var body: some View {
         BaseView {
-            LoadingDotsView()
+            if isProcessing {
+                LoadingDotsView()
+            }
+            
             Spacer()
-            Spacer()
-            Spacer()
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                isProcessing = true
+            })
         }
     }
 }
