@@ -26,7 +26,11 @@ public struct BackupFlow: View {
     }
     
     public var body: some View {
-        ZStack {
+        VStack {
+            if !isNetworkConnected {
+                BannerView(message: "No internet connection")
+            }
+            
             NavigationStack(path: $path) {
                 BackupInfoView(isNetworkConnected: $isNetworkConnected, onGettingStarted: {
                     path = [.BackingUp]
@@ -70,16 +74,6 @@ public struct BackupFlow: View {
 
                     }
                 }
-            }
-            
-            if !isNetworkConnected {
-                VStack {
-                    BannerView(message: "No internet connection")
-//                        .padding(.top, -12)
-                    Spacer()
-                }
-                .transition(.move(edge: .top))
-                .animation(.easeInOut, value: true)
             }
         }
     }
