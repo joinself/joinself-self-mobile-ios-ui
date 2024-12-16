@@ -86,6 +86,7 @@
 "button_continue" = "Continue";
 "button_backup_now" = "Backup Now";
 "button_done" = "Done";
+"button_recover_account" = "Recover Account";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
