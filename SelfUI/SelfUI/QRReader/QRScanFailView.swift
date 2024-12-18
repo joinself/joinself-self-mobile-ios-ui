@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct QRScanFailView: View {
+public struct QRScanFailView: View {
     @Environment(\.presentationMode) var presentationMode
     var onRetry: (() -> ())?
     var onExit: (() -> ())?
-    init(onRetry: (() -> Void)? = nil, onExit: (() -> ())? = nil) {
+    public init(onRetry: (() -> Void)? = nil, onExit: (() -> ())? = nil) {
         self.onRetry = onRetry
         self.onExit = onExit
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationStack(root: {
             VStack {
                 HStack {
