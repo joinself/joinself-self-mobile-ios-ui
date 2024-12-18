@@ -41,11 +41,15 @@ public struct ButtonView: View {
                     .minimumScaleFactor(0.5)
                     .kerning(0.85)
                     .tracking(0.85)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .textCase(.uppercase)
                     .foregroundColor(isActive ? buttonTitleColor : Color.white)
+                    .padding(.leading, 25)
+                    .padding(.trailing, 25)
             }
-            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
-            .frame(maxWidth: .infinity)
+//            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
+            .frame(maxWidth: .infinity, minHeight: Constants.MinButtonHeight)
             .background(isActive ? viewModel.backgroundColor : Color.defaultDark)
             .cornerRadius(Constants.ButtonCornerRadius)
 //            .padding(.leading, Constants.PadLeading)
@@ -58,5 +62,6 @@ public struct ButtonView: View {
     VStack {
         ButtonView(title: "Start", backgroundColor: .defaultPink)
         ButtonView(title: "Start", backgroundColor: .defaultOrange, buttonTitleColor: .textPrimary)
+        ButtonView(title: "I’m going to develop with Self. Hello Button View", backgroundColor: .defaultOrange, buttonTitleColor: .textPrimary)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BaseView.swift
+//  BaseNavigationView.swift
 //  SelfUI
 //
 //  Created by Long Pham on 5/8/24.
@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct BaseView<Content: View>: View {
+struct CustomNavigationView<NavigationContent: ToolbarContent, BodyContent: View>: View {
     
-    let content: Content
+    let content: BodyContent
+    let navigationContent: NavigationContent
     
     @Environment(\.presentationMode) private var presentationMode
-    init(@ViewBuilder content: () -> Content) {
+    init(@ToolbarContentBuilder navigationContent: () -> NavigationContent, @ViewBuilder content: () -> BodyContent) {
         self.content = content()
+        self.navigationContent = navigationContent()
     }
     
     public var body: some View {
@@ -31,17 +33,22 @@ struct BaseView<Content: View>: View {
         .background(.white)
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
+            navigationContent
         }
     }
 }
 
 #Preview {
-    BaseView {
-        Text("Hello Base View")
+    CustomNavigationView {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button {
+                
+            } label: {
+                Text("Recover Account")
+            }
+        }
+    } content: {
+        Text("Base Navigation View")
     }
+
 }

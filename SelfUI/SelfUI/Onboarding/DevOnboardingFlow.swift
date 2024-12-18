@@ -10,16 +10,20 @@ import SwiftUI
 public struct DevOnboardingFlow: View {
     @State private var path = [Int]()
     var onFinish: ((Bool) -> Void)?
+    var onRecover: (() -> Void)?
     
-    public init(onFinish: ( (Bool) -> Void)? = nil) {
+    public init(onFinish: ( (Bool) -> Void)? = nil, onRecover: (() -> Void)? = nil) {
         self.onFinish = onFinish
+        self.onRecover = onRecover
     }
     
     public var body: some View {
         NavigationStack(path: $path) {
-            WelcomeView(buttonTitle: "I’m going to develop with Self".localized, buttonColor: .defaultGreen) {
+            WelcomeView(buttonTitle: "I’m going to develop with Self".localized, buttonColor: .defaultGreen, onGetStarted:  {
                 path = [0]
-            }
+            }, onRecover: {
+                onRecover?()
+            })
             .navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:
@@ -42,6 +46,21 @@ public struct DevOnboardingFlow: View {
                     
                 default:
                     Text("0")
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Text("button_recover_account".localized)
+                            .font(.defaultBodyMedium)
+                          .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.54))
+                    }
+
+                    //Spacer()
                 }
             }
         }

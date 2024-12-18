@@ -31,6 +31,7 @@ struct LoadingDotsView: View {
                     .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/, value: Double(index) * animationDelay)
             }
         }
+        .frame(maxWidth: .infinity)
         .onAppear {
             self.activeIndex = 1
             Timer.scheduledTimer(withTimeInterval: animationDelay, repeats: true) { timer in

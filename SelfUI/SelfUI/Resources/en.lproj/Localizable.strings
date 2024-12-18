@@ -86,6 +86,7 @@
 "button_continue" = "Continue";
 "button_backup_now" = "Backup Now";
 "button_done" = "Done";
+"button_recover_account" = "Recover Account";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
@@ -160,6 +161,14 @@
 "title_backup" = "Backup now.";
 "msg_backup" = "Backup immediately to test functionality or to prepare for deleting and reinstalling the app.";
 "title_backup_done" = "Backup successful.";
+"title_restore_intro" = "Please follow the instructions carefully to restore your account.";
+"msg_restore_intro" = "You can only have Self installed on one phone. If you recover your account to this phone, Self will stop working on your other phone.";
+
+"title_restoring_backup_intro" = "That’s everything!";
+"msg_restoring_backup_intro" = "We’re just recovering your Self account...";
+"title_restore_backup_finish_intro" = "Welcome back to Self";
+"msg_restore_backup_finish_intro" = "Please turn on notifications for the best experience.";
+"no_internet_connection" = "No internet connection";
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";

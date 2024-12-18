@@ -30,16 +30,13 @@ public struct BackupInfoView: View {
                 Text("msg_backup".localized)
                     .font(Font.defaultBody)
                   .lineSpacing(1.14)
-                  .foregroundColor(.black)
+                  .foregroundColor(.textPrimary)
                 Spacer()
                 
                 ButtonView(title: "button_backup_now".localized, isActive: $isNetworkConnected) {
                     onGettingStarted()
                 }
             }
-            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
         }
     }
 }

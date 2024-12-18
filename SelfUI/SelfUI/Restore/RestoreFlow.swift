@@ -1,5 +1,5 @@
 //
-//  BackupFlow.swift
+//  RestoreFlow.swift
 //  SelfUI
 //
 //  Created by Long Pham on 5/12/24.
@@ -7,49 +7,41 @@
 
 import SwiftUI
 
-enum BackupDestinations: String, CaseIterable, Hashable {
+enum RestoreDestinations: String, CaseIterable, Hashable {
     case Info
-    case BackingUp
+    case LivenessCheck
     case Done
 }
 
-public struct BackupFlow: View {
-    @State private var path: [BackupDestinations] = [BackupDestinations]()
-    @Binding var backupFinish: Bool
+public struct RestoreFlow: View, BaseActions {
+    var onNext: (() -> Void)?
     @Binding var isNetworkConnected: Bool
+    @State private var path: [RestoreDestinations] = [RestoreDestinations]()
     @Environment(\.presentationMode) private var presentationMode
-    private var onBackingup: (() -> Void)?
-    public init(backupFinish: Binding<Bool> = .constant(false), isNetworkConnected: Binding<Bool> = .constant(true), onBackingup: (() -> Void)? = nil) {
-        self._backupFinish = backupFinish
+    public init(isNetworkConnected: Binding<Bool> = .constant(true),
+                onNext: (() -> Void)? = nil) {
+        self.onNext = onNext
         self._isNetworkConnected = isNetworkConnected
-        self.onBackingup = onBackingup
     }
     
     public var body: some View {
         VStack {
             if !isNetworkConnected {
-                BannerView(message: "No internet connection")
+                BannerView(message: "no_internet_connection".localized)
             }
             
             NavigationStack(path: $path) {
-                BackupInfoView(isNetworkConnected: $isNetworkConnected, onGettingStarted: {
-                    path = [.BackingUp]
-                    onBackingup?()
-                }, onNavigateBack: {
-                    path = []
-                })
-                .onChange(of: self.backupFinish, perform: { newValue in
-                    if backupFinish {
-                        path = [.Done]
-                    }
-                })
-                .navigationDestination(for: BackupDestinations.self) { destination in
+                RestoreIntroView {
+                    onNext?()
+                    //path = [.LivenessCheck]
+                }
+                .navigationDestination(for: RestoreDestinations.self) { destination in
                     
                     switch destination {
                     case .Info:
                         Text("Backup")
                         
-                    case .BackingUp:
+                    case .LivenessCheck:
                         BackingupView {
                             
                         } onNavigateBack: {
@@ -75,14 +67,16 @@ public struct BackupFlow: View {
                     }
                 }
             }
+            
+            Spacer()
         }
+        .ignoresSafeArea(.all)
     }
 }
 
 #Preview {
     VStack {
-//        BackupFlow(isNetworkConnected: .constant(true))
-        BackupFlow(isNetworkConnected: .constant(false))
+        RestoreFlow(isNetworkConnected: .constant(false))
     }
     
 }

@@ -67,7 +67,7 @@ public struct QRReaderView: View {
                     .padding()
                     Spacer()
                 }
-                .padding(24)
+                .padding()
                 Spacer()
             }
             .padding(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))

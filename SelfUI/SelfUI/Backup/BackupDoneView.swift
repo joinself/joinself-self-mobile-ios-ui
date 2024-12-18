@@ -26,8 +26,6 @@ public struct BackupDoneView: View {
                     .foregroundColor(.textPrimary)
                 Spacer()
             }
-            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             Spacer()
             ButtonView(title: "button_done".localized) {

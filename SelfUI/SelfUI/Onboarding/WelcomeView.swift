@@ -11,16 +11,27 @@ struct WelcomeView: View {
     var onGetStarted: (() -> Void)?
     let buttonTitle: String
     let buttonColor: Color
+    var onRecover: (() -> Void)?
     
-    init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil) {
+    init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil, onRecover: (() -> Void)? = nil) {
         self.onGetStarted = onGetStarted
         self.buttonTitle = buttonTitle
         self.buttonColor = buttonColor
+        self.onRecover = onRecover
     }
     
     public var body: some View {
-        VStack {
-            Spacer(minLength: 100)
+        CustomNavigationView {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    onRecover?()
+                } label: {
+                    Text("button_recover_account".localized)
+                        .font(.defaultBodyMedium)
+                        .foregroundStyle(Color.defaultDark)
+                }
+            }
+        } content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("welcome_title".localized)
                     .font(.defaultLargeTitle)
@@ -31,17 +42,12 @@ struct WelcomeView: View {
                     .lineSpacing(1.14)
                     .foregroundColor(.textPrimary)
                 Spacer()
-            }.padding()
+            }
             
-            VStack(spacing: 15) {
-                ButtonView(title: buttonTitle, backgroundColor: buttonColor) {
-                    onGetStarted?()
-                }
-                
-                BrandView(isDarked: true)
-            }.padding()
+            ButtonView(title: buttonTitle, backgroundColor: buttonColor) {
+                onGetStarted?()
+            }
         }
-        .background(Color.backgroundPrimary)
     }
 }
 
