@@ -27,7 +27,7 @@ public struct RestoringBackupFinishView: View, BaseActions {
                 Spacer()
                 ButtonView(title: "button_turn_on_notifications".localized) {
                     PermissionHelper.requestNotificationPermission { success in
-                        
+                        onNext?()
                     }
                 }
             }
