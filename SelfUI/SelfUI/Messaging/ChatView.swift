@@ -83,14 +83,21 @@ public struct ChatView: View {
                                     }
                             }
                         }
+                        .onAppear {
+//                            if let lastMessageId = chatObservableObject.messages.last?.id {
+//                                scrollViewProxy.scrollTo(lastMessageId)
+//                            }
+                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                        }
                         
                         .scrollDismissesKeyboard(.interactively)
                         .background(.white)
                         .listStyle(PlainListStyle())
                         .onChange(of: chatObservableObject.messages) { _ in
-                            withAnimation {
-                                scrollViewProxy.scrollTo(chatObservableObject.messages.last?.id, anchor: .bottom)
-                            }
+                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                        }
+                        .onChange(of: keyboardResponder.currentHeight) { newValue in
+                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
                         }
                     }
                 }
@@ -106,6 +113,12 @@ public struct ChatView: View {
                 }
 //                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.padding()
+        }
+    }
+    
+    private func scrollToBottom(scrollViewProxy: ScrollViewProxy) {
+        withAnimation {
+            scrollViewProxy.scrollTo(chatObservableObject.messages.last?.id, anchor: .bottom)
         }
     }
 }

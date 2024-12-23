@@ -56,6 +56,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
         .background(.white)
         .listRowSeparator(.hidden)
         .listRowInsets(.none)
+        .id(messageDTO.id)
     }
     
     private func calculateCustomCornerRadius() -> CGFloat {
