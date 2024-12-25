@@ -36,10 +36,10 @@ struct SelfieOverlayView: View {
 #Preview {
     ZStack {
         Color.gray.ignoresSafeArea()
-        VStack {
-            SelfieOverlayView(isHighlighted: false)
-//            SelfieOverlayView(isHighlighted: true)
-        }
+        SelfieOverlayView(isHighlighted: false)
+        SelfieOverlayView(isHighlighted: true)
+            .opacity(0.5)
+        
     }
     
 }

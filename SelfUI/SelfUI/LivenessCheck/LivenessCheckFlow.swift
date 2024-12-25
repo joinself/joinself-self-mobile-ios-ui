@@ -18,42 +18,48 @@ public struct LivenessCheckFlow: View {
     @State private var path: [LivenessCheckDestinations] = [LivenessCheckDestinations]()
     
     @State private var showLivenessCamera: Bool = false
+    let showLivenessCheckIntroduction: Bool
     
     @StateObject private var viewModel: LivenessCheckViewModel
     
-    public init(viewModel: LivenessCheckViewModel) {
+    public init(viewModel: LivenessCheckViewModel, showLivenessCheckIntroduction: Bool = true) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.showLivenessCheckIntroduction = showLivenessCheckIntroduction
     }
     
     public var body: some View {
-        NavigationStack(path: $path) {
-            LivenessIntroductionView {
-                print("Liveness....")
-                showLivenessCamera = true
-            } onNavigationBack: {
-                
-            }
-            .navigationDestination(for: LivenessCheckDestinations.self) { selection in
-                switch selection {
-                case .LiveCapture:
-                    LivenessCameraView {
-                        
-                    }
-                default:
-                    Text("Hello")
+        if showLivenessCheckIntroduction {
+            NavigationStack(path: $path) {
+                LivenessIntroductionView {
+                    print("Liveness....")
+                    showLivenessCamera = true
+                } onNavigationBack: {
+                    
                 }
-            }
-            .fullScreenCover(isPresented: $showLivenessCamera) {
-                
-            } content: {
-                NewLivenessCameraView(viewModel: viewModel)
-                .transition(.opacity)
-            }
+                .navigationDestination(for: LivenessCheckDestinations.self) { selection in
+                    switch selection {
+                    case .LiveCapture:
+                        LivenessCameraView {
+                            
+                        }
+                    default:
+                        Text("Hello")
+                    }
+                }
+                .fullScreenCover(isPresented: $showLivenessCamera) {
+                    
+                } content: {
+                    NewLivenessCameraView(viewModel: viewModel)
+                    .transition(.opacity)
+                }
 
+            }
+        } else {
+            NewLivenessCameraView(viewModel: viewModel)
         }
     }
 }
 
 #Preview {
-    LivenessCheckFlow(viewModel: LivenessCheckViewModel(text: "", tipImageName: "", isHighlighted: false))
+    LivenessCheckFlow(viewModel: LivenessCheckViewModel(text: "", tipImageName: "", isHighlighted: false), showLivenessCheckIntroduction: false)
 }

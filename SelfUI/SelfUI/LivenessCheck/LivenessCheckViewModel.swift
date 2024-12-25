@@ -23,7 +23,7 @@ public class LivenessCheckViewModel: ObservableObject {
         self.isHighlighted = isHighlighted
         self.tipImageName = tipImageName
         
-        cal()
+        //cal()
     }
     
     func cal() {
