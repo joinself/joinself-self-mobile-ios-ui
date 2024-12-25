@@ -179,6 +179,7 @@
 		63C451A22BF33D5500AD5BC5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63C451A12BF33D5500AD5BC5 /* Preview Assets.xcassets */; };
 		63C451A72BF33F6100AD5BC5 /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C451A62BF33F6100AD5BC5 /* PageContentView.swift */; };
 		63C4D04D2D0FD5E40025FC0B /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C4D04C2D0FD5E40025FC0B /* CustomNavigationView.swift */; };
+		63D017472D1BEDBB002F8D0A /* SelfieOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D017462D1BEDBB002F8D0A /* SelfieOverlayView.swift */; };
 		63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0D0422BF395D8002658AA /* LivenessView.swift */; };
 		63D492852CB4C6030031277C /* OutlineLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D492842CB4C6030031277C /* OutlineLabelTextField.swift */; };
 		63D4928D2CB53F730031277C /* ValidatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4928C2CB53F730031277C /* ValidatorHelper.swift */; };
@@ -406,6 +407,7 @@
 		63C451A12BF33D5500AD5BC5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63C451A62BF33F6100AD5BC5 /* PageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentView.swift; sourceTree = "<group>"; };
 		63C4D04C2D0FD5E40025FC0B /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		63D017462D1BEDBB002F8D0A /* SelfieOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieOverlayView.swift; sourceTree = "<group>"; };
 		63D0D0422BF395D8002658AA /* LivenessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessView.swift; sourceTree = "<group>"; };
 		63D492842CB4C6030031277C /* OutlineLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineLabelTextField.swift; sourceTree = "<group>"; };
 		63D4928C2CB53F730031277C /* ValidatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorHelper.swift; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				63A99B262C0860A60073939A /* TransparentHoleView.swift */,
 				63A99B282C08692D0073939A /* MRZOverlayView.swift */,
 				638E85112CEDCBE8007F1D26 /* CardOverlayView.swift */,
+				63D017462D1BEDBB002F8D0A /* SelfieOverlayView.swift */,
 				63729CAA2CF05FBD00757D61 /* IDMRZCardOverlay.swift */,
 				63E2C3A22C7DC9D300056E9B /* QRCodeOverlayView.swift */,
 				63A99B622C0D6CE40073939A /* CustomTextField.swift */,
@@ -1212,6 +1215,7 @@
 				63A99B252C0830990073939A /* PassportMRZView.swift in Sources */,
 				63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */,
 				635ACD4C2C0590080012108F /* LivenessVerificationViewModel.swift in Sources */,
+				63D017472D1BEDBB002F8D0A /* SelfieOverlayView.swift in Sources */,
 				6352E2AA2CB783D900931A18 /* CustomButton.swift in Sources */,
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
 				63F8C9FE2CF96666003B6B21 /* CaptureImageView.swift in Sources */,

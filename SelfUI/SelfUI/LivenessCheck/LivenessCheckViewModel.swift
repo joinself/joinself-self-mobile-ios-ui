@@ -44,6 +44,7 @@ public class LivenessCheckViewModel: ObservableObject {
         default:
             print("Not support challenge: \(state)")
             tipImageName = "ic_transparent"
+            text = ""
             break
         }
         

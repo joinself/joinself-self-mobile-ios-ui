@@ -23,9 +23,10 @@ public struct NewLivenessCameraView: View {
         ZStack {
             CameraPreview(session: viewModel.cameraManager.session)
             
-            Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+//            Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+            SelfieOverlayView(isHighlighted: viewModel.isHighlighted)
             
             VStack (alignment: .center) {
                 Spacer()
@@ -38,6 +39,7 @@ public struct NewLivenessCameraView: View {
                 
                 BrandView(isDarked: false, textColor: .white)
                     .padding(.bottom, 24)
+                    .hidden()
             }
             
             VStack (alignment: .leading) {
@@ -54,20 +56,10 @@ public struct NewLivenessCameraView: View {
                 Spacer()
             }.padding()
         }
-//        .onReceive(viewModel.cameraManager.capturePublisher, perform: { buffer in
-//            print("sample buffer pf...")
-//            self.viewModel.capturePublisher.send(buffer)
-//        })
         .onChange(of: viewModel.state, perform: { newValue in
             print("State changed: \(newValue)")
             viewModel.cal()
         })
-//        .onChange(of: viewModel.isFinished, perform: { newValue in
-//            print("State changed: \(newValue)")
-//            if newValue {
-//                self.viewModel.stopCamera()
-//            }
-//        })
         .onAppear(perform: {
             self.viewModel.startCamera()
         })
