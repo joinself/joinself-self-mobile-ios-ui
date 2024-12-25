@@ -1,56 +1,40 @@
 //
-//  LivenessView.swift
+//  LivenessCameraView.swift
 //  SelfUI
 //
-//  Created by Long Pham on 14/5/24.
+//  Created by Long Pham on 20/5/24.
 //
 
 import SwiftUI
+import AVFoundation
 
-public enum Challenge: String {
-    case None,
-         Done,
-         Smile,
-         Blink,
-         TurnLeft,
-         TurnRight,
-         LookUp,
-         LookDown
-}
-
-public struct LivenessView: View {
-    @ObservedObject var viewModel = LivenessOverlayViewModel(text: "", tipImageName: "ic_transparent", isHighlighted: false)
+public struct NewLivenessCameraView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @Environment(\.dismiss) var dismiss
     
-    public var onNavigateBack: () -> Void
-    public var onAppeared: (() -> Void)? = nil
+//    @ObservedObject var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
     
-    public init(onAppeared: (() -> Void)? = nil, onNavigateBack: @escaping () -> Void) {
-        self.onNavigateBack = onNavigateBack
-        self.onAppeared = onAppeared
+    @StateObject private var viewModel: LivenessCheckViewModel
+    
+    public init(viewModel: LivenessCheckViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {
         ZStack {
-            GeometryReader { geometry in
-                Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .clipped()
-                    .edgesIgnoringSafeArea(.all)
-            }
+            CameraPreview(session: viewModel.cameraManager.session)
+            
+            Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
             
             VStack (alignment: .center) {
                 Spacer()
                 ZStack {
                     Image(viewModel.tipImageName, bundle: mainBundle)
                     Text(viewModel.text)
-                        .font(Font.custom("Barlow", size: 25).weight(.bold))
-                        .foregroundColor(.black)
+                        .font(Font.defaultNormalTitle)
+                        .foregroundColor(.textPrimary)
                 }
-                //.offset(x: 0, y: -80)
                 
                 BrandView(isDarked: false, textColor: .white)
                     .padding(.bottom, 24)
@@ -60,31 +44,49 @@ public struct LivenessView: View {
                 VStack(content: {
                 }).frame(height: 24)
                 
+                
                 HStack {
-                    Image("ic_back", bundle: mainBundle)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 15, height: 15)
-                        .onTapGesture {
-                            onNavigateBack()
-                        }
+                    NavBackButton(isWhiteBackground: true) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                     Spacer()
                 }.padding()
                 Spacer()
             }.padding()
         }
-        .onAppear(perform: {
-            onAppeared?()
+//        .onReceive(viewModel.cameraManager.capturePublisher, perform: { buffer in
+//            print("sample buffer pf...")
+//            self.viewModel.capturePublisher.send(buffer)
+//        })
+        .onChange(of: viewModel.state, perform: { newValue in
+            print("State changed: \(newValue)")
+            viewModel.cal()
         })
+//        .onChange(of: viewModel.isFinished, perform: { newValue in
+//            print("State changed: \(newValue)")
+//            if newValue {
+//                self.viewModel.stopCamera()
+//            }
+//        })
+        .onAppear(perform: {
+            self.viewModel.startCamera()
+        })
+        .onDisappear(perform: {
+            print("Camera View disappear.")
+            self.viewModel.stopCamera()
+        })
+        .background(.white)
+        .navigationBarBackButtonHidden(true)
         .edgesIgnoringSafeArea(.all)
     }
     
     public func onChallengeChanged(challenge: String, isPassed: Bool) {
+        print("onChallengeChanged")
         guard let state = Challenge(rawValue: challenge) else {
             print("Invalid challenge: \(challenge)")
             return
         }
-    
+        
         var tipImageName = ""
         var challengeText = ""
         print("onChallengeChanged: \(state)")
@@ -92,16 +94,16 @@ public struct LivenessView: View {
         switch state {
         case .TurnLeft:
             tipImageName = "bg_turn_left"
-            challengeText = "Look left and back"//"selfie_look_left".localized
+            challengeText = "selfie_look_left".localized
         case .TurnRight:
             tipImageName = "bg_turn_right"
-            challengeText = "Look right and back"//"selfie_look_right".localized
+            challengeText = "selfie_look_right".localized
         case .LookUp:
             tipImageName = "bg_lookup"
-            challengeText = "Look up and back"//"selfie_look_up".localized
+            challengeText = "selfie_look_up".localized
         case .LookDown:
             tipImageName = "bg_lookdown"
-            challengeText = "Look down and back"//"selfie_look_down".localized
+            challengeText = "selfie_look_down".localized
             
         default:
             print("Not support challenge: \(state)")
@@ -135,7 +137,5 @@ public struct LivenessView: View {
 }
 
 #Preview {
-    LivenessView {
-        
-    }
+    NewLivenessCameraView(viewModel: LivenessCheckViewModel(text: "", tipImageName: "", isHighlighted: false))
 }
