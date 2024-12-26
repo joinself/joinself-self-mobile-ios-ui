@@ -11,22 +11,17 @@ import AVFoundation
 public struct NewLivenessCameraView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-//    @ObservedObject var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
-    
-    @StateObject private var viewModel: LivenessCheckViewModel
+    @ObservedObject private var viewModel: LivenessCheckViewModel
     
     public init(viewModel: LivenessCheckViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     public var body: some View {
         ZStack {
             CameraPreview(session: viewModel.cameraManager.session)
             
-//            Image(viewModel.isHighlighted ? "selfie_overlay_highlight" : "selfie_overlay_normal" , bundle: mainBundle)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-            SelfieOverlayView(isHighlighted: viewModel.isHighlighted)
+            SelfieOverlayView(isHighlighted: $viewModel.isHighlighted)
             
             VStack (alignment: .center) {
                 Spacer()
@@ -46,9 +41,9 @@ public struct NewLivenessCameraView: View {
                 VStack(content: {
                 }).frame(height: 24)
                 
-                
                 HStack {
                     NavBackButton(isWhiteBackground: true) {
+                        print("Tap back......")
                         presentationMode.wrappedValue.dismiss()
                     }
                     Spacer()
@@ -56,10 +51,6 @@ public struct NewLivenessCameraView: View {
                 Spacer()
             }.padding()
         }
-        .onChange(of: viewModel.state, perform: { newValue in
-            print("State changed: \(newValue)")
-            viewModel.cal()
-        })
         .onAppear(perform: {
             self.viewModel.startCamera()
         })

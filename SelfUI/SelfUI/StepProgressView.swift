@@ -14,7 +14,6 @@ struct StepProgressView: View {
     private var activeStep: Int = 3
     
     init(totalStep: Int = 5, activeStep: Int = 1) {
-        print("Steps init: \(totalSteps)")
         for index in 1...totalSteps {
             if index < activeStep {
                 steps.append(Step(title: "\(index)", state: .done))

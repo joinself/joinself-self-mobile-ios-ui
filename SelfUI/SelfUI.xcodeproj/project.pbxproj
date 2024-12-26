@@ -99,8 +99,6 @@
 		6381C3362BF4ABA1005573A0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6381C3352BF4ABA1005573A0 /* Preview Assets.xcassets */; };
 		6381C33B2BF4ACD4005573A0 /* CameraPlaceHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C33A2BF4ACD4005573A0 /* CameraPlaceHolderView.swift */; };
 		6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6381C33C2BF4CB5A005573A0 /* Assets.xcassets */; };
-		6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C33F2BF5BBB7005573A0 /* FaceModel.swift */; };
-		6381C3422BF5BC85005573A0 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3412BF5BC85005573A0 /* CameraViewModel.swift */; };
 		6381C3B32BF711EC005573A0 /* NavigationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B22BF711EC005573A0 /* NavigationContentView.swift */; };
 		6381C3B82BF733C7005573A0 /* LivenessIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */; };
 		638810D22D01BA9600861E7C /* BackupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638810D12D01BA9600861E7C /* BackupFlow.swift */; };
@@ -326,8 +324,6 @@
 		6381C3352BF4ABA1005573A0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6381C33A2BF4ACD4005573A0 /* CameraPlaceHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPlaceHolderView.swift; sourceTree = "<group>"; };
 		6381C33C2BF4CB5A005573A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6381C33F2BF5BBB7005573A0 /* FaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceModel.swift; sourceTree = "<group>"; };
-		6381C3412BF5BC85005573A0 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		6381C3B22BF711EC005573A0 /* NavigationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContentView.swift; sourceTree = "<group>"; };
 		6381C3B42BF72BB1005573A0 /* LivenessIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroView.swift; sourceTree = "<group>"; };
 		638810D12D01BA9600861E7C /* BackupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlow.swift; sourceTree = "<group>"; };
@@ -865,9 +861,7 @@
 				6381C3B62BF731EB005573A0 /* Liveness */,
 				6381C3432BF5C261005573A0 /* Utils */,
 				63C451672BF30EAE00AD5BC5 /* SelfUI.h */,
-				6381C33F2BF5BBB7005573A0 /* FaceModel.swift */,
 				6381C3232BF463E1005573A0 /* CameraView.swift */,
-				6381C3412BF5BC85005573A0 /* CameraViewModel.swift */,
 				6381C3262BF47129005573A0 /* CameraPreview.swift */,
 				63D66AD52C58C8E80094E55D /* Configuration+Theme+Style.swift */,
 				6370670A2C60AA1B00A23C1E /* BaseView.swift */,
@@ -1252,7 +1246,6 @@
 				637067032C6087AE00A23C1E /* CreateAccountFlow.swift in Sources */,
 				63A99B292C08692D0073939A /* MRZOverlayView.swift in Sources */,
 				63C1368F2D1AE97E009B5E4D /* LivenessCheckViewModel.swift in Sources */,
-				6381C3402BF5BBB7005573A0 /* FaceModel.swift in Sources */,
 				6351DF0A2CA4FF7B00976552 /* BottomTab.swift in Sources */,
 				63942CBF2CEC9E0400B59BD8 /* VerifyDocumentFlow.swift in Sources */,
 				63D66AD62C58C8E80094E55D /* Configuration+Theme+Style.swift in Sources */,
@@ -1291,7 +1284,6 @@
 				637067072C60894000A23C1E /* OutlinedTextField.swift in Sources */,
 				63A214382C7CB081008B5E4A /* ProfileView.swift in Sources */,
 				6363B4992CE74C44000BEC7F /* ParentItemView.swift in Sources */,
-				6381C3422BF5BC85005573A0 /* CameraViewModel.swift in Sources */,
 				635ACD522C05C0E80012108F /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

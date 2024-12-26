@@ -12,10 +12,11 @@ class SelfieOverlayViewModel: ObservableObject {
 }
 
 struct SelfieOverlayView: View {
-    @ObservedObject var viewModel = CardOverlayViewModel()
+//    @ObservedObject var viewModel = CardOverlayViewModel()
+    @Binding private var isHighlighted: Bool
     
-    init (isHighlighted: Bool = false) {
-        viewModel.isHighlighted = isHighlighted
+    init (isHighlighted: Binding<Bool> = .constant(false)) {
+        _isHighlighted = isHighlighted
     }
     
     var body: some View {
@@ -24,7 +25,7 @@ struct SelfieOverlayView: View {
                 .ignoresSafeArea()
             Image("selfie_overlay_normal", bundle: mainBundle)
                 .resizable()
-                .colorMultiply(viewModel.isHighlighted ? .defaultGreen : .white)
+                .colorMultiply(isHighlighted ? .defaultGreen : .white)
 //                .frame(width: 363, height: 252)
 //            TransparentHoleView(holeSize: CGSizeMake(373, 252))
 //                .background(Color.black.opacity(0.0))
@@ -36,8 +37,8 @@ struct SelfieOverlayView: View {
 #Preview {
     ZStack {
         Color.gray.ignoresSafeArea()
-        SelfieOverlayView(isHighlighted: false)
-        SelfieOverlayView(isHighlighted: true)
+        SelfieOverlayView(isHighlighted: .constant(false))
+        SelfieOverlayView(isHighlighted: .constant(true))
             .opacity(0.5)
         
     }

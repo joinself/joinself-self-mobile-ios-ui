@@ -20,10 +20,10 @@ public struct LivenessCheckFlow: View {
     @State private var showLivenessCamera: Bool = false
     let showLivenessCheckIntroduction: Bool
     
-    @StateObject private var viewModel: LivenessCheckViewModel
+    @ObservedObject private var viewModel: LivenessCheckViewModel
     
     public init(viewModel: LivenessCheckViewModel, showLivenessCheckIntroduction: Bool = true) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
         self.showLivenessCheckIntroduction = showLivenessCheckIntroduction
     }
     
@@ -31,7 +31,6 @@ public struct LivenessCheckFlow: View {
         if showLivenessCheckIntroduction {
             NavigationStack(path: $path) {
                 LivenessIntroductionView {
-                    print("Liveness....")
                     showLivenessCamera = true
                 } onNavigationBack: {
                     

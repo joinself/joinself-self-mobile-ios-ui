@@ -13,7 +13,6 @@ import AVFoundation
 public class LivenessCheckViewModel: ObservableObject {
     @Published var text: String
     @Published public var isHighlighted: Bool
-    @Published public var isFinished: Bool = false
     @Published var tipImageName: String
     @Published public var state: Challenge = .None
     @Published public var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
@@ -22,11 +21,9 @@ public class LivenessCheckViewModel: ObservableObject {
         self.text = text
         self.isHighlighted = isHighlighted
         self.tipImageName = tipImageName
-        
-        //cal()
     }
     
-    func cal() {
+    public func update() {
         switch state {
         case .TurnLeft:
             tipImageName = "bg_turn_left"
@@ -47,29 +44,10 @@ public class LivenessCheckViewModel: ObservableObject {
             text = ""
             break
         }
-        
-        print("Challenge: \(state)")
-        print("ChallengeString: \(text)")
-        print("ChallengeBG: \(tipImageName)")
-        /*if viewModel.state !=  state {
-            if viewModel.state != .None {
-                DispatchQueue.main.async {
-                    viewModel.tipImageName = tipImageName
-                    viewModel.state = state
-                    viewModel.text = challengeText
-                }
-            } else {
-                viewModel.tipImageName = tipImageName
-                viewModel.state = state
-                viewModel.text = challengeText
-            }
-            
-        }*/
-        
     }
     
     func startCamera() {
-        if isFinished {
+        if state == .Done {
             print("LivenessCheck already finished.")
             return
         }
