@@ -17,11 +17,10 @@ struct MessageTextCell: View, BaseMessage {
     init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
     }
-    
     var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
-                Text(messageDTO.text)
+                Text(LocalizedStringKey(messageDTO.text))
                     .multilineTextAlignment(.leading)
                     .font(.defaultBody)
                     .foregroundStyle(Color.textPrimary)
