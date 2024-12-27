@@ -62,6 +62,9 @@ public struct ChatView: View {
                                 } actionReject: {
                                     actionReject?(message)
                                 }
+                                .onAppear {
+                                    actionRead?(message)
+                                }
                             
                             case MessageType.SELF_DOCUMENT_SIGN:
                                 DocumentSignCell(messageDTO: message) {
@@ -69,12 +72,21 @@ public struct ChatView: View {
                                 } actionReject: {
                                     actionReject?(message)
                                 }
+                                .onAppear {
+                                    actionRead?(message)
+                                }
                                 
                             case MessageType.SELF_IMAGE:
                                 MessageImageCell(messageDTO: message)
+                                    .onAppear {
+                                        actionRead?(message)
+                                    }
                                 
                             case MessageType.SELF_FILE:
                                 FileCell(messageDTO: message)
+                                    .onAppear {
+                                        actionRead?(message)
+                                    }
                                 
                             default:
                                 MessageTextCell(messageDTO: message)
@@ -84,9 +96,6 @@ public struct ChatView: View {
                             }
                         }
                         .onAppear {
-//                            if let lastMessageId = chatObservableObject.messages.last?.id {
-//                                scrollViewProxy.scrollTo(lastMessageId)
-//                            }
                             self.scrollToBottom(scrollViewProxy: scrollViewProxy)
                         }
                         
@@ -111,7 +120,6 @@ public struct ChatView: View {
                     let newMessage = MessageDTO(id: UUID().uuidString, text: "", fileURLs: [url], mimeType: MessageType.SELF_FILE)
                     chatObservableObject.newMessage.send(newMessage)
                 }
-//                    .padding(EdgeInsets(top: 0, leading: 0, bottom: keyboardResponder.currentHeight > 0 ? keyboardResponder.currentHeight : 24, trailing: 0))
             }.padding()
         }
     }
