@@ -11,8 +11,8 @@
 "selfie_look_up" = "Look up and back";
 "selfie_look_down" = "Look down and back";
 
-"Take a selfie" = "First take a Selfie. (nobody else will see it)";
-"Take a selfie description" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
+"title_liveness_check" = "First take a Selfie. (nobody else will see it)";
+"msg_liveness_check" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 
 "Verification failed" = "Verification failed.";
 "Liveness verification failed" = "We were not able to match your image to your previous Selfie. For security we can’t allow you to use this Self account. \n\nIf you like, you can try again; \nYou have %d more verification attempts. \n\nOr alternatively you can uninstall and reinstall Self. ";
@@ -87,6 +87,7 @@
 "button_backup_now" = "Backup Now";
 "button_done" = "Done";
 "button_recover_account" = "Recover Account";
+"button_start" = "Start";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";

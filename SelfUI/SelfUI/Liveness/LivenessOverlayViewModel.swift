@@ -6,14 +6,18 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
+import AVFoundation
 
 public class LivenessOverlayViewModel: ObservableObject {
     @Published var text: String
     @Published var isHighlighted: Bool
     @Published var tipImageName: String
     @Published var state: Challenge = .None
+    var capturePublisher = PassthroughSubject<CMSampleBuffer?, Never>()
 
-    init(text: String, tipImageName: String, isHighlighted: Bool) {
+    public init(text: String, tipImageName: String, isHighlighted: Bool) {
         self.text = text
         self.isHighlighted = isHighlighted
         self.tipImageName = tipImageName

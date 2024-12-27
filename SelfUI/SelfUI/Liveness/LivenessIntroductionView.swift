@@ -21,65 +21,23 @@ public struct LivenessIntroductionView: View {
     var onNavigationBack: () -> Void
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    NavBackButton {
-                        onNavigationBack()
-                    }.padding()
-                }.padding(.leading, 20)
+        BaseProgressView (totalSteps: 5, activeStep: 1, content: {
+            ScrollView {
+                Text("title_liveness_check".localized)
+                    .font(.defaultTitle)
+                    .foregroundColor(.textPrimary)
+                    .frame(maxHeight: .infinity)
                 
-                // stepped progress view
-                VStack(alignment: .center) {
-                    CustomProgressView(steps: [
-                        Step(title: "1", state: .done),
-                        Step(title: "2", state: .done),
-                        Step(title: "3", state: .done),
-                        Step(title: "4", state: .active),
-                        Step(title: "5", state: .inactive)
-                    ])
-                }.frame(maxWidth: .infinity)
-                
-                Spacer(minLength: 50)
-                
-                VStack(alignment: .leading, spacing: 30) {
-                    Text("Take a selfie".localized)
-                        .font(.defaultTitle)
-                        .foregroundColor(.black)
-                    Text("Take a selfie description".localized)
-                        .font(.defaultBody)
-                        .lineSpacing(1.18)
-                        .foregroundColor(.textPrimary)
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                Spacer()
-                VStack(spacing: 12) {
-                    ButtonView(title: "Start".localized) {
-                        onGettingStarted()
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
+                Spacer(minLength: 30)
+                Text("msg_liveness_check".localized)
+                    .font(.defaultBody)
+                    .lineSpacing(1.18)
+                    .foregroundColor(.textPrimary)
             }
-            .background(.white)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Image("ic_back_dark", bundle: mainBundle)
-                        }
-                    }
-                }
+            ButtonView(title: "button_start".localized) {
+                onGettingStarted()
             }
-        }
+        })
     }
     
     private func checkCameraPermission() {

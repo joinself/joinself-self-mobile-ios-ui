@@ -26,6 +26,8 @@ extension Color {
     /// #0E1C42
     public static let textPrimary: Color = Color(red: 0.05, green: 0.11, blue: 0.26)
     static let textSecondary: Color = .white
+    static let textSubtitle: Color = Color(red: 0.38, green: 0.42, blue: 0.48)
+    static let textTimestamp: Color = Color(red: 0.65, green: 0.67, blue: 0.71)
     
     // MARK: Background
     static let backgroundPrimary: Color = .white

@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import Vision
+import Combine
 
 struct CameraPreview: UIViewRepresentable {
     class VideoPreviewView: UIView {
@@ -38,15 +39,17 @@ public enum CaptureMode : Int, CaseIterable {
     case detectQRCode = 3
     case captureFrontPage = 4
     case captureBackPage = 5
+    case captureLiveImage = 6
 }
 
-class CameraManager: NSObject, ObservableObject {
+public class CameraManager: NSObject, ObservableObject {
     let session = AVCaptureSession()
     private let output = AVCaptureVideoDataOutput()
     private var cameraPosition: AVCaptureDevice.Position = .back
     @Published var isHighlighted: Bool = false
     var onResult: ((MRZInfo?) -> Void)? = nil
     var onCapture: ((CMSampleBuffer) -> Void)? = nil
+    public var capturePublisher = PassthroughSubject<CMSampleBuffer?, Never>()
     
     var captureMode: CaptureMode = .detectPassportMRZ
     @Published var detectedRectangles: [VNRectangleObservation] = []
@@ -59,7 +62,7 @@ class CameraManager: NSObject, ObservableObject {
         self.initCamera()
     }
     
-    init(cameraPosition: AVCaptureDevice.Position = .back, captureMode: CaptureMode = .detectPassportMRZ) {
+    public init(cameraPosition: AVCaptureDevice.Position = .back, captureMode: CaptureMode = .detectPassportMRZ) {
         super.init()
         
         self.captureMode = captureMode
@@ -337,12 +340,18 @@ class CameraManager: NSObject, ObservableObject {
 }
 
 extension CameraManager: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if captureMode == .captureFrontPage || captureMode == .captureBackPage {
             self.handleCardBuffer(sampleBuffer: sampleBuffer)
             return
         } else if captureMode == .detectIDCardMRZ {
             self.detectIDCardMRZ(sampleBuffer: sampleBuffer)
+            return
+        } else if captureMode == .captureLiveImage {
+            DispatchQueue.main.async {
+                self.capturePublisher.send(sampleBuffer)
+            }
+            
             return
         }
         
