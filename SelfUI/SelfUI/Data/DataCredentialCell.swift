@@ -21,11 +21,10 @@ public struct DataCredentialCell: View {
             // Heading/H5
             Text(message.credential?.value ?? "")
                 .font(
-                    Font.custom("Barlow-Bold", size: 21)
+                    .defaultBodyBold
                 )
                 .foregroundStyle(Color.textPrimary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            // Link/Caption Link
             Text(message.credential?.signer ?? "")
                 .font(
                     .defaultCaption
