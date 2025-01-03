@@ -55,6 +55,8 @@ extension Font {
     static let defaultH3: Font = Font.custom("Barlow", size: 36)
     static let defaultNavigationTitle: Font = Font.custom("Barlow", size: 34).weight(.medium)
     static let defaultTitle: Font = SelfUISdk.shared.defaultTitle
+    
+    /// Barlow Bold 21pt
     static let defaultMessageTitle: Font = SelfUISdk.shared.defaultMessageTitle
     static let customLargeTitle: Font = Font.custom("Barlow-Bold", size: 36, relativeTo: .largeTitle)
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
@@ -62,6 +64,7 @@ extension Font {
     static let defaultNormalTitle: Font = Font.custom("Barlow-Bold", size: 25)
     static let defaultSubtTitle: Font = Font.custom("Barlow-Medium", size: 25)
     static let defaultBody: Font = SelfUISdk.shared.defaultBody
+    static let defaultBodyBold: Font = Font.custom("Barlow-Bold", size: 17)
     
     /// outline text field label
     static let defaultFieldLabel: Font = Font.custom("SF Pro", size: 14)
