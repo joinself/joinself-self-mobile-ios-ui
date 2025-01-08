@@ -38,10 +38,14 @@ public struct MessageListCell: View {
                         .lineLimit(lineLimit)
                         .font(.defaultMessageTitle)
                         .foregroundColor(.textPrimary)
-                    Text(LocalizedStringKey(message))
-                        .font(.defaultBody)
-                        .lineLimit(lineLimit)
-                        .foregroundColor(.textSubtitle)
+                    if #available(iOS 16.1, *) {
+                        Text(LocalizedStringKey(message))
+                            .font(.defaultBody).fontDesign(.default)
+                            .lineLimit(lineLimit)
+                            .foregroundColor(.textSubtitle)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                 }
                 Spacer()
                 

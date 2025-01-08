@@ -20,10 +20,14 @@ struct MessageTextCell: View, BaseMessage {
     var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
-                Text(LocalizedStringKey(messageDTO.text))
-                    .multilineTextAlignment(.leading)
-                    .font(.defaultBody)
-                    .foregroundStyle(Color.textPrimary)
+                if #available(iOS 16.1, *) {
+                    Text(LocalizedStringKey(messageDTO.text))
+                        .multilineTextAlignment(.leading)
+                        .font(.defaultBody).fontDesign(.default)
+                        .foregroundStyle(Color.textPrimary)
+                } else {
+                    // Fallback on earlier versions
+                }
 //                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
             }
         }
@@ -33,7 +37,9 @@ struct MessageTextCell: View, BaseMessage {
 #Preview {
     ZStack {
         VStack {
-            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now"))
+            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "*Hello*", timestamp: "now"))
+            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "**Hello**", timestamp: "now"))
+            MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "```Code block```", timestamp: "now"))
             MessageTextCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, timestamp: "now"))
         }
     }
