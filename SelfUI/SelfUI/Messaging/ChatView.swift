@@ -26,6 +26,8 @@ public struct ChatView: View {
     @State private var newMessage: String = ""
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
+    @State private var replyToMessage: MessageDTO?
+    
     @Environment(\.presentationMode) var presentationMode
     @Binding var conversationName: String
     @StateObject private var keyboardResponder = KeyboardResponder()
@@ -93,6 +95,11 @@ public struct ChatView: View {
                                     .onAppear {
                                         actionRead?(message)
                                     }
+                                    .modifier(DraggableModifier(direction: .horizontal, draggedOffset: .zero, onSwipe: { direction in
+                                        if direction == .right {
+                                            self.replyToMessage = message
+                                        }
+                                    }))
                             }
                         }
                         .onAppear {
@@ -110,9 +117,26 @@ public struct ChatView: View {
                         }
                     }
                 }
+                if let replyTo = replyToMessage {
+                    HStack {
+                        Text(LocalizedStringKey(replyTo.text))
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .padding(.bottom, 2)
+                        Spacer()
+                        Button {
+                            replyToMessage = nil
+                        } label: {
+                            Image(systemName: "x.circle")
+                        }
+
+                    }
+                }
                 MessageComposerView(onText: { textMessage in
                     let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
+                    newMessage.reference = replyToMessage
                     chatObservableObject.newMessage.send(newMessage)
+                    replyToMessage = nil
                 }) { inputImage in
                     let newMessage = MessageDTO(id: UUID().uuidString, text: "", image: inputImage, mimeType: MessageType.SELF_IMAGE)
                     chatObservableObject.newMessage.send(newMessage)
@@ -138,7 +162,7 @@ public struct ChatView: View {
         ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, timestamp: "now"),
             
-            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
+            MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender, reference: MessageDTO(id: UUID().uuidString, text: "Reference Messsage", fromType: .receiver)),
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .sender),
             
