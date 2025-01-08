@@ -45,10 +45,8 @@ struct DraggableModifier : ViewModifier {
             }
             .onEnded { gesture in
                 if gesture.translation.width > SWIPE_MIN_DISTANCE {
-                    print("Swipe Left to Right")
                     onSwipe?(.right)
                 } else if gesture.translation.width < -SWIPE_MIN_DISTANCE {
-                    print("Swipe Right to Left")
                     onSwipe?(.left)
                 }
                 self.draggedOffset = .zero

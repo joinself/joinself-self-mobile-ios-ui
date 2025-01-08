@@ -24,6 +24,20 @@ struct BaseCell<Content: View>: View, BaseMessage {
                 Spacer(minLength: minSpaceLength)
             }
             VStack (alignment: .trailing, spacing: 4){
+                if let reference = messageDTO.reference {
+                    HStack {
+                        Rectangle()
+                          .foregroundColor(.clear)
+                          .frame(minWidth: 4, maxWidth: 4, maxHeight: .infinity)
+                          .background(Color(red: 0, green: 0.78, blue: 0.53))
+                          .cornerRadius(8)
+                        
+                        Text(LocalizedStringKey(reference.text))
+                            .foregroundColor(.textPrimary)
+                        Spacer()
+                    }
+                    .background(Color.white)
+                }
                 content
                 StatusTimeView(timestamp: messageDTO.timestamp, status: messageDTO.isMyMessage ? messageDTO.receiptStatus : .none)
             }
@@ -83,7 +97,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
 #Preview {
     ZStack {
         VStack {
-            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .rejected, timestamp: "now"), spaceLength: 0, content: {
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, receiptStatus: .read, status: .rejected, timestamp: "now", reference: MessageDTO(id: UUID().uuidString, text: "A reference message")), spaceLength: 0, content: {
                 Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
             })
             

@@ -50,8 +50,9 @@ public enum MessageStatus: String, CaseIterable {
     case error
 }
 
-public struct MessageDTO: Identifiable, Equatable {
+public class MessageDTO: Identifiable, Equatable {
     public let id: String
+    public let messageId: String
     public let text: String
     public var image: UIImage? //FIXME: should use fileURL
     public var fileURLs: [URL] = []
@@ -63,8 +64,15 @@ public struct MessageDTO: Identifiable, Equatable {
     var status: MessageStatus = .pending // Request status
     public let attachments: [AttachmentDTO]
     let credential: CredentialDTO?
+    public var reference: MessageDTO?
+    
+    // Equatable conformance
+    public static func == (lhs: MessageDTO, rhs: MessageDTO) -> Bool {
+        return lhs.id == rhs.id // && lhs.name == rhs.name && lhs.description == rhs.description
+    }
 
     public init(id: String,
+                messageId: String = "",
                 text: String,
                 image: UIImage? = nil,
                 fileURLs: [URL] = [],
@@ -74,8 +82,9 @@ public struct MessageDTO: Identifiable, Equatable {
                 fromType: MessageFrom = .sender,
                 receiptStatus: MessageStatus = .pending,
                 status: MessageStatus = .pending,
-                timestamp: String = "") {
+                timestamp: String = "", reference: MessageDTO? = nil) {
         self.id = id
+        self.messageId = messageId
         self.text = text
         self.image = image
         self.fileURLs = fileURLs
@@ -87,5 +96,6 @@ public struct MessageDTO: Identifiable, Equatable {
         self.timestamp = timestamp
         self.status = status
         self.mimeType = mimeType
+        self.reference = reference
     }
 }
