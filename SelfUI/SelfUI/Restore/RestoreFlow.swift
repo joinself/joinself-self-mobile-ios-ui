@@ -6,21 +6,35 @@
 //
 
 import SwiftUI
+import Combine
 
-enum RestoreDestinations: String, CaseIterable, Hashable {
+public class RestoreFlowViewModel: ObservableObject {
+    @Published public var isRestored: Bool = false
+    @Published public var isRestoring: Bool = false
+    @Published public var destination: [RestoreDestinations] = []
+    public init() {
+    }
+}
+
+public enum RestoreDestinations: String, CaseIterable, Hashable {
     case Info
-    case LivenessCheck
+    case LivenessCaptureIntroduction
+    case Restoring
     case Done
 }
 
 public struct RestoreFlow: View, BaseActions {
     var onNext: (() -> Void)?
+    var onDone: (() -> Void)?
     @Binding var isNetworkConnected: Bool
     @State private var path: [RestoreDestinations] = [RestoreDestinations]()
     @Environment(\.presentationMode) private var presentationMode
-    public init(isNetworkConnected: Binding<Bool> = .constant(true),
+    @StateObject private var viewModel: RestoreFlowViewModel
+    
+    public init(viewModel: RestoreFlowViewModel = RestoreFlowViewModel(), isNetworkConnected: Binding<Bool> = .constant(true),
                 onNext: (() -> Void)? = nil) {
         self.onNext = onNext
+        _viewModel = StateObject(wrappedValue: viewModel)
         self._isNetworkConnected = isNetworkConnected
     }
     
@@ -30,10 +44,11 @@ public struct RestoreFlow: View, BaseActions {
                 BannerView(message: "no_internet_connection".localized)
             }
             
-            NavigationStack(path: $path) {
+            NavigationStack(path: $viewModel.destination) {
                 RestoreIntroView {
-                    onNext?()
-                    //path = [.LivenessCheck]
+//                    onNext?()
+                    viewModel.destination = [.LivenessCaptureIntroduction]
+//                    path = [.Restoring]
                 }
                 .navigationDestination(for: RestoreDestinations.self) { destination in
                     
@@ -41,31 +56,33 @@ public struct RestoreFlow: View, BaseActions {
                     case .Info:
                         Text("Backup")
                         
-                    case .LivenessCheck:
-                        BackingupView {
-                            
-                        } onNavigateBack: {
+                    case .Restoring:
+                        RestoringBackupView {
                             
                         }
-                        /*.onAppear()
-                        {
-                            print("Backing up...")
-                            // Test
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                backupFinish = true
-                                path = [.Done]
-                            }
-                        }*/
+//                        .onAppear {
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+////                                viewModel.isRestored = true
+//                                viewModel.destination = [.Done]
+//                            }
+//                        }
+                        
+                    case .LivenessCaptureIntroduction:
+                        LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
+                            onNext?()
+                        } onNavigationBack: {
+                            
+                        }
                         
                     case .Done:
-                        BackupDoneView {
-                            presentationMode.wrappedValue.dismiss()
-                        } onNavigateBack: {
-                            
+                        RestoringBackupFinishView {
+                            onDone?()
                         }
-
                     }
                 }
+            }
+            .onChange(of: viewModel.isRestored) { newValue in
+                path = [.Done]
             }
             
             Spacer()
