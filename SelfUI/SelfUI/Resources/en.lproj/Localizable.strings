@@ -14,6 +14,9 @@
 "title_liveness_check" = "First take a Selfie. (nobody else will see it)";
 "msg_liveness_check" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 
+"title_liveness_capture" = "Self needs to check liveness and capture an image of your face.";
+"msg_liveness_capture" = "It’s not a photo and it is never retained outside of your phone without your permission. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
+
 "Verification failed" = "Verification failed.";
 "Liveness verification failed" = "We were not able to match your image to your previous Selfie. For security we can’t allow you to use this Self account. \n\nIf you like, you can try again; \nYou have %d more verification attempts. \n\nOr alternatively you can uninstall and reinstall Self. ";
 

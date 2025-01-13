@@ -12,28 +12,36 @@ public struct LivenessIntroductionView: View {
     @State private var isCameraAuthorized = false
     @Environment(\.presentationMode) var presentationMode
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
+    let title: String
+    let subtitle: String
+    let activeStep: Int
+    
+    public init(title: String = "title_liveness_check".localized, subtitle: String = "msg_liveness_check".localized, activeStep: Int = 1, onGettingStarted: @escaping () -> Void, onNavigationBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
         self.onNavigationBack = onNavigationBack
+        self.title = title
+        self.subtitle = subtitle
+        self.activeStep = activeStep
     }
     
     var onGettingStarted: () -> Void
     var onNavigationBack: () -> Void
     
     public var body: some View {
-        BaseProgressView (totalSteps: 5, activeStep: 1, content: {
+        BaseProgressView (totalSteps: 5, activeStep: activeStep, content: {
             ScrollView {
-                Text("title_liveness_check".localized)
+                Text(title)
                     .font(.defaultTitle)
                     .foregroundColor(.textPrimary)
                     .frame(maxHeight: .infinity)
                 
                 Spacer(minLength: 30)
-                Text("msg_liveness_check".localized)
+                Text(subtitle)
                     .font(.defaultBody)
                     .lineSpacing(1.18)
                     .foregroundColor(.textPrimary)
             }
+            .padding(0)
             ButtonView(title: "button_start".localized) {
                 onGettingStarted()
             }

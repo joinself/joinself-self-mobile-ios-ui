@@ -6,34 +6,51 @@
 //
 
 import SwiftUI
+import Combine
 
-enum RestoreDestinations: String, CaseIterable, Hashable {
+public class RestoreFlowViewModel: ObservableObject {
+    @Published public var isRestored: Bool = false
+    @Published public var isRestoring: Bool = false
+    @Published public var destination: [RestoreDestinations] = []
+    @Published public var isNetworkConnected: Bool = true
+    public init() {
+    }
+}
+
+public enum RestoreDestinations: String, CaseIterable, Hashable {
     case Info
-    case LivenessCheck
+    case LivenessCaptureIntroduction
+    case Restoring
     case Done
 }
 
 public struct RestoreFlow: View, BaseActions {
     var onNext: (() -> Void)?
+    var onDone: (() -> Void)?
     @Binding var isNetworkConnected: Bool
     @State private var path: [RestoreDestinations] = [RestoreDestinations]()
     @Environment(\.presentationMode) private var presentationMode
-    public init(isNetworkConnected: Binding<Bool> = .constant(true),
-                onNext: (() -> Void)? = nil) {
+    @StateObject private var viewModel: RestoreFlowViewModel
+    
+    public init(viewModel: RestoreFlowViewModel = RestoreFlowViewModel(), isNetworkConnected: Binding<Bool> = .constant(true),
+                onNext: (() -> Void)? = nil, onDone: (() -> Void)? = nil) {
         self.onNext = onNext
+        self.onDone = onDone
+        _viewModel = StateObject(wrappedValue: viewModel)
         self._isNetworkConnected = isNetworkConnected
     }
     
     public var body: some View {
         VStack {
-            if !isNetworkConnected {
+            if !viewModel.isNetworkConnected {
                 BannerView(message: "no_internet_connection".localized)
             }
             
-            NavigationStack(path: $path) {
+            NavigationStack(path: $viewModel.destination) {
                 RestoreIntroView {
-                    onNext?()
-                    //path = [.LivenessCheck]
+//                    onNext?()
+                    viewModel.destination = [.LivenessCaptureIntroduction]
+//                    path = [.Restoring]
                 }
                 .navigationDestination(for: RestoreDestinations.self) { destination in
                     
@@ -41,34 +58,39 @@ public struct RestoreFlow: View, BaseActions {
                     case .Info:
                         Text("Backup")
                         
-                    case .LivenessCheck:
-                        BackingupView {
-                            
-                        } onNavigateBack: {
-                            
-                        }
-                        /*.onAppear()
-                        {
-                            print("Backing up...")
-                            // Test
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                backupFinish = true
-                                path = [.Done]
+                    case .Restoring:
+                        NavigationView(content: {
+                            RestoringBackupView {
+                                
                             }
-                        }*/
+                        })
+                        .navigationBarHidden(true)
+                        
+                        
+                    case .LivenessCaptureIntroduction:
+                        NavigationView(content: {
+                            LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
+                                onNext?()
+                            } onNavigationBack: {
+                                print("navigate back.")
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        })
+                        .navigationBarHidden(true)
                         
                     case .Done:
-                        BackupDoneView {
-                            presentationMode.wrappedValue.dismiss()
-                        } onNavigateBack: {
-                            
-                        }
-
+                        NavigationView(content: {
+                            RestoringBackupFinishView {
+                                onDone?()
+                            }
+                        })
+                        .navigationBarHidden(true)
                     }
                 }
             }
-            
-            Spacer()
+            .onChange(of: viewModel.isRestored) { newValue in
+                path = [.Done]
+            }
         }
         .ignoresSafeArea(.all)
     }

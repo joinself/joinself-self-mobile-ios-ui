@@ -16,11 +16,7 @@ public class FontLoader {
             var error: Unmanaged<CFError>?
             if !CTFontManagerRegisterGraphicsFont(newFont, &error) {
                 print("Error loading Font!")
-            } else {
-                print("Loaded font")
             }
-        } else {
-//            assertionFailure("Error loading font")
         }
     }
 }

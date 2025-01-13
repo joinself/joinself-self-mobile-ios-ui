@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension String {
-    var localized: String {
+    public var localized: String {
         if SelfUISdk.shared.customization == false, let bundle = Bundle(identifier: mainBundleId) {
             return NSLocalizedString(self, bundle: bundle ,comment: "")
         }
@@ -84,7 +84,7 @@ extension UIFont {
         
         var errorRef: Unmanaged<CFError>? = nil
         if (CTFontManagerRegisterGraphicsFont(font, &errorRef) == false) {
-            print("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
+//            print("UIFont+:  Failed to register font - register graphics font failed - this font may have already been registered in the main bundle.")
         }
     }
     
