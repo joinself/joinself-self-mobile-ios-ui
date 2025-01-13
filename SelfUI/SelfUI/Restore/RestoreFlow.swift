@@ -12,6 +12,7 @@ public class RestoreFlowViewModel: ObservableObject {
     @Published public var isRestored: Bool = false
     @Published public var isRestoring: Bool = false
     @Published public var destination: [RestoreDestinations] = []
+    @Published public var isNetworkConnected: Bool = true
     public init() {
     }
 }
@@ -32,15 +33,16 @@ public struct RestoreFlow: View, BaseActions {
     @StateObject private var viewModel: RestoreFlowViewModel
     
     public init(viewModel: RestoreFlowViewModel = RestoreFlowViewModel(), isNetworkConnected: Binding<Bool> = .constant(true),
-                onNext: (() -> Void)? = nil) {
+                onNext: (() -> Void)? = nil, onDone: (() -> Void)? = nil) {
         self.onNext = onNext
+        self.onDone = onDone
         _viewModel = StateObject(wrappedValue: viewModel)
         self._isNetworkConnected = isNetworkConnected
     }
     
     public var body: some View {
         VStack {
-            if !isNetworkConnected {
+            if !viewModel.isNetworkConnected {
                 BannerView(message: "no_internet_connection".localized)
             }
             
@@ -57,35 +59,38 @@ public struct RestoreFlow: View, BaseActions {
                         Text("Backup")
                         
                     case .Restoring:
-                        RestoringBackupView {
-                            
-                        }
-//                        .onAppear {
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-////                                viewModel.isRestored = true
-//                                viewModel.destination = [.Done]
-//                            }
-//                        }
+                        NavigationView(content: {
+                            RestoringBackupView {
+                                
+                            }
+                        })
+                        .navigationBarHidden(true)
+                        
                         
                     case .LivenessCaptureIntroduction:
-                        LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
-                            onNext?()
-                        } onNavigationBack: {
-                            
-                        }
+                        NavigationView(content: {
+                            LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
+                                onNext?()
+                            } onNavigationBack: {
+                                print("navigate back.")
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        })
+                        .navigationBarHidden(true)
                         
                     case .Done:
-                        RestoringBackupFinishView {
-                            onDone?()
-                        }
+                        NavigationView(content: {
+                            RestoringBackupFinishView {
+                                onDone?()
+                            }
+                        })
+                        .navigationBarHidden(true)
                     }
                 }
             }
             .onChange(of: viewModel.isRestored) { newValue in
                 path = [.Done]
             }
-            
-            Spacer()
         }
         .ignoresSafeArea(.all)
     }

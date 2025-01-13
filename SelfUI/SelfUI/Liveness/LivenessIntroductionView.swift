@@ -41,6 +41,7 @@ public struct LivenessIntroductionView: View {
                     .lineSpacing(1.18)
                     .foregroundColor(.textPrimary)
             }
+            .padding(0)
             ButtonView(title: "button_start".localized) {
                 onGettingStarted()
             }
