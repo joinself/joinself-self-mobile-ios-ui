@@ -9,6 +9,9 @@ import SwiftUI
 
 public struct ImagePreviewView: View {
     let uiImage: UIImage?
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    
     public init(uiImage: UIImage? = nil) {
         self.uiImage = uiImage
     }
@@ -17,14 +20,21 @@ public struct ImagePreviewView: View {
             Color.white.ignoresSafeArea()
             if let uiImage = uiImage {
                 Image(uiImage: uiImage)
-                    .interpolation(.none)
                     .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
-                    .background(Color.white)
-    //                .cornerRadius(10)
-    //                .shadow(radius: 5)
+                    .aspectRatio(contentMode: .fit)
+                    .scaleEffect(scale)
+                    .gesture(MagnificationGesture()
+                        .onChanged { value in
+                            self.scale = self.lastScale * value
+                        }
+                        .onEnded { value in
+                            self.lastScale = self.scale
+                        }
+                    )
+                    .animation(.easeInOut, value: scale)
+                    .onTapGesture(count: 2) {
+                        self.scale = 1.0
+                    }
             }
         }
     }
