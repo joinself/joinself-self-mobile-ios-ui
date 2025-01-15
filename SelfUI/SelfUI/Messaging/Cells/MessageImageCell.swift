@@ -14,10 +14,6 @@ struct MessageImageCell: View, BaseMessage {
 
     init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
-//        if let fileURL = messageDTO.attachments.first?.localPath{
-//            let url = URL(fileURLWithPath: fileURL)
-//            self.image = UIImage(contentsOfFile: url.path())
-//        }
     }
     
     var body: some View {
@@ -45,7 +41,7 @@ struct MessageImageCell: View, BaseMessage {
                         .sheet(isPresented: $showImagePreview) {
                             
                         } content: {
-                            ImagePreviewView(uiImage: self.image)
+                            ImagePreviewView(uiImage: $image)
                                 .onAppear {
                                     print("Self image: \(self.image)")
                                 }

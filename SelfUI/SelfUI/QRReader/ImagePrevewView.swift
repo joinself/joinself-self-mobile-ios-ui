@@ -8,12 +8,13 @@
 import SwiftUI
 
 public struct ImagePreviewView: View {
-    let uiImage: UIImage?
+    @Binding var uiImage: UIImage?
     @State private var scale: CGFloat = 1.0
     @State private var lastScale: CGFloat = 1.0
     
-    public init(uiImage: UIImage? = nil) {
-        self.uiImage = uiImage
+    public init(uiImage: Binding<UIImage?> = .constant(nil)) {
+        self._uiImage = uiImage
+        print("Self iiiiimage: \(uiImage)")
     }
     public var body: some View {
         ZStack {
@@ -41,5 +42,5 @@ public struct ImagePreviewView: View {
 }
 
 #Preview {
-    ImagePreviewView(uiImage: UIImage(named: "ic_self_logo", in: mainBundle, with: nil)!)
+    ImagePreviewView(uiImage: .constant(UIImage(named: "ic_self_logo", in: mainBundle, with: nil)!))
 }
