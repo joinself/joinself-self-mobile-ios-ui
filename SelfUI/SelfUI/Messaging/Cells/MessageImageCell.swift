@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MessageImageCell: View, BaseMessage {
     var messageDTO: MessageDTO
+    @State private var showImagePreview: Bool = false
+    @State private var image: UIImage?
 
     init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
@@ -29,6 +31,22 @@ struct MessageImageCell: View, BaseMessage {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(maxWidth: .infinity)
+                        .onTapGesture {
+                            if let fileURL = messageDTO.attachments.first?.localPath{
+                                let url = URL(fileURLWithPath: fileURL)
+                                self.image = UIImage(contentsOfFile: url.path())
+                            }
+                            showImagePreview = true
+                        }
+                        .sheet(isPresented: $showImagePreview) {
+                            
+                        } content: {
+                            ImagePreviewView(uiImage: $image)
+                                .onAppear {
+                                    print("Self image: \(self.image)")
+                                }
+                        }
+
                 } else {
                     Text("Image is missing: \(messageDTO.attachments.first?.localPath)")
                 }
@@ -37,7 +55,6 @@ struct MessageImageCell: View, BaseMessage {
                     .multilineTextAlignment(.leading)
                     .font(.defaultBody)
                     .foregroundStyle(Color.textPrimary)
-//                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
             }
         }
     }
