@@ -22,67 +22,37 @@ struct CreateAccountNameView: View {
     var onEnteredName: ((String) -> Void)?
     
     public var body: some View {
-        VStack {
+        BaseProgressView (totalSteps: 5, activeStep: 5){
             ScrollView {
-                VStack {
-                    // stepped progress view
-                    CustomProgressView(steps: [
-                        Step(title: "1", state: .done),
-                        Step(title: "2", state: .done),
-                        Step(title: "3", state: .done),
-                        Step(title: "4", state: .done),
-                        Step(title: "5", state: .active)
-                    ]).frame(minHeight: 100)
+                VStack (spacing: 20) {
+                    Text("create_account_name_title".localized)
+                        .font(.defaultTitle)
+                        .foregroundColor(.textPrimary)
+                        .frame(maxWidth: .infinity, alignment: .bottomLeading)
                     
-                    VStack(alignment: .leading, spacing: 30) {
-                        Text("create_account_name_title".localized)
-                            .font(.defaultTitle)
-                            .foregroundColor(.textPrimary)
-                            .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                        
-                        OutlineLabelTextField(label: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized,
-                                              errorDescription: "enter_name_error".localized,
-                                              keyboardType: .default,
-                                              textInputAutocapitalization: .words,
-                                              state: $editFieldState, text: $name, isFocused: _isTextFieldFocused)
-                        .onChange(of: name) { newValue in
-                            isValid = newValue.count > 0
-                            
-                            editFieldState = isValid ? .valid : .error
-                        }
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
+                    OutlineLabelTextField(label: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized,
+                                          errorDescription: "enter_name_error".localized,
+                                          keyboardType: .default,
+                                          textInputAutocapitalization: .words,
+                                          state: $editFieldState, text: $name, isFocused: _isTextFieldFocused)
                 }
+                .onChange(of: name) { newValue in
+                    isValid = newValue.count > 0
+                    
+                    editFieldState = isValid ? .valid : .error
+                }
+                Spacer()
                 .onTapGesture {
                     print("Dismiss keyboard")
                     isTextFieldFocused = false
                 }
-                
             }
             
-            Spacer()
-            VStack(spacing: 12) {
-                ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
-                    onEnteredName?(name)
-                }.disabled(!isValid)
-                
-                BrandView(isDarked: true)
+            ButtonView(title: "button_confirm_name".localized,backgroundColor: isValid ? .defaultGreen : .defaultDark) {
+                onEnteredName?(name)
             }
-        }
-        .padding()
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    NavBackButton()
-                }
-            }
+            .disabled(!isValid)
+            .frame(maxHeight: 44)
         }
     }
 }

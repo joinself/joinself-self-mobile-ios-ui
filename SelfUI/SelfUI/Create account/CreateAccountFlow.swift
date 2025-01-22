@@ -29,10 +29,10 @@ public struct CreateAccountFlow: View {
                 switch selection {
                 case 0:
                     CreatingAccountView{
-                        path = [1]
+                        onFinish?(true)
                     }
                     
-                case 1:
+                case 2:
                     ScanLoginQRCodeView {
                         onFinish?(true)
                     }
