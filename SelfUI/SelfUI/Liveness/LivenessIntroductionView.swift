@@ -28,24 +28,27 @@ public struct LivenessIntroductionView: View {
     var onNavigationBack: () -> Void
     
     public var body: some View {
-        BaseProgressView (totalSteps: 5, activeStep: activeStep, content: {
-            ScrollView {
-                Text(title)
-                    .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
-                    .frame(maxHeight: .infinity)
-                
-                Spacer(minLength: 30)
-                Text(subtitle)
-                    .font(.defaultBody)
-                    .lineSpacing(1.18)
-                    .foregroundColor(.textPrimary)
-            }
-            .padding(0)
-            ButtonView(title: "button_start".localized) {
-                onGettingStarted()
-            }
+        NavigationView(content: {
+            BaseProgressView (totalSteps: 5, activeStep: activeStep, content: {
+                ScrollView {
+                    Text(title)
+                        .font(.defaultTitle)
+                        .foregroundColor(.textPrimary)
+                        .frame(maxHeight: .infinity)
+                    
+                    Spacer(minLength: 30)
+                    Text(subtitle)
+                        .font(.defaultBody)
+                        .lineSpacing(1.18)
+                        .foregroundColor(.textPrimary)
+                }
+                .padding(0)
+                ButtonView(title: "button_start".localized) {
+                    onGettingStarted()
+                }
+            })
         })
+        //.navigationBarHidden(true)
     }
     
     private func checkCameraPermission() {

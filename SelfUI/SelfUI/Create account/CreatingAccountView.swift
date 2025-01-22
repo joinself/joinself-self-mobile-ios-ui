@@ -19,57 +19,31 @@ struct CreatingAccountView: View {
     }
     
     public var body: some View {
-        VStack {
-            // stepped progress view
-            CustomProgressView(steps: [
-                Step(title: "1", state: .done),
-                Step(title: "2", state: .done),
-                Step(title: "3", state: .done),
-                Step(title: "4", state: .done),
-                Step(title: "5", state: .active)
-            ])
-            
-            Spacer(minLength: 100)
-            VStack(alignment: .leading, spacing: 30) {
-                Text("creating_account_title".localized)
-                    .font(.defaultBodyLarge)
-                    .foregroundColor(.black)
-                
-                Text("creating_account_description".localized)
-                    .font(.defaultBody)
-                    .foregroundColor(.black)
-                
-                Spacer()
-                HStack {
-                    Spacer()
-                    LoadingDotsView()
-                    Spacer()
-                }
-                Spacer()
-                VStack(spacing: 12) {
-                    ButtonView(title: "button_turn_on_notifications".localized) {
-                        requestNotificationPermission { isGranted in
-                            onNext?()
-                        }
-                    }
+        BaseProgressView (totalSteps: 5, activeStep: 5){
+            ScrollView {
+                VStack (spacing: 20) {
+                    Text("creating_account_title".localized)
+                        .font(.defaultBodyLarge)
+                        .foregroundColor(.textPrimary)
                     
-                    BrandView(isDarked: true)
+                    Text("creating_account_description".localized)
+                        .font(.defaultBody)
+                        .foregroundColor(.textPrimary)
+                    
+                    HStack {
+                        Spacer()
+                        LoadingDotsView()
+                        Spacer()
+                    }
                 }
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    NavBackButton()
+            ButtonView(title: "button_turn_on_notifications".localized) {
+                requestNotificationPermission { isGranted in
+                    onNext?()
                 }
             }
         }
+        
     }
     
     func checkNotificationPermission() {
