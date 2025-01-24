@@ -40,7 +40,10 @@ struct FileCell: View, BaseMessage {
                 .sheet(isPresented: $showDocument, onDismiss: {
                     // dismiss document preview
                 }, content: {
-                    if let path = messageDTO.attachments.first?.localPath {
+                    if let attachment = messageDTO.attachments.first, attachment.isPlayable {
+                        VideoPreview(url: URL(fileURLWithPath: attachment.localPath))
+                    }
+                    else if let path = messageDTO.attachments.first?.localPath {
                         let url = URL(fileURLWithPath: path)
                         
                         PDFViewer(url: url)

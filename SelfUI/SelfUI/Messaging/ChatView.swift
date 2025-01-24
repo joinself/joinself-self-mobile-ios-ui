@@ -83,6 +83,12 @@ public struct ChatView: View {
                                     .onAppear {
                                         actionRead?(message)
                                     }
+                            
+                            case MessageType.SELF_VIDEO:
+                                MessageVideoCell(messageDTO: message)
+                                    .onAppear {
+                                        actionRead?(message)
+                                    }
                                 
                             case MessageType.SELF_FILE:
                                 FileCell(messageDTO: message)
