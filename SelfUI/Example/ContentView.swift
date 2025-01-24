@@ -78,6 +78,12 @@ struct ContentView: View {
                 } label: {
                     Text("Chat View")
                 }
+                
+                NavigationLink {
+                    VideoPreview(url: Bundle.main.url(forResource: "audio", withExtension: "mp3"))
+                } label: {
+                    Text("Video Preview")
+                }
             }
         }
     }

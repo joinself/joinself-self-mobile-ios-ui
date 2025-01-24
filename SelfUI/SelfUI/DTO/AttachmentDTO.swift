@@ -13,13 +13,15 @@ public struct AttachmentDTO: Equatable {
     public let localPath: String
     public let size: Int64 // in bytes
     public let formattedSize: String
+    public let isPlayable: Bool
     
-    public init(name: String, mime: String, localPath: String, size: Int64, formattedSize: String = "") {
+    public init(name: String, mime: String, localPath: String, size: Int64, formattedSize: String = "", isPlayable: Bool = false) {
         self.name = name
         self.mime = mime
         self.localPath = localPath
         self.size = size
         self.formattedSize = formattedSize
+        self.isPlayable = isPlayable
     }
 }
 

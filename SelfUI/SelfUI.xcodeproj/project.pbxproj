@@ -188,6 +188,10 @@
 		63D66AE52C59CFF30094E55D /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D66AE42C59CFF30094E55D /* CustomProgressView.swift */; };
 		63D66AE72C59E4360094E55D /* EnterEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D66AE62C59E4360094E55D /* EnterEmailView.swift */; };
 		63DC0A392D02E3A900E2F7F7 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DC0A382D02E3A900E2F7F7 /* NetworkMonitor.swift */; };
+		63DFB9232D421D6F00A5F6DE /* VideoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DFB9222D421D6E00A5F6DE /* VideoPreview.swift */; };
+		63DFB9272D4246FC00A5F6DE /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63DFB9262D4246FC00A5F6DE /* audio.mp3 */; };
+		63DFB9292D424F8700A5F6DE /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63DFB9282D424F8700A5F6DE /* audio.mp3 */; };
+		63DFB92B2D4250F000A5F6DE /* MessageVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DFB92A2D4250F000A5F6DE /* MessageVideoCell.swift */; };
 		63E2C3A32C7DC9D300056E9B /* QRCodeOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2C3A22C7DC9D300056E9B /* QRCodeOverlayView.swift */; };
 		63E2C3A52C7DD54000056E9B /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E2C3A42C7DD54000056E9B /* QRCodeScannerView.swift */; };
 		63E7F8462CB2547700039F0D /* CredentialRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */; };
@@ -415,6 +419,10 @@
 		63D66AE42C59CFF30094E55D /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		63D66AE62C59E4360094E55D /* EnterEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailView.swift; sourceTree = "<group>"; };
 		63DC0A382D02E3A900E2F7F7 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		63DFB9222D421D6E00A5F6DE /* VideoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreview.swift; sourceTree = "<group>"; };
+		63DFB9262D4246FC00A5F6DE /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		63DFB9282D424F8700A5F6DE /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
+		63DFB92A2D4250F000A5F6DE /* MessageVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVideoCell.swift; sourceTree = "<group>"; };
 		63E2C3A22C7DC9D300056E9B /* QRCodeOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeOverlayView.swift; sourceTree = "<group>"; };
 		63E2C3A42C7DD54000056E9B /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialRequestCell.swift; sourceTree = "<group>"; };
@@ -559,6 +567,7 @@
 		637067242C60EA1A00A23C1E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63DFB9282D424F8700A5F6DE /* audio.mp3 */,
 				6370672F2C61D68500A23C1E /* Localizable.strings */,
 			);
 			path = Resources;
@@ -667,6 +676,7 @@
 				63A2143F2C7CB203008B5E4A /* ScanView.swift */,
 				63B808202CB16ECC00F6862C /* QRScanFailView.swift */,
 				634225D22CB68FB800CF06D1 /* ImagePrevewView.swift */,
+				63DFB9222D421D6E00A5F6DE /* VideoPreview.swift */,
 				6352E2B72CB8024000931A18 /* PDFViewer.swift */,
 				6352E2BB2CB8060000931A18 /* SVGViewer.swift */,
 			);
@@ -758,6 +768,7 @@
 				6363B4962CE7409F000BEC7F /* CountryFlags.xcassets */,
 				6351DF132CA5106100976552 /* ic_data.svg */,
 				6351DF112CA5105300976552 /* ic_data_pdf.pdf */,
+				63DFB9262D4246FC00A5F6DE /* audio.mp3 */,
 				63A99B002C05D9910073939A /* Barlow-Black.ttf */,
 				63A99B022C05D9910073939A /* Barlow-Bold.ttf */,
 				63A99B032C05D9910073939A /* Barlow-Italic.ttf */,
@@ -796,6 +807,7 @@
 				6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */,
 				6340E9EC2D014DD00001F212 /* FileCell.swift */,
 				636FDCE32CF6C58E00656AE1 /* MessageImageCell.swift */,
+				63DFB92A2D4250F000A5F6DE /* MessageVideoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1095,6 +1107,7 @@
 				63582B692CEC93AA00C5969D /* id_document_tips.gif in Resources */,
 				6381C33D2BF4CB5A005573A0 /* Assets.xcassets in Resources */,
 				6352E2BE2CB8088200931A18 /* qrcode.svg in Resources */,
+				63DFB9272D4246FC00A5F6DE /* audio.mp3 in Resources */,
 				63A99B042C05D9910073939A /* Barlow-Regular.ttf in Resources */,
 				6351DF122CA5105300976552 /* ic_data_pdf.pdf in Resources */,
 				6351DF142CA5106100976552 /* ic_data.svg in Resources */,
@@ -1119,6 +1132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C451A22BF33D5500AD5BC5 /* Preview Assets.xcassets in Resources */,
+				63DFB9292D424F8700A5F6DE /* audio.mp3 in Resources */,
 				6370672D2C61D68500A23C1E /* Localizable.strings in Resources */,
 				63C4519F2BF33D5500AD5BC5 /* Assets.xcassets in Resources */,
 			);
@@ -1223,6 +1237,7 @@
 				63D017472D1BEDBB002F8D0A /* SelfieOverlayView.swift in Sources */,
 				6352E2AA2CB783D900931A18 /* CustomButton.swift in Sources */,
 				6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */,
+				63DFB9232D421D6F00A5F6DE /* VideoPreview.swift in Sources */,
 				63F8C9FE2CF96666003B6B21 /* CaptureImageView.swift in Sources */,
 				6315DB2B2CE60C8000AFE4EC /* DocumentVerifiedView.swift in Sources */,
 				633C40022D2D3CF9006FAAFB /* DraggableModifier.swift in Sources */,
@@ -1231,6 +1246,7 @@
 				638810D62D01C2BF00861E7C /* BackupDoneView.swift in Sources */,
 				6363B49B2CE758E2000BEC7F /* DocumentItem.swift in Sources */,
 				638810D82D01C36B00861E7C /* BackingupView.swift in Sources */,
+				63DFB92B2D4250F000A5F6DE /* MessageVideoCell.swift in Sources */,
 				637301832CA679A100BB0292 /* AvatarView.swift in Sources */,
 				63AAD3302D1A978E00E7ED48 /* LivenessCheckFlow.swift in Sources */,
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
