@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 public struct LivenessIntroductionView: View {
-    @State private var isCameraAuthorized = false
+    @State private var showAlert = false
     @Environment(\.presentationMode) var presentationMode
     
     let title: String
@@ -44,31 +44,48 @@ public struct LivenessIntroductionView: View {
                 }
                 .padding(0)
                 ButtonView(title: "button_start".localized) {
-                    onGettingStarted()
+                    checkCameraPermission { isGranted in
+                        if isGranted {
+                            onGettingStarted()
+                        }
+                    }
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Camera Permission Required"),
+                        message: Text("Please enable camera access in Settings."),
+                        primaryButton: .default(Text("Settings")) {
+                            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
                 }
             })
         })
         //.navigationBarHidden(true)
     }
     
-    private func checkCameraPermission() {
+    private func checkCameraPermission(completion: ((Bool) -> Void)? = nil) {
         AVCaptureDevice.requestAccess(for: .video) { authorized in
-            DispatchQueue.main.async {
-                self.isCameraAuthorized = authorized
+            Task { @MainActor in
+                self.showAlert = !authorized
+                completion?(authorized)
             }
         }
     }
 }
 
 struct ContentViewView_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         ForEach(["en", "de"], id: \.self) { id in
             LivenessIntroductionView {
             } onNavigationBack: {
                 
             }
-                .environment(\.locale, .init(identifier: id))
+            .environment(\.locale, .init(identifier: id))
         }
     }
 }
