@@ -10,14 +10,20 @@ import SwiftUI
 public struct NavigationTitleView: View {
     let title: String
     @Binding var font: Font
-    public init(title: String, font: Binding<Font> = .constant(.navigationTitle)) {
+    let imageURL: URL?
+    public init(title: String, font: Binding<Font> = .constant(.navigationTitle), imageURL: URL? = nil) {
         self.title = title
+        self.imageURL = imageURL
         self._font = font
     }
     public var body: some View {
         HStack {
-            Image("ic_self_logo", bundle: mainBundle)
-                .frame(width: 30, height: 30)
+            if let imageURL = imageURL {
+                AvatarView(imageURL: imageURL, avatarSize: 30)
+            } else {
+                Image("ic_self_logo", bundle: mainBundle)
+                    .frame(width: 30, height: 30)
+            }
             
             Text(title)
                 .font(font)
@@ -37,7 +43,7 @@ public struct NavigationTitleView: View {
 #Preview {
     ZStack {
         Color.defaultBlue.ignoresSafeArea()
-        NavigationTitleView(title: "Messages")
+        NavigationTitleView(title: "Messages", imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"))
     }
     
 }

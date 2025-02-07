@@ -35,7 +35,8 @@ public struct ChatView: View {
     private var actionReject: ((MessageDTO) -> Void)?
     private var actionRead: ((MessageDTO) -> Void)?
     
-    public init (conversationName: Binding<String>,
+    let imageURL: URL?
+    public init (conversationName: Binding<String>, imageURL: URL? = nil,
                  chatObservableObject: ChatObservableObject,
                  actionAccept: ((MessageDTO) -> Void)? = nil,
                  actionReject: ((MessageDTO) -> Void)? = nil,
@@ -45,13 +46,14 @@ public struct ChatView: View {
         self.actionAccept = actionAccept
         self.actionReject = actionReject
         self.actionRead = actionRead
+        self.imageURL = imageURL
     }
     
     public var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                NavigationTitleView(title: conversationName)
+                NavigationTitleView(title: conversationName, imageURL: imageURL)
                 if chatObservableObject.messages.isEmpty {
                     Spacer()// Empty messages
                 } else {
@@ -165,7 +167,7 @@ public struct ChatView: View {
     ZStack {
         Color.black.ignoresSafeArea()
         
-        ChatView(conversationName: .constant("User"), chatObservableObject: ChatObservableObject(messages: [
+        ChatView(conversationName: .constant("User"), imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"), chatObservableObject: ChatObservableObject(messages: [
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, timestamp: "now"),
             
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .sender, reference: MessageDTO(id: UUID().uuidString, text: "Reference Messsage", fromType: .receiver)),
