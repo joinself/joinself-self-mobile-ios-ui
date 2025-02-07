@@ -26,9 +26,9 @@ struct WebView: UIViewRepresentable {
 }
 
 public struct SVGViewer: View {
-    let url: URL?
-    public init(url: URL?) {
-        self.url = url
+    @Binding var url: URL?
+    public init(url: Binding<URL?>) {
+        self._url = url
     }
     
     
@@ -56,6 +56,6 @@ public struct SVGViewer: View {
     VStack {
         
     }.sheet(isPresented: .constant(true)) {
-        SVGViewer(url: mainBundle?.url(forResource: "qrcode", withExtension: "svg"))
+        SVGViewer(url: .constant(mainBundle?.url(forResource: "qrcode", withExtension: "svg")))
     }
 }
