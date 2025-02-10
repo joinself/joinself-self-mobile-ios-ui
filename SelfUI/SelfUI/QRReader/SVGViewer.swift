@@ -38,7 +38,7 @@ public struct SVGViewer: View {
                 if let url = url {
                     WebView(url: url)
                         .frame(width: 600, height: 600)
-                        .padding(.leading, 100)
+//                        .padding(.leading, 100)
                         .onAppear {
                             print("Size: \(geometry.size)")
                         }
