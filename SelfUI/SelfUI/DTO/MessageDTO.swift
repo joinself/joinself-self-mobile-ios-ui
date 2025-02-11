@@ -32,6 +32,7 @@ public struct MessageType {
     public static let SELF_FORM = "self/form"
     public static let SELF_FORM_RESPONSE = "self/form_response"
     public static let SELF_BUTTONS = "self/commands"
+    public static let SELF_SIGNING_REQUEST = "self/signing_request"
 }
 
 public enum MessageFrom: String, CaseIterable {
