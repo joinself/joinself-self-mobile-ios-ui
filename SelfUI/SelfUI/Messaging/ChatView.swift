@@ -80,6 +80,17 @@ public struct ChatView: View {
                                     actionRead?(message)
                                 }
                                 
+                            case MessageType.SELF_SIGNING_REQUEST:
+                                
+                                SigningRequestCell(messageDTO: message) {
+                                    actionAccept?(message)
+                                } actionReject: {
+                                    actionReject?(message)
+                                }
+                                .onAppear {
+                                    actionRead?(message)
+                                }
+                                
                             case MessageType.SELF_IMAGE:
                                 MessageImageCell(messageDTO: message)
                                     .onAppear {
@@ -178,6 +189,7 @@ public struct ChatView: View {
             MessageDTO(id: UUID().uuidString, text: "Hi", fromType: .receiver),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", fromType: .receiver, timestamp: "now"),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_CREDENTIAL_REQUEST, fromType: .receiver, timestamp: "now"),
+            MessageDTO(id: UUID().uuidString, text: "Signing Request Message", mimeType: MessageType.SELF_SIGNING_REQUEST, fromType: .receiver, timestamp: "now"),
             MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_FILE, fromType: .receiver, timestamp: "now")
         ]))
     }
