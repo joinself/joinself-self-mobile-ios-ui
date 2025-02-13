@@ -19,9 +19,11 @@ public struct LivenessCheckFlow: View {
     
     @State private var showLivenessCamera: Bool = false
     @State private var showCheckingView: Bool = false
+    @State private var showFailedView: Bool = false
     let showLivenessCheckIntroduction: Bool
     
     @ObservedObject private var viewModel: LivenessCheckViewModel
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     public init(viewModel: LivenessCheckViewModel, showLivenessCheckIntroduction: Bool = true) {
         self.viewModel = viewModel
@@ -59,10 +61,27 @@ public struct LivenessCheckFlow: View {
                         showCheckingView = true
                     })
                 }
+                .onChange(of: viewModel.attemptNumber) { newValue in
+                    showCheckingView = false
+                    showFailedView = true
+                }
                 .fullScreenCover(isPresented: $showCheckingView) {
                     
                 } content: {
                     LoadingView(message: "checking_your_image".localized)
+                }
+                .fullScreenCover(isPresented: $showFailedView) {
+                    
+                } content: {
+                    LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
+                        viewModel.isHighlighted = false
+                        viewModel.state = .None
+                        showFailedView = false
+                        showLivenessCamera = true
+                    } onNavigationBack: {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+
                 }
 
             }

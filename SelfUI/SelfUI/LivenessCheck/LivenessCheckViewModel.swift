@@ -13,14 +13,16 @@ import AVFoundation
 public class LivenessCheckViewModel: ObservableObject {
     @Published var text: String
     @Published public var isHighlighted: Bool
+    @Published public var attemptNumber: Int
     @Published var tipImageName: String
     @Published public var state: Challenge = .None
     @Published public var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
 
-    public init(text: String, tipImageName: String, isHighlighted: Bool) {
+    public init(text: String, tipImageName: String, isHighlighted: Bool, attemptNumber: Int = -1) {
         self.text = text
         self.isHighlighted = isHighlighted
         self.tipImageName = tipImageName
+        self.attemptNumber = attemptNumber
     }
     
     public func update() {
