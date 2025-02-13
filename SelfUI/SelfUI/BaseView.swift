@@ -10,10 +10,12 @@ import SwiftUI
 struct BaseView<Content: View>: View {
     
     let content: Content
+    let enableBackNavigation: Bool
     
     @Environment(\.presentationMode) private var presentationMode
-    init(@ViewBuilder content: () -> Content) {
+    init(enableBackNavigation: Bool = true, @ViewBuilder content: () -> Content) {
         self.content = content()
+        self.enableBackNavigation = enableBackNavigation
     }
     
     public var body: some View {
@@ -32,8 +34,12 @@ struct BaseView<Content: View>: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
+                if enableBackNavigation {
+                    NavBackButton(isWhiteBackground: false) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                } else {
+                    Spacer()
                 }
             }
         }

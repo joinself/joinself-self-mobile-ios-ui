@@ -8,23 +8,35 @@
 import SwiftUI
 
 public struct LoadingView: View {
-    public init () {
-        
+    let message: String
+    
+    public init (message: String) {
+        self.message = message
     }
     
     public var body: some View {
-        ZStack {
-            Color.defaultOverlay
-                .ignoresSafeArea(.all)
-            LoadingDotsView()
-        }.hidden()
+        NavigationView {
+            BaseProgressView (enableBackNavigation: false, totalSteps: 5, activeStep: 5, content: {
+                ZStack {
+                    Color.white
+                        .ignoresSafeArea(.all)
+                    VStack {
+                        Text(message)
+                            .font(.defaultLargeTitle)
+                            .foregroundColor(.textPrimary)
+                            .padding(.bottom, 80)
+                        LoadingDotsView()
+                    }
+                }
+            })
+        }
     }
 }
 
 #Preview {
     ZStack {
         //EnterEmailCodeView(showAlert: .constant(false))
-        LoadingView()
+        LoadingView(message: "Checking your image.")
     }
     
 }

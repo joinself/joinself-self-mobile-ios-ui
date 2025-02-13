@@ -18,6 +18,7 @@ public struct LivenessCheckFlow: View {
     @State private var path: [LivenessCheckDestinations] = [LivenessCheckDestinations]()
     
     @State private var showLivenessCamera: Bool = false
+    @State private var showCheckingView: Bool = false
     let showLivenessCheckIntroduction: Bool
     
     @ObservedObject private var viewModel: LivenessCheckViewModel
@@ -50,6 +51,18 @@ public struct LivenessCheckFlow: View {
                 } content: {
                     NewLivenessCameraView(viewModel: viewModel)
                     .transition(.opacity)
+                }
+                .onChange(of: viewModel.isHighlighted) { newValue in
+                    print("Try to hide camera view")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        showLivenessCamera = false
+                        showCheckingView = true
+                    })
+                }
+                .fullScreenCover(isPresented: $showCheckingView) {
+                    
+                } content: {
+                    LoadingView(message: "checking_your_image".localized)
                 }
 
             }

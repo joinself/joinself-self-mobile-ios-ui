@@ -12,18 +12,20 @@ struct BaseProgressView<Content: View>: View {
     private let content: Content
     private var totalSteps: Int = 5
     private var activeStep: Int = 3
+    let enableBackNavigation: Bool
     
     @Environment(\.presentationMode) private var presentationMode
-    init(totalSteps: Int = Constants.ProgressStepNumber, activeStep: Int = 3, @ViewBuilder content: () -> Content) {
+    init(enableBackNavigation: Bool = true, totalSteps: Int = Constants.ProgressStepNumber, activeStep: Int = 3, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.totalSteps = totalSteps
         self.activeStep = activeStep
+        self.enableBackNavigation = enableBackNavigation
     }
     
     public var body: some View {
         VStack {
             StepProgressView(totalStep: totalSteps, activeStep: activeStep)
-            BaseView {
+            BaseView(enableBackNavigation: enableBackNavigation) {
                 content
             }
         }
