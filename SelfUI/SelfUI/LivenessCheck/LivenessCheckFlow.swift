@@ -87,6 +87,35 @@ public struct LivenessCheckFlow: View {
             }
         } else {
             NewLivenessCameraView(viewModel: viewModel)
+                .onChange(of: viewModel.isHighlighted) { newValue in
+                    print("Try to hide camera view")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        showLivenessCamera = false
+                        showCheckingView = true
+                    })
+                }
+                .onChange(of: viewModel.attemptNumber) { newValue in
+                    showCheckingView = false
+                    showFailedView = true
+                }
+                .fullScreenCover(isPresented: $showCheckingView) {
+                    
+                } content: {
+                    LoadingView(message: "checking_your_image".localized)
+                }
+                .fullScreenCover(isPresented: $showFailedView) {
+                    
+                } content: {
+                    LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
+                        viewModel.isHighlighted = false
+                        viewModel.state = .None
+                        showFailedView = false
+                        showLivenessCamera = true
+                    } onNavigationBack: {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+
+                }
         }
     }
 }
