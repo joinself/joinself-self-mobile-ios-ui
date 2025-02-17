@@ -48,9 +48,9 @@ public struct RestoreFlow: View, BaseActions {
             
             NavigationStack(path: $viewModel.destination) {
                 RestoreIntroView {
-//                    onNext?()
+                    //                    onNext?()
                     viewModel.destination = [.LivenessCaptureIntroduction]
-//                    path = [.Restoring]
+                    //                    path = [.Restoring]
                 }
                 .navigationDestination(for: RestoreDestinations.self) { destination in
                     
@@ -68,14 +68,12 @@ public struct RestoreFlow: View, BaseActions {
                         
                         
                     case .LivenessCaptureIntroduction:
-                        NavigationView(content: {
-                            LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
-                                onNext?()
-                            } onNavigationBack: {
-                                print("navigate back.")
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        })
+                        LivenessIntroductionView (title: "title_liveness_capture".localized, subtitle: "msg_liveness_capture".localized, activeStep: 2) {
+                            onNext?()
+                        } onNavigationBack: {
+                            print("navigate back.")
+                            presentationMode.wrappedValue.dismiss()
+                        }
                         .navigationBarHidden(true)
                         
                     case .Done:
