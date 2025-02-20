@@ -191,8 +191,8 @@ public struct UserDetailView: View {
         
         UserDetailView()
         VStack (spacing: 0) {
-            NavigationTitleView(title: "Title")
-            UserDetailView(name: .constant("Dan Sutherland"))
+            NavigationTitleView(title: .constant("Messages"))
+            UserDetailView(name: .constant("Test User"))
         }.padding()
         
         BottomSheetView(viewModel: ViewModel())

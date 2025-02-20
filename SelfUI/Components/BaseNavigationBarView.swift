@@ -8,10 +8,10 @@
 import SwiftUI
 
 public struct BaseNavigationBarView: View {
-    let title: String
+    @Binding var title: String
     var onNavigateBack: (() -> ())?
-    public init(title: String, onNavigateBack: (() -> ())? = nil) {
-        self.title = title
+    public init(title: Binding<String>, onNavigateBack: (() -> ())? = nil) {
+        self._title = title
         self.onNavigateBack = onNavigateBack
     }
     
@@ -27,7 +27,7 @@ public struct BaseNavigationBarView: View {
                         Spacer()
                     }
                     
-                    NavigationTitleView(title: title)
+                    NavigationTitleView(title: $title)
                 }
                 Spacer()
             }
@@ -41,7 +41,7 @@ public struct BaseNavigationBarView: View {
 #Preview {
     ZStack {
         Color.gray.ignoresSafeArea()
-        BaseNavigationBarView(title: "Messages")
+        BaseNavigationBarView(title: .constant("Messages"))
     }
     
 }

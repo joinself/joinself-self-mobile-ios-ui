@@ -17,7 +17,7 @@ public struct MessagingView: View {
     public var body: some View {
         NavigationStack {
             VStack {
-                NavigationTitleView(title: title)
+//                NavigationTitleView(title: title)
                 List {
                     MessageListCell()
                         .listRowInsets(.none)
