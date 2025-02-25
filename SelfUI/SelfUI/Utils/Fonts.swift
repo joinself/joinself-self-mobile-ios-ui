@@ -59,6 +59,8 @@ extension Font {
     /// Barlow Bold 21pt
     static let defaultMessageTitle: Font = SelfUISdk.shared.defaultMessageTitle
     static let customLargeTitle: Font = Font.custom("Barlow-Bold", size: 36, relativeTo: .largeTitle)
+    
+    /// Barlow Bold 64pt
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
     static let defaultBodyLarge: Font = SelfUISdk.shared.defaultBodyLarge
     static let defaultNormalTitle: Font = Font.custom("Barlow-Bold", size: 25)
