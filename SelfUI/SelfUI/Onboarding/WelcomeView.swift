@@ -27,14 +27,14 @@ struct WelcomeView: View {
                     onRecover?()
                 } label: {
                     Text("button_recover_account".localized)
-                        .font(.defaultBodyMedium)
-                        .foregroundStyle(Color.defaultDark)
+                        .modifier(ButtonTextStyle(color: Color.defaultDark))
                 }
             }
         } content: {
-            VStack(alignment: .leading, spacing: 30) {
+            VStack (alignment: .leading, spacing: 30) {
                 Text("welcome_title".localized)
                     .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text("welcome_message".localized)
                     .modifier(Body1TextStyle())
                 Spacer()

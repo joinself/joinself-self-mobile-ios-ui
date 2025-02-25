@@ -23,13 +23,12 @@ struct CustomNavigationView<NavigationContent: ToolbarContent, BodyContent: View
             VStack {
                 Spacer()
                 content
-                    .padding(Constants.EdgeInsetsDefault)
             }
             HStack (alignment: .bottom) {
                 BrandView(isDarked: true)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(Constants.EdgeInsetsDefault)
         .background(.white)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -39,16 +38,17 @@ struct CustomNavigationView<NavigationContent: ToolbarContent, BodyContent: View
 }
 
 #Preview {
-    CustomNavigationView {
-        ToolbarItem(placement: .navigationBarLeading) {
-            Button {
-                
-            } label: {
-                Text("Recover Account")
+    NavigationView {
+        CustomNavigationView {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    
+                } label: {
+                    Text("Recover Account")
+                }
             }
+        } content: {
+            Text("Base Navigation View")
         }
-    } content: {
-        Text("Base Navigation View")
     }
-
 }

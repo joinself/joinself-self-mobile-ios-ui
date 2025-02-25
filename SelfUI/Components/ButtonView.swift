@@ -37,7 +37,7 @@ public struct ButtonView: View {
         }, label: {
             HStack {
                 Text(viewModel.title)
-                    .font(.defaultButton)
+                    .font(.button)
                     .minimumScaleFactor(0.5)
                     .kerning(0.85)
                     .tracking(0.85)
@@ -48,12 +48,9 @@ public struct ButtonView: View {
                     .padding(.leading, 25)
                     .padding(.trailing, 25)
             }
-//            .padding(EdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25))
             .frame(maxWidth: .infinity, minHeight: Constants.MinButtonHeight)
             .background(isActive ? viewModel.backgroundColor : Color.defaultDark)
             .cornerRadius(Constants.ButtonCornerRadius)
-//            .padding(.leading, Constants.PadLeading)
-//            .padding(.trailing, Constants.PadLeading)
         })
         .disabled(!isActive)
     }

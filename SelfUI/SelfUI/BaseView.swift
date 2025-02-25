@@ -23,12 +23,13 @@ struct BaseView<Content: View>: View {
             VStack {
                 Spacer()
                 content
-                    .padding(Constants.EdgeInsetsDefault)
+//                    .padding(Constants.EdgeInsetsDefault)
             }
             HStack (alignment: .bottom) {
                 BrandView(isDarked: true)
             }
         }
+        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.white)
         .navigationBarBackButtonHidden(true)
