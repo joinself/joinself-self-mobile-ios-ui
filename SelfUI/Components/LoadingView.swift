@@ -17,16 +17,13 @@ public struct LoadingView: View {
     public var body: some View {
         NavigationView {
             BaseProgressView (enableBackNavigation: false, totalSteps: 5, activeStep: 5, content: {
-                ZStack {
-                    Color.white
-                        .ignoresSafeArea(.all)
-                    VStack {
-                        Text(message)
-                            .font(.defaultLargeTitle)
-                            .foregroundColor(.textPrimary)
-                            .padding(.bottom, 80)
-                        LoadingDotsView()
-                    }
+                VStack {
+                    Text(message)
+                        .modifier(Heading1TextStyle())
+                        .padding(.top, Constants.Heading1PaddingTop)
+                    LoadingDotsView()
+                        .padding(.top, 80)
+                    Spacer()
                 }
             })
         }

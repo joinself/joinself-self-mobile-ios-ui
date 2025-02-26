@@ -15,7 +15,7 @@ public class LivenessCheckViewModel: ObservableObject {
     @Published public var isHighlighted: Bool
     @Published public var attemptNumber: Int
     @Published var tipImageName: String
-    @Published var showVerifyingView: Bool
+    @Published public var showVerifyingView: Bool
     @Published public var state: Challenge = .None
     @Published public var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
 

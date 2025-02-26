@@ -41,6 +41,7 @@ public struct LivenessIntroductionView: View {
                             .modifier(Body1TextStyle())
                         Spacer()
                     }
+                    Spacer()
                 }
                 ButtonView(title: "button_start".localized) {
                     checkCameraPermission { isGranted in

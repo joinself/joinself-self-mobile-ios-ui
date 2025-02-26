@@ -125,5 +125,5 @@ public struct LivenessCheckFlow: View {
 }
 
 #Preview {
-    LivenessCheckFlow(viewModel: LivenessCheckViewModel(text: "", tipImageName: "", isHighlighted: false), showLivenessCheckIntroduction: false)
+    LivenessCheckFlow(viewModel: LivenessCheckViewModel(text: "", tipImageName: "", isHighlighted: false), showLivenessCheckIntroduction: true)
 }
