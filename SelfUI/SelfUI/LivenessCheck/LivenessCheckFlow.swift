@@ -33,7 +33,7 @@ public struct LivenessCheckFlow: View {
     public var body: some View {
         if showLivenessCheckIntroduction {
             NavigationStack(path: $path) {
-                LivenessIntroductionView(title: "title_liveness_capture".localized, subtitle: "msg_liveness_check_capture_onboarding".localized) {
+                LivenessIntroductionView(title: viewModel.title, subtitle: viewModel.subtitle) {
                     showLivenessCamera = true
                 } onNavigationBack: {
                     presentationMode.wrappedValue.dismiss()
