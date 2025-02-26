@@ -30,17 +30,12 @@ public struct LivenessIntroductionView: View {
     public var body: some View {
         NavigationView(content: {
             BaseProgressView (totalSteps: 5, activeStep: activeStep, content: {
-                ScrollView {
-                    VStack (spacing: 30) {
-                        Text(title)
-                            .modifier(Heading3TextStyle())
-                            .padding(.top, Constants.Heading1PaddingTop)
-                        
-    //                    Spacer(minLength: 30)
-                        Text(subtitle)
-                            .modifier(Body1TextStyle())
-                        Spacer()
-                    }
+                VStack (spacing: 30) {
+                    Text(title)
+                        .modifier(Heading3TextStyle())
+                        .padding(.top, Constants.Heading1PaddingTop)
+                    Text(subtitle)
+                        .modifier(Body1TextStyle())
                     Spacer()
                 }
                 ButtonView(title: "button_start".localized) {

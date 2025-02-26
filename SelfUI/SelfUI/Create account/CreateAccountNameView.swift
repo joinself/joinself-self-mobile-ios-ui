@@ -24,12 +24,10 @@ struct CreateAccountNameView: View {
     public var body: some View {
         BaseProgressView (totalSteps: 5, activeStep: 5){
             ScrollView {
-                VStack (spacing: 20) {
+                VStack (spacing: 30) {
                     Text("create_account_name_title".localized)
-                        .font(.defaultTitle)
-                        .foregroundColor(.textPrimary)
+                        .modifier(Heading3TextStyle())
                         .frame(maxWidth: .infinity, alignment: .bottomLeading)
-                    
                     OutlineLabelTextField(label: "enter_name_label".localized, placeHolder: "enter_name_placeholder".localized,
                                           errorDescription: "enter_name_error".localized,
                                           keyboardType: .default,

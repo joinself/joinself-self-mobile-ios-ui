@@ -20,23 +20,20 @@ struct CreatingAccountView: View {
     
     public var body: some View {
         BaseProgressView (totalSteps: 5, activeStep: 5){
-            ScrollView {
-                VStack (spacing: 20) {
-                    Text("creating_account_title".localized)
-                        .font(.defaultBodyLarge)
-                        .foregroundColor(.textPrimary)
-                    
-                    Text("creating_account_description".localized)
-                        .font(.defaultBody)
-                        .foregroundColor(.textPrimary)
-                    
-                    HStack {
-                        Spacer()
-                        LoadingDotsView()
-                        Spacer()
-                    }
-                }
+            VStack (spacing: 30) {
+                Text("creating_account_title".localized)
+                    .modifier(Heading2TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
+                    .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                
+                Text("creating_account_description".localized)
+                    .modifier(Body1TextStyle())
+                
+                Spacer()
+                LoadingDotsView()
+                Spacer()
             }
+            
             ButtonView(title: "button_turn_on_notifications".localized) {
                 requestNotificationPermission { isGranted in
                     onNext?()

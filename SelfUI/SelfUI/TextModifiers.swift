@@ -29,6 +29,10 @@ struct Heading2TextStyle: ViewModifier {
         content
             .font(.heading2)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 
@@ -40,6 +44,10 @@ struct Heading3TextStyle: ViewModifier {
         content
             .font(.heading3)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 
