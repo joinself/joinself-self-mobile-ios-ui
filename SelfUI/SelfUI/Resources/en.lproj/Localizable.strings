@@ -15,6 +15,7 @@
 "msg_liveness_check" = "It’s not a photo. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 
 "title_liveness_capture" = "Self needs to check liveness and capture an image of your face.";
+"msg_liveness_check_capture_onboarding" = "It’s not a photo and it is never retained outside of your phone without your permission. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 "msg_liveness_capture" = "It’s not a photo and it is never retained outside of your phone without your permission. The Self app just needs to be able to recognise you as it’s owner. On the next screen keep your face in the box and follow the instructions.";
 
 "Verification failed" = "Verification failed.";
@@ -92,6 +93,7 @@
 "button_done" = "Done";
 "button_recover_account" = "Recover Account";
 "button_start" = "Start";
+"button_get_started" = "Get Started";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";

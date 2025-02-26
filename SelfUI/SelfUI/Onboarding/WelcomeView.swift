@@ -27,20 +27,16 @@ struct WelcomeView: View {
                     onRecover?()
                 } label: {
                     Text("button_recover_account".localized)
-                        .font(.defaultBodyMedium)
-                        .foregroundStyle(Color.defaultDark)
+                        .modifier(ButtonTextStyle(color: Color.defaultDark))
                 }
             }
         } content: {
-            VStack(alignment: .leading, spacing: 30) {
+            VStack (alignment: .leading, spacing: 30) {
                 Text("welcome_title".localized)
-                    .font(.defaultLargeTitle)
-                    .foregroundColor(.textPrimary)
-                    .frame(maxWidth: .infinity, alignment: .bottomLeading)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text("welcome_message".localized)
-                    .font(.defaultBody)
-                    .lineSpacing(1.14)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Body1TextStyle())
                 Spacer()
             }
             

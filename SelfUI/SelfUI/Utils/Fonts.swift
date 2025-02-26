@@ -59,9 +59,27 @@ extension Font {
     /// Barlow Bold 21pt
     static let defaultMessageTitle: Font = SelfUISdk.shared.defaultMessageTitle
     static let customLargeTitle: Font = Font.custom("Barlow-Bold", size: 36, relativeTo: .largeTitle)
+    
+    /// Barlow Bold 64pt
     static let defaultLargeTitle: Font = SelfUISdk.shared.defaultLargeTitle
     static let defaultBodyLarge: Font = SelfUISdk.shared.defaultBodyLarge
     static let defaultNormalTitle: Font = Font.custom("Barlow-Bold", size: 25)
+    static let heading1: Font = Font.custom("Barlow-Bold", size: 64, relativeTo: .largeTitle)
+    static let heading2: Font = Font.custom("Barlow-Bold", size: 51, relativeTo: .headline)
+    static let heading3: Font = Font.custom("Barlow-Bold", size: 36, relativeTo: .headline)
+    static let heading4: Font = Font.custom("Barlow-Bold", size: 25, relativeTo: .headline)
+    static let heading5: Font = Font.custom("Barlow-Bold", size: 21, relativeTo: .headline)
+    static let heading6: Font = Font.custom("Barlow-Bold", size: 16, relativeTo: .headline)
+    static let subtitle1: Font = Font.custom("Barlow", size: 17, relativeTo: .title)
+    static let subtitle2: Font = Font.custom("Barlow-Medium", size: 15, relativeTo: .title2)
+    static let button: Font = Font.custom("Barlow-Bold", size: 17)
+    static let body1: Font = Font.custom("SF Pro", size: 17)
+    static let body2: Font = Font.custom("SF Pro", size: 14)
+    static let caption: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption)
+    static let hyperlink1: Font = Font.custom("SF Pro", size: 17, relativeTo: .subheadline)
+    static let hyperlink2: Font = Font.custom("SF Pro", size: 14, relativeTo: .body)
+    static let captionLink3: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption)
+    
     static let defaultSubtTitle: Font = Font.custom("Barlow-Medium", size: 25)
     static let defaultBody: Font = SelfUISdk.shared.defaultBody
     static let defaultBodyBold: Font = Font.custom("Barlow-Bold", size: 17)

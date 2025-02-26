@@ -30,19 +30,14 @@ public struct LivenessIntroductionView: View {
     public var body: some View {
         NavigationView(content: {
             BaseProgressView (totalSteps: 5, activeStep: activeStep, content: {
-                ScrollView {
+                VStack (spacing: 30) {
                     Text(title)
-                        .font(.defaultTitle)
-                        .foregroundColor(.textPrimary)
-                        .frame(maxHeight: .infinity)
-                    
-                    Spacer(minLength: 30)
+                        .modifier(Heading3TextStyle())
+                        .padding(.top, Constants.Heading1PaddingTop)
                     Text(subtitle)
-                        .font(.defaultBody)
-                        .lineSpacing(1.18)
-                        .foregroundColor(.textPrimary)
+                        .modifier(Body1TextStyle())
+                    Spacer()
                 }
-                .padding(0)
                 ButtonView(title: "button_start".localized) {
                     checkCameraPermission { isGranted in
                         if isGranted {
@@ -62,7 +57,9 @@ public struct LivenessIntroductionView: View {
                         secondaryButton: .cancel()
                     )
                 }
-            })
+            }) {
+                self.onNavigationBack()
+            }
         })
         //.navigationBarHidden(true)
     }

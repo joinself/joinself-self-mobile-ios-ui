@@ -20,65 +20,40 @@ struct ThankYouView: View {
     }
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
+        BaseView {
             VStack(alignment: .leading, spacing: 0) {
-                Spacer(minLength: 100)
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("onboarding_thankyou_title".localized)
-                        .font(.defaultLargeTitle)
-                        .foregroundColor(.textPrimary)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                        .padding()
-                    Spacer()
-                }.padding()
+                Text("onboarding_thankyou_title".localized)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Spacer()
-                VStack(spacing: 12) {
-                    VStack (spacing: 0){
-                        Text(self.cal())
-                            .font(.defaultBody)
-                            .foregroundColor(.textPrimary)
-                            .tint(.defaultBlue) // link color
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    HStack (alignment: .center) {
-                        Toggle("", isOn: $isOn)
-                            .toggleStyle(CustomToggleStyle(onColor: .toggleOn, offColor: .toggleOff, thumbColor: .white))
-                            .frame(maxWidth: 40)
-                            .padding()
-                        Text("i_agree".localized)
-                            .globalBodyTextStyle()
-                            .onTapGesture {
-                                isOn.toggle()
-                            }
-                    }
-                    
-                    if isOn {
-                        ButtonView(title: "button_joinself".localized, backgroundColor: self.buttonColor) {
-                            onGetStarted?()
-                        }
-                    } else {
-                        ButtonView(title: "button_joinself".localized, backgroundColor: .defaultGray) {
-                            onGetStarted?()
-                        }
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
             }
-            .padding()
-            .ignoresSafeArea(.all)
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image("ic_back_dark", bundle: mainBundle)
+            
+            VStack (spacing: 0){
+                Text(self.cal())
+                    .modifier(Body1TextStyle())
+                    .tint(.defaultBlue) // link color
+                    .multilineTextAlignment(.center)
+            }
+            
+            HStack (alignment: .center) {
+                Toggle("", isOn: $isOn)
+                    .toggleStyle(CustomToggleStyle(onColor: .toggleOn, offColor: .toggleOff, thumbColor: .white))
+                    .frame(maxWidth: 40)
+                    .padding()
+                Text("i_agree".localized)
+                    .globalBodyTextStyle()
+                    .onTapGesture {
+                        isOn.toggle()
                     }
+            }
+            
+            if isOn {
+                ButtonView(title: "button_joinself".localized, backgroundColor: self.buttonColor) {
+                    onGetStarted?()
+                }
+            } else {
+                ButtonView(title: "button_joinself".localized, backgroundColor: .defaultGray) {
+                    onGetStarted?()
                 }
             }
         }
