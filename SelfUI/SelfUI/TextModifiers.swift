@@ -32,6 +32,7 @@ struct Heading2TextStyle: ViewModifier {
     }
 }
 
+/// heading text 36pt bold
 struct Heading3TextStyle: ViewModifier {
     var color: Color = .textPrimary
     

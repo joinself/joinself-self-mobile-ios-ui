@@ -19,7 +19,7 @@ public struct DevOnboardingFlow: View {
     
     public var body: some View {
         NavigationStack(path: $path) {
-            WelcomeView(buttonTitle: "I’m going to develop with Self".localized, buttonColor: .defaultGreen, onGetStarted:  {
+            WelcomeView(buttonTitle: "button_get_started".localized, buttonColor: .defaultGreen, onGetStarted:  {
                 path = [0]
             }, onRecover: {
                 onRecover?()
@@ -29,7 +29,8 @@ public struct DevOnboardingFlow: View {
                 case 0:
                     ThankYouView (buttonColor: .defaultGreen) {
                         print("joinself now.")
-                        path.append(1)
+//                        path.append(1)
+                        onFinish?(true)
                     }
                     
                 case 1:
@@ -46,21 +47,6 @@ public struct DevOnboardingFlow: View {
                     
                 default:
                     Text("0")
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        Text("button_recover_account".localized)
-                            .font(.defaultBodyMedium)
-                          .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.54))
-                    }
-
-                    //Spacer()
                 }
             }
         }

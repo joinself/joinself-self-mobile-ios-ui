@@ -30,8 +30,7 @@ struct ThankYouView: View {
             
             VStack (spacing: 0){
                 Text(self.cal())
-                    .font(.defaultBody)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Body1TextStyle())
                     .tint(.defaultBlue) // link color
                     .multilineTextAlignment(.center)
             }

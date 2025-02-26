@@ -15,14 +15,16 @@ public class LivenessCheckViewModel: ObservableObject {
     @Published public var isHighlighted: Bool
     @Published public var attemptNumber: Int
     @Published var tipImageName: String
+    @Published var showVerifyingView: Bool
     @Published public var state: Challenge = .None
     @Published public var cameraManager = CameraManager(cameraPosition: .front, captureMode: .captureLiveImage)
 
-    public init(text: String, tipImageName: String, isHighlighted: Bool, attemptNumber: Int = -1) {
+    public init(text: String, tipImageName: String, isHighlighted: Bool, attemptNumber: Int = -1, isVerified: Bool = false) {
         self.text = text
         self.isHighlighted = isHighlighted
         self.tipImageName = tipImageName
         self.attemptNumber = attemptNumber
+        self.showVerifyingView = isVerified
     }
     
     public func update() {

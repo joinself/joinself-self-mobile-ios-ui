@@ -18,7 +18,7 @@ public struct LivenessCheckFlow: View {
     @State private var path: [LivenessCheckDestinations] = [LivenessCheckDestinations]()
     
     @State private var showLivenessCamera: Bool = false
-    @State private var showCheckingView: Bool = false
+//    @State private var showCheckingView: Bool = false
     @State private var showFailedView: Bool = false
     let showLivenessCheckIntroduction: Bool
     
@@ -33,10 +33,10 @@ public struct LivenessCheckFlow: View {
     public var body: some View {
         if showLivenessCheckIntroduction {
             NavigationStack(path: $path) {
-                LivenessIntroductionView {
+                LivenessIntroductionView(title: "title_liveness_capture".localized, subtitle: "msg_liveness_check_capture_onboarding".localized) {
                     showLivenessCamera = true
                 } onNavigationBack: {
-                    
+                    presentationMode.wrappedValue.dismiss()
                 }
                 .navigationDestination(for: LivenessCheckDestinations.self) { selection in
                     switch selection {
@@ -58,14 +58,16 @@ public struct LivenessCheckFlow: View {
                     print("Try to hide camera view")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         showLivenessCamera = false
-                        showCheckingView = true
+//                        showCheckingView = true
+                        viewModel.showVerifyingView = true
                     })
                 }
                 .onChange(of: viewModel.attemptNumber) { newValue in
-                    showCheckingView = false
+//                    showCheckingView = false
+                    viewModel.showVerifyingView = false
                     showFailedView = true
                 }
-                .fullScreenCover(isPresented: $showCheckingView) {
+                .fullScreenCover(isPresented: $viewModel.showVerifyingView) {
                     
                 } content: {
                     LoadingView(message: "checking_your_image".localized)
@@ -91,14 +93,16 @@ public struct LivenessCheckFlow: View {
                     print("Try to hide camera view")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                         showLivenessCamera = false
-                        showCheckingView = true
+//                        showCheckingView = true
+                        viewModel.showVerifyingView = true
                     })
                 }
                 .onChange(of: viewModel.attemptNumber) { newValue in
-                    showCheckingView = false
+//                    showCheckingView = false
+                    viewModel.showVerifyingView = false
                     showFailedView = true
                 }
-                .fullScreenCover(isPresented: $showCheckingView) {
+                .fullScreenCover(isPresented: $viewModel.showVerifyingView) {
                     
                 } content: {
                     LoadingView(message: "checking_your_image".localized)

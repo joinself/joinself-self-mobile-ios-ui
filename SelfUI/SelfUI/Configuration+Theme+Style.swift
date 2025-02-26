@@ -19,10 +19,7 @@ struct GlobalTitleTextStyle: ViewModifier {
 struct GlobalBodyTextStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(Font.custom("SF Pro", size: 17))
-            .multilineTextAlignment(.center)
-            .foregroundColor(.black)
-//            .padding()
+            .modifier(Body1TextStyle())
     }
 }
 
