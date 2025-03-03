@@ -151,7 +151,7 @@
 
 // MARK: - Create account
 "create_account_name_title" = "What do you want to be called?";
-"enter_name_label" = "Enter the name people normally know you by";
+"enter_name_label" = "Hint: Enter the name people normally know you by";
 "enter_name_placeholder" = "Your name";
 "enter_name_error" = "This field cannot be empty.";
 "enter_name_valid" = "Please enter a valid name";

@@ -8,10 +8,14 @@
 import SwiftUI
 
 /// Heading 1 - 64pt
-struct Heading1TextStyle: ViewModifier {
+public struct Heading1TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading1)
             .foregroundColor(color)
@@ -22,10 +26,14 @@ struct Heading1TextStyle: ViewModifier {
     }
 }
 
-struct Heading2TextStyle: ViewModifier {
+public struct Heading2TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading2)
             .foregroundColor(color)
@@ -37,10 +45,14 @@ struct Heading2TextStyle: ViewModifier {
 }
 
 /// heading text 36pt bold
-struct Heading3TextStyle: ViewModifier {
+public struct Heading3TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading3)
             .foregroundColor(color)
@@ -51,70 +63,98 @@ struct Heading3TextStyle: ViewModifier {
     }
 }
 
-struct Heading4TextStyle: ViewModifier {
+public struct Heading4TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading4)
             .foregroundColor(color)
     }
 }
 
-struct Heading5TextStyle: ViewModifier {
+public struct Heading5TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading5)
             .foregroundColor(color)
     }
 }
 
-struct Heading6TextStyle: ViewModifier {
+public struct Heading6TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.heading6)
             .foregroundColor(color)
     }
 }
 
-struct Subtitle1TextStyle: ViewModifier {
+public struct Subtitle1TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.subtitle1)
             .foregroundColor(color)
     }
 }
 
-struct Subtitle2TextStyle: ViewModifier {
+public struct Subtitle2TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.subtitle2)
             .foregroundColor(color)
     }
 }
 
-struct ButtonTextStyle: ViewModifier {
+public struct ButtonTextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.subtitle2)
             .foregroundColor(color)
     }
 }
 
-struct Body1TextStyle: ViewModifier {
+public struct Body1TextStyle: ViewModifier {
     var color: Color = .textPrimary
+
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .font(.body1)
             .lineSpacing(1.14)
@@ -122,30 +162,42 @@ struct Body1TextStyle: ViewModifier {
     }
 }
 
-struct Body2TextStyle: ViewModifier {
+public struct Body2TextStyle: ViewModifier {
     var color: Color = .textPrimary
+
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .font(.body2)
             .foregroundColor(color)
     }
 }
 
-struct CaptionTextStyle: ViewModifier {
+public struct CaptionTextStyle: ViewModifier {
     var color: Color = .textPrimary
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
-            .font(.body2)
+            .font(.caption)
             .foregroundColor(color)
     }
 }
 
-struct Hyperlink1TextStyle: ViewModifier {
+public struct Hyperlink1TextStyle: ViewModifier {
     var color: Color = .defaultBlue
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.hyperlink1)
             .underline(true, pattern: .solid)
@@ -153,21 +205,29 @@ struct Hyperlink1TextStyle: ViewModifier {
     }
 }
 
-struct Hyperlink2TextStyle: ViewModifier {
+public struct Hyperlink2TextStyle: ViewModifier {
     var color: Color = .defaultBlue
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
-            .font(.hyperlink1)
+            .font(.hyperlink2)
             .underline(true, pattern: .solid)
             .foregroundColor(color)
     }
 }
 
-struct CaptionLink3TextStyle: ViewModifier {
+public struct CaptionLink3TextStyle: ViewModifier {
     var color: Color = .defaultBlue
     
-    func body(content: Content) -> some View {
+    public init(color: Color = .textPrimary) {
+        self.color = color
+    }
+    
+    public func body(content: Content) -> some View {
         content
             .font(.captionLink3)
             .underline(true, pattern: .solid)

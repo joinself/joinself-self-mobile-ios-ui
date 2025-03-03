@@ -78,7 +78,7 @@ extension Font {
     static let caption: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption)
     static let hyperlink1: Font = Font.custom("SF Pro", size: 17, relativeTo: .subheadline)
     static let hyperlink2: Font = Font.custom("SF Pro", size: 14, relativeTo: .body)
-    static let captionLink3: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption)
+    static let captionLink3: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption).weight(.medium)
     
     static let defaultSubtTitle: Font = Font.custom("Barlow-Medium", size: 25)
     static let defaultBody: Font = SelfUISdk.shared.defaultBody
