@@ -31,12 +31,18 @@ extension View {
 
 
 // MARK: Toggle
-struct CustomToggleStyle: ToggleStyle {
+public struct CustomToggleStyle: ToggleStyle {
     var onColor: Color
     var offColor: Color
     var thumbColor: Color
     
-    func makeBody(configuration: Configuration) -> some View {
+    public init(onColor: Color, offColor: Color, thumbColor: Color) {
+        self.onColor = onColor
+        self.offColor = offColor
+        self.thumbColor = thumbColor
+    }
+    
+    public func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
             Spacer()
