@@ -83,10 +83,28 @@ struct ImageToggleStyle: ToggleStyle {
                         .fill(configuration.isOn ? onColor : offColor)
                         .frame(width: 50, height: 30)
                         .overlay(
-                            thumbImageOn
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .offset(x: configuration.isOn ? 10 : -10)
+                            Rectangle()
+                              .foregroundColor(.clear)
+                              .frame(width: 30, height: 30)
+                              .background(
+                                thumbImageOn
+                                  .resizable()
+                                  .aspectRatio(contentMode: .fill)
+                                  .frame(width: 30, height: 30)
+                                  .clipped()
+                              )
+                              .cornerRadius(30)
+                              .shadow(color: .black.opacity(0.2), radius: 1.5, x: -1, y: 2)
+                              .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                  .inset(by: 0.5)
+                                  .stroke(Color(red: 0.88, green: 0.88, blue: 0.88), lineWidth: 1)
+                              )
+                              .offset(x: configuration.isOn ? 10 : -10)
+//                            thumbImageOn
+//                                .resizable()
+//                                .frame(width: 30, height: 30)
+//                                .offset(x: configuration.isOn ? 10 : -10)
     //                        Circle()
     //                            .fill(thumbColor)
     //                            .padding(3)
@@ -98,10 +116,25 @@ struct ImageToggleStyle: ToggleStyle {
                         .fill(configuration.isOn ? onColor : offColor)
                         .frame(width: 50, height: 30)
                         .overlay(
-                            thumbImageOff
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .offset(x: configuration.isOn ? 10 : -10)
+                            Rectangle()
+                              .foregroundColor(.clear)
+                              .frame(width: 30, height: 30)
+                              .background(
+                                thumbImageOff
+                                  .resizable()
+                                  .aspectRatio(contentMode: .fill)
+                                  .frame(width: 30, height: 30)
+                                  .clipped()
+                              )
+                              .cornerRadius(30)
+                              .shadow(color: .black.opacity(0.2), radius: 1.5, x: -1, y: 2)
+                              .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                  .inset(by: 0.5)
+                                  .stroke(Color(red: 0.88, green: 0.88, blue: 0.88), lineWidth: 1)
+                              )
+                              .offset(x: configuration.isOn ? 10 : -10)
+                            
     //                        Circle()
     //                            .fill(thumbColor)
     //                            .padding(3)
@@ -128,4 +161,6 @@ struct ImageToggleStyle: ToggleStyle {
         }
         .toggleStyle(ImageToggleStyle(onColor: .defaultGray, offColor: .defaultGray, thumbImageOn: Image("ic_self_logo", bundle: mainBundle), thumbImageOff: Image("ic_logo_quaternary", bundle: mainBundle)))
     }
+    .background(.secondary)
+    
 }
