@@ -187,6 +187,10 @@ public struct CaptionTextStyle: ViewModifier {
         content
             .font(.caption)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 

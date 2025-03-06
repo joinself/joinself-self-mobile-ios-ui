@@ -11,15 +11,15 @@ public struct AvatarView: View {
     var imageData: Data? = nil
     var imageURL: URL? = nil
     var imageName: String
-    var userName: String
+    var displayName: String?
     private var image: UIImage?
-    private var avatarSize: CGFloat
+    @Binding var icon: Image?
     
-    public init(imageData: Data? = nil, imageName: String = "", userName: String = "", imageURL: URL? = nil, avatarSize: CGFloat = 48) {
+    public init(icon: Binding<Image?> = .constant(nil), imageData: Data? = nil, imageName: String = "", displayName: String? = nil, imageURL: URL? = nil) {
         self.imageData = imageData
         self.imageName = imageName
-        self.userName = userName
-        self.avatarSize = avatarSize
+        self.displayName = displayName
+        self._icon = icon
         
         print("AvatarImageURL: \(imageURL)")
         if let imageURL = imageURL {
@@ -30,7 +30,15 @@ public struct AvatarView: View {
     }
     
     public var body: some View {
-        ZStack {
+        BaseAvatarView {
+            if let icon = icon {
+                icon
+            } else if let firstLetter = displayName?.first {
+                Text("\(firstLetter)")
+                    .modifier(Body1TextStyle(color: .colorTextSecondary))
+            }
+        }
+        /*ZStack {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
@@ -61,7 +69,7 @@ public struct AvatarView: View {
                     .foregroundColor(.white)
                     .shadow(radius: 10)
             }   
-        }
+        }*/
     }
 }
 
@@ -69,9 +77,10 @@ public struct AvatarView: View {
     ZStack {
         Color.gray.ignoresSafeArea()
         VStack {
-            AvatarView(imageName: "", userName: "")
-            AvatarView(imageName: "", userName: "ACME")
-            AvatarView(imageName: "", userName: "ACME", imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"), avatarSize: 200)
+            AvatarView(icon: .constant(Image("ic_self_logo", bundle: mainBundle)))
+                .frame(width: Constants.AvatarSizeSmall)
+            AvatarView(displayName: "User")
+                .frame(width: Constants.AvatarSizeMedium)
         }
         
     }
