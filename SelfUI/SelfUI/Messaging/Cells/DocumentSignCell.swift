@@ -23,14 +23,13 @@ struct DocumentSignContentView: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 0) {
             HStack {
                 Image("ic_document_sign", bundle: mainBundle)
-                VStack {
+                VStack (alignment: .leading) {
                     Text(messageDTO.attachments.first?.name ?? messageDTO.text)
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody)
-                        .foregroundStyle(Color.textPrimary)
+                        .modifier(Body1TextStyle())
+
                     StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
                 }
                 Spacer()
@@ -85,14 +84,12 @@ struct DocumentSignAcceptedContentView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading, spacing: 0) {
             HStack {
                 Image("ic_document_signed", bundle: mainBundle)
                 VStack (alignment: .leading) {
                     Text(messageDTO.text)
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody)
-                        .foregroundStyle(Color.textPrimary)
+                        .modifier(Body1TextStyle())
                     HStack {
                         StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
                         StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultGreen, backgroundColor: .white)
@@ -101,6 +98,7 @@ struct DocumentSignAcceptedContentView: View {
                 Spacer()
             }
         }
+        .frame(minWidth: Constants.SystemCellMinWidth)
     }
 }
 
@@ -118,23 +116,24 @@ struct DocumentSignRejectedContentView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading, spacing: 0) {
             HStack {
                 Image("ic_document_sign", bundle: mainBundle)
                     .tint(.defaultGreen)
                 VStack (alignment: .leading) {
                     Text(messageDTO.text)
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody)
-                        .foregroundStyle(Color.textPrimary)
+                        .modifier(Body1TextStyle())
                     
                     HStack {
                         StatusLabel(label: "label_rejected".localized, backgroundColor: .defaultError)
                         StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultError, backgroundColor: .white)
                     }
                 }
+                
+                Spacer()
             }
         }
+        .frame(minWidth: Constants.SystemCellMinWidth)
     }
 }
 
@@ -145,11 +144,11 @@ struct DocumentSignCell: View {
     private var actionReject: (() -> Void)?
     
     init(messageDTO: MessageDTO,
-         spaceLength: CGFloat = 0,
+         spaceLength: CGFloat = 20,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
-        self.spaceLength = 0
+        self.spaceLength = spaceLength
         self.actionAccept = actionAccept
         self.actionReject = actionReject
     }
@@ -158,9 +157,9 @@ struct DocumentSignCell: View {
         BaseCell(messageDTO: messageDTO, spaceLength: spaceLength) {
             switch messageDTO.status {
             case .accepted:
-                DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil)
             case .rejected:
-                DocumentSignRejectedContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignRejectedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil)
             default:
                 DocumentSignContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             }
@@ -169,10 +168,15 @@ struct DocumentSignCell: View {
 }
 
 #Preview {
-    VStack {
-        DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .pending, timestamp: "now"))
-        DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now"))
-        DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now"))
-    }.padding()
+    /**
+     DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .pending, timestamp: "now"))
+     DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now"))
+     DocumentSignCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now"))
+     */
+    ChatView(conversationName: .constant("User"), imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"), chatObservableObject: ChatObservableObject(messages: [
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .pending, timestamp: "now"),
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .accepted, timestamp: "now"),
+        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .rejected, timestamp: "now"),
+    ]))
     
 }

@@ -12,7 +12,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
     let content: Content
     private let minSpaceLength: CGFloat
 
-    init(messageDTO: MessageDTO, spaceLength: CGFloat = 70, @ViewBuilder content: () -> Content) {
+    init(messageDTO: MessageDTO, spaceLength: CGFloat = Constants.SpaceLength, @ViewBuilder content: () -> Content) {
         self.messageDTO = messageDTO
         self.content = content()
         self.minSpaceLength = spaceLength
@@ -33,7 +33,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
                           .cornerRadius(8)
                         
                         Text(LocalizedStringKey(reference.text))
-                            .foregroundColor(.textPrimary)
+                            .modifier(Body1TextStyle())
                         Spacer()
                     }
                     .background(Color.white)

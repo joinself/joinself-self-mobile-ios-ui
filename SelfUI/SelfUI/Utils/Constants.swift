@@ -26,4 +26,7 @@ struct Constants {
     static let EdgeInsetsDefault: EdgeInsets = EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24)
 
     static let PaddingDefault: EdgeInsets = EdgeInsets(top: 15, leading: 15, bottom: 15, trailing: 15)
+    
+    static let SpaceLength: CGFloat = 70
+    static let SystemCellMinWidth: CGFloat = 250
 }
