@@ -13,7 +13,14 @@ struct Constants {
     static let Corner4: CGFloat = 4
     static let ButtonCornerRadius: CGFloat = 40
     static let AvatarWidth: CGFloat = 100
+    
+    /// Size 40. Use for message cells
+    static let AvatarSizeSmall: CGFloat = 40
+    
+    static let AvatarSizeMedium: CGFloat = 80
+    static let AvatarSizeLarge: CGFloat = 100
     static let IconSize: CGFloat = 32
+    static let NavIconSize: CGFloat = 30
     static let PadLeading: CGFloat = 12
     static let PadTop: CGFloat = 12
     static let Heading1PaddingTop: CGFloat = 100

@@ -32,10 +32,11 @@ public struct NavigationTitleView: View {
                 Spacer()
             } else {
                 if let imageURL = imageURL {
-                    AvatarView(imageURL: imageURL, avatarSize: 30)
+                    AvatarView(imageURL: imageURL)
+                        .frame(width: Constants.NavIconSize)
                 } else {
-                    Image("ic_self_logo", bundle: mainBundle)
-                        .frame(width: 30, height: 30)
+                    AvatarView(icon: .constant(Image("ic_self_logo", bundle: mainBundle)))
+                        .frame(width: Constants.NavIconSize)
                 }
                 Text(title)
                     .foregroundStyle(Color.textPrimary)

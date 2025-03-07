@@ -19,8 +19,8 @@ public struct MessagingView: View {
             VStack {
 //                NavigationTitleView(title: title)
                 List {
-                    MessageListCell()
-                        .listRowInsets(.none)
+//                    MessageListCell()
+//                        .listRowInsets(.none)
                 }
                 .listStyle(.plain)
             }

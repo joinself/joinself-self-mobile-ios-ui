@@ -9,6 +9,31 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    // MARK:  Brand colors
+    public static let colorPrimary: Color = Color(hex: "FB2191")
+    public static let colorSecondary: Color = Color(hex: "00C887")
+    public static let colorTertiary: Color = Color(hex: "71B4FF")
+    public static let colorQuaternary: Color = Color(hex: "FFC048")
+    public static let colorQuinary: Color = Color(hex: "919397")
+    
+    // MARK: Inteface
+    public static let backgroundPrimary: Color = Color(hex: "FFFFFF")
+    public static let backgroundSecondary: Color = Color(hex: "000000")
+    public static let colorTextPrimary: Color = Color(hex: "0E1C42")
+    public static let colorTextSecondary: Color = Color(hex: "FFFFFF")
+    
+    
+    // MARK: Greyscale
+    public static let greyScaleDark: Color = Color(hex: "3E3E3E")
+    public static let greyScaleMid: Color = Color(hex: "8A8A8A")
+    public static let greyScaleLight: Color = Color(hex: "E1E1E1")
+    
+    // MARK: Semantic
+    public static let colorError: Color = Color(hex: "FB2191")
+    public static let colorSuccess: Color = Color(hex: "00C887")
+    public static let colorInfo: Color = Color(hex: "71B4FF")
+    public static let colorWarning: Color = Color(hex: "FFC048")
+    
     public static let defaultGreen: Color = Color(red: 0, green: 0.64, blue: 0.43)
     static let defaultPink: Color = Color(red: 0.98, green: 0.13, blue: 0.57)
     static let defaultError: Color = .defaultPink
@@ -30,7 +55,6 @@ extension Color {
     static let textTimestamp: Color = Color(red: 0.65, green: 0.67, blue: 0.71)
     
     // MARK: Background
-    static let backgroundPrimary: Color = .white
     
     static let defaultGrayscale: Color = Color(red: 0.24, green: 0.24, blue: 0.24)
     
@@ -54,4 +78,18 @@ extension Color {
 
 extension CGFloat {
     static let defaultCornerRadius: CGFloat = 10
+}
+
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        var hexNumber: UInt64 = 0
+        let _ = scanner.scanHexInt64(&hexNumber)
+        
+        let r = Double((hexNumber & 0xff0000) >> 16) / 255
+        let g = Double((hexNumber & 0x00ff00) >> 8) / 255
+        let b = Double(hexNumber & 0x0000ff) / 255
+        
+        self.init(red: r, green: g, blue: b)
+    }
 }
