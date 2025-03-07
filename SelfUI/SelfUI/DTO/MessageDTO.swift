@@ -100,3 +100,45 @@ public class MessageDTO: Identifiable, Equatable {
         self.reference = reference
     }
 }
+
+public enum ConnectionType: String, CaseIterable {
+    case selfApp
+    case organizationApp
+    case individual
+}
+
+
+public class ChatHistory: Identifiable, Equatable {
+    public let id: String
+    let title: String
+    let subtitle: String
+    let badge: String
+    let timestamp: String
+    let connectionType: ConnectionType
+    let appName: String?
+    let icon: Image?
+    let imageURL: URL?
+    public init(id: String,
+                title: String,
+                subtitle: String,
+                timestamp: String = "",
+                badge: String,
+                icon: Image? = nil,
+                imageURL: URL? = nil,
+                appName: String? = nil,
+                connectionType: ConnectionType = .selfApp) {
+        self.id = id
+        self.title = title
+        self.subtitle = subtitle
+        self.badge = badge
+        self.timestamp = timestamp
+        self.icon = icon
+        self.imageURL = imageURL
+        self.appName = appName
+        self.connectionType = connectionType
+    }
+    
+    public static func == (lhs: ChatHistory, rhs: ChatHistory) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
