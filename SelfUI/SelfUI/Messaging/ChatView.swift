@@ -53,7 +53,7 @@ public struct ChatView: View {
         ZStack {
             Color.white.ignoresSafeArea()
             VStack {
-                NavigationTitleView(title: .constant(conversationName), switchable: false, imageURL: imageURL)
+//                NavigationTitleView(title: .constant(conversationName), switchable: false, imageURL: imageURL)
                 if chatObservableObject.messages.isEmpty {
                     Spacer()// Empty messages
                 } else {
