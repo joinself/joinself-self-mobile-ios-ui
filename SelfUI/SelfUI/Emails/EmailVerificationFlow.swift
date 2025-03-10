@@ -19,7 +19,7 @@ public struct EmailVerificationFlow: View {
     
     
     public init(onFinish: ( (_ email: String, _ inView: EmailVerificationFlow) -> Void)? = nil, onEnteredCode: ((String, EmailVerificationFlow) -> Void)? = nil,  onResendCode: ((EmailVerificationFlow) -> Void)?
- = nil) {
+                = nil) {
         self.onFinish = onFinish
         self.onEnteredCode = onEnteredCode
         self.onResendCode = onResendCode
@@ -27,8 +27,8 @@ public struct EmailVerificationFlow: View {
     
     public var body: some View {
         NavigationStack(path: $path) {
-            EmailIntroView {
-                path = [0]
+            EnterEmailView { email in
+                onFinish?(email, self)
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:

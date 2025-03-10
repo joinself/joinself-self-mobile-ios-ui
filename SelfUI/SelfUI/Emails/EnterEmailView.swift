@@ -21,28 +21,13 @@ struct EnterEmailView: View {
     @State private var editFieldState: OutlineTextFieldState = .initial
     
     public var body: some View {
-        VStack {
-            ScrollViewReader { proxy in
+        ScrollViewReader { proxy in
+            BaseProgressView (totalSteps: 6, activeStep: 1, content: {
                 ScrollView {
-                    VStack {
-                        // stepped progress view
-                        CustomProgressView(steps: [
-                            Step(title: "1", state: .done),
-                            Step(title: "2", state: .done),
-                            Step(title: "3", state: .done),
-                            Step(title: "4", state: .active),
-                            Step(title: "5", state: .inactive)
-                        ])
-                        
-                        Spacer(minLength: 50)
-                        
+                    VStack (alignment: .leading, spacing: 30) {
                         Text("enter_email_title".localized)
-                            .font(.defaultTitle)
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        
-                        Spacer(minLength: 30)
-                        
+                            .modifier(Heading3TextStyle())
+                            
                         OutlineLabelTextField(label: "email_address".localized, placeHolder: "email_address_placeholder".localized,
                                               errorDescription: "email_address_invalid_message".localized,
                                               keyboardType: .emailAddress,
@@ -59,10 +44,7 @@ struct EnterEmailView: View {
                         }
                     }.id(1)
                 }
-            }
-            
-            Spacer()
-            VStack(spacing: 12) {
+                
                 if isValidEmail {
                     ButtonView(title: "button_send_code".localized) {
                         onFinish?(emailAddress)
@@ -73,25 +55,24 @@ struct EnterEmailView: View {
                     }
                 }
                 
-                
-                BrandView(isDarked: true)
-            }
-        }
-        .padding()
-        .scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    HStack {
-                        Image("ic_back_dark", bundle: mainBundle)
-                    }
-                }
-            }
-        }
+            })
+            
+        }.scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
+//        .padding()
+//        .scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
+//        .background(.white)
+//        .navigationBarBackButtonHidden(true)
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button(action: {
+//                    presentationMode.wrappedValue.dismiss()
+//                }) {
+//                    HStack {
+//                        Image("ic_back_dark", bundle: mainBundle)
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

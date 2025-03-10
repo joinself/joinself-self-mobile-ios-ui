@@ -55,7 +55,7 @@ struct CustomAlertView: View {
                 print("Clicked.")
                 completion?()
             }, label: {
-                Text("Or Proceed to Signup")
+                Text("Cancel".localized)
                   .font(Font.custom("SF Pro", size: 13))
                   .multilineTextAlignment(.center)
                   .foregroundColor(Color(red: 0.17, green: 0.49, blue: 0.96))
