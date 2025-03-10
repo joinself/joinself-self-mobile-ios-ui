@@ -84,19 +84,34 @@ public struct UserDetailView: View {
                 
                 HStack(alignment: .center, spacing: 11) {
                     if inputImage != nil {
-                        Image(uiImage: inputImage!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .foregroundColor(.defaultBlue)
-                            .clipShape(Circle())
-                            .frame(width: Constants.AvatarWidth, height: Constants.AvatarWidth)
+                        ZStack {
+                            Image(uiImage: inputImage!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .foregroundColor(.defaultBlue)
+                                .clipShape(Circle())
+                                .frame(width: Constants.AvatarWidth, height: Constants.AvatarWidth)
+                                .opacity(isEditing ? 0.3 : 1)
+                            if isEditing {
+                                Image("add_a_photo_black_24dp 1", bundle: mainBundle)
+                            }
+                        }
+                        
                     } else {
-                        Image(systemName: "person.crop.rectangle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .foregroundColor(.defaultBlue)
-                            .clipShape(Circle())
-                            .frame(width: Constants.AvatarWidth, height: Constants.AvatarWidth)
+                        ZStack {
+                            Image(systemName: "person.crop.rectangle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .foregroundColor(.defaultBlue)
+                                .clipShape(Circle())
+                                .frame(width: Constants.AvatarWidth, height: Constants.AvatarWidth)
+                                .opacity(isEditing ? 0.3 : 1)
+                            
+                            if isEditing {
+                                Image("add_a_photo_black_24dp 1", bundle: mainBundle)
+                            }
+                        }
+                        
                     }
                     VStack (alignment: .leading) {
                         if !isEditing {
@@ -126,10 +141,7 @@ public struct UserDetailView: View {
                             
                         } else {
                             Text("message_edit_profile".localized)
-                                .font(.navigationTitle)
-                                .foregroundStyle(Color.textPrimary)
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .modifier(Heading4TextStyle())
                         }
                         
                     }

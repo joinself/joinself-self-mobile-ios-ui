@@ -63,6 +63,7 @@ public struct Heading3TextStyle: ViewModifier {
     }
 }
 
+// 25pt bold
 public struct Heading4TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
@@ -74,9 +75,14 @@ public struct Heading4TextStyle: ViewModifier {
         content
             .font(.heading4)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 
+/// 21 pt Bold
 public struct Heading5TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
@@ -88,6 +94,10 @@ public struct Heading5TextStyle: ViewModifier {
         content
             .font(.heading5)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 
