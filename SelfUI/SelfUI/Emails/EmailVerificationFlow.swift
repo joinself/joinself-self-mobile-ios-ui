@@ -12,7 +12,7 @@ public struct EmailVerificationFlow: View {
     var onFinish: ((String, EmailVerificationFlow) -> Void)?
     var onEnteredCode: ((String, EmailVerificationFlow) -> Void)?
     var onResendCode: ((EmailVerificationFlow) -> Void)?
-    var email: String = ""
+    @State private var email: String?
     var code: String = ""
     @State private var showAlert = false
     @Environment(\.presentationMode) var presentationMode
@@ -28,14 +28,10 @@ public struct EmailVerificationFlow: View {
     public var body: some View {
         NavigationStack(path: $path) {
             EnterEmailView { email in
-                onFinish?(email, self)
+                self.email = email
+                path = [1]
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
-                case 0:
-                    EnterEmailView { email in
-                        print("Email: \(email)")
-                        onFinish?(email, self)
-                    }
                     
                 case 1:
                     EnterEmailCodeView(showAlert: $showAlert, onCode: { code in
@@ -43,6 +39,11 @@ public struct EmailVerificationFlow: View {
                     }) {
                         // resend code
                         onResendCode?(self)
+                    }
+                    .onAppear {
+                        if let email = email {
+                            onFinish?(email, self)
+                        }
                     }
                     
                 case 2:

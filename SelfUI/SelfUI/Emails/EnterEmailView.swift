@@ -26,8 +26,9 @@ struct EnterEmailView: View {
                 ScrollView {
                     VStack (alignment: .leading, spacing: 30) {
                         Text("enter_email_title".localized)
+                            .padding(.top, 50)
                             .modifier(Heading3TextStyle())
-                            
+                        
                         OutlineLabelTextField(label: "email_address".localized, placeHolder: "email_address_placeholder".localized,
                                               errorDescription: "email_address_invalid_message".localized,
                                               keyboardType: .emailAddress,
@@ -58,21 +59,6 @@ struct EnterEmailView: View {
             })
             
         }.scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
-//        .padding()
-//        .scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
-//        .background(.white)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button(action: {
-//                    presentationMode.wrappedValue.dismiss()
-//                }) {
-//                    HStack {
-//                        Image("ic_back_dark", bundle: mainBundle)
-//                    }
-//                }
-//            }
-//        }
     }
 }
 
