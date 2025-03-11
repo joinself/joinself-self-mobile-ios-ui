@@ -9,10 +9,17 @@ import SwiftUI
 
 public struct DevOnboardingFlow: View {
     @State private var path = [Int]()
-    var onFinish: ((Bool) -> Void)?
-    var onRecover: (() -> Void)?
+    private let onStart: (() -> Void)?
+    private let onFinish: (() -> Void)?
+    private let onRecover: (() -> Void)?
+    private let onEnterName: ((String) -> Void)?
     
-    public init(onFinish: ( (Bool) -> Void)? = nil, onRecover: (() -> Void)? = nil) {
+    public init(onStart: ( () -> Void)? = nil,
+                onEnterName: ( (String) -> Void)? = nil,
+                onFinish: (() -> Void)? = nil,
+                onRecover: (() -> Void)? = nil) {
+        self.onEnterName = onEnterName
+        self.onStart = onStart
         self.onFinish = onFinish
         self.onRecover = onRecover
     }
@@ -28,22 +35,23 @@ public struct DevOnboardingFlow: View {
                 switch selection {
                 case 0:
                     ThankYouView (buttonColor: .defaultGreen) {
-                        print("joinself now.")
-//                        path.append(1)
-                        onFinish?(true)
+                        onStart?()
+                        path = [1]
                     }
                     
                 case 1:
-                    OnboardingSurveyView(buttonColor: .defaultOrange, onNext: {
-                        print("Next")
-                        onFinish?(true)
-                    }) {
-                        print("Back to root: \(path)")
-                        path = []
+                    CreateAccountFlow { name in
+                        onEnterName?(name)
+                    } onFinish: { success in
+                        onFinish?()
                     }
                     
-                case 2: // liveness
-                    LivenessFlow()
+                case 2:
+                    OnboardingSurveyView(buttonColor: .defaultOrange, onNext: {
+                        onStart?()
+                    }) {
+                        path = []
+                    }
                     
                 default:
                     Text("0")

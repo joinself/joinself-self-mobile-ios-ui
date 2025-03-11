@@ -22,7 +22,7 @@ struct CreateAccountNameView: View {
     var onEnteredName: ((String) -> Void)?
     
     public var body: some View {
-        BaseProgressView (totalSteps: 5, activeStep: 5){
+        BaseProgressView (enableBackNavigation: false, totalSteps: 5, activeStep: 5){
             ScrollView {
                 VStack (spacing: 30) {
                     Text("create_account_name_title".localized)

@@ -41,17 +41,7 @@ public struct CreateAccountFlow: View {
                     Text("0")
                 }
             }
-        }.background(.white)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        NavBackButton()
-                    }
-                }
-            }
+        }
     }
 }
 
