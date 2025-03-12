@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import SwiftUI
 
 class Utils {
     private init() {}

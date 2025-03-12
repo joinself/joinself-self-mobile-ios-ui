@@ -63,54 +63,6 @@ public struct NewLivenessCameraView: View {
         .edgesIgnoringSafeArea(.all)
     }
     
-    public func onChallengeChanged(challenge: String, isPassed: Bool) {
-        print("onChallengeChanged")
-        guard let state = Challenge(rawValue: challenge) else {
-            print("Invalid challenge: \(challenge)")
-            return
-        }
-        
-        var tipImageName = ""
-        var challengeText = ""
-        print("onChallengeChanged: \(state)")
-        
-        switch state {
-        case .TurnLeft:
-            tipImageName = "bg_turn_left"
-            challengeText = "selfie_look_left".localized
-        case .TurnRight:
-            tipImageName = "bg_turn_right"
-            challengeText = "selfie_look_right".localized
-        case .LookUp:
-            tipImageName = "bg_lookup"
-            challengeText = "selfie_look_up".localized
-        case .LookDown:
-            tipImageName = "bg_lookdown"
-            challengeText = "selfie_look_down".localized
-            
-        default:
-            print("Not support challenge: \(state)")
-            tipImageName = "ic_transparent"
-            break
-        }
-        
-        if viewModel.state !=  state {
-            if viewModel.state != .None {
-                DispatchQueue.main.async {
-                    viewModel.tipImageName = tipImageName
-                    viewModel.state = state
-                    viewModel.text = challengeText
-                }
-            } else {
-                viewModel.tipImageName = tipImageName
-                viewModel.state = state
-                viewModel.text = challengeText
-            }
-            
-        }
-        
-    }
-    
     public func onHighlight(isPassed: Bool) {
         viewModel.isHighlighted = isPassed
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
