@@ -10,10 +10,19 @@ import SwiftUI
 
 extension Color {
     // MARK:  Brand colors
+    /// like pink/red
     public static let colorPrimary: Color = Color(hex: "FB2191")
+    
+    /// green
     public static let colorSecondary: Color = Color(hex: "00C887")
+    
+    /// light blue
     public static let colorTertiary: Color = Color(hex: "71B4FF")
+    
+    /// light yellow
     public static let colorQuaternary: Color = Color(hex: "FFC048")
+    
+    /// gray
     public static let colorQuinary: Color = Color(hex: "919397")
     
     // MARK: Inteface

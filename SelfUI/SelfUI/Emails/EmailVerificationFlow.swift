@@ -51,6 +51,8 @@ public struct EmailVerificationFlow: View {
                     }) {
                         // resend code
                         onResendCode?(self)
+                    } onCancel: {
+                        presentationMode.wrappedValue.dismiss()
                     }
                     
                 case 2:

@@ -96,11 +96,13 @@ public struct Heading5TextStyle: ViewModifier {
             .foregroundColor(color)
             .multilineTextAlignment(.leading)
             .allowsTightening(true)
+            .kerning(0.85)
             .minimumScaleFactor(0.6)
             .lineSpacing(1.14)
     }
 }
 
+/// 16pt bold
 public struct Heading6TextStyle: ViewModifier {
     var color: Color = .textPrimary
     
@@ -112,6 +114,11 @@ public struct Heading6TextStyle: ViewModifier {
         content
             .font(.heading6)
             .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+            .allowsTightening(true)
+            .kerning(0.85)
+            .minimumScaleFactor(0.6)
+            .lineSpacing(1.14)
     }
 }
 
