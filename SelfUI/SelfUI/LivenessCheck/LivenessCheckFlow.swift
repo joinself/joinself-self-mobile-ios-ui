@@ -20,10 +20,12 @@ public struct LivenessCheckFlow: View {
     
     @ObservedObject private var viewModel: LivenessCheckViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    private var onRetry: (() -> Void)?
     
-    public init(viewModel: LivenessCheckViewModel, showLivenessCheckIntroduction: Bool = true) {
+    public init(viewModel: LivenessCheckViewModel, showLivenessCheckIntroduction: Bool = true, onRetry: (() -> Void)? = nil) {
         self.viewModel = viewModel
         self.showLivenessCheckIntroduction = showLivenessCheckIntroduction
+        self.onRetry = onRetry
     }
     
     public var body: some View {
@@ -82,7 +84,7 @@ public struct LivenessCheckFlow: View {
                     
                 } content: {
                     LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
-                        viewModel.retry()
+                        onRetry?()
                     } onNavigationBack: {
                         presentationMode.wrappedValue.dismiss()
                     }
