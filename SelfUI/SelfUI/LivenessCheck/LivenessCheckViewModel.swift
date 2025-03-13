@@ -69,10 +69,4 @@ public class LivenessCheckViewModel: ObservableObject {
     func stopCamera() {
         cameraManager.session.stopRunning()
     }
-    
-    func retry() {
-        isHighlighted = false
-        state = .None
-        showVerifyingView = false
-    }
 }

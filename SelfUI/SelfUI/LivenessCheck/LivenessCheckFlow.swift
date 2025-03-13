@@ -63,7 +63,7 @@ public struct LivenessCheckFlow: View {
                     
                 } content: {
                     LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
-                        viewModel.retry()
+                        onRetry?()
                     } onNavigationBack: {
                         presentationMode.wrappedValue.dismiss()
                     }
