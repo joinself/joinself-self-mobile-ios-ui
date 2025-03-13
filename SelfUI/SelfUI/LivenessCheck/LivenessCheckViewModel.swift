@@ -16,6 +16,8 @@ public class LivenessCheckViewModel: ObservableObject {
     @Published public var subtitle: String
     @Published public var isHighlighted: Bool
     @Published public var attemptNumber: Int
+    @Published public var showFailedView: Bool = false
+    @Published public var showLivenessCamera: Bool = false
     @Published var tipImageName: String
     @Published public var showVerifyingView: Bool = false
     @Published public var state: Challenge = .None
@@ -66,5 +68,11 @@ public class LivenessCheckViewModel: ObservableObject {
     
     func stopCamera() {
         cameraManager.session.stopRunning()
+    }
+    
+    func retry() {
+        isHighlighted = false
+        state = .None
+        showVerifyingView = false
     }
 }
