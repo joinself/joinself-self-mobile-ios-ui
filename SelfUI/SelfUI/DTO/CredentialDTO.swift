@@ -8,8 +8,8 @@
 import Foundation
 
 public struct CredentialDTO: Hashable, Equatable {
-    let subject: String
-    let value: String
+    public let subject: String
+    public let value: String
     let signer: String
     
     public init(subject: String, value: String, signer: String) {
