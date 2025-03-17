@@ -8,11 +8,11 @@
 import SwiftUI
 
 public struct DocumentItem: Hashable, Identifiable {
-    var title: String
-    var label: String
-    var iconName: String?
-    let isParent: Bool
-    var children: [DocumentItem]? = nil
+    public var title: String
+    public var label: String
+    public var iconName: String?
+    public let isParent: Bool
+    public var children: [DocumentItem]? = nil
     public let id = UUID()
     public init(title: String, isParent: Bool, iconName: String? = nil, label: String = "", children: [DocumentItem]? = nil) {
         self.title = title
