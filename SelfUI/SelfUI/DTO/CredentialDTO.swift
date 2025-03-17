@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct CredentialDTO: Hashable, Equatable {
+public struct CredentialDTO: Hashable, Equatable, Identifiable {
+    public var id: String = UUID().uuidString
     public let subject: String
     public let value: String
     let signer: String
