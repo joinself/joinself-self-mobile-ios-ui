@@ -25,8 +25,7 @@ public struct NavigationTitleView: View {
             if switchable {
                 Toggle(isOn: $isOn) {
                     Text(title)
-                        .foregroundStyle(Color.textPrimary)
-                        .font(.defaultNormalTitle)
+                        .modifier(Heading4TextStyle(lineLimit: 1, truncationMode: .tail, scale: 1.0))
                 }
                 .toggleStyle(ImageToggleStyle(onColor: .defaultGray, offColor: .defaultGray, thumbImageOn: Image("ic_self_logo", bundle: mainBundle), thumbImageOff: Image("ic_logo_quaternary", bundle: mainBundle)))
                 Spacer()
@@ -39,8 +38,7 @@ public struct NavigationTitleView: View {
                         .frame(width: Constants.NavIconSize)
                 }
                 Text(title)
-                    .foregroundStyle(Color.textPrimary)
-                    .font(.defaultNormalTitle)
+                    .modifier(Heading4TextStyle(lineLimit: 1, truncationMode: .tail, scale: 1.0))
                 
                 Spacer()
             }

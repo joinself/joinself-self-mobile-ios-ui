@@ -107,12 +107,12 @@ struct SigningRequestRejectContentView: View {
     }
 }
 
-struct SigningRequestCell: View {
+public struct SigningRequestCell: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
-    init(messageDTO: MessageDTO,
+    public init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
@@ -120,11 +120,15 @@ struct SigningRequestCell: View {
         self.actionReject = actionReject
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             switch messageDTO.status {
             case .accepted:
-                SigningRequestContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                HStack {
+                    SigningRequestContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                    Spacer()
+                    
+                }
             case .rejected:
                 SigningRequestAcceptContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
             default:

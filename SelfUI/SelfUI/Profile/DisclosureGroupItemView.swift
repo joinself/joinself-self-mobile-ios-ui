@@ -7,8 +7,12 @@
 
 import SwiftUI
 
-struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
-    func makeBody(configuration: Configuration) -> some View {
+public struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
+    public init() {
+        
+    }
+    
+    public func makeBody(configuration: Configuration) -> some View {
         ZStack {
 //            if !configuration.isExpanded {
 //                Color.pink.ignoresSafeArea()

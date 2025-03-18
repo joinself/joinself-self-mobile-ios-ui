@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct ItemView: View {
-    let title: String
-    let iconName: String?
-    init(title: String, iconName: String? = nil) {
+public struct ItemView: View {
+    public let title: String
+    public let iconName: String?
+    public init(title: String, iconName: String? = nil) {
         self.title = title
         self.iconName = iconName
     }
     
-    var body: some View {
+    public var body: some View {
         HStack {
             if let iconName = iconName {
                 Image(iconName, bundle: mainBundle)
