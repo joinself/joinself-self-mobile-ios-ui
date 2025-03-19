@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ThankYouView: View {
+public struct ThankYouView: View {
     @State private var isOn = false
     @Environment(\.presentationMode) var presentationMode
     
     let buttonColor: Color
     
     var onGetStarted: (() -> Void)?
-    init(buttonColor: Color = .defaultPink, onGetStarted: (() -> Void)? = nil) {
+    public init(buttonColor: Color = .defaultPink, onGetStarted: (() -> Void)? = nil) {
         self.buttonColor = buttonColor
         self.onGetStarted = onGetStarted
     }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateAccountNameView: View {
+public struct CreateAccountNameView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var name: String = ""

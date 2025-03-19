@@ -24,7 +24,7 @@ public struct CreateAccountFlow: View {
         NavigationStack(path: $path) {
             CreateAccountNameView { name in
                 onEnteredName?(name)
-                path = [0]
+//                path = [0]
             }.navigationDestination(for: Int.self) { selection in
                 switch selection {
                 case 0:

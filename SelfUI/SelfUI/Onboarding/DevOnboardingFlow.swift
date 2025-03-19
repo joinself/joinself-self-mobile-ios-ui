@@ -36,7 +36,7 @@ public struct DevOnboardingFlow: View {
                 case 0:
                     ThankYouView (buttonColor: .defaultGreen) {
                         onStart?()
-                        path = [1]
+//                        path = [1]
                     }
                     
                 case 1:

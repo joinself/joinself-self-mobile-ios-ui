@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct WelcomeView: View {
+public struct WelcomeView: View {
     var onGetStarted: (() -> Void)?
     let buttonTitle: String
     let buttonColor: Color
     var onRecover: (() -> Void)?
     
-    init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil, onRecover: (() -> Void)? = nil) {
+    public init(buttonTitle: String = "button_signup_now".localized, buttonColor: Color = .defaultPink, onGetStarted: ( () -> Void)? = nil, onRecover: (() -> Void)? = nil) {
         self.onGetStarted = onGetStarted
         self.buttonTitle = buttonTitle
         self.buttonColor = buttonColor

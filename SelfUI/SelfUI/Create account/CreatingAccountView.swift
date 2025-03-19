@@ -8,13 +8,13 @@
 import SwiftUI
 import UserNotifications
 
-struct CreatingAccountView: View {
+public struct CreatingAccountView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var notificationPermissionGranted = false
     
     var onNext: (() -> ())?
-    init(onNext: (() -> Void)? = nil) {
+    public init(onNext: (() -> Void)? = nil) {
         self.onNext = onNext
     }
     
