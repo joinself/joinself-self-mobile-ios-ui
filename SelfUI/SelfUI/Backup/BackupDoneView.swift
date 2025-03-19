@@ -22,8 +22,8 @@ public struct BackupDoneView: View {
         BaseView {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_backup_done".localized)
-                    .font(.defaultLargeTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Spacer()
             }
             

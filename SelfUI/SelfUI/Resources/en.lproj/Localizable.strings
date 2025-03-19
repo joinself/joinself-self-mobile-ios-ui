@@ -176,6 +176,14 @@
 "title_restore_backup_finish_intro" = "Welcome back to Self";
 "msg_restore_backup_finish_intro" = "Please turn on notifications for the best experience.";
 "no_internet_connection" = "No internet connection";
+"title_recovery_failed" = "Recovery failed.";
+"msg_recovery_failed" = "We were not able to .......
+
+If you like, you can try again; 
+You have 2 more verification attempts.
+
+";
+
 
 // MARK: - Tabs
 "tab_messaging" = "Messaging";
