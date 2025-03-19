@@ -18,12 +18,10 @@ public struct RestoringBackupFinishView: View, BaseActions {
         BaseProgressView (totalSteps: 5, activeStep: 6, content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_restore_backup_finish_intro".localized)
-                    .font(.defaultLargeTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text("msg_restore_backup_finish_intro".localized)
-                    .font(Font.defaultBody)
-                  .lineSpacing(1.14)
-                  .foregroundColor(.textPrimary)
+                    .modifier(Body1TextStyle())
                 Spacer()
                 ButtonView(title: "button_turn_on_notifications".localized) {
                     PermissionHelper.requestNotificationPermission { success in

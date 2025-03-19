@@ -28,6 +28,9 @@ public struct RestoringBackupView: View, BaseActions {
                 LoadingDotsView()
                 Spacer()
             }
+            .onAppear {
+                onNext?()
+            }
         })
     }
 }
