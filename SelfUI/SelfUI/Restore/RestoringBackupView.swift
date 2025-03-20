@@ -18,12 +18,10 @@ public struct RestoringBackupView: View, BaseActions {
         BaseProgressView (totalSteps: 5, activeStep: 4, content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_restoring_backup_intro".localized)
-                    .font(.defaultLargeTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text("msg_restoring_backup_intro".localized)
-                    .font(Font.defaultSubtTitle)
-                  .lineSpacing(1.14)
-                  .foregroundColor(.textPrimary)
+                    .modifier(Heading4TextStyle())
                 Spacer()
                 LoadingDotsView()
                 Spacer()
