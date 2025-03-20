@@ -13,8 +13,10 @@ class LoadingDotsViewModel: ObservableObject {
 
 struct LoadingDotsView: View {
     @State private var activeIndex = 0
-    let animationDelay = 0.5
+    let animationDelay = 0.6
     let colors: [Color] = [.defaultBlue, .defaultPink, .defaultYellow, .defaultGreen]
+    let opacityStart: Double = 1.0
+    let opacityEnd: Double = 1.0
     @ObservedObject private var viewModel = LoadingDotsViewModel()
     
     public init() {
@@ -27,7 +29,7 @@ struct LoadingDotsView: View {
                 Circle()
                     .frame(width: self.activeIndex == index ? 18 : 10, height: self.activeIndex == index ? 18 : 10)
                     .foregroundColor(colors[index])
-                    .opacity(self.activeIndex == index ? 1 : 0.3)
+                    .opacity(self.activeIndex == index ? opacityStart : opacityEnd)
                     .animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/, value: Double(index) * animationDelay)
             }
         }

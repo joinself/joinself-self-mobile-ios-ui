@@ -54,7 +54,7 @@ extension Color {
     static let defaultGrayBackground: Color = Color(red: 0.98, green: 0.98, blue: 0.98)
     static let defaultDark: Color = Color(red: 0.54, green: 0.54, blue: 0.54)
     static let defaultBlack: Color = Color.black
-    static let defaultOverlay: Color = .defaultDark.opacity(0.3)
+    static let defaultOverlay: Color = backgroundSecondary.opacity(0.5)
     
     // MARK: Text
     /// #0E1C42
