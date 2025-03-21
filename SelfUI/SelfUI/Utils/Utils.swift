@@ -10,16 +10,16 @@ import UIKit
 import AVFoundation
 import SwiftUI
 
-class Utils {
+public class Utils {
     private init() {}
     static let instance = Utils()
     private var isLoadedFonts = false
     
-    static func vibrate() {
+    public static func vibrate() {
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    static func playCaptureSound() {
+    public static func playCaptureSound() {
         AudioServicesPlaySystemSound(SystemSoundID(1108))
     }
     
@@ -63,4 +63,20 @@ class Utils {
     }
     
     static let cornerSize: CGSize = CGSize(width: 25, height: 25)
+    
+    public static func getDocumentName(type: DocumentType) -> String {
+        switch type {
+        case .passport:
+            return "passport".localized
+            
+        case .drivingLicense:
+            return "driving_license".localized
+            
+        case .identityCard:
+            return "identity_card".localized
+            
+        default:
+            return "document".localized
+        }
+    }
 }

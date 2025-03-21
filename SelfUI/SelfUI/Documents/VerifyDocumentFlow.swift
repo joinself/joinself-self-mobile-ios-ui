@@ -24,7 +24,7 @@ public struct VerifyDocumentFlow: View {
     }
     public var body: some View {
         NavigationStack(path: $path) {
-            DocumentNFCCheckView(title: String(format: "title_ask_document_chip".localized, arguments: ["document"]), details: String(format: "detail_ask_document_chip".localized, arguments: ["document"]), onOK: {
+            DocumentNFCCheckView(documentType: .undefined, onOK: {
                 path = [0]
             }, onCancel: {
                 path = [0]
