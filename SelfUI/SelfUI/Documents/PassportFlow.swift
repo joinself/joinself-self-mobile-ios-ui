@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct PassportFlow: View {
     @State private var path = [Int]()
+    @Environment(\.presentationMode) private var presentationMode
     
     public init () {
         
@@ -16,18 +17,14 @@ public struct PassportFlow: View {
     
     public var body: some View {
         NavigationStack(path: $path) {
-            DocumentNFCCheckView(documentType: .passport) {
-                    path = [0]
-            } onCancel: {
-            
-            }
-        }.navigationDestination(for: Int.self) { destination in
-            switch destination {
-            case 0:
-                Text("0")
+            PassportIntroductionView(onGettingStarted: {
+                // TODO: Do liveness check
                 
-            default:
-                Text("undefined")
+            }, onNavigateBack: {
+                presentationMode.wrappedValue.dismiss()
+            })
+            .navigationDestination(for: Int.self) { selection in
+                
             }
         }
     }

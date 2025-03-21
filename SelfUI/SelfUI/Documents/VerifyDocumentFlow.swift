@@ -24,10 +24,10 @@ public struct VerifyDocumentFlow: View {
     }
     public var body: some View {
         NavigationStack(path: $path) {
-            DocumentNFCCheckView(documentType: .undefined, onOK: {
-                path = [0]
-            }, onCancel: {
-                path = [0]
+            CaptureDocumentIntroductionView(onGettingStarted: {
+                path = [1]
+            }, onNavigateBack: {
+                
             })
             .navigationDestination(for: Int.self) { selection in
                 switch selection {
