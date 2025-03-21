@@ -24,6 +24,39 @@ public struct DocumentNFCCheckView: View {
     public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
+        BaseProgressView (enableBackNavigation: true, totalSteps: 5, activeStep: 2, content: {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .center, spacing: 0) {
+                        Text(title)
+                            .modifier(Heading3TextStyle(scale: 1))
+                            .padding(.top, Constants.Heading1PaddingTop)
+                            .id(1)
+                        Image("ic_nfc_chip", bundle: mainBundle)
+                            .id(2)
+                        Text(details)
+                            .modifier(Body1TextStyle())
+                            .id(3)
+                    }
+                }
+                .onAppear {
+                    proxy.scrollTo(3, anchor: .bottom)
+                }
+            }
+            
+            
+            VStack(spacing: 12) {
+                ButtonView(title: "Yes".localized, backgroundColor: .defaultPink) {
+                    onOK?()
+                }
+                
+                OutlinedButton(title: "No".localized, outlineColor: .defaultPink) {
+                    onCanel?()
+                }
+            }
+        })
+       
+        /*
         VStack {
             CustomProgressView(steps: [
                 Step(title: "1", state: .active),
@@ -33,19 +66,7 @@ public struct DocumentNFCCheckView: View {
                 Step(title: "5", state: .inactive)
             ])
             
-            VStack(alignment: .center, spacing: 30) {
-                Text(title)
-                    .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
-                Image("ic_nfc_chip", bundle: mainBundle)
-                Text(details)
-                    .font(.defaultBody)
-                  .lineSpacing(1.14)
-                  .foregroundColor(.black)
-                Spacer()
-            }
-            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
             
             Spacer()
             VStack(spacing: 12) {
@@ -68,7 +89,7 @@ public struct DocumentNFCCheckView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
-        }
+        }*/
     }
 }
 

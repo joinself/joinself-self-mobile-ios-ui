@@ -20,6 +20,36 @@ public struct  SelectDocumentView: View {
     @State private var showVerifyDocument = false
     
     public var body: some View {
+        
+        BaseProgressView (enableBackNavigation: true, totalSteps: 5, activeStep: 1, content: {
+            VStack(alignment: .leading, spacing: 30) {
+                Text("title_document_selection".localized)
+                    .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
+                Text("detail_document_selection".localized)
+                    .modifier(Body1TextStyle())
+                Spacer()
+            }
+            
+            Spacer()
+            VStack(spacing: 12) {
+                ButtonView(title: "Passport".localized) {
+                    onSelect?(.passport)
+                }
+                
+                ButtonView(title: "Identity document".localized, backgroundColor: .defaultBlue) {
+                    //onSelect?(.identityCard)
+                    showVerifyDocument = true
+                }
+                .fullScreenCover(isPresented: $showVerifyDocument) {
+                    showVerifyDocument = false
+                } content: {
+                    VerifyDocumentFlow(onResult: onResult)
+                }
+            }
+        })
+        
+        /*
         ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
             VStack(alignment: .center, spacing: 0) {
@@ -90,7 +120,7 @@ public struct  SelectDocumentView: View {
             }
             .padding()
             .ignoresSafeArea(.all)
-        }
+        }*/
     }
 }
 
