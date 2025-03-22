@@ -24,23 +24,13 @@ public struct CaptureDocumentIntructionView: View {
     var onNavigationBack: () -> Void
     
     public var body: some View {
-        VStack {
-            CustomProgressView(steps: [
-                Step(title: "1", state: .done),
-                Step(title: "2", state: .active),
-                Step(title: "3", state: .inactive),
-                Step(title: "4", state: .inactive),
-                Step(title: "5", state: .inactive)
-            ])
-            
+        BaseProgressView (totalSteps: 5, activeStep: 2, content: {
             VStack (spacing: 12){
                 Text(title)
-                    .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text(details)
-                    .font(.defaultBody)
-                    .lineSpacing(1.14)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Body1TextStyle())
                 
                 Rectangle()
                     .foregroundColor(.clear)
@@ -56,23 +46,10 @@ public struct CaptureDocumentIntructionView: View {
             
             Spacer()
             
-            VStack(spacing: 12) {
-                ButtonView(title: "Capture".localized) {
-                    onGettingStarted()
-                }
-                
-                BrandView(isDarked: true)
-            }.padding()
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
-                }
+            ButtonView(title: "Capture".localized) {
+                onGettingStarted()
             }
-        }
+        })
     }
 }
 

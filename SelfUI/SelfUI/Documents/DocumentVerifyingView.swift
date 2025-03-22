@@ -18,42 +18,16 @@ public struct DocumentVerifyingView: View {
     var onBack: (() -> Void)?
     
     public var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            
-            CustomProgressView(steps: [
-                Step(title: "1", state: .done),
-                Step(title: "2", state: .done),
-                Step(title: "3", state: .done),
-                Step(title: "4", state: .done),
-                Step(title: "5", state: .active)
-            ])
-            
+        BaseProgressView (totalSteps: 5, activeStep: 4, content: {
             VStack(alignment: .leading) {
                 Text("msg_document_verifying".localized)
-                    .font(.defaultLargeTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading1TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                     .frame(maxWidth: .infinity, alignment: .bottomLeading)
                 Spacer()
-            }.padding()
-            
-            Spacer()
-            VStack(spacing: 12) {
-                ButtonView(title: "button_continue".localized) {
-                    onNext?()
-                }.hidden()
-                
-                BrandView(isDarked: true)
-            }.padding()
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    onBack?()
-                }
             }
-        }
+            Spacer()
+        })
         .onAppear {
             onNext?()
         }

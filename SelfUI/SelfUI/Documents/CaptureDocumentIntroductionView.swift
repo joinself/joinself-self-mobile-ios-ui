@@ -20,47 +20,22 @@ public struct CaptureDocumentIntroductionView: View {
     public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
-        VStack {
-            CustomProgressView(steps: [
-                Step(title: "1", state: .active),
-                Step(title: "2", state: .inactive),
-                Step(title: "3", state: .inactive),
-                Step(title: "4", state: .inactive),
-                Step(title: "5", state: .inactive)
-            ])
-            
-            
-            
+        BaseProgressView (totalSteps: 5, activeStep: 2, content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("capture_document_introduction".localized)
-                    .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 Text("msg_capture_document_introduction".localized)
-                    .font(.defaultBody)
-                  .lineSpacing(1.14)
-                    .foregroundColor(.textPrimary)
+                    .modifier(Body1TextStyle())
                 Spacer()
             }
             .padding()
             
             Spacer()
-            VStack(spacing: 12) {
-                ButtonView(title: "Get Started".localized) {
-                    onGettingStarted()
-                }
-                
-                BrandView(isDarked: true)
-            }.padding()
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
-                }
+            ButtonView(title: "Get Started".localized) {
+                onGettingStarted()
             }
-        }
+        })
     }
 }
 
