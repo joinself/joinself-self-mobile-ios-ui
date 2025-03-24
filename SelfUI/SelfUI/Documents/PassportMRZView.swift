@@ -19,51 +19,40 @@ public struct PassportMRZView: View {
     public var onNavigateBack: (() -> Void)? = nil
     public var onSelectNegative: (() -> Void)? = nil
     
-    public init(onResult: ((MRZInfo?) -> Void)? = nil) {
+    @Environment(\.presentationMode) private var presentationMode
+    private var onEnterDataManually: (() -> Void)?
+    
+    public init(onEnterDataManually: (() -> Void)? = nil, onBack: (() -> Void)? = nil, onResult: ((MRZInfo?) -> Void)? = nil) {
         self.onResult = onResult
+        self.onEnterDataManually = onEnterDataManually
+        self.onNavigateBack = onBack
         cameraManager.onResult = onResult
     }
     
     public var body: some View {
-        VStack {
+        BaseView(enableBackNavigation: true, backgroundColor: .black, brandTextColor: .white, content: {
             ZStack {
-                // Base view with overlay
-                Color.black.ignoresSafeArea()
                 CameraPreview(session: cameraManager.session)
                 .edgesIgnoringSafeArea(.all)
                 MRZOverlayView(isHighlighted: cameraManager.isHighlighted)
                 
-                GeometryReader { geometry in
-                    VStack(alignment: .leading, spacing: 0) {
-                        VStack(spacing: 10) {
-                        }
-                        .padding(10)
-                        .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                        HStack {
-                            VStack (alignment: .leading) {
-                                Image("ic_back", bundle: mainBundle)
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(.white)
-                                    .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
-                                    .onTapGesture {
-                                        print("onNavigationBack")
-                                        onNavigateBack?()
-                                    }
-                            }
-                            .frame(width: 44, height: 32)
-                        }
-                    }
-                    .frame(width: geometry.size.width, height: 100)
-                    .background(.clear)
-                }
-                
                 VStack (spacing: 20) {
+                    HStack {
+                        NavBackButton(isWhiteBackground: true) {
+                            onNavigateBack?()
+                            presentationMode.wrappedValue.dismiss()
+                            
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 64)
+                    .padding(.leading, 24)
                     Spacer()
                     Text("Having trouble?".localized)
-                        .foregroundColor(.white)
+                        .modifier(Body1TextStyle(color: .white))
                     OutlinedButton(title: "Enter data manually".localized, outlineColor: .white, icon: Image("ic_keyboard", bundle: mainBundle)) {
-                        onSelectNegative?()
-                    }
+                        onEnterDataManually?()
+                    }.padding()
                     
                     Rectangle()
                       .foregroundColor(.clear)
@@ -77,40 +66,11 @@ public struct PassportMRZView: View {
                             .foregroundColor(Color(red: 0.05, green: 0.11, blue: 0.26))
                             .frame(width: 340, alignment: .center)
                       }
-                    
-                    BrandView(isDarked: false, textColor: .white)
                 }
-                .padding()
-            }.ignoresSafeArea(.all)
-        }
-        .onAppear(perform: {
-            DispatchQueue.global(qos: .background).async {
-                self.cameraManager.session.startRunning()
+                .ignoresSafeArea()
             }
         })
-        .onDisappear(perform: {
-            print("Camera View disappear.")
-            self.cameraManager.session.stopRunning()
-        })
-    }
-}
-
-public struct PassportMRZCameraView: View {    
-    @ObservedObject var cameraManager = CameraManager()
-        
-    public init(onResult: ((MRZInfo?) -> Void)? = nil) {        
-        cameraManager.onResult = onResult
-    }
-    
-    public var body: some View {
-        VStack {
-            ZStack {
-                // Base view with overlay
-                Color.black.ignoresSafeArea()
-                CameraPreview(session: cameraManager.session)
-                .edgesIgnoringSafeArea(.all)
-            }.ignoresSafeArea(.all)
-        }
+        .ignoresSafeArea()
         .onAppear(perform: {
             DispatchQueue.global(qos: .background).async {
                 self.cameraManager.session.startRunning()
