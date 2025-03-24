@@ -71,12 +71,8 @@ public struct PassportMRZView: View {
                       .background(.white)
                       .cornerRadius(8)
                       .overlay {
-                          // Heading/H4
                           Text("Scan photo page")
-                            .font(
-                              Font.custom("Barlow", size: 25)
-                                .weight(.bold)
-                            )
+                              .modifier(Heading4TextStyle())
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color(red: 0.05, green: 0.11, blue: 0.26))
                             .frame(width: 340, alignment: .center)

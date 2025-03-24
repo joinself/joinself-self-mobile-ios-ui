@@ -15,7 +15,7 @@ public class FontLoader {
            let newFont = CGFont(dataProvider) {
             var error: Unmanaged<CFError>?
             if !CTFontManagerRegisterGraphicsFont(newFont, &error) {
-                print("Error loading Font!")
+                print("Error loading Font: \(error)")
             }
         }
     }

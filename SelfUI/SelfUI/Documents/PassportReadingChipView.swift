@@ -27,10 +27,11 @@ public struct PassportReadingChipView: View {
     public var onRetry: (() -> Void)? = nil
     
     public var body: some View {
-        BaseProgressView (totalSteps: 5, activeStep: 3, content: {
+        BaseProgressView (totalSteps: 5, activeStep: 4, content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_passport_scanning_passport".localized)
                     .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
                 
                 LoadingDotsView()
                 Spacer()

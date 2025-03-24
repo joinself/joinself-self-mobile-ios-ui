@@ -20,7 +20,7 @@ public struct PassportStartScanView: View {
     
     public var body: some View {
         
-        BaseProgressView (totalSteps: 5, activeStep: 2, content: {
+        BaseProgressView (totalSteps: 5, activeStep: 3, content: {
             VStack(alignment: .leading, spacing: 30) {
                 Text("title_start_scan_passport".localized)
                     .modifier(Heading3TextStyle())
