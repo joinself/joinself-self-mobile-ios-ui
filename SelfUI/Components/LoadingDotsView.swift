@@ -15,7 +15,7 @@ struct LoadingIndicatorView: View {
     @State private var scales: [CGFloat] = []
     let dotCount = 4
     let minScale: CGFloat = 0.5
-    let animationDuration: Double = 0.8
+    let animationDuration: Double = 0.5
     let delayUnit: Double = 0.2
     let isBlack: Bool
     let dotSize: CGFloat
