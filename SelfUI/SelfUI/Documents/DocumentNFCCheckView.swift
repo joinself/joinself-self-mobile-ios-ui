@@ -9,12 +9,9 @@ import SwiftUI
 
 public struct DocumentNFCCheckView: View {
     @Environment(\.presentationMode) private var presentationMode
-    let title: String
-    let details: String
-    
-    public init(title: String, details: String = "", onOK: (() -> Void)? = nil, onCancel: (() -> Void)? = nil) {
-        self.title = title
-        self.details = details
+    public init(documentType: DocumentType = .passport,
+                onOK: (() -> Void)? = nil,
+                onCancel: (() -> Void)? = nil) {
         self.onOK = onOK
         self.onCanel = onCancel
     }
@@ -24,30 +21,31 @@ public struct DocumentNFCCheckView: View {
     public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
-        VStack {
-            CustomProgressView(steps: [
-                Step(title: "1", state: .active),
-                Step(title: "2", state: .inactive),
-                Step(title: "3", state: .inactive),
-                Step(title: "4", state: .inactive),
-                Step(title: "5", state: .inactive)
-            ])
-            
-            VStack(alignment: .center, spacing: 30) {
-                Text(title)
-                    .font(.defaultTitle)
-                    .foregroundColor(.textPrimary)
-                Image("ic_nfc_chip", bundle: mainBundle)
-                Text(details)
-                    .font(.defaultBody)
-                  .lineSpacing(1.14)
-                  .foregroundColor(.black)
-                Spacer()
+        BaseProgressView (totalSteps: 5, activeStep: 2, content: {
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("title_ask_document_chip".localized)
+                            .modifier(Heading3TextStyle(scale: 1))
+                            .padding(.top, Constants.Heading1PaddingTop)
+                            .id(1)
+                        HStack {
+                            Spacer()
+                            Image("ic_nfc_chip", bundle: mainBundle)
+                            Spacer()
+                        }
+                            .id(2)
+                        Text("detail_ask_document_chip".localized)
+                            .modifier(Body1TextStyle())
+                            .id(3)
+                    }
+                }
+                .onAppear {
+                    proxy.scrollTo(3, anchor: .bottom)
+                }
             }
-            .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            Spacer()
+            
             VStack(spacing: 12) {
                 ButtonView(title: "Yes".localized, backgroundColor: .defaultPink) {
                     onOK?()
@@ -56,25 +54,12 @@ public struct DocumentNFCCheckView: View {
                 OutlinedButton(title: "No".localized, outlineColor: .defaultPink) {
                     onCanel?()
                 }
-                
-                BrandView(isDarked: true)
-            }.padding()
-        }
-        .background(.white)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavBackButton(isWhiteBackground: false) {
-                    presentationMode.wrappedValue.dismiss()
-                }
             }
-        }
+        })
     }
 }
 
 #Preview {
-    DocumentNFCCheckView(title: String(format: "title_ask_document_chip".localized, arguments: ["document"]),
-                         details:
-                            String(format: "detail_ask_document_chip".localized, arguments: ["document"]))
+    DocumentNFCCheckView()
 }
 

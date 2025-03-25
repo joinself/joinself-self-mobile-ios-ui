@@ -38,198 +38,152 @@ public struct PassportMRZFieldsManuallyView: View {
     var onNavigateBack: () -> Void
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(spacing: 10) {
-                    }
-                    .padding(10)
-                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                    HStack {
-                        VStack (alignment: .leading) {
-                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(.white)
-                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
-                                .onTapGesture {
-                                    print("onNavigationBack")
-                                    onNavigateBack()
-                                }
+        BaseProgressView (totalSteps: 5, activeStep: 3, content: {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("title_enter_mrz_fields".localized)
+                    .modifier(Heading3TextStyle())
+                ScrollView {
+                    VStack (alignment: .leading) {
+                        Text("passport_number".localized)
+                            .modifier(Body1TextStyle())
+                        
+                        ZStack {
+                            HStack(alignment: .center, spacing: 1) {
+                                
+                            }
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                            .cornerRadius(10)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .inset(by: 0.5)
+                                    .stroke(viewModel.isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                //
+                                TextField("", text: $viewModel.passportNumber)
+                                    .placeholder(when: viewModel.passportNumber.isEmpty) {
+                                        Text("Passport number".localized).foregroundColor(.gray)
+                                    }
+                                    .font(.defaultBody)
+                                    .foregroundColor(.black)
+                                    .keyboardType(.numbersAndPunctuation)
+                                    .onChange(of: viewModel.passportNumber) { newValue in
+                                        viewModel.isPassportNumberValid = newValue.count > 0
+                                    }
+                                    .padding()
+                            }
                         }
-                        .frame(width: 44, height: 32)
+                        
+                        if !viewModel.isPassportNumberValid {
+                            Text("This field cannot be empty.")
+                                .modifier(Body1TextStyle(color: Color.colorError))
+                        }
                     }
-                }
-                .frame(width: 393, height: 100)
-                .background(.white)
-                
-                CustomProgressView(steps: [
-                    Step(title: "1", state: .done),
-                    Step(title: "2", state: .active),
-                    Step(title: "3", state: .inactive),
-                    Step(title: "4", state: .inactive),
-                    Step(title: "5", state: .inactive)
-                ])
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("title_enter_mrz_fields".localized)
-                        .font(.system(size: 36).weight(.bold))
-                        .foregroundColor(.black)
-                    ScrollView {
-                        VStack (alignment: .leading) {
-                            Text("passport_number".localized)
-                                .font(.defaultBody)
-                                .bold()
-                                .foregroundColor(.black)
+                    VStack (alignment: .leading) {
+                        Text("date_of_birth".localized)
+                            .modifier(Body1TextStyle())
+                        HStack(alignment: .center, spacing: 1) {
                             
+                        }
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                        .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                        .cornerRadius(10)
+                        .overlay(
                             ZStack {
-                                HStack(alignment: .center, spacing: 1) {
-                                    
-                                }
-                                .padding(.horizontal, 15)
-                                .padding(.vertical, 10)
-                                .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                                .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                                .cornerRadius(10)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .inset(by: 0.5)
-                                        .stroke(viewModel.isPassportNumberValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
-                                    //
-                                    TextField("", text: $viewModel.passportNumber)
-                                        .placeholder(when: viewModel.passportNumber.isEmpty) {
-                                            Text("Passport number".localized).foregroundColor(.gray)
-                                        }
-                                        .font(.defaultBody)
-                                        .foregroundColor(.black)
-                                        .keyboardType(.numbersAndPunctuation)
-                                        .onChange(of: viewModel.passportNumber) { newValue in
-                                            viewModel.isPassportNumberValid = newValue.count > 0
-                                        }
-                                        .padding()
-                                }
-                            }
-                            
-                            if !viewModel.isPassportNumberValid {
-                                Text("This field cannot be empty.")
-                                    .foregroundColor(.red)
-                            }
-                        }
-                        VStack (alignment: .leading) {
-                            Text("date_of_birth".localized)
-                                .font(.defaultBody)
-                                .bold()
-                                .foregroundColor(.black)
-                            HStack(alignment: .center, spacing: 1) {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .inset(by: 0.5)
+                                    .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
                                 
+                                TextField("", text: $viewModel.dob)
+                                    .placeholder(when: viewModel.dob.isEmpty) {
+                                        Text("mrz_placeholder".localized).foregroundColor(.gray)
+                                    }
+                                    .font(.defaultBody)
+                                    .foregroundColor(.black)
+                                    .keyboardType(.numbersAndPunctuation)
+                                    .onChange(of: viewModel.dob) { newValue in
+                                        viewModel.isDobValid = validateDate(newValue)
+                                    }
+                                    .padding()
                             }
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 10)
-                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                            .cornerRadius(10)
-                            .overlay(
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .inset(by: 0.5)
-                                        .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
-                                    
-                                    TextField("", text: $viewModel.dob)
-                                        .placeholder(when: viewModel.dob.isEmpty) {
-                                            Text("mrz_placeholder".localized).foregroundColor(.gray)
-                                        }
-                                        .font(.defaultBody)
-                                        .foregroundColor(.black)
-                                        .keyboardType(.numbersAndPunctuation)
-                                        .onChange(of: viewModel.dob) { newValue in
-                                            viewModel.isDobValid = validateDate(newValue)
-                                        }
-                                        .padding()
-                                }
-                            )
-                            
-                            
-                            if !viewModel.isDobValid {
-                                Text("Please enter a valid date of birth.")
-                                    .foregroundColor(.red)
-                            }
-                            
+                        )
+                        
+                        
+                        if !viewModel.isDobValid {
+                            Text("Please enter a valid date of birth.")
+                                .modifier(Body1TextStyle(color: Color.colorError))
                         }
                         
-                        VStack (alignment: .leading) {
-                            Text("expiry_date".localized)
-                                .font(.defaultBody)
-                                .bold()
-                                .foregroundColor(.black)
-                            HStack(alignment: .center, spacing: 1) {
-                                
-                            }
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 10)
-                            .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
-                            .background(Color(red: 0.88, green: 0.88, blue: 0.88))
-                            .cornerRadius(10)
-                            .overlay(
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .inset(by: 0.5)
-                                        .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
-                                    
-                                    TextField("", text: $viewModel.doe)
-                                        .placeholder(when: viewModel.doe.isEmpty) {
-                                            Text("mrz_placeholder".localized).foregroundColor(.gray)
-                                        }
-                                        .font(.defaultBody)
-                                        .foregroundColor(.black)
-                                        .keyboardType(.numbersAndPunctuation)
-                                        .onSubmit {
-                                            // Here you can validate the dateString and convert it to a Date if needed
-                                            if let date = parseDate(from: viewModel.doe) {
-                                                print("Date entered: \(date)")
-                                            } else {
-                                                print("Invalid date format")
-                                            }
-                                        }
-                                        .onChange(of: viewModel.doe) { newValue in
-                                            viewModel.isDoeValid = validateDate(newValue)
-                                        }
-                                        .padding()
-                                }
-                            )
-                            
-                            if !viewModel.isDoeValid {
-                                Text("Please enter a valid expiry date.")
-                                    .foregroundColor(.red)
-                            }
-                        }
-                        
-                        Spacer(minLength: 150)
-                    } // end of scroll view
+                    }
                     
-                }
-                .padding(EdgeInsets(top: 20, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    VStack (alignment: .leading) {
+                        Text("expiry_date".localized)
+                            .modifier(Body1TextStyle())
+                        HStack(alignment: .center, spacing: 1) {
+                            
+                        }
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 10)
+                        .frame(maxWidth: .infinity, minHeight: 66, maxHeight: 66, alignment: .leading)
+                        .background(Color(red: 0.88, green: 0.88, blue: 0.88))
+                        .cornerRadius(10)
+                        .overlay(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .inset(by: 0.5)
+                                    .stroke(viewModel.isDobValid ? Color.defaultBlue : Color.defaultPink, lineWidth: 1)
+                                
+                                TextField("", text: $viewModel.doe)
+                                    .placeholder(when: viewModel.doe.isEmpty) {
+                                        Text("mrz_placeholder".localized).foregroundColor(.gray)
+                                    }
+                                    .font(.defaultBody)
+                                    .foregroundColor(.black)
+                                    .keyboardType(.numbersAndPunctuation)
+                                    .onSubmit {
+                                        // Here you can validate the dateString and convert it to a Date if needed
+                                        if let date = parseDate(from: viewModel.doe) {
+                                            print("Date entered: \(date)")
+                                        } else {
+                                            print("Invalid date format")
+                                        }
+                                    }
+                                    .onChange(of: viewModel.doe) { newValue in
+                                        viewModel.isDoeValid = validateDate(newValue)
+                                    }
+                                    .padding()
+                            }
+                        )
+                        
+                        if !viewModel.isDoeValid {
+                            Text("Please enter a valid expiry date.")
+                                .modifier(Body1TextStyle(color: Color.colorError))
+                        }
+                    }
+                    
+                    Spacer(minLength: 150)
+                } // end of scroll view
                 
-                VStack(spacing: 12) {
-                    ButtonView(title: "Done".localized) {
-                        let _dob = viewModel.dob.replace("/", with: "")
-                        let _doe = viewModel.doe.replace("/", with: "")
-                        print("Passport number: \(viewModel.passportNumber) DOB \(_dob) DOE \(_doe)")
-                        
-                        onResult?(viewModel.passportNumber, _dob, _doe)
-                    }
-                    
-                    ButtonView(title: "Cancel".localized, backgroundColor: .defaultPink) {
-                        // TODO: Cancel button
-                        onNavigateBack()
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
             }
-            .padding()
-            .ignoresSafeArea(.all)
-        }.onTapGesture {
+            
+            VStack(spacing: 12) {
+                ButtonView(title: "Done".localized) {
+                    let _dob = viewModel.dob.replace("/", with: "")
+                    let _doe = viewModel.doe.replace("/", with: "")
+                    print("Passport number: \(viewModel.passportNumber) DOB \(_dob) DOE \(_doe)")
+                    
+                    onResult?(viewModel.passportNumber, _dob, _doe)
+                }
+                
+                ButtonView(title: "Cancel".localized, backgroundColor: .defaultPink) {
+                    onNavigateBack()
+                }
+            }
+        })
+        .onTapGesture {
             self.hideKeyboard()
         }
     }

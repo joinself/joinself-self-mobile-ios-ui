@@ -27,7 +27,37 @@ public struct PassportReadingChipView: View {
     public var onRetry: (() -> Void)? = nil
     
     public var body: some View {
-        ZStack {
+        BaseProgressView (totalSteps: 5, activeStep: 4, content: {
+            VStack(alignment: .leading, spacing: 30) {
+                Text("title_passport_scanning_passport".localized)
+                    .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
+                
+                LoadingDotsView()
+                Spacer()
+            }
+        })
+        .alert("Verification Error", isPresented: $viewModel.showingAlert) {
+            Button {
+                onRetry?()
+            } label: {
+                Text("Scan Passport Again")
+                    .font(
+                        Font.custom("SF Pro", size: 15)
+                            .weight(.semibold)
+                    )
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(red: 0.17, green: 0.49, blue: 0.96))
+                    .frame(width: 191, height: 20, alignment: .center)
+            }
+            
+            Button("Cancel") {
+                // Handle second option action
+                onCancel?()
+            }
+        }
+        
+        /*ZStack {
             Color.white.edgesIgnoringSafeArea(.all) // Set the background
             VStack(alignment: .center, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
@@ -108,7 +138,7 @@ public struct PassportReadingChipView: View {
                 // Handle second option action
                 onCancel?()
             }
-        }
+        }*/
     }
     
     public func displayAlert(showingAlert: Bool) {

@@ -8,7 +8,7 @@
 import Foundation
 
 public enum DocumentType: CaseIterable {
-    case none // click back to not select any doc type
+    case undefined // click back to not select any doc type
     case passport
     case identityCard
     case drivingLicense

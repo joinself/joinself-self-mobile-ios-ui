@@ -27,12 +27,10 @@
 "detail_document_selection"  = "Self helps you to verify the data on your government issued identity documents so you can use it to prove things about yourself.";
 
 // MARK: - Passports
-"Passport verification preparation" = "First, you need to verify some information. You’ll need your Passport.";
-"Passport verification preparation body" = "Self helps you to verify the data on your Passport so you can use it to prove things about yourself.";
-"title_ask_passport_chip" = "Does your Passport have this icon?";
-"title_ask_document_chip" = "Does your %@ have this icon?";
-"detail_ask_document_chip" = "It means you have a chip in your %@ or document which you can read with Self. If the data on the chip is readable we can verify you immediately. ";
-"detail_ask_passport_chip" = "It means you have a chip in your Passport which you can read with Self. If the data on the chip is readable we can verify you immediately.";
+"title_verify_document_introduction" = "You’re going to capture your %@ and use Self to verify it.";
+"msg_verify_document_introduction" = "Self lets you compare the data you have on your document with your image to create a verifiable credential. We process some data transiently using cloud services. Data is never retained by Self or any of our providers. It is only stored on your phone or in your backup.";
+"title_ask_document_chip" = "Does your document have this icon?";
+"detail_ask_document_chip" = "It means you have a chip in your passport or document which you can read with Self. If the data on the chip is readable we can verify you immediately. ";
 
 "title_cant_create_self_account" = "We’re Sorry, but you can’t open an account \njust yet. We will let you know as soon as you can.";
 "detail_cant_create_self_account" = "Please leave the app installed and it will notify you when it’s time to try again.";

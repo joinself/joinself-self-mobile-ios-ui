@@ -19,72 +19,21 @@ public struct PassportIntroductionView: View {
     public var onSelectNegative: (() -> Void)? = nil
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all) // Set the background
-            VStack(alignment: .center, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(spacing: 10) {
-                    }
-                    .padding(10)
-                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                    HStack {
-                        VStack (alignment: .leading) {
-                            Image("ic_back_dark", bundle: mainBundle) // Replace with your image name
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(.white)
-                                .padding(EdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 15))
-                                .onTapGesture {
-                                    print("onNavigateBack")
-                                    onNavigateBack()
-                                }
-                        }
-                        .onTapGesture {
-                            onNavigateBack()
-                        }
-                        .frame(width: 44, height: 32)
-                        .padding(.leading, 15)
-                    }
-                }
-                .frame(width: 393, height: 100)
-                .background(.white)
-                
-                CustomProgressView(steps: [
-                    Step(title: "1", state: .active),
-                    Step(title: "2", state: .inactive),
-                    Step(title: "3", state: .inactive),
-                    Step(title: "4", state: .inactive),
-                    Step(title: "5", state: .inactive)
-                ])
-                
-                VStack(alignment: .leading, spacing: 30) {
-                    Text("Passport verification preparation".localized)
-                        .font(.system(size: 36).weight(.bold))
-                        .foregroundColor(.black)
-                    Text("Passport verification preparation body".localized)
-                        .font(Font.custom("Barlow-Regular", size: 17).weight(.regular))
-                      .lineSpacing(1.14)
-                      .foregroundColor(.black)
-                    Spacer()
-                }
-                .padding(EdgeInsets(top: 50, leading: 24, bottom: 10, trailing: 24))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                Spacer()
-                VStack(spacing: 12) {
-                    ButtonView(title: "Get Started".localized) {
-                        onGettingStarted()
-                    }
-                    
-                    OutlinedButton(title: "i don’t have a passport".localized) {
-                        onSelectNegative?()
-                    }
-                    
-                    BrandView(isDarked: true)
-                }.padding()
+        BaseProgressView (totalSteps: 5, activeStep: 2, content: {
+            VStack (alignment: .leading, spacing: 30, content: {
+                Text(String(format: "title_verify_document_introduction".localized, arguments: ["passport"]))
+                    .modifier(Heading3TextStyle())
+                    .padding(.top, Constants.Heading1PaddingTop)
+                Text(String(format: "msg_verify_document_introduction".localized, arguments: ["passport"]))
+                    .modifier(Body1TextStyle())
+            })
+            
+            Spacer()
+            
+            ButtonView(title: "button_get_started".localized) {
+                onGettingStarted()
             }
-            .padding()
-            .ignoresSafeArea(.all)
-        }
+        })
     }
 }
 

@@ -46,10 +46,16 @@ public struct Heading2TextStyle: ViewModifier {
 
 /// heading text 36pt bold
 public struct Heading3TextStyle: ViewModifier {
-    var color: Color = .textPrimary
+    let color: Color
+    let lineLimit: Int?
+    let truncationMode: Text.TruncationMode
+    let scale: CGFloat
     
-    public init(color: Color = .textPrimary) {
+    public init(color: Color = .textPrimary, lineLimit: Int? = nil, truncationMode: Text.TruncationMode = .tail, scale: CGFloat = 0.6) {
         self.color = color
+        self.lineLimit = lineLimit
+        self.truncationMode = truncationMode
+        self.scale = scale
     }
     
     public func body(content: Content) -> some View {
@@ -58,7 +64,9 @@ public struct Heading3TextStyle: ViewModifier {
             .foregroundColor(color)
             .multilineTextAlignment(.leading)
             .allowsTightening(true)
-            .minimumScaleFactor(0.6)
+            .minimumScaleFactor(scale)
+            .lineLimit(lineLimit)
+            .truncationMode(truncationMode)
             .lineSpacing(1.14)
     }
 }

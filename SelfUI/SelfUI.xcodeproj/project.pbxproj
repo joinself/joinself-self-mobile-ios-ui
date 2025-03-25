@@ -173,6 +173,7 @@
 		63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */; };
 		63B1DA302C787F9D002782AB /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */; };
 		63B808212CB16ECC00F6862C /* QRScanFailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B808202CB16ECC00F6862C /* QRScanFailView.swift */; };
+		63BFB0DA2D8D5FFE00B994F5 /* PassportFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BFB0D92D8D5FFE00B994F5 /* PassportFlow.swift */; };
 		63C03E682C528703009E385E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E672C528703009E385E /* WelcomeView.swift */; };
 		63C03E6A2C535E9C009E385E /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E692C535E9C009E385E /* PagingView.swift */; };
 		63C03E6C2C539517009E385E /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C03E6B2C539517009E385E /* OnboardingFlow.swift */; };
@@ -410,6 +411,7 @@
 		63B1DA2D2C78715D002782AB /* OnboardingSurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSurveyView.swift; sourceTree = "<group>"; };
 		63B1DA2F2C787F9D002782AB /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		63B808202CB16ECC00F6862C /* QRScanFailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanFailView.swift; sourceTree = "<group>"; };
+		63BFB0D92D8D5FFE00B994F5 /* PassportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportFlow.swift; sourceTree = "<group>"; };
 		63C03E672C528703009E385E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		63C03E692C535E9C009E385E /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		63C03E6B2C539517009E385E /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
@@ -780,6 +782,7 @@
 				63942CBC2CEC9AC600B59BD8 /* CaptureDocumentIntroductionView.swift */,
 				63582B662CEC88E900C5969D /* CaptureDocumentFrontIntructionView.swift */,
 				638E850D2CEDC1F2007F1D26 /* CaptureDocumentView.swift */,
+				63BFB0D92D8D5FFE00B994F5 /* PassportFlow.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1208,6 +1211,7 @@
 				6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */,
 				634CEE842C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift in Sources */,
 				638E850E2CEDC1F2007F1D26 /* CaptureDocumentView.swift in Sources */,
+				63BFB0DA2D8D5FFE00B994F5 /* PassportFlow.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
 				63F5ECCC2CB912B800108555 /* DataAttachmentCell.swift in Sources */,
 				63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */,
