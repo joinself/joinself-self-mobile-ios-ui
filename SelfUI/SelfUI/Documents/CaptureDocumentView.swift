@@ -47,11 +47,6 @@ public struct CaptureDocumentView: View {
             // Base view with overlay
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
-                /*.overlay(
-                    //                    RectangleOverlay(rectangles: cameraManager.detectedRectangles)
-                    //                        .stroke(Color.green, lineWidth: 1)
-                    CardOverlayView(isHighlighted: cameraManager.isHighlighted)
-                )*/
                 .onChange(of: cameraManager.isHighlighted) { newValue in
                     if let originalImage = cameraManager.image, cameraManager.isHighlighted {
                         if cameraManager.captureMode == .detectIDCardMRZ {
@@ -87,9 +82,7 @@ public struct CaptureDocumentView: View {
                                 Image("ic_checkmark", bundle: mainBundle)
                                 Text("Document captured".localized)
                                     .transition(.opacity)
-                                    .font(.defaultNormalTitle)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.textPrimary)
+                                    .modifier(Heading4TextStyle())
                             }
                         }
                 } else {

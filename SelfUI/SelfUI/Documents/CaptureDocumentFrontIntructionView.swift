@@ -25,10 +25,10 @@ public struct CaptureDocumentIntructionView: View {
     
     public var body: some View {
         BaseProgressView (totalSteps: 5, activeStep: 2, content: {
-            VStack (spacing: 12){
+            VStack (spacing: 30) {
                 Text(title)
-                    .modifier(Heading3TextStyle())
-                    .padding(.top, Constants.Heading1PaddingTop)
+                    .modifier(Heading3TextStyle(scale: 1.0))
+                    //.padding(.top, Constants.PaddingTopMedium)
                 Text(details)
                     .modifier(Body1TextStyle())
                 
@@ -42,7 +42,6 @@ public struct CaptureDocumentIntructionView: View {
                             .clipped()
                     )
             }
-            .padding()
             
             Spacer()
             

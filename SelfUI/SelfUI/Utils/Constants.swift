@@ -24,6 +24,7 @@ struct Constants {
     static let PadLeading: CGFloat = 12
     static let PadTop: CGFloat = 12
     static let Heading1PaddingTop: CGFloat = 100
+    static let PaddingTopMedium: CGFloat = 50
     static let MinButtonHeight: CGFloat = 44
     
     static let MaxBannerHeight: CGFloat = 44

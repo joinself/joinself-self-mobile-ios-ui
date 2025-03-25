@@ -49,7 +49,9 @@ public struct LivenessCheckFlow: View {
                 .fullScreenCover(isPresented: $viewModel.showLivenessCamera) {
                     
                 } content: {
-                    NewLivenessCameraView(viewModel: viewModel)
+                    NewLivenessCameraView(viewModel: viewModel, onBack: {
+                        viewModel.showLivenessCamera = false
+                    })
                     .transition(.opacity)
                 }
                 .fullScreenCover(isPresented: $viewModel.showVerifyingView) {
@@ -67,29 +69,31 @@ public struct LivenessCheckFlow: View {
                     } onNavigationBack: {
                         presentationMode.wrappedValue.dismiss()
                     }
-
+                    
                 }
-
+                
             }
         } else {
-            NewLivenessCameraView(viewModel: viewModel)
-                .fullScreenCover(isPresented: $viewModel.showVerifyingView) {
-                    
-                } content: {
-                    LoadingView(message: "checking_your_image".localized)
-                        .transition(.opacity)
+            NewLivenessCameraView(viewModel: viewModel, onBack: {
+                viewModel.showLivenessCamera = false
+            })
+            .fullScreenCover(isPresented: $viewModel.showVerifyingView) {
+                
+            } content: {
+                LoadingView(message: "checking_your_image".localized)
+                    .transition(.opacity)
+            }
+            .transition(.opacity)
+            .fullScreenCover(isPresented: $viewModel.showFailedView) {
+                
+            } content: {
+                LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
+                    onRetry?()
+                } onNavigationBack: {
+                    presentationMode.wrappedValue.dismiss()
                 }
-                .transition(.opacity)
-                .fullScreenCover(isPresented: $viewModel.showFailedView) {
-                    
-                } content: {
-                    LivenessVerificationFailedView(remainingRetryNumber: viewModel.attemptNumber) {
-                        onRetry?()
-                    } onNavigationBack: {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-
-                }
+                
+            }
         }
     }
 }

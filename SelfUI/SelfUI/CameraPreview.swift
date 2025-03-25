@@ -274,7 +274,7 @@ public class CameraManager: NSObject, ObservableObject {
                 self.detectTexts(sampleBuffer: sampleBuffer) { recognizedTexts in
                     if recognizedTexts.count > 0 {
                         print("Detected card at: \(firstResult.boundingBox)")
-                        DispatchQueue.main.async {
+                        Task { @MainActor in
                             self.isHighlighted = true
                             self.image = image
                             self.croppedImage = self.cropImage(image: image, observation: firstResult)

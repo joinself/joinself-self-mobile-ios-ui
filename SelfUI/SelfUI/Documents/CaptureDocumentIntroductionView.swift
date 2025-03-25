@@ -10,9 +10,12 @@ import SwiftUI
 public struct CaptureDocumentIntroductionView: View {
     @Environment(\.presentationMode) private var presentationMode
     
-    public init(onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
+    private let documentType: DocumentType
+    
+    public init(documentType: DocumentType = .passport, onGettingStarted: @escaping () -> Void, onNavigateBack: @escaping () -> Void) {
         self.onGettingStarted = onGettingStarted
         self.onNavigateBack = onNavigateBack
+        self.documentType = documentType
     }
     
     var onGettingStarted: () -> Void
@@ -22,10 +25,10 @@ public struct CaptureDocumentIntroductionView: View {
     public var body: some View {
         BaseProgressView (totalSteps: 5, activeStep: 2, content: {
             VStack(alignment: .leading, spacing: 30) {
-                Text("capture_document_introduction".localized)
+                Text(documentType == .passport ? String(format: "title_verify_document_introduction".localized, arguments: ["passport"]) : String(format: "title_verify_document_introduction".localized, arguments: ["ID document"]))
                     .modifier(Heading3TextStyle())
                     .padding(.top, Constants.Heading1PaddingTop)
-                Text("msg_capture_document_introduction".localized)
+                Text(documentType == .passport ? String(format: "msg_verify_document_introduction".localized, arguments: ["passport"]) : String(format: "msg_verify_document_introduction".localized, arguments: ["ID document"]))
                     .modifier(Body1TextStyle())
                 Spacer()
             }
@@ -40,7 +43,7 @@ public struct CaptureDocumentIntroductionView: View {
 }
 
 #Preview {
-    CaptureDocumentIntroductionView(onGettingStarted: {
+    CaptureDocumentIntroductionView(documentType: .identityCard, onGettingStarted: {
         
     }, onNavigateBack: {
         

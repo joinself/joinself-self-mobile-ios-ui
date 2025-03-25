@@ -12,9 +12,11 @@ public struct NewLivenessCameraView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject private var viewModel: LivenessCheckViewModel
+    private var onBack: (() -> Void)? = nil
     
-    public init(viewModel: LivenessCheckViewModel) {
+    public init(viewModel: LivenessCheckViewModel, onBack: (() -> Void)? = nil) {
         self.viewModel = viewModel
+        self.onBack = onBack
     }
     
     public var body: some View {
@@ -44,6 +46,7 @@ public struct NewLivenessCameraView: View {
                 HStack {
                     NavBackButton(isWhiteBackground: true) {
                         print("Tap back......")
+                        onBack?()
                         presentationMode.wrappedValue.dismiss()
                     }
                     Spacer()
