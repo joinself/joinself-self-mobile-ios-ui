@@ -31,6 +31,9 @@ extension Color {
     public static let colorTextPrimary: Color = Color(hex: "0E1C42")
     public static let colorTextSecondary: Color = Color(hex: "FFFFFF")
     
+    /// Timestamp grey text
+    public static let colorTextTertiary: Color = greyScaleMid
+    
     
     // MARK: Greyscale
     public static let greyScaleDark: Color = Color(hex: "3E3E3E")

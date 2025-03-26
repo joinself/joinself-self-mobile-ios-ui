@@ -73,7 +73,7 @@ extension Font {
     static let subtitle1: Font = Font.custom("Barlow", size: 17, relativeTo: .title)
     static let subtitle2: Font = Font.custom("Barlow-Medium", size: 15, relativeTo: .title2)
     static let button: Font = Font.custom("Barlow-Bold", size: 17)
-    static let body1: Font = Font.custom("SF Pro", size: 17)
+    public static let body1: Font = Font.custom("SF Pro", size: 17)
     static let body2: Font = Font.custom("SF Pro", size: 14)
     static let caption: Font = Font.custom("SF Pro", size: 12, relativeTo: .caption)
     static let hyperlink1: Font = Font.custom("SF Pro", size: 17, relativeTo: .subheadline)

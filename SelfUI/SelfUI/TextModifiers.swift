@@ -182,16 +182,26 @@ public struct ButtonTextStyle: ViewModifier {
 
 public struct Body1TextStyle: ViewModifier {
     var color: Color = .textPrimary
+    let font: Font
 
-    public init(color: Color = .textPrimary) {
+    public init(color: Color = .textPrimary, font: Font = .body1) {
         self.color = color
+        self.font = font
     }
     
     public func body(content: Content) -> some View {
-        content
-            .font(.body1)
-            .lineSpacing(1.14)
-            .foregroundColor(color)
+        if #available(iOS 16.1, *) {
+            content
+                .font(font)
+                .fontDesign(.default)
+                .lineSpacing(1.14)
+                .foregroundColor(color)
+        } else {
+            content
+                .font(font)
+                .lineSpacing(1.14)
+                .foregroundColor(color)
+        }
     }
 }
 
