@@ -11,15 +11,16 @@ struct DocumentSignContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
-    
-    @State private var showDocument = false
+    private var viewDetails: (() -> Void)?
     
     init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
-         actionReject: (() -> Void)? = nil) {
+         actionReject: (() -> Void)? = nil,
+         viewDetails: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
         self.actionAccept = actionAccept
         self.actionReject = actionReject
+        self.viewDetails = viewDetails
     }
     
     var body: some View {
@@ -33,10 +34,11 @@ struct DocumentSignContentView: View {
                     StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
                 }
                 Spacer()
-                Image("ic_chevron_right", bundle: mainBundle)
-            }.onTapGesture {
-                print("View document.")
-                showDocument = true
+                Button {
+                    viewDetails?()
+                } label: {
+                    Image("ic_chevron_right", bundle: mainBundle)
+                }
             }
             
             Image("ic_space", bundle: mainBundle)
@@ -53,20 +55,6 @@ struct DocumentSignContentView: View {
                 }
             }
         }
-        .sheet(isPresented: $showDocument, onDismiss: {
-            // dismiss document preview
-        }, content: {
-            if let path = messageDTO.attachments.first?.localPath {
-                let url = URL(fileURLWithPath: path)
-                
-                PDFViewer(url: url)
-                    .onAppear {
-                        print("URL: \(url)")
-                    }
-            } else {
-                PDFViewer(url: mainBundle?.url(forResource: "sample", withExtension: "pdf"))
-            }
-        })
     }
 }
 
@@ -74,13 +62,16 @@ struct DocumentSignAcceptedContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
+    private var viewDetails: (() -> Void)?
     
     init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
-         actionReject: (() -> Void)? = nil) {
+         actionReject: (() -> Void)? = nil,
+         viewDetails: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
         self.actionAccept = actionAccept
         self.actionReject = actionReject
+        self.viewDetails = viewDetails
     }
     
     var body: some View {
@@ -96,6 +87,11 @@ struct DocumentSignAcceptedContentView: View {
                     }
                 }
                 Spacer()
+                Button {
+                    viewDetails?()
+                } label: {
+                    Image("ic_chevron_right", bundle: mainBundle)
+                }
             }
         }
         .frame(minWidth: Constants.SystemCellMinWidth)
@@ -106,13 +102,16 @@ struct DocumentSignRejectedContentView: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
+    private var viewDetails: (() -> Void)?
     
     init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
-         actionReject: (() -> Void)? = nil) {
+         actionReject: (() -> Void)? = nil,
+         viewDetails: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
         self.actionAccept = actionAccept
         self.actionReject = actionReject
+        self.viewDetails = viewDetails
     }
     
     var body: some View {
@@ -131,6 +130,11 @@ struct DocumentSignRejectedContentView: View {
                 }
                 
                 Spacer()
+                Button {
+                    viewDetails?()
+                } label: {
+                    Image("ic_chevron_right", bundle: mainBundle)
+                }
             }
         }
         .frame(minWidth: Constants.SystemCellMinWidth)
@@ -142,6 +146,8 @@ struct DocumentSignCell: View {
     let spaceLength: CGFloat
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
+    
+    @State private var showDocument = false
     
     init(messageDTO: MessageDTO,
          spaceLength: CGFloat = 20,
@@ -157,13 +163,33 @@ struct DocumentSignCell: View {
         BaseCell(messageDTO: messageDTO, spaceLength: spaceLength) {
             switch messageDTO.status {
             case .accepted:
-                DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil)
+                DocumentSignAcceptedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil) {
+                    showDocument = true
+                }
             case .rejected:
-                DocumentSignRejectedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil)
+                DocumentSignRejectedContentView(messageDTO: self.messageDTO, actionAccept: nil, actionReject: nil) {
+                    showDocument = true
+                }
             default:
-                DocumentSignContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject)
+                DocumentSignContentView(messageDTO: self.messageDTO, actionAccept: actionAccept, actionReject: actionReject) {
+                    showDocument = true
+                }
             }
         }
+        .sheet(isPresented: $showDocument, onDismiss: {
+            // dismiss document preview
+        }, content: {
+            if let path = messageDTO.attachments.first?.localPath {
+                let url = URL(fileURLWithPath: path)
+                
+                PDFViewer(url: url)
+                    .onAppear {
+                        print("URL: \(url)")
+                    }
+            } else {
+                PDFViewer(url: mainBundle?.url(forResource: "sample", withExtension: "pdf"))
+            }
+        })
     }
 }
 

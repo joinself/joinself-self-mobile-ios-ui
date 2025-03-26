@@ -175,7 +175,7 @@ public struct ButtonTextStyle: ViewModifier {
     
     public func body(content: Content) -> some View {
         content
-            .font(.subtitle2)
+            .font(.button)
             .foregroundColor(color)
     }
 }

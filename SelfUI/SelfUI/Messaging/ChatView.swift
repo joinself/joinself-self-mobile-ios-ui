@@ -36,6 +36,7 @@ public struct ChatView: View {
     private var actionRead: ((MessageDTO) -> Void)?
     
     let imageURL: URL?
+    private let bottomSpaceID = 123456
     public init (conversationName: Binding<String>, imageURL: URL? = nil,
                  chatObservableObject: ChatObservableObject,
                  actionAccept: ((MessageDTO) -> Void)? = nil,
@@ -50,126 +51,129 @@ public struct ChatView: View {
     }
     
     public var body: some View {
-        ZStack {
-            Color.white.ignoresSafeArea()
-            VStack {
-//                NavigationTitleView(title: .constant(conversationName), switchable: false, imageURL: imageURL)
-                if chatObservableObject.messages.isEmpty {
-                    Spacer()// Empty messages
-                } else {
-                    ScrollViewReader { scrollViewProxy in
-                        List(chatObservableObject.messages) { message in
-                            switch message.mimeType {
-                            case MessageType.SELF_CREDENTIAL_REQUEST:
-                                CredentialRequestCell(messageDTO: message) {
-                                    actionAccept?(message)
-                                } actionReject: {
-                                    actionReject?(message)
-                                }
-                                .onAppear {
-                                    actionRead?(message)
-                                }
-                            
-                            case MessageType.SELF_DOCUMENT_SIGN:
-                                DocumentSignCell(messageDTO: message) {
-                                    actionAccept?(message)
-                                } actionReject: {
-                                    actionReject?(message)
-                                }
-                                .onAppear {
-                                    actionRead?(message)
-                                }
-                                
-                            case MessageType.SELF_SIGNING_REQUEST:
-                                
-                                SigningRequestCell(messageDTO: message) {
-                                    actionAccept?(message)
-                                } actionReject: {
-                                    actionReject?(message)
-                                }
-                                .onAppear {
-                                    actionRead?(message)
-                                }
-                                
-                            case MessageType.SELF_IMAGE:
-                                MessageImageCell(messageDTO: message)
-                                    .onAppear {
-                                        actionRead?(message)
-                                    }
-                            
-                            case MessageType.SELF_VIDEO:
-                                MessageVideoCell(messageDTO: message)
-                                    .onAppear {
-                                        actionRead?(message)
-                                    }
-                                
-                            case MessageType.SELF_FILE:
-                                FileCell(messageDTO: message)
-                                    .onAppear {
-                                        actionRead?(message)
-                                    }
-                                
-                            default:
-                                MessageTextCell(messageDTO: message)
-                                    .onAppear {
-                                        actionRead?(message)
-                                    }
-                                    .modifier(DraggableModifier(direction: .horizontal, draggedOffset: .zero, onSwipe: { direction in
-                                        if direction == .right {
-                                            self.replyToMessage = message
-                                        }
-                                    }))
+        VStack {
+            if chatObservableObject.messages.isEmpty {
+                Spacer()// Empty messages
+            } else {
+                ScrollViewReader { scrollViewProxy in
+                    List(chatObservableObject.messages) { message in
+                        switch message.mimeType {
+                        case MessageType.SELF_CREDENTIAL_REQUEST:
+                            CredentialRequestCell(messageDTO: message) {
+                                actionAccept?(message)
+                            } actionReject: {
+                                actionReject?(message)
                             }
-                        }
-                        .onAppear {
-                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
-                        }
+                            .onAppear {
+                                actionRead?(message)
+                            }
                         
-                        .scrollDismissesKeyboard(.interactively)
-                        .background(.white)
-                        .listStyle(PlainListStyle())
-                        .onChange(of: chatObservableObject.messages) { _ in
-                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                        case MessageType.SELF_DOCUMENT_SIGN:
+                            DocumentSignCell(messageDTO: message) {
+                                actionAccept?(message)
+                            } actionReject: {
+                                actionReject?(message)
+                            }
+                            .onAppear {
+                                actionRead?(message)
+                            }
+                            
+                        case MessageType.SELF_SIGNING_REQUEST:
+                            
+                            SigningRequestCell(messageDTO: message) {
+                                actionAccept?(message)
+                            } actionReject: {
+                                actionReject?(message)
+                            }
+                            .onAppear {
+                                actionRead?(message)
+                            }
+                            
+                        case MessageType.SELF_IMAGE:
+                            MessageImageCell(messageDTO: message)
+                                .onAppear {
+                                    actionRead?(message)
+                                }
+                        
+                        case MessageType.SELF_VIDEO:
+                            MessageVideoCell(messageDTO: message)
+                                .onAppear {
+                                    actionRead?(message)
+                                }
+                            
+                        case MessageType.SELF_FILE:
+                            FileCell(messageDTO: message)
+                                .onAppear {
+                                    actionRead?(message)
+                                }
+                            
+                        default:
+                            MessageTextCell(messageDTO: message)
+                                .onAppear {
+                                    actionRead?(message)
+                                }
+                                .modifier(DraggableModifier(direction: .horizontal, draggedOffset: .zero, onSwipe: { direction in
+                                    if direction == .right {
+                                        self.replyToMessage = message
+                                    }
+                                }))
                         }
-                        .onChange(of: keyboardResponder.currentHeight) { newValue in
-                            self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                        if message == chatObservableObject.messages.last {
+                            Spacer()
+                                .listRowBackground(Color.white)
+                                .listRowSeparator(.hidden)
+                                .id(bottomSpaceID)
                         }
                     }
+                    .onAppear {
+                        self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                    }
+                    
+                    .scrollDismissesKeyboard(.interactively)
+                    .background(.white)
+                    .listStyle(PlainListStyle())
+                    .onChange(of: chatObservableObject.messages) { _ in
+                        self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                    }
+                    .onChange(of: keyboardResponder.currentHeight) { newValue in
+                        self.scrollToBottom(scrollViewProxy: scrollViewProxy)
+                    }
                 }
-                if let replyTo = replyToMessage {
-                    HStack {
-                        Text(LocalizedStringKey(replyTo.text))
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .padding(.bottom, 2)
-                        Spacer()
-                        Button {
-                            replyToMessage = nil
-                        } label: {
-                            Image(systemName: "x.circle")
-                        }
+            }
+            if let replyTo = replyToMessage {
+                HStack {
+                    Text(LocalizedStringKey(replyTo.text))
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 2)
+                    Spacer()
+                    Button {
+                        replyToMessage = nil
+                    } label: {
+                        Image(systemName: "x.circle")
+                    }
 
-                    }
                 }
-                MessageComposerView(onText: { textMessage in
-                    let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
-                    newMessage.reference = replyToMessage
-                    chatObservableObject.newMessage.send(newMessage)
-                    replyToMessage = nil
-                }) { inputImage in
-                    let newMessage = MessageDTO(id: UUID().uuidString, text: "", image: inputImage, mimeType: MessageType.SELF_IMAGE)
-                    chatObservableObject.newMessage.send(newMessage)
-                } onSelectFile: { url in
-                    let newMessage = MessageDTO(id: UUID().uuidString, text: "", fileURLs: [url], mimeType: MessageType.SELF_FILE)
-                    chatObservableObject.newMessage.send(newMessage)
-                }
-            }.padding()
+            }
+            MessageComposerView(onText: { textMessage in
+                let newMessage = MessageDTO(id: UUID().uuidString, text: textMessage)
+                newMessage.reference = replyToMessage
+                chatObservableObject.newMessage.send(newMessage)
+                replyToMessage = nil
+            }) { inputImage in
+                let newMessage = MessageDTO(id: UUID().uuidString, text: "", image: inputImage, mimeType: MessageType.SELF_IMAGE)
+                chatObservableObject.newMessage.send(newMessage)
+            } onSelectFile: { url in
+                let newMessage = MessageDTO(id: UUID().uuidString, text: "", fileURLs: [url], mimeType: MessageType.SELF_FILE)
+                chatObservableObject.newMessage.send(newMessage)
+            }
         }
+        .background(Color.backgroundPrimary)
     }
     
     private func scrollToBottom(scrollViewProxy: ScrollViewProxy) {
         withAnimation {
-            scrollViewProxy.scrollTo(chatObservableObject.messages.last?.id, anchor: .bottom)
+            scrollViewProxy.scrollTo(bottomSpaceID, anchor: .bottom)
         }
     }
 }

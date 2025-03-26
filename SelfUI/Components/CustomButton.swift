@@ -20,33 +20,20 @@ struct CustomButton: View {
     }
     
     var body: some View {
-//        Button(action: {
-//            action?()
-//        }, label: {
-//            HStack(alignment: .center, spacing: 10) {
-//                Text(buttonTitle)
-//                  .font(.defaultButton)
-//                  .foregroundColor(buttonTitleColor)
-//            }
-//            .padding(.horizontal, 0)
-//            .padding(.vertical, 8)
-//            .frame(maxWidth: .infinity, alignment: .center)
-//            .background(.white)
-//            .cornerRadius(8)
-//        })
-        HStack(alignment: .center, spacing: 10) {
-            Text(buttonTitle)
-              .font(.defaultButton)
-              .foregroundColor(buttonTitleColor)
-        }
-        .padding(.horizontal, 0)
-        .padding(.vertical, 8)
-        .frame(maxWidth: .infinity, alignment: .center)
-        .background(.white)
-        .cornerRadius(8)
-        .onTapGesture {
+        Button {
             action?()
+        } label: {
+            HStack(alignment: .center, spacing: 10) {
+                Text(buttonTitle)
+                    .modifier(ButtonTextStyle(color: buttonTitleColor))
+            }
+            .padding(.horizontal, 0)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background(.white)
+            .cornerRadius(8)
         }
+        .buttonStyle(.borderless)
     }
 }
 
