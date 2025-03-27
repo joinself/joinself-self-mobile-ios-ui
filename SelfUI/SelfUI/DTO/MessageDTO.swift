@@ -108,11 +108,11 @@ public enum ConnectionType: String, CaseIterable {
 }
 
 
-public class ChatHistory: Identifiable, Equatable {
+public class ChatHistory: ObservableObject, Identifiable, Equatable {
     public let id: String
     let title: String
     let subtitle: String
-    let badge: String
+    @Published public var badge: String
     let timestamp: String
     let connectionType: ConnectionType
     let appName: String?

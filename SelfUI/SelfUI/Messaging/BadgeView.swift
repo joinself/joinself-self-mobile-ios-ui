@@ -8,10 +8,10 @@
 import SwiftUI
 
 public struct BadgeView: View {
-    let badge: String
+    @Binding var badge: String
     
-    public init(badge: String) {
-        self.badge = badge
+    public init(badge: Binding<String> = .constant("")) {
+        self._badge = badge
     }
     
     public var body: some View {
@@ -27,8 +27,8 @@ public struct BadgeView: View {
 
 #Preview {
     VStack {
-        BadgeView(badge: "100")
-        BadgeView(badge: "10")
-        BadgeView(badge: "1")
+        BadgeView(badge: .constant("100"))
+        BadgeView(badge: .constant("10"))
+        BadgeView(badge: .constant("1"))
     }
 }

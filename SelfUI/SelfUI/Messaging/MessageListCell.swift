@@ -9,11 +9,14 @@ import SwiftUI
 
 public struct MessageListCell: View {
     
-    let chatHistory: ChatHistory
+    @ObservedObject var chatHistory: ChatHistory
     private let lineLimit = 2
     
-    public init (chatHistory: ChatHistory) {
+    @Binding var badge: String
+    
+    public init (chatHistory: ChatHistory, badge: Binding<String> = .constant("")) {
         self.chatHistory = chatHistory
+        self._badge = badge
     }
     
     public var body: some View {
@@ -40,10 +43,9 @@ public struct MessageListCell: View {
             
             Spacer()
             VStack {
-                if !chatHistory.badge.isEmpty {
-                    BadgeView(badge: chatHistory.badge)
+                if !badge.isEmpty {
+                    BadgeView(badge: $badge)
                 }
-                
             }
         }
     }
@@ -65,7 +67,7 @@ public struct MessageListCell: View {
             var attributedString = try AttributedString(markdown: markdownText)
             if let range = attributedString.range(of: "\(shortenTitle)") {
                 attributedString[range].font =
-                    .body.bold()
+                    .heading6
                 attributedString[range].foregroundColor = .colorTextPrimary
             }
             
@@ -82,8 +84,8 @@ public struct MessageListCell: View {
     ZStack {
         Color.white.ignoresSafeArea()
         List {
-            MessageListCell(chatHistory: ChatHistory(id: UUID().uuidString, title: "ACME", subtitle: "Hello World", timestamp: "now", badge: "1", icon: Image("ic_self_logo", bundle: mainBundle), imageURL: nil))
-            MessageListCell(chatHistory: ChatHistory(id: UUID().uuidString, title: "ACME", subtitle: "Hello World", timestamp: "now", badge: "1", icon: Image("ic_self_logo", bundle: mainBundle), imageURL: nil, appName: "Self Group"))
+            MessageListCell(chatHistory: ChatHistory(id: UUID().uuidString, title: "ACME", subtitle: "Hello World", timestamp: "now", badge: "0", icon: Image("ic_self_logo", bundle: mainBundle), imageURL: nil), badge: .constant("3"))
+            MessageListCell(chatHistory: ChatHistory(id: UUID().uuidString, title: "ACME", subtitle: "Hello World", timestamp: "now", badge: "", icon: Image("ic_self_logo", bundle: mainBundle), imageURL: nil, appName: "Self Group"))
             MessageListCell(chatHistory: ChatHistory(id: UUID().uuidString, title: "005372ca696bd2f6c8b61fa2a6825c307754be75a29ff05a3ef19d80bbd7a01cfd", subtitle: "Hello World", timestamp: "now", badge: "1", icon: Image("ic_self_logo", bundle: mainBundle), imageURL: nil, appName: "Self Group"))
         }.listStyle(.plain)
     }
