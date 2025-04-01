@@ -33,6 +33,8 @@ public struct AvatarView: View {
         BaseAvatarView {
             if let icon = icon {
                 icon
+                    .resizable()
+                    .clipShape(Circle())
             } else if let firstLetter = displayName?.first {
                 Text("\(firstLetter)")
                     .modifier(Body1TextStyle(color: .colorTextSecondary))

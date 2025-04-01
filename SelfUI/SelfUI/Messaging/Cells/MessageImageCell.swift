@@ -52,17 +52,16 @@ struct MessageImageCell: View, BaseMessage {
                 }
                 
                 Text(messageDTO.text)
-                    .multilineTextAlignment(.leading)
-                    .font(.defaultBody)
-                    .foregroundStyle(Color.textPrimary)
+                    .modifier(Body1TextStyle())
             }
         }
     }
 }
 
 #Preview {
+    let attachment = AttachmentDTO(name: "myimage.jpg", mime:  MessageType.SELF_IMAGE, localPath: mainBundle?.url(forResource: "ic_data_pdf", withExtension: "pdf")?.path() ?? "", size: 1000)
     VStack {
-        MessageImageCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .sender, status: .pending, timestamp: "now"))
+        MessageImageCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", attachments: [attachment], fromType: .sender, status: .pending, timestamp: "now"))
         MessageImageCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .read, timestamp: "now"))
 //        MessageImageCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now"))
     }.padding()
