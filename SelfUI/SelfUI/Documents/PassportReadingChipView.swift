@@ -33,7 +33,11 @@ public struct PassportReadingChipView: View {
                     .modifier(Heading3TextStyle())
                     .padding(.top, Constants.Heading1PaddingTop)
                 
-                LoadingDotsView()
+                HStack {
+                    Spacer()
+                    LoadingDotsView()
+                    Spacer()
+                }
                 Spacer()
             }
         })
