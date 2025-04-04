@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EnterEmailView: View {
+public struct EnterEmailView: View {
     
     @Environment(\.presentationMode) var presentationMode
     public init(onFinish: ((_ email: String) -> Void)? = nil) {

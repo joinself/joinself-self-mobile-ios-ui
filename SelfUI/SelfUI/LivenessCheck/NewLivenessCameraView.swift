@@ -28,10 +28,12 @@ public struct NewLivenessCameraView: View {
             VStack (alignment: .center) {
                 Spacer()
                 ZStack {
-                    Image(viewModel.tipImageName, bundle: mainBundle)
-                    Text(viewModel.text)
-                        .font(Font.defaultNormalTitle)
-                        .foregroundColor(.textPrimary)
+                    if viewModel.tipImageName.isEmpty == false {
+                        Image(viewModel.tipImageName, bundle: mainBundle)
+                        Text(viewModel.text)
+                            .font(Font.defaultNormalTitle)
+                            .foregroundColor(.textPrimary)
+                    }
                 }
                 
                 BrandView(isDarked: false, textColor: .white)

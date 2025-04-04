@@ -100,7 +100,7 @@
 "enter_code_again" = "Enter Code Again";
 "enter_code_again" = "Enter Code Again";
 "process_to_signup" = "Or Proceed to Signup";
-"email_verification_failed_title" = "Email Verification failed. It’s not critical right now. please try again after setup.";
+"email_verification_failed_title" = "Email verification failed. Please try again later.";
 
 
 // MARK: - Phone

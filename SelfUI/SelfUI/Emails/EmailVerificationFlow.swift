@@ -10,6 +10,7 @@ import Combine
 
 public class EmailFlowViewModel: ObservableObject {
     @Published public var isVerified: Bool = false
+    @Published public var emailAddress: String = ""
     public init(isVerified: Bool) {
         self.isVerified = isVerified
     }

@@ -30,37 +30,46 @@ public struct EnterEmailCodeView: View {
         ZStack {
         
             BaseProgressView (totalSteps: 6, activeStep: 2, content: {
-                ScrollView {
-                    VStack (alignment: .leading) {
-                        Text("email_enter_code_title".localized)
-                            .modifier(Heading3TextStyle())
-                            .padding(.top, Constants.Heading1PaddingTop)
-                        
-                        PinCodeView(pinLength: 6, pinCode: $pinCode) { code in
-                            self.onCode?(code)
-                        }
-                        HStack {
-                            Spacer()
-                            Button {
-                                onResendCode?()
-                                pinCode = Array(repeating: "", count: 6)
-                            } label: {
-                                HStack {
-                                    Image("ic_resend", bundle: mainBundle)
-                                    // Paragraph/Caption
-                                    Text("resend_code".localized)
-                                        .font(
-                                            Font.defaultBody
-                                        )
-                                        .foregroundColor(.defaultBlue)
-                                }
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        VStack (alignment: .leading) {
+                            Text("email_enter_code_title".localized)
+                                .modifier(Heading3TextStyle())
+                                .padding(.top, Constants.Heading1PaddingTop)
+                                .id(1)
+                            
+                            PinCodeView(pinLength: 6, pinCode: $pinCode) { code in
+                                self.onCode?(code)
                             }
+                            .id(2)
+                            HStack {
+                                Spacer()
+                                Button {
+                                    onResendCode?()
+                                    pinCode = Array(repeating: "", count: 6)
+                                } label: {
+                                    HStack {
+                                        Image("ic_resend", bundle: mainBundle)
+                                        // Paragraph/Caption
+                                        Text("resend_code".localized)
+                                            .font(
+                                                Font.defaultBody
+                                            )
+                                            .foregroundColor(.defaultBlue)
+                                    }
+                                }
+                                Spacer()
+                            }
+                            .id(3)
                             Spacer()
+                                .id(4)
                         }
-                        Spacer()
+                    }.onAppear {
+                        withAnimation {
+                            proxy.scrollTo(4, anchor: .bottom)
+                        }
                     }
                 }
-                
             })
             
             if showAlert {
