@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct CustomAlertView: View {
+public struct CustomAlertView: View {
     var title: String
     var message: String
     var onOK: (() -> Void)?
     var onCancel: (() -> Void)?
     
-    init(title: String, message: String,
+    public init(title: String, message: String,
          onOK: (() -> Void)? = nil,
          onCancel: (() -> Void)? = nil) {
         self.title = title
@@ -22,7 +22,7 @@ struct CustomAlertView: View {
         self.onCancel = onCancel
     }
     
-    var body: some View {
+    public var body: some View {
         ZStack {
             Color.defaultOverlay.opacity(0.3)
             VStack(alignment: .leading, spacing: 20) {
