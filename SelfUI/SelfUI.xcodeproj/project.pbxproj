@@ -83,7 +83,6 @@
 		637067072C60894000A23C1E /* OutlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067062C60894000A23C1E /* OutlinedTextField.swift */; };
 		6370670B2C60AA1B00A23C1E /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670A2C60AA1B00A23C1E /* BaseView.swift */; };
 		6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */; };
-		6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */; };
 		637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637067102C60CA4200A23C1E /* NavBackButton.swift */; };
 		6370672C2C610C2D00A23C1E /* SelfUISdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370672B2C610C2D00A23C1E /* SelfUISdk.swift */; };
 		6370672D2C61D68500A23C1E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6370672F2C61D68500A23C1E /* Localizable.strings */; };
@@ -323,7 +322,6 @@
 		637067062C60894000A23C1E /* OutlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedTextField.swift; sourceTree = "<group>"; };
 		6370670A2C60AA1B00A23C1E /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingAccountView.swift; sourceTree = "<group>"; };
-		6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreatedView.swift; sourceTree = "<group>"; };
 		637067102C60CA4200A23C1E /* NavBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackButton.swift; sourceTree = "<group>"; };
 		6370672B2C610C2D00A23C1E /* SelfUISdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfUISdk.swift; sourceTree = "<group>"; };
 		6370672E2C61D68500A23C1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -683,7 +681,6 @@
 				637067022C6087AE00A23C1E /* CreateAccountFlow.swift */,
 				637067042C6087C000A23C1E /* CreateAccountNameView.swift */,
 				6370670C2C60BFF900A23C1E /* CreatingAccountView.swift */,
-				6370670E2C60C98B00A23C1E /* AccountCreatedView.swift */,
 				634CEE832C7C1AD2008CD5B8 /* ScanLoginQRCodeView.swift */,
 			);
 			path = "Create account";
@@ -1232,7 +1229,6 @@
 				6352E2B62CB7DEAA00931A18 /* AttachmentDTO.swift in Sources */,
 				632AFA002CAFF5960036F294 /* UserDetailView.swift in Sources */,
 				635ACCED2BFC813B0012108F /* SteppedProgressView.swift in Sources */,
-				6370670F2C60C98B00A23C1E /* AccountCreatedView.swift in Sources */,
 				634878D52BF7619F00E50DE1 /* ButtonView.swift in Sources */,
 				63B1DA2E2C78715D002782AB /* OnboardingSurveyView.swift in Sources */,
 				6352E2B42CB7CDF200931A18 /* DocumentSignCell.swift in Sources */,

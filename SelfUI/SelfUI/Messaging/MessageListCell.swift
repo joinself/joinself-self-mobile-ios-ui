@@ -48,7 +48,9 @@ public struct MessageListCell: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity)
     }
+    
     
     private func shortenedString(_ text: String, length: Int = 80) -> String {
         if text.count > length {
