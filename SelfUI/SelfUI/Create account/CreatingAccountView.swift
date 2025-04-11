@@ -35,29 +35,7 @@ public struct CreatingAccountView: View {
             }
             
             ButtonView(title: "button_turn_on_notifications".localized) {
-                requestNotificationPermission { isGranted in
-                    onNext?()
-                }
-            }
-        }
-        
-    }
-    
-    func checkNotificationPermission() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            DispatchQueue.main.async {
-                notificationPermissionGranted = settings.authorizationStatus == .authorized
-            }
-        }
-    }
-    
-    func requestNotificationPermission(completion: ((Bool) -> Void)? = nil) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if let error = error {
-                print("Error requesting notification permission: \(error.localizedDescription)")
-            }
-            DispatchQueue.main.async {
-                completion?(granted)
+                onNext?()
             }
         }
     }
