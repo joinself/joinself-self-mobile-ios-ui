@@ -34,6 +34,7 @@ public struct AvatarView: View {
             if let icon = icon {
                 icon
                     .resizable()
+                    .scaledToFill()
                     .clipShape(Circle())
             } else if let firstLetter = displayName?.first {
                 Text("\(firstLetter)")
