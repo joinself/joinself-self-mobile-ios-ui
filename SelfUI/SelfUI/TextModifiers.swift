@@ -213,9 +213,18 @@ public struct Body2TextStyle: ViewModifier {
     }
     
     public func body(content: Content) -> some View {
-        content
-            .font(.body2)
-            .foregroundColor(color)
+        if #available(iOS 16.1, *) {
+            content
+                .font(.body2)
+                .fontDesign(.default)
+                .lineSpacing(1.14)
+                .foregroundColor(color)
+        } else {
+            content
+                .font(.body2)
+                .lineSpacing(1.14)
+                .foregroundColor(color)
+        }
     }
 }
 

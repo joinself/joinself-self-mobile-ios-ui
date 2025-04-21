@@ -39,7 +39,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
                     .background(Color.white)
                 }
                 content
-                StatusTimeView(timestamp: messageDTO.timestamp, status: messageDTO.isMyMessage ? messageDTO.receiptStatus : .none)
+                StatusTimeView(timestamp: messageDTO.timestamp, status: messageDTO.isMyMessage ? .constant(messageDTO.receiptStatus) : .constant(.none))
             }
             
             .padding(.horizontal, Constants.Corner2)
