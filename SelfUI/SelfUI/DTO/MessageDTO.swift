@@ -51,7 +51,7 @@ public enum MessageStatus: String, CaseIterable {
     case error
 }
 
-public class MessageDTO: Identifiable, Equatable {
+public class MessageDTO: ObservableObject, Identifiable, Equatable {
     public let id: String
     public let messageId: String
     public let text: String
@@ -60,9 +60,9 @@ public class MessageDTO: Identifiable, Equatable {
     let isMyMessage: Bool
     public let mimeType: String
     let fromType: MessageFrom
-    let receiptStatus: MessageStatus
+    @Published public var receiptStatus: MessageStatus
     let timestamp: String
-    var status: MessageStatus = .pending // Request status
+    @Published public var status: MessageStatus = .pending // Request status
     public let attachments: [AttachmentDTO]
     let credential: CredentialDTO?
     public var reference: MessageDTO?

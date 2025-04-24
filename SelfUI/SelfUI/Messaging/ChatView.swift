@@ -17,6 +17,15 @@ public class ChatObservableObject: ObservableObject {
     public func updateMessages(newMessages: [MessageDTO]) {
         self.messages = newMessages
     }
+    
+    public func updateMessageAt(message: MessageDTO, at: Int) {
+        print("UPDATE MESSAGE at index: \(at) receiptStatus: \(message.receiptStatus)")
+        if at >= messages.count || at < 0 {
+            print("Invalid message at: \(at)")
+            return
+        }
+        self.messages[at].receiptStatus = message.receiptStatus
+    }
 }
 
 

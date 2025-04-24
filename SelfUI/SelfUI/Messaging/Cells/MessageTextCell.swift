@@ -12,7 +12,7 @@ protocol BaseMessage {
 }
 
 struct MessageTextCell: View, BaseMessage {
-    var messageDTO: MessageDTO
+    @ObservedObject var messageDTO: MessageDTO
 
     init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
