@@ -9,12 +9,29 @@ import SwiftUI
 
 struct StatusTimeView: View {
     let timestamp: String
-    let status: MessageStatus
-    private var receiptImageName: String?
-    init(timestamp: String, status: MessageStatus = .pending) {
+    @Binding private var status: MessageStatus
+//    private var receiptImageName: String?
+    
+    init(timestamp: String, status: Binding<MessageStatus> = .constant(.pending)) {
         self.timestamp = timestamp
-        self.status = status
-        
+        self._status = status
+    }
+    var body: some View {
+        HStack {
+            // Caption/Regular
+            Text(timestamp)
+              .font(Font.defaultCaption)
+              .multilineTextAlignment(.trailing)
+              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.54))
+            if let receiptImageName = self.getReceiptIconName(messageStatus: status) {
+                Image(receiptImageName, bundle: mainBundle)
+                  .frame(width: 28, height: 28)
+            }
+        }
+    }
+    
+    private func getReceiptIconName(messageStatus: MessageStatus) -> String? {
+        var receiptImageName: String?
         switch status {
         case .sent:
             receiptImageName = "ic_message_delivered"
@@ -25,27 +42,16 @@ struct StatusTimeView: View {
         default:
             receiptImageName = nil
         }
-    }
-    var body: some View {
-        HStack {
-            // Caption/Regular
-            Text(timestamp)
-              .font(Font.defaultCaption)
-              .multilineTextAlignment(.trailing)
-              .foregroundColor(Color(red: 0.54, green: 0.54, blue: 0.54))
-            if let receiptImageName = receiptImageName {
-                Image(receiptImageName, bundle: mainBundle)
-                  .frame(width: 28, height: 28)
-            }
-        }
+        
+        return receiptImageName
     }
 }
 
 #Preview {
     VStack {
-        StatusTimeView(timestamp: "yesterday", status: .pending)
-        StatusTimeView(timestamp: "now", status: .read)
-        StatusTimeView(timestamp: "now", status: .none)
+        StatusTimeView(timestamp: "yesterday", status: .constant(.pending))
+        StatusTimeView(timestamp: "now", status: .constant(.read))
+        StatusTimeView(timestamp: "now", status: .constant(.none))
     }
     
 }

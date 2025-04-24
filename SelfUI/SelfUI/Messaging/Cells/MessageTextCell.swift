@@ -12,7 +12,7 @@ protocol BaseMessage {
 }
 
 struct MessageTextCell: View, BaseMessage {
-    var messageDTO: MessageDTO
+    @ObservedObject var messageDTO: MessageDTO
 
     init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
@@ -20,15 +20,8 @@ struct MessageTextCell: View, BaseMessage {
     var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
-                if #available(iOS 16.1, *) {
-                    Text(LocalizedStringKey(messageDTO.text))
-                        .multilineTextAlignment(.leading)
-                        .font(.defaultBody).fontDesign(.default)
-                        .foregroundStyle(Color.textPrimary)
-                } else {
-                    // Fallback on earlier versions
-                }
-//                StatusTimeView(timestamp: messageDTO.timestamp, status: .pending)
+                Text(LocalizedStringKey(messageDTO.text))
+                    .modifier(Body1TextStyle())
             }
         }
     }
