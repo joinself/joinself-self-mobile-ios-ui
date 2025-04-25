@@ -92,6 +92,7 @@
 "button_recover_account" = "Recover Account";
 "button_start" = "Start";
 "button_get_started" = "Get Started";
+"button_update_now" = "Update now";
 
 "label_rejected" = "Rejected";
 "label_agreed" = "Agreed";
@@ -140,6 +141,8 @@
 "enter_code_again" = "Enter Code Again";
 "process_to_signup" = "Or Proceed to Signup";
 "email_verification_failed_title" = "Email verification failed. Please try again later.";
+"update_now" = "Update now.";
+"msg_update_now" = "This version of the Self Developer App is no longer supported. Please update now to continue using Self.";
 
 
 // MARK: - Phone

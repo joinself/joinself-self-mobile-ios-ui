@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6315DB2B2CE60C8000AFE4EC /* DocumentVerifiedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6315DB2A2CE60C8000AFE4EC /* DocumentVerifiedView.swift */; };
 		631D10E92CABF91E00DA1376 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D10E82CABF91E00DA1376 /* KeyboardResponder.swift */; };
+		631EC4932DBB7C2F004AE57F /* AppUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631EC4922DBB7C2F004AE57F /* AppUpdateView.swift */; };
 		6320F4F52BFB307100C35808 /* LivenessCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F42BFB307100C35808 /* LivenessCameraView.swift */; };
 		6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F72BFB57DE00C35808 /* TipsSelfie.swift */; };
 		6320F4FA2BFC42EC00C35808 /* LivenessOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6320F4F92BFC42EC00C35808 /* LivenessOverlayViewModel.swift */; };
@@ -247,6 +248,7 @@
 /* Begin PBXFileReference section */
 		6315DB2A2CE60C8000AFE4EC /* DocumentVerifiedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentVerifiedView.swift; sourceTree = "<group>"; };
 		631D10E82CABF91E00DA1376 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
+		631EC4922DBB7C2F004AE57F /* AppUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateView.swift; sourceTree = "<group>"; };
 		6320F4F42BFB307100C35808 /* LivenessCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessCameraView.swift; sourceTree = "<group>"; };
 		6320F4F72BFB57DE00C35808 /* TipsSelfie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsSelfie.swift; sourceTree = "<group>"; };
 		6320F4F92BFC42EC00C35808 /* LivenessOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessOverlayViewModel.swift; sourceTree = "<group>"; };
@@ -916,6 +918,7 @@
 				6334F4F62D0961D800139CF7 /* BaseActions.swift */,
 				6334F4F22D093ACD00139CF7 /* BaseProgressView.swift */,
 				6334F4F42D093FF800139CF7 /* StepProgressView.swift */,
+				631EC4922DBB7C2F004AE57F /* AppUpdateView.swift */,
 				63DC0A382D02E3A900E2F7F7 /* NetworkMonitor.swift */,
 				634E247B2CF863BC00DAD928 /* ResourceContants.swift */,
 				6381C33C2BF4CB5A005573A0 /* Assets.xcassets */,
@@ -1198,6 +1201,7 @@
 				6370670D2C60BFF900A23C1E /* CreatingAccountView.swift in Sources */,
 				637067112C60CA4200A23C1E /* NavBackButton.swift in Sources */,
 				635ACCF42BFC8ECE0012108F /* ProgressStepView.swift in Sources */,
+				631EC4932DBB7C2F004AE57F /* AppUpdateView.swift in Sources */,
 				63F8CA082CF9CC57003B6B21 /* DocumentPicker.swift in Sources */,
 				6351DF192CA5384A00976552 /* MessageListCell.swift in Sources */,
 				6395A8222C5A7CB600CB44FE /* MessageComposeView.swift in Sources */,
