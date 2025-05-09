@@ -23,7 +23,12 @@ public struct RestoringBackupView: View, BaseActions {
                 Text("msg_restoring_backup_intro".localized)
                     .modifier(Heading4TextStyle())
                 Spacer()
-                LoadingDotsView()
+                HStack {
+                    Spacer()
+                    LoadingDotsView()
+                    Spacer()
+                }
+                
                 Spacer()
             }
             .onAppear {
