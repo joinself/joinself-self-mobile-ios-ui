@@ -145,7 +145,7 @@ public class CameraManager: NSObject, ObservableObject {
             
             print("Expected mrz: \(mrzLines)")
             
-            if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines) {
+            if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines), mrzInfo.isvalidMZR() {
                 print("Expected mrzInfo: \(mrzInfo)")
                 DispatchQueue.main.async {
                     self.isHighlighted = mrzInfo.isvalidMZR()
