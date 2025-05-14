@@ -49,7 +49,7 @@ public struct ButtonView: View {
                     .padding(.trailing, 25)
             }
             .frame(maxWidth: .infinity, minHeight: Constants.MinButtonHeight)
-            .background(isActive ? viewModel.backgroundColor : Color.defaultDark)
+            .background(isActive ? viewModel.backgroundColor : Color.defaultGray)
             .cornerRadius(Constants.ButtonCornerRadius)
         })
         .disabled(!isActive)
@@ -57,7 +57,8 @@ public struct ButtonView: View {
 }
 #Preview {
     VStack {
-        ButtonView(title: "Start", backgroundColor: .defaultPink)
+        ButtonView(title: "Start", backgroundColor: .defaultPink, isActive: .constant(false))
+        ButtonView(title: "Start", backgroundColor: .defaultPink, isActive: .constant(true))
         ButtonView(title: "Start", backgroundColor: .defaultOrange, buttonTitleColor: .textPrimary)
         ButtonView(title: "I’m going to develop with Self. Hello Button View", backgroundColor: .defaultOrange, buttonTitleColor: .textPrimary)
     }

@@ -19,7 +19,7 @@ public struct EnterEmailView: View {
     @State private var emailAddress: String = ""
     @FocusState private var isFocused: Bool
     @State private var editFieldState: OutlineTextFieldState = .initial
-    
+
     public var body: some View {
         ScrollViewReader { proxy in
             BaseProgressView (totalSteps: 6, activeStep: 1, content: {
@@ -43,19 +43,16 @@ public struct EnterEmailView: View {
                                 proxy.scrollTo(1, anchor: .bottom)
                             }
                         }
+                        .onAppear {
+                            isValidEmail = emailAddress.isValidEmail()
+                        }
                     }.id(1)
                 }
                 
-                if isValidEmail {
-                    ButtonView(title: "button_send_code".localized) {
-                        onFinish?(emailAddress)
-                    }
-                } else {
-                    ButtonView(title: "button_send_code".localized, backgroundColor: .defaultGray) {
-                        
-                    }
+                ButtonView(title: "button_send_code".localized, isActive: $isValidEmail) {
+                    onFinish?(emailAddress)
+                    isValidEmail = false
                 }
-                
             })
             
         }.scrollDismissesKeyboard(.interactively) // This dismisses the keyboard interactively
