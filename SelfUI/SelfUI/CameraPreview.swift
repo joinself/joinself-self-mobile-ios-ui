@@ -83,8 +83,14 @@ public class CameraManager: NSObject, ObservableObject {
         
         do {
             try camera.lockForConfiguration()
-            camera.focusMode = .autoFocus
-            camera.isSmoothAutoFocusEnabled = true
+            if camera.isFocusModeSupported(.autoFocus) {
+                camera.focusMode  = .autoFocus
+            }
+            
+            if camera.isSmoothAutoFocusSupported {
+                camera.isSmoothAutoFocusEnabled = true
+            }
+            
             camera.exposureMode = .continuousAutoExposure
             camera.unlockForConfiguration()
         } catch {
