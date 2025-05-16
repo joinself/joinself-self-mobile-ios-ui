@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 import Vision
 import Combine
+import CoreImage
 
 struct CameraPreview: UIViewRepresentable {
     class VideoPreviewView: UIView {
@@ -81,13 +82,27 @@ public class CameraManager: NSObject, ObservableObject {
         guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition) else { return }
         
         do {
+            try camera.lockForConfiguration()
+            camera.focusMode = .autoFocus
+            camera.isSmoothAutoFocusEnabled = true
+            camera.exposureMode = .continuousAutoExposure
+            camera.unlockForConfiguration()
+        } catch {
+            print("Error setting focus: \(error)")
+        }
+        
+        do {
             // Setup input and output
             let input = try AVCaptureDeviceInput(device: camera)
             session.addInput(input)
             
             // Configure the output
             
-            session.sessionPreset = AVCaptureSession.Preset.high
+            if captureMode == .captureBackPage || captureMode == .captureFrontPage {
+                session.sessionPreset = AVCaptureSession.Preset.photo
+            } else {
+                session.sessionPreset = AVCaptureSession.Preset.high
+            }
             
             if cameraPosition == .front /*liveness check*/ {
                 output.videoSettings = [
@@ -276,8 +291,11 @@ public class CameraManager: NSObject, ObservableObject {
                         print("Detected card at: \(firstResult.boundingBox)")
                         Task { @MainActor in
                             self.isHighlighted = true
-                            self.image = image
-                            self.croppedImage = self.cropImage(image: image, observation: firstResult)
+                            self.image = self.fixOrientation(image: image)//image
+                            if let croppedImg = self.cropImage(image: image, observation: firstResult) {
+                                self.croppedImage = self.fixOrientation(image: croppedImg)
+                            }
+                            
                             self.session.stopRunning()
                         }
                     }
@@ -330,12 +348,30 @@ public class CameraManager: NSObject, ObservableObject {
         let height = CGFloat(cgImage.height)
         
         let boundingBox = observation.boundingBox
-        let x = boundingBox.origin.x * width
-        let y = (1 - boundingBox.origin.y - boundingBox.height) * height
+        let offset: CGFloat = 60
+        let x = boundingBox.origin.x * width - offset
+        let y = (1 - boundingBox.origin.y - boundingBox.height) * height - offset
         let rect = CGRect(x: x, y: y, width: boundingBox.width * width, height: boundingBox.height * height)
         
         guard let croppedCGImage = cgImage.cropping(to: rect) else { return nil }
         return UIImage(cgImage: croppedCGImage)
+    }
+    
+    func fixOrientation(image: UIImage) -> UIImage? {
+        guard let cgImage = image.cgImage else { return image }
+        
+        let ciImage = CIImage(cgImage: cgImage)
+        
+        guard let orientation = CGImagePropertyOrientation(rawValue: UInt32(image.imageOrientation.rawValue)) else {
+            return image
+        }
+        
+        let transformedImage = ciImage.oriented(orientation)
+        let context = CIContext()
+        
+        guard let outputCGImage = context.createCGImage(transformedImage, from: transformedImage.extent) else { return nil }
+        
+        return UIImage(cgImage: outputCGImage)
     }
 }
 

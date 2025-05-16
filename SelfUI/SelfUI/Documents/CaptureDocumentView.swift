@@ -48,7 +48,7 @@ public struct CaptureDocumentView: View {
             Color.black.ignoresSafeArea()
             CameraPreview(session: cameraManager.session)
                 .onChange(of: cameraManager.isHighlighted) { newValue in
-                    if let originalImage = cameraManager.image, cameraManager.isHighlighted {
+                    if let originalImage = cameraManager.image, let croppedImage = cameraManager.croppedImage , cameraManager.isHighlighted {
                         if cameraManager.captureMode == .detectIDCardMRZ {
                             Utils.vibrate()
                         } else if (cameraManager.captureMode == .captureFrontPage) || cameraManager.captureMode == .captureBackPage {
@@ -56,7 +56,7 @@ public struct CaptureDocumentView: View {
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            onCaptureImage?(originalImage)
+                            onCaptureImage?(croppedImage)
                         })
                     }
                 }
