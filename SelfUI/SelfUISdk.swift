@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public class SelfUISdk: ObservableObject {
     @Published var font: Font?
