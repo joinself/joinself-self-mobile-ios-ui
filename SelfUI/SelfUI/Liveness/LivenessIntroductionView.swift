@@ -47,8 +47,8 @@ public struct LivenessIntroductionView: View {
                 }
                 .alert(isPresented: $showAlert) {
                     Alert(
-                        title: Text("Camera Permission Required"),
-                        message: Text("Please enable camera access in Settings."),
+                        title: Text("\(self.getAppName()) Would Like to Access the Camera"),
+                        message: Text("Turning on the camera allows us to ensure it's only you using \(self.getAppName())"),
                         primaryButton: .default(Text("Settings")) {
                             if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                                 UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
@@ -71,6 +71,13 @@ public struct LivenessIntroductionView: View {
                 completion?(authorized)
             }
         }
+    }
+    
+    private func getAppName() -> String {
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ??
+                      Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+
+        return appName ?? ""
     }
 }
 
