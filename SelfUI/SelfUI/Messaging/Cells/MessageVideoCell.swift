@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct MessageVideoCell: View, BaseMessage {
+public struct MessageVideoCell: View, BaseMessage {
     var messageDTO: MessageDTO
     @State private var showVideoPreview: Bool = false
     @State private var fileURL: URL?
 
-    init(messageDTO: MessageDTO) {
+    public init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
                 if let uiImage = messageDTO.image {

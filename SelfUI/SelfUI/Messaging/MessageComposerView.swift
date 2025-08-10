@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MessageComposerView: View {
+public struct MessageComposerView: View {
     @State private var showAttachmentView = false
     @State private var showingImagePicker = false
     @State private var showingPhotoPicker = false
@@ -23,7 +23,7 @@ struct MessageComposerView: View {
     var onText: ((String) -> Void)?
     var onImage: ((UIImage) -> Void)?
     var onSelectFile: ((URL) -> Void)?
-    init(onClick: (() -> Void)? = nil,
+    public init(onClick: (() -> Void)? = nil,
          onText: ((String) -> Void)? = nil,
          onImage: ((UIImage) -> Void)? = nil,
          onSelectFile: ((URL) -> Void)? = nil) {
@@ -33,7 +33,7 @@ struct MessageComposerView: View {
         self.onSelectFile = onSelectFile
     }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             HStack {
                 TextField("", text: $text, prompt: Text("Type a message").foregroundColor(.defaultDark), axis: .vertical)

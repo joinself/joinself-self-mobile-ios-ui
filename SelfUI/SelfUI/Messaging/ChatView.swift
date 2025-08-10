@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 
 public class ChatObservableObject: ObservableObject {
-    @Published var messages: [MessageDTO] = []
+    @Published public var messages: [MessageDTO] = []
     public var newMessage = PassthroughSubject<MessageDTO, Never>() // handle on message changes
     public init(messages: [MessageDTO]) {
         self.messages = messages

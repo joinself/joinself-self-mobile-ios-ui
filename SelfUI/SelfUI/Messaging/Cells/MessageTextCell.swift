@@ -11,13 +11,14 @@ protocol BaseMessage {
     var messageDTO: MessageDTO { get }
 }
 
-struct MessageTextCell: View, BaseMessage {
+public struct MessageTextCell: View, BaseMessage {
     @ObservedObject var messageDTO: MessageDTO
 
-    init(messageDTO: MessageDTO) {
+    public init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
     }
-    var body: some View {
+    
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
                 Text(LocalizedStringKey(messageDTO.text))

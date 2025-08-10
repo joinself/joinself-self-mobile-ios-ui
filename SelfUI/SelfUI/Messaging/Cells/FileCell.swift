@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct FileCell: View, BaseMessage {
+public struct FileCell: View, BaseMessage {
     let messageDTO: MessageDTO
     let spaceLength: CGFloat = 0
     @State private var showDocument = false
     
-    init(messageDTO: MessageDTO) {
+    public init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
                 VStack (alignment: .leading) {

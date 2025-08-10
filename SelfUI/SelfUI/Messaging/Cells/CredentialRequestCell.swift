@@ -105,12 +105,12 @@ struct CredentialRequestRejectContentView: View {
     }
 }
 
-struct CredentialRequestCell: View {
+public struct CredentialRequestCell: View {
     var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
-    init(messageDTO: MessageDTO,
+    public init(messageDTO: MessageDTO,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
         self.messageDTO = messageDTO
@@ -118,7 +118,7 @@ struct CredentialRequestCell: View {
         self.actionReject = actionReject
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             switch messageDTO.status {
             case .accepted:

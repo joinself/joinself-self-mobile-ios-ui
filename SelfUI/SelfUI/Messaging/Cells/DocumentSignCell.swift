@@ -141,7 +141,7 @@ struct DocumentSignRejectedContentView: View {
     }
 }
 
-struct DocumentSignCell: View {
+public struct DocumentSignCell: View {
     let messageDTO: MessageDTO
     let spaceLength: CGFloat
     private var actionAccept: (() -> Void)?
@@ -149,7 +149,7 @@ struct DocumentSignCell: View {
     
     @State private var showDocument = false
     
-    init(messageDTO: MessageDTO,
+    public init(messageDTO: MessageDTO,
          spaceLength: CGFloat = 20,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
@@ -159,7 +159,7 @@ struct DocumentSignCell: View {
         self.actionReject = actionReject
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO, spaceLength: spaceLength) {
             switch messageDTO.status {
             case .accepted:

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct DraggableModifier : ViewModifier {
+public struct DraggableModifier : ViewModifier {
 
-    enum Direction {
+    public enum Direction {
         case vertical
         case horizontal
     }
     
-    enum SwipeDirection {
+    public enum SwipeDirection {
         case left
         case right
         case up
@@ -26,13 +26,13 @@ struct DraggableModifier : ViewModifier {
     @State private var draggedOffset: CGSize = .zero
     let SWIPE_MIN_DISTANCE: CGFloat = 100
     private var onSwipe: ((SwipeDirection) -> Void)?
-    init(direction: Direction = .horizontal, draggedOffset: CGSize = .zero, onSwipe: ((SwipeDirection) -> Void)? = nil) {
+    public init(direction: Direction = .horizontal, draggedOffset: CGSize = .zero, onSwipe: ((SwipeDirection) -> Void)? = nil) {
         self.direction = direction
         self.draggedOffset = draggedOffset
         self.onSwipe = onSwipe
     }
 
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
         .offset(
             CGSize(width: direction == .vertical ? 0 : draggedOffset.width,

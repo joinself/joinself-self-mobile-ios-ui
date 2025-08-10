@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct StatusTimeView: View {
+public struct StatusTimeView: View {
     let timestamp: String
     @Binding private var status: MessageStatus
 //    private var receiptImageName: String?
     
-    init(timestamp: String, status: Binding<MessageStatus> = .constant(.pending)) {
+    public init(timestamp: String, status: Binding<MessageStatus> = .constant(.pending)) {
         self.timestamp = timestamp
         self._status = status
     }
-    var body: some View {
+    
+    public var body: some View {
         HStack {
             // Caption/Regular
             Text(timestamp)

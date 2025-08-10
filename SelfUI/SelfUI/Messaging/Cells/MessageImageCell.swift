@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct MessageImageCell: View, BaseMessage {
+public struct MessageImageCell: View, BaseMessage {
     var messageDTO: MessageDTO
     @State private var showImagePreview: Bool = false
     @State private var image: UIImage?
 
-    init(messageDTO: MessageDTO) {
+    public init(messageDTO: MessageDTO) {
         self.messageDTO = messageDTO
     }
     
-    var body: some View {
+    public var body: some View {
         BaseCell(messageDTO: messageDTO) {
             VStack(alignment: messageDTO.fromType == .sender ? .trailing : .leading, spacing: 0) {
                 if let uiImage = messageDTO.image {

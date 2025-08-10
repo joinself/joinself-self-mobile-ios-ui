@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-class KeyboardResponder: ObservableObject {
-    @Published var currentHeight: CGFloat = 0
+public class KeyboardResponder: ObservableObject {
+    @Published public var currentHeight: CGFloat = 0
     private var cancellable: AnyCancellable?
     
-    init() {
+    public init() {
         cancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)
             .merge(with: NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification))
             .compactMap { notification in
