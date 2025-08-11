@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 public struct MessageType {
     public static let SELF_TEXT = "self/text"
