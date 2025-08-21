@@ -78,7 +78,7 @@ public struct ChatView: View {
                             }
                         
                         case MessageType.SELF_DOCUMENT_SIGN:
-                            DocumentSignCell(messageDTO: message) {
+                            DocumentSignCell(messageDTO: .constant(message)) {
                                 actionAccept?(message)
                             } actionReject: {
                                 actionReject?(message)
