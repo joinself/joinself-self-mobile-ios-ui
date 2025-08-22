@@ -106,14 +106,14 @@ struct CredentialRequestRejectContentView: View {
 }
 
 public struct CredentialRequestCell: View {
-    var messageDTO: MessageDTO
+    @Binding var messageDTO: MessageDTO
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
-    public init(messageDTO: MessageDTO,
+    public init(messageDTO: Binding<MessageDTO>,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
-        self.messageDTO = messageDTO
+        self._messageDTO = messageDTO
         self.actionAccept = actionAccept
         self.actionReject = actionReject
     }
@@ -134,9 +134,8 @@ public struct CredentialRequestCell: View {
 
 #Preview {
     VStack {
-        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .pending, timestamp: "now"))
-        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now"))
-        CredentialRequestCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now"))
-    }.padding()
-    
+        CredentialRequestCell(messageDTO: .constant(MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .pending, timestamp: "now")))
+        CredentialRequestCell(messageDTO: .constant(MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now")))
+        CredentialRequestCell(messageDTO: .constant(MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .rejected, timestamp: "now")))
+    }
 }

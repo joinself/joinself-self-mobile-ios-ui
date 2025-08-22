@@ -68,7 +68,7 @@ public struct ChatView: View {
                     List(chatObservableObject.messages) { message in
                         switch message.mimeType {
                         case MessageType.SELF_CREDENTIAL_REQUEST:
-                            CredentialRequestCell(messageDTO: message) {
+                            CredentialRequestCell(messageDTO: .constant(message)) {
                                 actionAccept?(message)
                             } actionReject: {
                                 actionReject?(message)

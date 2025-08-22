@@ -54,6 +54,8 @@ public enum MessageStatus: String, CaseIterable {
 
 public class MessageDTO: ObservableObject, Identifiable, Equatable {
     public let id: String
+    public let toAddress: String
+    public let fromAddress: String
     public let messageId: String
     public let text: String
     public var image: UIImage? //FIXME: should use fileURL
@@ -75,6 +77,8 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
 
     public init(id: String,
                 messageId: String = "",
+                toAddress: String = "",
+                fromAddress: String = "",
                 text: String,
                 image: UIImage? = nil,
                 fileURLs: [URL] = [],
@@ -99,6 +103,8 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
         self.status = status
         self.mimeType = mimeType
         self.reference = reference
+        self.toAddress = toAddress
+        self.fromAddress = fromAddress
     }
     
     func displayFileSize() -> String {
