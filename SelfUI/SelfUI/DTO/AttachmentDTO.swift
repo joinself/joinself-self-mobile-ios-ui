@@ -31,6 +31,9 @@ extension Int64 {
         let formatter = ByteCountFormatter()
         formatter.allowedUnits = [.useMB]
         formatter.countStyle = .file
-        return formatter.string(fromByteCount: self)
+        
+        let value = formatter.string(fromByteCount: self)
+        print("formattedFileSize>>> \(value)")
+        return value
     }
 }
