@@ -20,7 +20,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
     
     var body: some View {
         HStack {
-            if messageDTO.isMyMessage {
+            if messageDTO.messagePosition == .right {
                 Spacer(minLength: minSpaceLength)
             }
             VStack (alignment: .trailing, spacing: 4){
@@ -61,7 +61,7 @@ struct BaseCell<Content: View>: View, BaseMessage {
             .inset(by: 1)
             .stroke(self.calculateCustomBorderColor(), lineWidth: self.calculateCustomBorderWidth())
             )
-            if !messageDTO.isMyMessage {
+            if messageDTO.messagePosition == .left {
                 Spacer(minLength: minSpaceLength)
             }
         }
