@@ -100,6 +100,18 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
         self.mimeType = mimeType
         self.reference = reference
     }
+    
+    func displayFileSize() -> String {
+        var displaySize: String?
+        
+        if let size = attachments.first?.size.formattedFileSize {
+            displaySize = "\(size)"
+        } else {
+            displaySize = attachments.first?.formattedSize ?? "0 MB"
+        }
+        
+        return displaySize ?? "0 MB"
+    }
 }
 
 public enum ConnectionType: String, CaseIterable {

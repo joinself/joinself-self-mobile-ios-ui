@@ -31,7 +31,7 @@ struct DocumentSignContentView: View {
                     Text(messageDTO.attachments.first?.name ?? messageDTO.text)
                         .modifier(Body1TextStyle())
 
-                    StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
+                    StatusLabel(label: messageDTO.displayFileSize(), labelColor: .defaultPink, backgroundColor: .PrimaryOverlay)
                 }
                 Spacer()
                 Button {
@@ -83,7 +83,7 @@ struct DocumentSignAcceptedContentView: View {
                         .modifier(Body1TextStyle())
                     HStack {
                         StatusLabel(label: "label_signed".localized, backgroundColor: .defaultGreen)
-                        StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultGreen, backgroundColor: .white)
+                        StatusLabel(label: self.messageDTO.displayFileSize(), labelColor: .defaultGreen, backgroundColor: .white)
                     }
                 }
                 Spacer()
@@ -125,7 +125,7 @@ struct DocumentSignRejectedContentView: View {
                     
                     HStack {
                         StatusLabel(label: "label_rejected".localized, backgroundColor: .defaultError)
-                        StatusLabel(label: messageDTO.attachments.first?.formattedSize ?? "0 MB", labelColor: .defaultError, backgroundColor: .white)
+                        StatusLabel(label: messageDTO.displayFileSize(), labelColor: .defaultError, backgroundColor: .white)
                     }
                 }
                 
@@ -142,18 +142,18 @@ struct DocumentSignRejectedContentView: View {
 }
 
 public struct DocumentSignCell: View {
-    let messageDTO: MessageDTO
+    @Binding var messageDTO: MessageDTO
     let spaceLength: CGFloat
     private var actionAccept: (() -> Void)?
     private var actionReject: (() -> Void)?
     
     @State private var showDocument = false
     
-    public init(messageDTO: MessageDTO,
+    public init(messageDTO: Binding<MessageDTO>,
          spaceLength: CGFloat = 20,
          actionAccept: (() -> Void)? = nil,
          actionReject: (() -> Void)? = nil) {
-        self.messageDTO = messageDTO
+        self._messageDTO = messageDTO
         self.spaceLength = spaceLength
         self.actionAccept = actionAccept
         self.actionReject = actionReject
@@ -201,7 +201,7 @@ public struct DocumentSignCell: View {
      */
     ChatView(conversationName: .constant("User"), imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"), chatObservableObject: ChatObservableObject(messages: [
         MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .pending, timestamp: "now"),
-        MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .accepted, timestamp: "now"),
+        MessageDTO(id: UUID().uuidString, text: "File A", attachments: [AttachmentDTO(name: "File A", mime: "", localPath: "", size: 1200000)], mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .accepted, timestamp: "now"),
         MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .rejected, timestamp: "now"),
     ]))
     

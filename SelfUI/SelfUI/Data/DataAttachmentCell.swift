@@ -8,13 +8,13 @@
 import SwiftUI
 
 public struct DataAttachmentCell: View {
-    let message: MessageDTO
-    public init(message: MessageDTO) {
-        self.message = message
+    @Binding var message: MessageDTO
+    public init(message: Binding<MessageDTO>) {
+        self._message = message
     }
     
     public var body: some View {
-        DocumentSignCell(messageDTO: message, spaceLength: 0)
+        DocumentSignCell(messageDTO: $message, spaceLength: 0)
             .frame(maxWidth: .infinity)
             .padding()
             .padding()
@@ -22,5 +22,5 @@ public struct DataAttachmentCell: View {
 }
 
 #Preview {
-    DataAttachmentCell(message: MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now"))
+    DataAttachmentCell(message: .constant(MessageDTO(id: UUID().uuidString, text: "Hello", fromType: .receiver, status: .accepted, timestamp: "now")))
 }
