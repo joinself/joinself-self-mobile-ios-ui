@@ -201,7 +201,7 @@ public struct DocumentSignCell: View {
      */
     ChatView(conversationName: .constant("User"), imageURL: mainBundle?.url(forResource: "Image", withExtension: "jpeg"), chatObservableObject: ChatObservableObject(messages: [
         MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .pending, timestamp: "now"),
-        MessageDTO(id: UUID().uuidString, text: "File A", attachments: [AttachmentDTO(name: "File A", mime: "", localPath: "", size: 1200000)], mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .accepted, timestamp: "now"),
+        MessageDTO(id: UUID().uuidString, text: "File A", attachments: [AttachmentDTO(name: "File A", mime: "", localPath: "", size: 120)], mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .accepted, timestamp: "now"),
         MessageDTO(id: UUID().uuidString, text: "Hello! How are you?", mimeType: MessageType.SELF_DOCUMENT_SIGN, fromType: .receiver, status: .rejected, timestamp: "now"),
     ]))
     
