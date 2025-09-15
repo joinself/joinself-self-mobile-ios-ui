@@ -168,10 +168,12 @@ public class CameraManager: NSObject, ObservableObject {
             
             if let mrzInfo = OcrUtils.parseMRZInfo(mrzString: mrzLines), mrzInfo.isvalidMZR() {
                 print("Expected mrzInfo: \(mrzInfo)")
+                var _mrzInfo = mrzInfo
+                _mrzInfo.imageData = passportImage.jpegData(compressionQuality: 1.0)
                 DispatchQueue.main.async {
                     self.isHighlighted = mrzInfo.isvalidMZR()
                     Utils.vibrate()
-                    self.onResult?(mrzInfo)
+                    self.onResult?(_mrzInfo)
                 }
                 self.session.stopRunning()
             }

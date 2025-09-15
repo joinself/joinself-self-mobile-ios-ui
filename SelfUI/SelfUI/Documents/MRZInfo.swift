@@ -9,6 +9,7 @@ import Foundation
 import Vision
 
 public struct MRZInfo {
+    public var imageData: Data?
     public let documentNumber: String
     public let dateOfBirth: String
     public let dateOfExpiry: String
