@@ -41,13 +41,13 @@ public struct VideoPreview: View {
                 self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
                 self.isPlayable = isPlayable
                 self.player?.play() // Automatically play the video when the view appears
-                Task { @MainActor in
+                await MainActor.run {
                     completion?(isPlayable)
                 }
                 
             } catch let error {
                 print("Check If Playable: \(error)")
-                Task { @MainActor in
+                await MainActor.run {
                     completion?(false)
                 }
             }
