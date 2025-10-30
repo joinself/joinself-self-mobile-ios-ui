@@ -20,30 +20,14 @@ public struct LivenessChallengeView: View {
         VStack (alignment: .center) {
             Spacer()
             ZStack {
-                //                Image("bg_turn_left", bundle: mainBundle)
                 backgroundView(for: position)
                     .overlay {
                         Text(message)
                             .modifier(Heading4TextStyle())
                             .padding()
+                            .padding()
                             //.frame(maxWidth: .infinity)
                     }
-                
-                Text(message)
-                    .modifier(Heading4TextStyle())
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.white)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                    )
-                    .padding()
-                    .hidden()
-                
             }
         }
     }
