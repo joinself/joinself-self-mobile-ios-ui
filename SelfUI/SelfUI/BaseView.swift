@@ -43,14 +43,28 @@ public struct BaseView<Content: View>: View {
         .background(backgroundColor)
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                if enableBackNavigation {
-                    NavBackButton(isWhiteBackground: false) {
-                        onBack?() // on some cases the presentation mode does not dismiss the modal view. Show we need to handle it on parent view
-                        presentationMode.wrappedValue.dismiss()
+            if #available(iOS 26.0, *) {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if enableBackNavigation {
+                        NavBackButton(isWhiteBackground: false) {
+                            onBack?() // on some cases the presentation mode does not dismiss the modal view. Show we need to handle it on parent view
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } else {
+                        Spacer()
                     }
-                } else {
-                    Spacer()
+                }
+                .sharedBackgroundVisibility(.hidden)
+            } else {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    if enableBackNavigation {
+                        NavBackButton(isWhiteBackground: false) {
+                            onBack?() // on some cases the presentation mode does not dismiss the modal view. Show we need to handle it on parent view
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    } else {
+                        Spacer()
+                    }
                 }
             }
         }
