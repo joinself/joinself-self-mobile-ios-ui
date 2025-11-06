@@ -32,7 +32,6 @@ public struct BaseView<Content: View>: View {
             VStack {
                 Spacer()
                 content
-//                    .padding(Constants.EdgeInsetsDefault)
             }
             HStack (alignment: .bottom) {
                 BrandView(isDarked: true, textColor: brandTextColor)
