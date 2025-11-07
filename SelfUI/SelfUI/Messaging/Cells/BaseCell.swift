@@ -101,7 +101,10 @@ struct BaseCell<Content: View>: View, BaseMessage {
                 Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
             })
             
-            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now")) {
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now", position: .right)) {
+                Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
+            }
+            BaseCell(messageDTO: MessageDTO(id: UUID().uuidString, text: "Hello", timestamp: "now", position: .left)) {
                 Text("Hello base sender cell. Hello base sender cell.Hello base sender cell.Hello base sender cell.")
             }
             
