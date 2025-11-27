@@ -21,7 +21,6 @@
 		632AFA002CAFF5960036F294 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632AF9FF2CAFF5950036F294 /* UserDetailView.swift */; };
 		632AFA032CAFF69B0036F294 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632AFA022CAFF69B0036F294 /* ImagePicker.swift */; };
 		6334F4EC2D08431700139CF7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334F4EB2D08431700139CF7 /* Constants.swift */; };
-		6334F4EF2D084C8200139CF7 /* RestoreFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334F4EE2D084C8200139CF7 /* RestoreFlow.swift */; };
 		6334F4F12D0939F400139CF7 /* RestoreIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334F4F02D0939F400139CF7 /* RestoreIntroView.swift */; };
 		6334F4F32D093ACD00139CF7 /* BaseProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334F4F22D093ACD00139CF7 /* BaseProgressView.swift */; };
 		6334F4F52D093FF800139CF7 /* StepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6334F4F42D093FF800139CF7 /* StepProgressView.swift */; };
@@ -99,7 +98,6 @@
 		6382D6362D79977E009C5558 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382D6352D79977E009C5558 /* BadgeView.swift */; };
 		6382D6382D79AD1F009C5558 /* BaseAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382D6372D79AD1F009C5558 /* BaseAvatarView.swift */; };
 		6382D63A2D79D3CE009C5558 /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382D6392D79D3CE009C5558 /* ChipView.swift */; };
-		638810D22D01BA9600861E7C /* BackupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638810D12D01BA9600861E7C /* BackupFlow.swift */; };
 		638810D42D01BE6400861E7C /* BackupInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638810D32D01BE6400861E7C /* BackupInfoView.swift */; };
 		638810D62D01C2BF00861E7C /* BackupDoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638810D52D01C2BF00861E7C /* BackupDoneView.swift */; };
 		638810D82D01C36B00861E7C /* BackingupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638810D72D01C36B00861E7C /* BackingupView.swift */; };
@@ -247,7 +245,6 @@
 		632AF9FF2CAFF5950036F294 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		632AFA022CAFF69B0036F294 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6334F4EB2D08431700139CF7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		6334F4EE2D084C8200139CF7 /* RestoreFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreFlow.swift; sourceTree = "<group>"; };
 		6334F4F02D0939F400139CF7 /* RestoreIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreIntroView.swift; sourceTree = "<group>"; };
 		6334F4F22D093ACD00139CF7 /* BaseProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProgressView.swift; sourceTree = "<group>"; };
 		6334F4F42D093FF800139CF7 /* StepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepProgressView.swift; sourceTree = "<group>"; };
@@ -324,7 +321,6 @@
 		6382D6352D79977E009C5558 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
 		6382D6372D79AD1F009C5558 /* BaseAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAvatarView.swift; sourceTree = "<group>"; };
 		6382D6392D79D3CE009C5558 /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
-		638810D12D01BA9600861E7C /* BackupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupFlow.swift; sourceTree = "<group>"; };
 		638810D32D01BE6400861E7C /* BackupInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupInfoView.swift; sourceTree = "<group>"; };
 		638810D52D01C2BF00861E7C /* BackupDoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupDoneView.swift; sourceTree = "<group>"; };
 		638810D72D01C36B00861E7C /* BackingupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackingupView.swift; sourceTree = "<group>"; };
@@ -518,7 +514,6 @@
 		6334F4ED2D084C7900139CF7 /* Restore */ = {
 			isa = PBXGroup;
 			children = (
-				6334F4EE2D084C8200139CF7 /* RestoreFlow.swift */,
 				6334F4F02D0939F400139CF7 /* RestoreIntroView.swift */,
 				6334F4F82D09963D00139CF7 /* RestoringBackupView.swift */,
 				6334F4FA2D099A9600139CF7 /* RestoringBackupFinishView.swift */,
@@ -595,7 +590,6 @@
 		638810D02D01B92900861E7C /* Backup */ = {
 			isa = PBXGroup;
 			children = (
-				638810D12D01BA9600861E7C /* BackupFlow.swift */,
 				638810D32D01BE6400861E7C /* BackupInfoView.swift */,
 				638810D72D01C36B00861E7C /* BackingupView.swift */,
 				638810D52D01C2BF00861E7C /* BackupDoneView.swift */,
@@ -1183,7 +1177,6 @@
 				6320F4FE2BFC4A4000C35808 /* Extensions.swift in Sources */,
 				63A99B212C07650B0073939A /* GIFView.swift in Sources */,
 				63D492852CB4C6030031277C /* OutlineLabelTextField.swift in Sources */,
-				6334F4EF2D084C8200139CF7 /* RestoreFlow.swift in Sources */,
 				63554DD82CA139CD00DF55D2 /* OutlineTextField.swift in Sources */,
 				635ACCFA2BFDDAE90012108F /* ProgressStepViewModel.swift in Sources */,
 				63A214332C7CA055008B5E4A /* QRReaderView.swift in Sources */,
@@ -1206,7 +1199,6 @@
 				63AB34D12CAECDA200B27E75 /* MessageTextCell.swift in Sources */,
 				63A2143B2C7CB0D3008B5E4A /* MessagingView.swift in Sources */,
 				63A99B4F2C09E9C80073939A /* PassportReadingChipView.swift in Sources */,
-				638810D22D01BA9600861E7C /* BackupFlow.swift in Sources */,
 				6334F4F72D0961D800139CF7 /* BaseActions.swift in Sources */,
 				6329EC8A2C5CC6C7002D3779 /* EmailVerificationFailedView.swift in Sources */,
 				6373018E2CA7F3D500BB0292 /* BaseNavigationBarView.swift in Sources */,
