@@ -117,12 +117,9 @@
 		6395A8242C5A7D9E00CB44FE /* CustomSmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */; };
 		6396B54E2C777159008464FE /* DevOnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6396B54D2C777159008464FE /* DevOnboardingFlow.swift */; };
 		63A214332C7CA055008B5E4A /* QRReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214322C7CA055008B5E4A /* QRReaderView.swift */; };
-		63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214352C7CAFE8008B5E4A /* HomeView.swift */; };
 		63A214382C7CB081008B5E4A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214372C7CB081008B5E4A /* ProfileView.swift */; };
 		63A2143B2C7CB0D3008B5E4A /* MessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */; };
-		63A2143E2C7CB1AB008B5E4A /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A2143D2C7CB1AB008B5E4A /* DataView.swift */; };
 		63A214402C7CB203008B5E4A /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A2143F2C7CB203008B5E4A /* ScanView.swift */; };
-		63A214432C7CB281008B5E4A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A214422C7CB281008B5E4A /* SettingsView.swift */; };
 		63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */; };
 		63A99AF92C05D8370073939A /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AF82C05D8370073939A /* OutlinedButton.swift */; };
 		63A99AFB2C05D92E0073939A /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A99AFA2C05D92E0073939A /* FontLoader.swift */; };
@@ -191,8 +188,6 @@
 		63E7F8462CB2547700039F0D /* CredentialRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */; };
 		63E7F8482CB2591500039F0D /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7F8472CB2591500039F0D /* BaseCell.swift */; };
 		63EDD23D2CF0509100E7E82E /* DocumentVerifyingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EDD23C2CF0509100E7E82E /* DocumentVerifyingView.swift */; };
-		63F5ECCA2CB9129100108555 /* DataCredentialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5ECC92CB9129100108555 /* DataCredentialCell.swift */; };
-		63F5ECCC2CB912B800108555 /* DataAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5ECCB2CB912B800108555 /* DataAttachmentCell.swift */; };
 		63F5ECCE2CB920BA00108555 /* CredentialDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5ECCD2CB920BA00108555 /* CredentialDTO.swift */; };
 		63F8C9FE2CF96666003B6B21 /* CaptureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F8C9FD2CF96666003B6B21 /* CaptureImageView.swift */; };
 		63F8CA062CF9CC0E003B6B21 /* DocumentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F8CA052CF9CC0E003B6B21 /* DocumentPickerView.swift */; };
@@ -340,12 +335,9 @@
 		6395A8232C5A7D9E00CB44FE /* CustomSmsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSmsView.swift; sourceTree = "<group>"; };
 		6396B54D2C777159008464FE /* DevOnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevOnboardingFlow.swift; sourceTree = "<group>"; };
 		63A214322C7CA055008B5E4A /* QRReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderView.swift; sourceTree = "<group>"; };
-		63A214352C7CAFE8008B5E4A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		63A214372C7CB081008B5E4A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		63A2143A2C7CB0D3008B5E4A /* MessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingView.swift; sourceTree = "<group>"; };
-		63A2143D2C7CB1AB008B5E4A /* DataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
 		63A2143F2C7CB203008B5E4A /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
-		63A214422C7CB281008B5E4A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		63A99AF62C05D0D90073939A /*  SelectDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " SelectDocumentView.swift"; sourceTree = "<group>"; };
 		63A99AF82C05D8370073939A /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 		63A99AFA2C05D92E0073939A /* FontLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
@@ -415,8 +407,6 @@
 		63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialRequestCell.swift; sourceTree = "<group>"; };
 		63E7F8472CB2591500039F0D /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		63EDD23C2CF0509100E7E82E /* DocumentVerifyingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentVerifyingView.swift; sourceTree = "<group>"; };
-		63F5ECC92CB9129100108555 /* DataCredentialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCredentialCell.swift; sourceTree = "<group>"; };
-		63F5ECCB2CB912B800108555 /* DataAttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAttachmentCell.swift; sourceTree = "<group>"; };
 		63F5ECCD2CB920BA00108555 /* CredentialDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialDTO.swift; sourceTree = "<group>"; };
 		63F8C9FD2CF96666003B6B21 /* CaptureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageView.swift; sourceTree = "<group>"; };
 		63F8CA052CF9CC0E003B6B21 /* DocumentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerView.swift; sourceTree = "<group>"; };
@@ -648,14 +638,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		63A214342C7CAFC7008B5E4A /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				63A214352C7CAFE8008B5E4A /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		63A214392C7CB0BD008B5E4A /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,24 +653,6 @@
 				63AB90782CA94E6500835D53 /* MessageComposerView.swift */,
 			);
 			path = Messaging;
-			sourceTree = "<group>";
-		};
-		63A2143C2C7CB19E008B5E4A /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				63A2143D2C7CB1AB008B5E4A /* DataView.swift */,
-				63F5ECC92CB9129100108555 /* DataCredentialCell.swift */,
-				63F5ECCB2CB912B800108555 /* DataAttachmentCell.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		63A214412C7CB273008B5E4A /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				63A214422C7CB281008B5E4A /* SettingsView.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		63A99AF52C05CA400073939A /* Documents */ = {
@@ -821,10 +785,7 @@
 				638810D02D01B92900861E7C /* Backup */,
 				632AFA012CAFF6840036F294 /* UIKit Wrapper */,
 				632AF9F82CAFCCC00036F294 /* DTO */,
-				63A214342C7CAFC7008B5E4A /* Home */,
-				63A214412C7CB273008B5E4A /* Settings */,
 				63A214392C7CB0BD008B5E4A /* Messaging */,
-				63A2143C2C7CB19E008B5E4A /* Data */,
 				63A2142F2C7C9EDB008B5E4A /* Profile */,
 				63A2142E2C7C9ED4008B5E4A /* QRReader */,
 				6395A81C2C5A7AAA00CB44FE /* Create account */,
@@ -1074,8 +1035,6 @@
 				638E850E2CEDC1F2007F1D26 /* CaptureDocumentView.swift in Sources */,
 				63BFB0DA2D8D5FFE00B994F5 /* PassportFlow.swift in Sources */,
 				63A99B232C07656D0073939A /* ReadingPassportChipInstructionView.swift in Sources */,
-				63F5ECCC2CB912B800108555 /* DataAttachmentCell.swift in Sources */,
-				63A214362C7CAFE8008B5E4A /* HomeView.swift in Sources */,
 				637301882CA6C4E800BB0292 /* UIImageWrapperView.swift in Sources */,
 				63A99AF72C05D0D90073939A /*  SelectDocumentView.swift in Sources */,
 				63A99B322C08B7970073939A /* PassportIntroductionView.swift in Sources */,
@@ -1112,12 +1071,10 @@
 				635ACD0B2BFE02560012108F /* Fonts.swift in Sources */,
 				63A99B102C05EA820073939A /* Color.swift in Sources */,
 				634225D32CB68FB800CF06D1 /* ImagePrevewView.swift in Sources */,
-				63A214432C7CB281008B5E4A /* SettingsView.swift in Sources */,
 				63F8CA062CF9CC0E003B6B21 /* DocumentPickerView.swift in Sources */,
 				63E7F8482CB2591500039F0D /* BaseCell.swift in Sources */,
 				638E85122CEDCBE8007F1D26 /* CardOverlayView.swift in Sources */,
 				63E2C3A32C7DC9D300056E9B /* QRCodeOverlayView.swift in Sources */,
-				63A2143E2C7CB1AB008B5E4A /* DataView.swift in Sources */,
 				6340E9ED2D014DD00001F212 /* FileCell.swift in Sources */,
 				6395A8182C5A266300CB44FE /* EnterEmailCodeView.swift in Sources */,
 				63A99B2D2C08908A0073939A /* MRZInfo.swift in Sources */,
@@ -1161,7 +1118,6 @@
 				63C4D04D2D0FD5E40025FC0B /* CustomNavigationView.swift in Sources */,
 				6334F4FB2D099A9600139CF7 /* RestoringBackupFinishView.swift in Sources */,
 				632AFA032CAFF69B0036F294 /* ImagePicker.swift in Sources */,
-				63F5ECCA2CB9129100108555 /* DataCredentialCell.swift in Sources */,
 				63A99B272C0860A60073939A /* TransparentHoleView.swift in Sources */,
 				6320F4F52BFB307100C35808 /* LivenessCameraView.swift in Sources */,
 				6363B4952CE73CAF000BEC7F /* ExpandCollapseView.swift in Sources */,
