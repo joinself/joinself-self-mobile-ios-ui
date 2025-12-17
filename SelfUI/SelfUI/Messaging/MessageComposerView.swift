@@ -60,9 +60,10 @@ public struct MessageComposerView: View {
                     .cornerRadius(8)
                     .padding()
                 
-                if !text.isEmpty {
+                if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     Button(action: {
-                        onText?(text)
+                        let txt = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        onText?(txt)
                         text = ""
                     }) {
                         Image(systemName: "paperplane")
