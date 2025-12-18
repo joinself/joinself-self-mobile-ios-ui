@@ -17,9 +17,14 @@ public struct QRReaderView: View {
     
     var onCode: ((String?) -> Void)?
     var onCodeData: ((Data) -> Void)?
-    public init(isCodeValid: Binding<Bool> = .constant(false), onCode: ((String?) -> Void)? = nil, onCodeData: ((Data) -> Void)? = nil) {
+    var onBack: (() -> Void)?
+    public init(isCodeValid: Binding<Bool> = .constant(false),
+                onCode: ((String?) -> Void)? = nil,
+                onCodeData: ((Data) -> Void)? = nil,
+                onBack: (() -> Void)? = nil) {
         self.onCode = onCode
         self.onCodeData = onCodeData
+        self.onBack = onBack
         self._isValidQRCode = isCodeValid
     }
     
@@ -61,8 +66,12 @@ public struct QRReaderView: View {
             VStack {
                 HStack {
                     NavBackButton (isWhiteBackground: true) {
-                        print("click.")
-                        presentationMode.wrappedValue.dismiss()
+                        if let onBack = onBack {
+                            onBack()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        
                     }
                     .padding()
                     Spacer()
