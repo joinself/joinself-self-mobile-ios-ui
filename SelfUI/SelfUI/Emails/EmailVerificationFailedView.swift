@@ -26,7 +26,7 @@ public struct EmailVerificationFailedView: View {
             }
             
             Spacer()
-            ButtonView(title: "button_next".localized) {
+            ButtonView(title: "button_done".localized) {
                 completion?()
             }
         })
