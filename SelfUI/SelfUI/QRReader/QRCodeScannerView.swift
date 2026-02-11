@@ -43,7 +43,8 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 
                 if let stringValue = readableObject.stringValue {
                     print("Encoded QR: \(stringValue)")
-                    if let data = stringValue.data(using: .utf8) {
+                    
+                    if let data = stringValue.base64urlDecodedData() {
                         Utils.vibrate()
                         parent.qrCameraManager.stopSession()
                         parent.qrCameraManager.capturePublisher.send(data)

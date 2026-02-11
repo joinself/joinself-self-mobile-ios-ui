@@ -36,6 +36,23 @@ extension String {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: self)
     }
+    
+    func base64urlDecodedData() -> Data? {
+        // Step 1: Convert base64url → standard base64 alphabet
+        var base64 = self
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        
+        // Step 2: Add missing padding if needed (most important for no-padding base64url)
+        let remainder = base64.count % 4
+        if remainder > 0 {
+            let paddingCount = 4 - remainder
+            base64 += String(repeating: "=", count: paddingCount)
+        }
+        
+        // Step 3: Decode as normal base64
+        return Data(base64Encoded: base64)
+    }
 }
 
 extension Int {
