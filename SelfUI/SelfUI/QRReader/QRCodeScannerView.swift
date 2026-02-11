@@ -42,8 +42,22 @@ struct QRCodeScannerView: UIViewControllerRepresentable {
                 print("metadataObjects descriptor: \(readableObject.descriptor?.description)")
                 
                 if let stringValue = readableObject.stringValue {
-                    print("Not supported QR: \(stringValue)")
-                    parent.qrCameraManager.notSupportedQR = true
+                    print("Encoded QR: \(stringValue)")
+                    if let data = stringValue.data(using: .utf8) {
+                        Utils.vibrate()
+                        parent.qrCameraManager.stopSession()
+                        parent.qrCameraManager.capturePublisher.send(data)
+                    }
+                    
+                    /*if let encodedData = Data(base64Encoded: stringValue) {
+                        print("Encoded QR: \(stringValue)")
+                        Utils.vibrate()
+                        parent.qrCameraManager.stopSession()
+                        parent.qrCameraManager.capturePublisher.send(encodedData)
+                    } else {
+                        print("Not supported QR: \(stringValue)")
+                        parent.qrCameraManager.notSupportedQR = true
+                    }*/
                 }
                 else if let qrCodeBytes = readableObject.binaryValue {
                     Utils.vibrate()
