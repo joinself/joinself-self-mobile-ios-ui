@@ -91,6 +91,7 @@
 		637301922CA8005A00BB0292 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637301912CA8005A00BB0292 /* ChatView.swift */; };
 		637399802D5C563F00847A46 /* SigningRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6373997F2D5C563F00847A46 /* SigningRequestCell.swift */; };
 		6378654D2EB1BF7D00580FD7 /* CameraOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6378654C2EB1BF7D00580FD7 /* CameraOverlay.swift */; };
+		6378EF242F3DC14C00CF68C5 /* CustomRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6378EF232F3DC14C00CF68C5 /* CustomRequestCell.swift */; };
 		637948192E374B97003B54D9 /* LivenessIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637948182E374B97003B54D9 /* LivenessIntroView.swift */; };
 		6381C31E2BF4463A005573A0 /* SelfUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; };
 		6381C31F2BF4463A005573A0 /* SelfUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C451642BF30EAE00AD5BC5 /* SelfUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -308,6 +309,7 @@
 		637301912CA8005A00BB0292 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		6373997F2D5C563F00847A46 /* SigningRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningRequestCell.swift; sourceTree = "<group>"; };
 		6378654C2EB1BF7D00580FD7 /* CameraOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOverlay.swift; sourceTree = "<group>"; };
+		6378EF232F3DC14C00CF68C5 /* CustomRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestCell.swift; sourceTree = "<group>"; };
 		637948182E374B97003B54D9 /* LivenessIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessIntroView.swift; sourceTree = "<group>"; };
 		6381C3232BF463E1005573A0 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		6381C3262BF47129005573A0 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 				63AB34D02CAECDA200B27E75 /* MessageTextCell.swift */,
 				63AB34D22CAECDD300B27E75 /* StatusTimeView.swift */,
 				63E7F8452CB2547700039F0D /* CredentialRequestCell.swift */,
+				6378EF232F3DC14C00CF68C5 /* CustomRequestCell.swift */,
 				6373997F2D5C563F00847A46 /* SigningRequestCell.swift */,
 				6352E2B32CB7CDF200931A18 /* DocumentSignCell.swift */,
 				6340E9EC2D014DD00001F212 /* FileCell.swift */,
@@ -1132,6 +1135,7 @@
 				63A99B162C07271B0073939A /* LoadingDotsView.swift in Sources */,
 				635ACCF12BFC8C120012108F /* CustomSteppedProgressView.swift in Sources */,
 				63DC0A392D02E3A900E2F7F7 /* NetworkMonitor.swift in Sources */,
+				6378EF242F3DC14C00CF68C5 /* CustomRequestCell.swift in Sources */,
 				637399802D5C563F00847A46 /* SigningRequestCell.swift in Sources */,
 				6329EC882C5C9DB4002D3779 /* CustomAlert.swift in Sources */,
 				63A99B142C071F760073939A /* DocumentSorryView.swift in Sources */,
