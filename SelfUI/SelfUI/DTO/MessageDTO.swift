@@ -78,6 +78,7 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
     public let attachments: [AttachmentDTO]
     let credential: CredentialDTO?
     public var reference: MessageDTO?
+    public let selfieRequired: Bool
     
     // Equatable conformance
     public static func == (lhs: MessageDTO, rhs: MessageDTO) -> Bool {
@@ -97,7 +98,7 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
                 fromType: MessageFrom = .sender,
                 receiptStatus: MessageStatus = .pending,
                 status: MessageStatus = .pending,
-                timestamp: String = "", reference: MessageDTO? = nil, position: MessagePosition = .center) {
+                timestamp: String = "", reference: MessageDTO? = nil, position: MessagePosition = .center, selfieRequired: Bool = false) {
         self.id = id
         self.messageId = messageId
         self.text = text
@@ -112,6 +113,7 @@ public class MessageDTO: ObservableObject, Identifiable, Equatable {
         self.status = status
         self.mimeType = mimeType
         self.reference = reference
+        self.selfieRequired = selfieRequired
         self.toAddress = toAddress
         self.fromAddress = fromAddress
         self.messagePosition = position
