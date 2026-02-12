@@ -24,6 +24,7 @@ public struct MessageType {
     public static let SELF_CREDENTIAL_REQUEST = "self/credential_request"
     public static let SELF_CREDENTIAL = "self/credential"
     public static let SELF_DOCUMENT_SIGN = "self/document_sign"
+    public static let SELF_CUSTOM = "self/custom"
     public static let SELF_ACKNOWLEDGE = "self/acknowledge"
     public static let SELF_APPROVAL = "self/approval"
     public static let SELF_NOTIFICATION = "self/notification"
