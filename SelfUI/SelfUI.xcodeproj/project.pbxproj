@@ -169,6 +169,7 @@
 		63CEBCA62EAF3FD9009A7FDA /* LivenessOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEBCA52EAF3FD9009A7FDA /* LivenessOverlayView.swift */; };
 		63CEBCA82EAF41C5009A7FDA /* LivenessChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CEBCA72EAF41C5009A7FDA /* LivenessChallengeView.swift */; };
 		63D017472D1BEDBB002F8D0A /* SelfieOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D017462D1BEDBB002F8D0A /* SelfieOverlayView.swift */; };
+		63D0A3D42F3DD06E00167E3B /* CustomRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0A3D32F3DD06E00167E3B /* CustomRequestCell.swift */; };
 		63D0D0432BF395D8002658AA /* LivenessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D0D0422BF395D8002658AA /* LivenessView.swift */; };
 		63D492852CB4C6030031277C /* OutlineLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D492842CB4C6030031277C /* OutlineLabelTextField.swift */; };
 		63D4928D2CB53F730031277C /* ValidatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4928C2CB53F730031277C /* ValidatorHelper.swift */; };
@@ -385,6 +386,7 @@
 		63CEBCA52EAF3FD9009A7FDA /* LivenessOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessOverlayView.swift; sourceTree = "<group>"; };
 		63CEBCA72EAF41C5009A7FDA /* LivenessChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessChallengeView.swift; sourceTree = "<group>"; };
 		63D017462D1BEDBB002F8D0A /* SelfieOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieOverlayView.swift; sourceTree = "<group>"; };
+		63D0A3D32F3DD06E00167E3B /* CustomRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestCell.swift; sourceTree = "<group>"; };
 		63D0D0422BF395D8002658AA /* LivenessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivenessView.swift; sourceTree = "<group>"; };
 		63D492842CB4C6030031277C /* OutlineLabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineLabelTextField.swift; sourceTree = "<group>"; };
 		63D4928C2CB53F730031277C /* ValidatorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorHelper.swift; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 				6340E9EC2D014DD00001F212 /* FileCell.swift */,
 				636FDCE32CF6C58E00656AE1 /* MessageImageCell.swift */,
 				63DFB92A2D4250F000A5F6DE /* MessageVideoCell.swift */,
+				63D0A3D32F3DD06E00167E3B /* CustomRequestCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				6320F4F82BFB57DE00C35808 /* TipsSelfie.swift in Sources */,
 				634878CF2BF739EB00E50DE1 /* LivenessIntroductionView.swift in Sources */,
 				63AB34D32CAECDD300B27E75 /* StatusTimeView.swift in Sources */,
+				63D0A3D42F3DD06E00167E3B /* CustomRequestCell.swift in Sources */,
 				63EDD23D2CF0509100E7E82E /* DocumentVerifyingView.swift in Sources */,
 				636E49AA2EE008CB001721F5 /* RegistrationErrorView.swift in Sources */,
 				63A99B342C08B9330073939A /* DocumentType.swift in Sources */,
